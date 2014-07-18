@@ -72,6 +72,7 @@ public class FragMent2 extends Fragment {
         top250.add("The Good, the Bad and the Ugly");
         top250.add("The Dark Knight");
         top250.add("12 Angry Men");
+        top250.add("Lawrence of Arabia");
  
         List<String> nowShowing = new ArrayList<String>();
         nowShowing.add("The Conjuring");
