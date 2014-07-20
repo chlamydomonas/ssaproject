@@ -39,7 +39,7 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 	}
 	
 	//static View v; 
-	private static final String rssFeed = "https://ssa-bas-project.googlecode.com/svn/0709_3";
+	private static final String appLink = "https://ssa-bas-project.googlecode.com/svn/0709_3";
 	
 	private static final String ARRAY_NAME = "application";
 	private static final String ID = "applicationId";
@@ -50,23 +50,23 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 	private static final String CATEGORYNAME = "categoryName";
 	private static final String CATEGORYID = "categoryId";
 
-	List<Application> arrayOfList;
+	List<Application> applicationList;
 	ListView listView;
-	AppsRowAdapter objAdapter;
+	AppsRowAdapter appsRowAdapter;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		
-		View view = inflater.inflate(R.layout.fragment1_listview2, container, false);
+		//View view = inflater.inflate(R.layout.fragment1_listview2, container, false);
+		View view = inflater.inflate(R.layout.fragment1_listview, container, false);
 		listView = (ListView) view.findViewById(R.id.listview);
 		listView.setOnItemClickListener(this);
 		
-		arrayOfList = new ArrayList<Application>();
-		
-		
+		applicationList = new ArrayList<Application>();
+
 		if (Utils.isNetworkAvailable(getActivity())) {
-			new MyTask().execute(rssFeed);
+			new MyTask().execute(appLink);
 		} else {
 			showToast("No Network Connection!!!");
 		}
@@ -106,23 +106,22 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 			} else {
 
 				try {
-					JSONObject mainJson = new JSONObject(result);
-					JSONArray jsonArray = mainJson.getJSONArray(ARRAY_NAME);
-					for (int i = 0; i < jsonArray.length(); i++) {
-						JSONObject objJson = jsonArray.getJSONObject(i);
+					JSONObject applicationJson = new JSONObject(result);
+					JSONArray applicationArray = applicationJson.getJSONArray(ARRAY_NAME);
+					for (int i = 0; i < applicationArray.length(); i++) {
+						JSONObject appJsonObj = applicationArray.getJSONObject(i);
 
-						Application objItem = new Application();
+						Application application = new Application();
 
-						objItem.setId(objJson.getString(ID));
-						objItem.setName(objJson.getString(NAME));
-						objItem.setVersion(objJson.getString(VERSION));
-						objItem.setLink(objJson.getString(ICON));
-						objItem.setDescription(objJson.getString(DESC));
-						objItem.setCategoryId(objJson.getString(CATEGORYID));
-						objItem.setCategoryName(objJson.getString(CATEGORYNAME));
+						application.setId(appJsonObj.getString(ID));
+						application.setName(appJsonObj.getString(NAME));
+						application.setVersion(appJsonObj.getString(VERSION));
+						application.setLink(appJsonObj.getString(ICON));
+						application.setDescription(appJsonObj.getString(DESC));
+						application.setCategoryId(appJsonObj.getString(CATEGORYID));
+						application.setCategoryName(appJsonObj.getString(CATEGORYNAME));
 
-						arrayOfList.add(objItem);
-
+						applicationList.add(application);
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -130,7 +129,7 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 				// check data...
 
 				/*
-				Collections.sort(arrayOfList, new Comparator<Item>() {
+				Collections.sort(applicationList, new Comparator<Item>() {
 
 					@Override
 					public int compare(Item lhs, Item rhs) {
@@ -146,42 +145,42 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
 		//showDeleteDialog(position);
-		Application item = arrayOfList.get(position);
+		Application application = applicationList.get(position);
 		Intent intent = new Intent(getActivity(), DetailActivity.class);
-		intent.putExtra("url", item.getLink());
-		intent.putExtra("name", item.getName());
-		intent.putExtra("desc", item.getDescription());
+		intent.putExtra("url", application.getLink());
+		intent.putExtra("name", application.getName());
+		intent.putExtra("desc", application.getDescription());
 		startActivity(intent);
 	}
 	
-	private void showDeleteDialog(final int position) {
-		AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
-				.create();
-		alertDialog.setTitle("Delete ??");
-		alertDialog.setMessage("Are you sure want to Delete it??");
-		alertDialog.setButton("No", new DialogInterface.OnClickListener() {
-
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.dismiss();
-			}
-		});
-		alertDialog.setButton2("Yes", new DialogInterface.OnClickListener() {
-
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				arrayOfList.remove(position);
-				objAdapter.notifyDataSetChanged();
-
-			}
-		});
-		alertDialog.show();
-
-	}
+//	private void showDeleteDialog(final int position) {
+//		AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+//				.create();
+//		alertDialog.setTitle("Delete ??");
+//		alertDialog.setMessage("Are you sure want to Delete it??");
+//		alertDialog.setButton("No", new DialogInterface.OnClickListener() {
+//
+//			@Override
+//			public void onClick(DialogInterface dialog, int which) {
+//				dialog.dismiss();
+//			}
+//		});
+//		alertDialog.setButton2("Yes", new DialogInterface.OnClickListener() {
+//
+//			@Override
+//			public void onClick(DialogInterface dialog, int which) {
+//				applicationList.remove(position);
+//				appsRowAdapter.notifyDataSetChanged();
+//
+//			}
+//		});
+//		alertDialog.show();
+//	}
 	
 	public void setAdapterToListview() {
-		objAdapter = new AppsRowAdapter(getActivity(), R.layout.fragment1_row2, arrayOfList);
-		listView.setAdapter(objAdapter);
+		//appsRowAdapter = new AppsRowAdapter(getActivity(), R.layout.fragment1_row2, applicationList);
+		appsRowAdapter = new AppsRowAdapter(getActivity(), R.layout.fragment1_row1, applicationList);
+		listView.setAdapter(appsRowAdapter);
 	}
 	public void showToast(String msg) {
 		Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();

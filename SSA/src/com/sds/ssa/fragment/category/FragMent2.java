@@ -20,10 +20,10 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
-import com.sds.ssa.adapter.AppsRowAdapter;
 import com.sds.ssa.adapter.ExpandableListAdapter;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
+import com.sds.ssa.vo.Category;
 import com.sds.ssa.R;
 
 @SuppressLint("ValidFragment")
@@ -31,7 +31,7 @@ public class FragMent2 extends Fragment {
 
 	Context mContext;
 	
-	private static final String rssFeed = "https://ssa-bas-project.googlecode.com/svn/category";
+	private static final String categoryLink = "https://ssa-bas-project.googlecode.com/svn/category";
 	
 	private static final String CATEGORY_ARRAY_NAME = "category";
 	private static final String ID = "categoryId";
@@ -40,13 +40,15 @@ public class FragMent2 extends Fragment {
 	private static final String APPLICATION_ARRAY_NAME = "application";
 	private static final String APPID = "applicationId";
 	private static final String APPNAME = "applicationName";
+	private static final String APPVERSION = "applicationVersion";
+	private static final String APPICON = "appIcon";
+	private static final String APPDESC = "appDescription";
 	
 	ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
-    List<String> listDataHeader;
-    HashMap<String, List<String>> listDataChild;
-    
-	
+    List<Category> listDataHeader;
+    HashMap<Category, List<Application>> listDataChild;
+
 	public FragMent2(Context context) {
 		mContext = context;
 	}
@@ -57,23 +59,12 @@ public class FragMent2 extends Fragment {
 		
 		View rootView = inflater.inflate(R.layout.fragment2_expandable, container, false);
 		expListView = (ExpandableListView) rootView.findViewById(R.id.lvExp);
-		
-		// preparing list data
-        //prepareListData();
-        
-        
-        //listAdapter = new ExpandableListAdapter(mContext, listDataHeader, listDataChild);
-        
-        // setting list adapter
-        //expListView.setAdapter(listAdapter);
-        
-        
+
         if (Utils.isNetworkAvailable(getActivity())) {
-			new MyTask().execute(rssFeed);
+			new MyTask().execute(categoryLink);
 		} else {
 			showToast("No Network Connection!!!");
 		}
-        
         
         return rootView;
     }
@@ -109,33 +100,36 @@ public class FragMent2 extends Fragment {
 				getActivity().finish();
 			} else {
 
-				try {
-					listDataHeader = new ArrayList<String>();
-					listDataChild = new HashMap<String, List<String>>();
+				try {					
+					listDataHeader = new ArrayList<Category>();
+					listDataChild = new HashMap<Category, List<Application>>();
 					
 					JSONObject mainJson = new JSONObject(result);
 					JSONArray categoryArray = mainJson.getJSONArray(CATEGORY_ARRAY_NAME);
 					for (int i = 0; i < categoryArray.length(); i++) {
 						JSONObject categoryObj = categoryArray.getJSONObject(i);
-						listDataHeader.add(categoryObj.getString(NAME));
 
-						JSONArray applicationArray = categoryObj.getJSONArray(APPLICATION_ARRAY_NAME);
+						Category category = new Category();
+						category.setId(categoryObj.getString(ID));
+						category.setName(categoryObj.getString(NAME));
+						listDataHeader.add(category);
 						
-						List<String> subApplication = new ArrayList<String>();
+						JSONArray applicationArray = categoryObj.getJSONArray(APPLICATION_ARRAY_NAME);
+						List<Application> applicationList = new ArrayList<Application>();						
+						
 						for (int j = 0; j < applicationArray.length(); j++) {
 							JSONObject applicationObj = applicationArray.getJSONObject(j);
-							subApplication.add(applicationObj.getString(APPNAME));
-							
-							//나중에 쓴다. 반드시
-//							Application objItem = new Application();
-//
-//							objItem.setId(applicationObj.getString(APPID));
-//							objItem.setName(applicationObj.getString(APPNAME));
-//
-//							arrayOfList.add(objItem);
-							
+
+							Application application = new Application();
+							application.setId(applicationObj.getString(APPID));
+							application.setName(applicationObj.getString(APPNAME));
+							application.setVersion(applicationObj.getString(APPVERSION));
+							application.setLink(applicationObj.getString(APPICON));
+							application.setDescription(applicationObj.getString(APPDESC));
+
+							applicationList.add(application);							
 						}
-						listDataChild.put(listDataHeader.get(i), subApplication);
+						listDataChild.put(listDataHeader.get(i), applicationList);
 					}
 
 				} catch (JSONException e) {
@@ -150,6 +144,7 @@ public class FragMent2 extends Fragment {
     public void setAdapterToListview() {
 		//objAdapter = new AppsRowAdapter(getActivity(), R.layout.fragment1_row2, arrayOfList);
 		//listView.setAdapter(objAdapter);
+    	
     	listAdapter = new ExpandableListAdapter(mContext, listDataHeader, listDataChild);
         expListView.setAdapter(listAdapter);
 	}

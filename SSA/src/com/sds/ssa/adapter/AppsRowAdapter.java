@@ -23,17 +23,17 @@ import com.sds.ssa.R;
 public class AppsRowAdapter extends ArrayAdapter<Application> {
 
 	private Activity activity;
-	private List<Application> items;
-	private Application objBean;
+	private List<Application> applicationList;
+	private Application application;
 	private int row;
 	private DisplayImageOptions options;
 	ImageLoader imageLoader;
 
-	public AppsRowAdapter(Activity act, int resource, List<Application> arrayList) {
-		super(act, resource, arrayList);
+	public AppsRowAdapter(Activity act, int resource, List<Application> appList) {
+		super(act, resource, appList);
 		this.activity = act;
 		this.row = resource;
-		this.items = arrayList;
+		this.applicationList = appList;
 		
 		options = new DisplayImageOptions.Builder()
 				.showStubImage(R.drawable.profile)
@@ -56,10 +56,10 @@ public class AppsRowAdapter extends ArrayAdapter<Application> {
 			holder = (ViewHolder) view.getTag();
 		}
 
-		if ((items == null) || ((position + 1) > items.size()))
+		if ((applicationList == null) || ((position + 1) > applicationList.size()))
 			return view;
 
-		objBean = items.get(position);
+		application = applicationList.get(position);
 
 		holder.appName = (TextView) view.findViewById(R.id.appname);
 		//holder.appVersion = (TextView) view.findViewById(R.id.appversion);
@@ -68,26 +68,26 @@ public class AppsRowAdapter extends ArrayAdapter<Application> {
 		holder.imgView = (ImageView) view.findViewById(R.id.image);
 		holder.pbar = (ProgressBar) view.findViewById(R.id.pbar);
 
-		if (holder.appName != null && null != objBean.getName()
-				&& objBean.getName().trim().length() > 0) {
-			holder.appName.setText(Html.fromHtml(objBean.getName()));
+		if (holder.appName != null && null != application.getName()
+				&& application.getName().trim().length() > 0) {
+			holder.appName.setText(Html.fromHtml(application.getName()));
 		}
-		if (holder.appDesc != null && null != objBean.getDescription()
-				&& objBean.getVersion().trim().length() > 0) {
-			holder.appDesc.setText(Html.fromHtml(objBean.getDescription()));
+		if (holder.appDesc != null && null != application.getDescription()
+				&& application.getVersion().trim().length() > 0) {
+			holder.appDesc.setText(Html.fromHtml(application.getDescription()));
 		}
-		if (holder.appId != null && null != objBean.getId()
-				&& objBean.getId().trim().length() > 0) {
-			holder.appId.setText(Html.fromHtml(objBean.getId()));
+		if (holder.appId != null && null != application.getId()
+				&& application.getId().trim().length() > 0) {
+			holder.appId.setText(Html.fromHtml(application.getId()));
 		}
 		if (holder.imgView != null) {
-			if (null != objBean.getLink()
-					&& objBean.getLink().trim().length() > 0) {
+			if (null != application.getLink()
+					&& application.getLink().trim().length() > 0) {
 				final ProgressBar pbar = holder.pbar;
 
 				imageLoader.init(ImageLoaderConfiguration
 						.createDefault(activity));
-				imageLoader.displayImage(objBean.getLink(), holder.imgView,
+				imageLoader.displayImage(application.getLink(), holder.imgView,
 						options, new ImageLoadingListener() {
 							@Override
 							public void onLoadingComplete() {
