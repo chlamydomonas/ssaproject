@@ -14,6 +14,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +61,13 @@ public class FragMent2 extends Fragment {
 		View rootView = inflater.inflate(R.layout.fragment2_expandable, container, false);
 		expListView = (ExpandableListView) rootView.findViewById(R.id.lvExp);
 
-        if (Utils.isNetworkAvailable(getActivity())) {
+		DisplayMetrics dm = new DisplayMetrics();
+		getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
+		int width = dm.widthPixels; // etc...
+		
+		expListView.setIndicatorBounds(width-GetDipsFromPixel(35), width-GetDipsFromPixel(5));
+        
+		if (Utils.isNetworkAvailable(getActivity())) {
 			new MyTask().execute(categoryLink);
 		} else {
 			showToast("No Network Connection!!!");
@@ -68,6 +75,13 @@ public class FragMent2 extends Fragment {
         
         return rootView;
     }
+
+	private int GetDipsFromPixel(float pixels) {
+		// Get the screen's density scale
+        final float scale = getResources().getDisplayMetrics().density;
+        // Convert the dps to pixels, based on density scale
+        return (int) (pixels * scale + 0.5f);
+	}
 
 	class MyTask extends AsyncTask<String, Void, String> {
 		ProgressDialog pDialog;

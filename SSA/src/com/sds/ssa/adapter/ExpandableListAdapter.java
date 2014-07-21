@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.text.Html;
@@ -35,6 +36,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	ImageLoader imageLoader;
 	// from "AppsRowAdater" end
 
+	
+	public ArrayList<String> groupItem, tempChild;
+	 public ArrayList<Object> Childtem = new ArrayList<Object>();
+	 public LayoutInflater minflater;
+	 public Activity activity;
+	  
+	  
     public ExpandableListAdapter(Context context,
 			List<Category> listDataHeader,
 			HashMap<Category, List<Application>> listDataChild) {
@@ -82,6 +90,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         listChild.setText(childText);
         return convertView;
         */
+
 
         
         // From "AppsRowAdapter" start
