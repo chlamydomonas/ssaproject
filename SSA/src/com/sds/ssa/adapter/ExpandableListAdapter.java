@@ -6,21 +6,25 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.ImageLoadingListener;
 import com.sds.ssa.R;
+import com.sds.ssa.fragment.app.DetailActivity;
 import com.sds.ssa.vo.Application;
 import com.sds.ssa.vo.Category;
 
@@ -35,13 +39,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	private DisplayImageOptions options;
 	ImageLoader imageLoader;
 	// from "AppsRowAdater" end
-
-	
-	public ArrayList<String> groupItem, tempChild;
-	 public ArrayList<Object> Childtem = new ArrayList<Object>();
-	 public LayoutInflater minflater;
-	 public Activity activity;
-	  
 	  
     public ExpandableListAdapter(Context context,
 			List<Category> listDataHeader,
@@ -72,9 +69,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     }
  
     @Override
-    public View getChildView(int groupPosition, final int childPosition,
+    public View getChildView(int groupPosition, int childPosition,
             boolean isLastChild, View convertView, ViewGroup parent) {
     	
+    	final int a = groupPosition;
+    	final int b = childPosition;
         application = (Application) getChild(groupPosition, childPosition);
         
         /*
@@ -90,7 +89,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         listChild.setText(childText);
         return convertView;
         */
-
 
         
         // From "AppsRowAdapter" start
@@ -159,6 +157,24 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 				holder.imgView.setImageResource(R.drawable.ic_launcher);
 			}			
 		}
+		view.setOnClickListener(new OnClickListener() {
+			//application = (Application) getChild(groupPosition, childPosition);
+			
+			@Override
+			public void onClick(View v) {
+				
+//				Application clickedApp = (Application) getChild(a, b);
+//				Intent intent = new Intent(context, DetailActivity.class);
+//				intent.putExtra("url", clickedApp.getLink());
+//				intent.putExtra("name", clickedApp.getName());
+//				intent.putExtra("desc", clickedApp.getDescription());
+//				context.startActivity(intent);
+				
+				Application clickedApp = (Application) getChild(a, b);
+				Toast.makeText(context, clickedApp.getName(),
+						Toast.LENGTH_SHORT).show();
+			}
+		});
 		return view;
 		// From "AppsRowAdapter" end
     }

@@ -1,18 +1,23 @@
 package com.sds.ssa.activity;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +48,18 @@ public class BasActivity extends FragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		//requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+		
 		setContentView(R.layout.tab);
+		
+		//getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.window_title);
+		ActionBar actionBar = getActionBar();
+		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4d4d4d"))); // 색상 변경(색상코드)
+		
+		PagerTabStrip pagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_title_strip);
+		pagerTabStrip.setDrawFullUnderline(true);
+		pagerTabStrip.setTabIndicatorColor(Color.parseColor("#F94D00"));
 		
 		supportInvalidateOptionsMenu();
 		// Create the adapter that will return a fragment for each of the three
@@ -145,7 +161,7 @@ public class BasActivity extends FragmentActivity {
 	        case R.id.menu_settings:
 	    		Toast.makeText(
 	    				BasActivity.this,		// Qualify 'this" with Activity class
-	    				"You selected menu item #1",		
+	    				"You selected " + R.string.action_menu1,		
 	    				Toast.LENGTH_LONG).show();	// Make sure you call show() method
 	            return true;
 

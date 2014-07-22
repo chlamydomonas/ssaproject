@@ -19,13 +19,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.Toast;
 
+import com.sds.ssa.R;
 import com.sds.ssa.adapter.ExpandableListAdapter;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
 import com.sds.ssa.vo.Category;
-import com.sds.ssa.R;
 
 @SuppressLint("ValidFragment")
 public class FragMent2 extends Fragment {
@@ -63,16 +64,31 @@ public class FragMent2 extends Fragment {
 
 		DisplayMetrics dm = new DisplayMetrics();
 		getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
-		int width = dm.widthPixels; // etc...
+		int width = dm.widthPixels; 
+
+		if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
+			expListView.setIndicatorBounds(width-GetDipsFromPixel(35), width-GetDipsFromPixel(5));
+		} else {
+			expListView.setIndicatorBoundsRelative(width-GetDipsFromPixel(35), width-GetDipsFromPixel(5));
+		}
 		
-		expListView.setIndicatorBounds(width-GetDipsFromPixel(35), width-GetDipsFromPixel(5));
-        
 		if (Utils.isNetworkAvailable(getActivity())) {
 			new MyTask().execute(categoryLink);
 		} else {
 			showToast("No Network Connection!!!");
 		}
         
+		
+		
+		expListView.setOnChildClickListener(new OnChildClickListener() {
+
+			public boolean onChildClick(ExpandableListView parent, View v,
+					int groupPosition, int childPosition, long id) {
+						return false;
+			}
+		});
+		
+		
         return rootView;
     }
 
