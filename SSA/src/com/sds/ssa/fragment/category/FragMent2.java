@@ -151,11 +151,11 @@ public class FragMent2 extends Fragment {
 							JSONObject applicationObj = applicationArray.getJSONObject(j);
 
 							Application application = new Application();
-							application.setId(applicationObj.getString(APPID));
-							application.setName(applicationObj.getString(APPNAME));
-							application.setVersion(applicationObj.getString(APPVERSION));
-							application.setLink(applicationObj.getString(APPICON));
-							application.setDescription(applicationObj.getString(APPDESC));
+							application.setAppId(applicationObj.getString(APPID));
+							application.setAppName(applicationObj.getString(APPNAME));
+							application.setAppVerName(applicationObj.getString(APPVERSION));
+							application.setAppIcon(applicationObj.getString(APPICON));
+							application.setAppDescription(applicationObj.getString(APPDESC));
 
 							applicationList.add(application);							
 						}

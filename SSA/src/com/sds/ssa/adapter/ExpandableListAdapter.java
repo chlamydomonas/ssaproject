@@ -113,27 +113,27 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		holder.imgView = (ImageView) view.findViewById(R.id.image);
 		holder.pbar = (ProgressBar) view.findViewById(R.id.pbar);
 
-		if (holder.appName != null && null != application.getName()
-				&& application.getName().trim().length() > 0) {
-			holder.appName.setText(Html.fromHtml(application.getName()));
+		if (holder.appName != null && null != application.getAppName()
+				&& application.getAppName().trim().length() > 0) {
+			holder.appName.setText(Html.fromHtml(application.getAppName()));
 		}
-		if (holder.appDesc != null && null != application.getDescription()
-				&& application.getVersion().trim().length() > 0) {
-			holder.appDesc.setText(Html.fromHtml(application.getDescription()));
+		if (holder.appDesc != null && null != application.getAppDescription()
+				&& application.getAppDescription().trim().length() > 0) {
+			holder.appDesc.setText(Html.fromHtml(application.getAppDescription()));
 		}
-		if (holder.appId != null && null != application.getId()
-				&& application.getId().trim().length() > 0) {
-			holder.appId.setText(Html.fromHtml(application.getId()));
+		if (holder.appId != null && null != application.getAppId()
+				&& application.getAppId().trim().length() > 0) {
+			holder.appId.setText(Html.fromHtml(application.getAppId()));
 		}
 		
 		if (holder.imgView != null) {
-			if (null != application.getLink()
-					&& application.getLink().trim().length() > 0) {
+			if (null != application.getAppIcon()
+					&& application.getAppIcon().trim().length() > 0) {
 				final ProgressBar pbar = holder.pbar;
 
 				imageLoader.init(ImageLoaderConfiguration
 						.createDefault(context));
-				imageLoader.displayImage(application.getLink(), holder.imgView,
+				imageLoader.displayImage(application.getAppIcon(), holder.imgView,
 						options, new ImageLoadingListener() {
 							@Override
 							public void onLoadingComplete() {
@@ -171,7 +171,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 //				context.startActivity(intent);
 				
 				Application clickedApp = (Application) getChild(a, b);
-				Toast.makeText(context, clickedApp.getName(),
+				Toast.makeText(context, clickedApp.getAppName(),
 						Toast.LENGTH_SHORT).show();
 			}
 		});

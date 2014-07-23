@@ -56,6 +56,9 @@ public class BasActivity extends FragmentActivity {
 		//getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.window_title);
 		ActionBar actionBar = getActionBar();
 		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4d4d4d"))); // 색상 변경(색상코드)
+		//이거 한 뒤로는 expandableListView 그룹 열고 닫기 색이 변경되엇음?
+		
+		
 		
 		PagerTabStrip pagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_title_strip);
 		pagerTabStrip.setDrawFullUnderline(true);

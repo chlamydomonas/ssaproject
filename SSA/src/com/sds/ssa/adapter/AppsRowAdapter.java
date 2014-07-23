@@ -65,29 +65,35 @@ public class AppsRowAdapter extends ArrayAdapter<Application> {
 		//holder.appVersion = (TextView) view.findViewById(R.id.appversion);
 		holder.appDesc = (TextView) view.findViewById(R.id.appdesc);
 		holder.appId = (TextView) view.findViewById(R.id.appid);
+		//holder.appGrade = (TextView) view.findViewById(R.id.appgrade);
+		holder.categoryName = (TextView) view.findViewById(R.id.categoryname);
 		holder.imgView = (ImageView) view.findViewById(R.id.image);
 		holder.pbar = (ProgressBar) view.findViewById(R.id.pbar);
 
-		if (holder.appName != null && null != application.getName()
-				&& application.getName().trim().length() > 0) {
-			holder.appName.setText(Html.fromHtml(application.getName()));
+		if (holder.appName != null && null != application.getAppName()
+				&& application.getAppName().trim().length() > 0) {
+			holder.appName.setText(Html.fromHtml(application.getAppName()));
 		}
-		if (holder.appDesc != null && null != application.getDescription()
-				&& application.getVersion().trim().length() > 0) {
-			holder.appDesc.setText(Html.fromHtml(application.getDescription()));
+		if (holder.appDesc != null && null != application.getAppDescription()
+				&& application.getAppDescription().trim().length() > 0) {
+			holder.appDesc.setText(Html.fromHtml(application.getAppDescription()));
 		}
-		if (holder.appId != null && null != application.getId()
-				&& application.getId().trim().length() > 0) {
-			holder.appId.setText(Html.fromHtml(application.getId()));
+		if (holder.appId != null && null != application.getAppId()
+				&& application.getAppId().trim().length() > 0) {
+			holder.appId.setText(Html.fromHtml(application.getAppId()));
+		}
+		if (holder.categoryName != null && null != application.getCategoryName()
+				&& application.getCategoryName().trim().length() > 0) {
+			holder.categoryName.setText(Html.fromHtml(application.getCategoryName()));
 		}
 		if (holder.imgView != null) {
-			if (null != application.getLink()
-					&& application.getLink().trim().length() > 0) {
+			if (null != application.getAppIcon()
+					&& application.getAppIcon().trim().length() > 0) {
 				final ProgressBar pbar = holder.pbar;
 
 				imageLoader.init(ImageLoaderConfiguration
 						.createDefault(activity));
-				imageLoader.displayImage(application.getLink(), holder.imgView,
+				imageLoader.displayImage(application.getAppIcon(), holder.imgView,
 						options, new ImageLoadingListener() {
 							@Override
 							public void onLoadingComplete() {
@@ -115,8 +121,7 @@ public class AppsRowAdapter extends ArrayAdapter<Application> {
 	}
 
 	public class ViewHolder {
-		//public TextView tvName, tvCity, tvBDate, tvGender, tvAge;
-		public TextView appName, appDesc, appId;
+		public TextView appName, appDesc, appId, categoryName, appGrade;
 		private ImageView imgView;
 		private ProgressBar pbar;
 	}

@@ -2,6 +2,7 @@ package com.sds.ssa.fragment.app;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,16 +40,27 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 	}
 	
 	//static View v; 
-	private static final String appLink = "https://ssa-bas-project.googlecode.com/svn/0709_3";
-	
+	//private static final String appLink = "https://ssa-bas-project.googlecode.com/svn/0709_3";
+	private static String appLink = "https://ssa-bas-project.googlecode.com/svn/app";
+
 	private static final String ARRAY_NAME = "application";
-	private static final String ID = "applicationId";
-	private static final String NAME = "applicationName";
-	private static final String VERSION = "applicationVersion";
+	private static final String ID = "appId";
+	private static final String NAME = "appName";
+	private static final String VERCODE = "appVerCode";
+	private static final String VERNAME = "appVerName";
+	private static final String PACKAGENAME = "appPackageName";
 	private static final String ICON = "appIcon";
-	private static final String DESC = "appDescription";
-	private static final String CATEGORYNAME = "categoryName";
+	private static final String SUMMARY = "appSummary";
+	private static final String DESCRIPTION = "appDescription";
+	private static final String MANUAL = "appManual";
+	private static final String GRADE = "appGrade";
+	private static final String GRADECOUNT = "appGradeCount";
+	private static final String DOWNLOADULR = "appDownloadUrl";
+	private static final String CREATED = "created";
+	private static final String UPLOADDATE = "appUploadedDate";
 	private static final String CATEGORYID = "categoryId";
+	private static final String CATEGORYNAME = "categoryName";
+	
 
 	List<Application> applicationList;
 	ListView listView;
@@ -58,7 +70,6 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		
-		//View view = inflater.inflate(R.layout.fragment1_listview2, container, false);
 		View view = inflater.inflate(R.layout.fragment1_listview, container, false);
 		listView = (ListView) view.findViewById(R.id.listview);
 		listView.setOnItemClickListener(this);
@@ -66,9 +77,15 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 		applicationList = new ArrayList<Application>();
 
 		if (Utils.isNetworkAvailable(getActivity())) {
+			Locale systemLocale = getResources().getConfiguration().locale;
+			String systemLanguage = systemLocale.getLanguage();
+			
+			if(systemLanguage.equals("en")){
+				appLink = "https://ssa-bas-project.googlecode.com/svn/app_en";
+			}
 			new MyTask().execute(appLink);
 		} else {
-			showToast("No Network Connection!!!");
+			showToast("No Network Connection. Try again.");
 		}
 		return view;
 	}
@@ -113,11 +130,11 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 
 						Application application = new Application();
 
-						application.setId(appJsonObj.getString(ID));
-						application.setName(appJsonObj.getString(NAME));
-						application.setVersion(appJsonObj.getString(VERSION));
-						application.setLink(appJsonObj.getString(ICON));
-						application.setDescription(appJsonObj.getString(DESC));
+						application.setAppId(appJsonObj.getString(ID));
+						application.setAppName(appJsonObj.getString(NAME));
+						application.setAppVerName(appJsonObj.getString(VERNAME));
+						application.setAppIcon(appJsonObj.getString(ICON));
+						application.setAppDescription(appJsonObj.getString(DESCRIPTION));
 						application.setCategoryId(appJsonObj.getString(CATEGORYID));
 						application.setCategoryName(appJsonObj.getString(CATEGORYNAME));
 
@@ -147,9 +164,9 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 		//showDeleteDialog(position);
 		Application application = applicationList.get(position);
 		Intent intent = new Intent(getActivity(), DetailActivity.class);
-		intent.putExtra("url", application.getLink());
-		intent.putExtra("name", application.getName());
-		intent.putExtra("desc", application.getDescription());
+		intent.putExtra("url", application.getAppIcon());
+		intent.putExtra("name", application.getAppName());
+		intent.putExtra("desc", application.getAppDescription());
 		startActivity(intent);
 	}
 	
