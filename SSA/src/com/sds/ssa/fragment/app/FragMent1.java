@@ -72,7 +72,8 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 		
 		View view = inflater.inflate(R.layout.fragment1_listview, container, false);
 		listView = (ListView) view.findViewById(R.id.listview);
-		listView.setOnItemClickListener(this);
+		listView.setItemsCanFocus(false);
+		//listView.setOnItemClickListener(this);
 		
 		applicationList = new ArrayList<Application>();
 
@@ -87,6 +88,20 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 		} else {
 			showToast("No Network Connection. Try again.");
 		}
+		listView.setOnItemClickListener(new OnItemClickListener() {
+			
+			@Override
+			public void onItemClick(AdapterView<?> parent, View v,
+					final int position, long id) {
+				
+				Application application = applicationList.get(position);
+				Intent intent = new Intent(getActivity(), DetailActivity.class);
+				intent.putExtra("url", application.getAppIcon());
+				intent.putExtra("name", application.getAppName());
+				intent.putExtra("desc", application.getAppDescription());
+				startActivity(intent);
+			}
+		});
 		return view;
 	}
 	
@@ -158,17 +173,17 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 		}
 	}
 
-	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position,
-			long id) {
-		//showDeleteDialog(position);
-		Application application = applicationList.get(position);
-		Intent intent = new Intent(getActivity(), DetailActivity.class);
-		intent.putExtra("url", application.getAppIcon());
-		intent.putExtra("name", application.getAppName());
-		intent.putExtra("desc", application.getAppDescription());
-		startActivity(intent);
-	}
+//	@Override
+//	public void onItemClick(AdapterView<?> parent, View view, int position,
+//			long id) {
+//		//showDeleteDialog(position);
+//		Application application = applicationList.get(position);
+//		Intent intent = new Intent(getActivity(), DetailActivity.class);
+//		intent.putExtra("url", application.getAppIcon());
+//		intent.putExtra("name", application.getAppName());
+//		intent.putExtra("desc", application.getAppDescription());
+//		startActivity(intent);
+//	}
 	
 //	private void showDeleteDialog(final int position) {
 //		AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
@@ -201,6 +216,12 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 	}
 	public void showToast(String msg) {
 		Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
+		
+	}
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		// TODO Auto-generated method stub
 		
 	}
 

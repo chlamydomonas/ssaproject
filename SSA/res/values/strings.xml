@@ -11,4 +11,8 @@
     <string name="title_section3">Update</string>
     
     <string name="action_menu1">Menu #1</string>
+    <string name="download">Download </string>
+    <string name="downloadMsg">Do you want to download this application?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

@@ -3,12 +3,16 @@ package com.sds.ssa.adapter;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -65,10 +69,11 @@ public class AppsRowAdapter extends ArrayAdapter<Application> {
 		//holder.appVersion = (TextView) view.findViewById(R.id.appversion);
 		holder.appDesc = (TextView) view.findViewById(R.id.appdesc);
 		holder.appId = (TextView) view.findViewById(R.id.appid);
-		//holder.appGrade = (TextView) view.findViewById(R.id.appgrade);
+		holder.appGrade = (ImageView) view.findViewById(R.id.stargrade);
 		holder.categoryName = (TextView) view.findViewById(R.id.categoryname);
-		holder.imgView = (ImageView) view.findViewById(R.id.image);
+		holder.appIcon = (ImageView) view.findViewById(R.id.image);
 		holder.pbar = (ProgressBar) view.findViewById(R.id.pbar);
+		holder.downloadBtn = (ImageButton) view.findViewById(R.id.imageView1);
 
 		if (holder.appName != null && null != application.getAppName()
 				&& application.getAppName().trim().length() > 0) {
@@ -86,14 +91,31 @@ public class AppsRowAdapter extends ArrayAdapter<Application> {
 				&& application.getCategoryName().trim().length() > 0) {
 			holder.categoryName.setText(Html.fromHtml(application.getCategoryName()));
 		}
-		if (holder.imgView != null) {
+
+		holder.downloadBtn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showInfo();                 
+          	}
+		});
+		
+		//holder.appIcon.setBackgroundResource(R.drawable.download);
+		holder.appGrade.setBackgroundResource(R.drawable.star_35);
+//		holder.appIcon.setOnClickListener(new ImageView.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				showInfo("imageview");                 
+//          	}
+//		});
+
+		if (holder.appIcon != null) {
 			if (null != application.getAppIcon()
 					&& application.getAppIcon().trim().length() > 0) {
 				final ProgressBar pbar = holder.pbar;
 
 				imageLoader.init(ImageLoaderConfiguration
 						.createDefault(activity));
-				imageLoader.displayImage(application.getAppIcon(), holder.imgView,
+				imageLoader.displayImage(application.getAppIcon(), holder.appIcon,
 						options, new ImageLoadingListener() {
 							@Override
 							public void onLoadingComplete() {
@@ -114,15 +136,40 @@ public class AppsRowAdapter extends ArrayAdapter<Application> {
 						});
 
 			} else {
-				holder.imgView.setImageResource(R.drawable.ic_launcher);
+				holder.appIcon.setImageResource(R.drawable.ic_launcher);
 			}
 		}
 		return view;
 	}
 
 	public class ViewHolder {
-		public TextView appName, appDesc, appId, categoryName, appGrade;
-		private ImageView imgView;
+		public TextView appName, appDesc, appId, categoryName;
+		public ImageButton downloadBtn;
+		private ImageView appIcon, appGrade;
 		private ProgressBar pbar;
 	}
+	
+	public void showInfo(){
+		AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this.getContext());
+		alert_confirm
+		.setTitle(R.string.download)
+		.setMessage(R.string.downloadMsg).setCancelable(false)
+		.setPositiveButton(R.string.yes,
+				new DialogInterface.OnClickListener() {
+		    @Override
+		    public void onClick(DialogInterface dialog, int which) {
+		        // 'YES'
+		    }
+		})
+		.setNegativeButton(R.string.no,
+		new DialogInterface.OnClickListener() {
+		    @Override
+		    public void onClick(DialogInterface dialog, int which) {
+		        // 'No'
+		    return;
+		    }
+		});
+		AlertDialog alert = alert_confirm.create();
+		alert.show();
+    }
 }

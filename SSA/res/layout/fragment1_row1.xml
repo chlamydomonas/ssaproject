@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/list_bg" >
+    android:background="@drawable/list_bg"
+    android:descendantFocusability="blocksDescendants" >
 
     <ImageView
         android:id="@+id/image"
@@ -48,8 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="30dp"      
-        android:src="@drawable/star_35" />
+        android:layout_marginRight="65dp" />
     
     <TextView
         android:id="@+id/appdesc"
@@ -86,13 +86,72 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="30dp" />
     
-    <ImageView
+    <!-- 
+    <Button
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="3dp"
-        android:src="@drawable/imgright" />
+        android:layout_marginRight="15dp"
+        android:background="@drawable/download_selector" />
+    -->
+    
+   <!-- <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:src="@drawable/download" />-->
+
+<!-- 
+    <Button android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:text="Edit\"
+        android:textColor="#0099CC" />-->
+    
+	<ImageButton 
+	    android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:background="@drawable/download_selector" />
+    
+<!-- 	<ImageView -->
+<!--         android:id="@+id/imageView1" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_alignParentRight="true" -->
+<!--         android:layout_alignParentTop="true" -->
+<!--         android:layout_centerVertical="true" -->
+<!--         android:layout_marginRight="15dp" -->
+<!--         android:focusable="false" -->
+<!--         android:focusableInTouchMode="false" -->
+<!--         android:src="@drawable/download" -->
+<!--         android:background="@android:color/transparent" /> -->
+	    
+    <!-- 
+    <com.sds.ssa.widget.NoParentPressImageView
+	   android:id="@+id/imageView1"
+	   android:layout_width="?android:attr/listPreferredItemHeight"
+	   android:layout_height="fill_parent"
+	   android:src="@drawable/download"
+	   android:scaleType="center"
+	   android:clickable="true"
+	   android:background="@drawable/download" /> -->
 
 </RelativeLayout>
