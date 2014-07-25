@@ -3,6 +3,7 @@ package com.sds.ssa.fragment.category;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,7 +24,7 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.Toast;
 
 import com.sds.ssa.R;
-import com.sds.ssa.adapter.ExpandableListAdapter;
+import com.sds.ssa.adapter.CategoryExpandableListAdapter;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
 import com.sds.ssa.vo.Category;
@@ -33,20 +34,29 @@ public class FragMent2 extends Fragment {
 
 	Context mContext;
 	
-	private static final String categoryLink = "https://ssa-bas-project.googlecode.com/svn/category";
+	private static String categoryLink = "https://ssa-bas-project.googlecode.com/svn/category";
 	
 	private static final String CATEGORY_ARRAY_NAME = "category";
 	private static final String ID = "categoryId";
 	private static final String NAME = "categoryName";
 	
 	private static final String APPLICATION_ARRAY_NAME = "application";
-	private static final String APPID = "applicationId";
-	private static final String APPNAME = "applicationName";
-	private static final String APPVERSION = "applicationVersion";
+	private static final String APPID = "appId";
+	private static final String APPNAME = "appName";
+	private static final String APPVERCODE = "appVerCode";
+	private static final String APPVERNAME = "appVerName";
+	private static final String APPPACKAGENAME = "appPackageName";
 	private static final String APPICON = "appIcon";
-	private static final String APPDESC = "appDescription";
+	private static final String APPSUMMARY = "appSummary";
+	private static final String APPDESCRIPTION = "appDescription";
+	private static final String APPMANUAL = "appManual";
+	private static final String APPGRADE = "appGrade";
+	private static final String APPGRADECOUNT = "appGradeCount";
+	private static final String APPDOWNLOADULR = "appDownloadUrl";
+	private static final String APPCREATED = "created";
+	private static final String APPUPLOADDATE = "appUploadedDate";
 	
-	ExpandableListAdapter listAdapter;
+	CategoryExpandableListAdapter listAdapter;
     ExpandableListView expListView;
     List<Category> listDataHeader;
     HashMap<Category, List<Application>> listDataChild;
@@ -73,22 +83,23 @@ public class FragMent2 extends Fragment {
 		}
 		
 		if (Utils.isNetworkAvailable(getActivity())) {
+			Locale systemLocale = getResources().getConfiguration().locale;
+			String systemLanguage = systemLocale.getLanguage();
+			
+			if(systemLanguage.equals("en")){
+				categoryLink = "https://ssa-bas-project.googlecode.com/svn/category_en";
+			}
 			new MyTask().execute(categoryLink);
 		} else {
 			showToast("No Network Connection!!!");
 		}
-        
-		
 		
 		expListView.setOnChildClickListener(new OnChildClickListener() {
-
 			public boolean onChildClick(ExpandableListView parent, View v,
 					int groupPosition, int childPosition, long id) {
 						return false;
 			}
 		});
-		
-		
         return rootView;
     }
 
@@ -151,11 +162,23 @@ public class FragMent2 extends Fragment {
 							JSONObject applicationObj = applicationArray.getJSONObject(j);
 
 							Application application = new Application();
+							
 							application.setAppId(applicationObj.getString(APPID));
 							application.setAppName(applicationObj.getString(APPNAME));
-							application.setAppVerName(applicationObj.getString(APPVERSION));
+							application.setAppVerCode(applicationObj.getString(APPVERCODE));
+							application.setAppVerName(applicationObj.getString(APPVERNAME));
+							application.setAppPackageName(applicationObj.getString(APPPACKAGENAME));
 							application.setAppIcon(applicationObj.getString(APPICON));
-							application.setAppDescription(applicationObj.getString(APPDESC));
+							application.setAppSummary(applicationObj.getString(APPSUMMARY));
+							application.setAppDescription(applicationObj.getString(APPDESCRIPTION));
+							application.setAppManual(applicationObj.getString(APPMANUAL));
+							application.setAppGrade(applicationObj.getString(APPGRADE));
+							application.setAppGradeCount(applicationObj.getString(APPGRADECOUNT));
+							application.setAppDownloadUrl(applicationObj.getString(APPDOWNLOADULR));
+							application.setCreated(applicationObj.getString(APPCREATED));
+							application.setAppUploadedDate(applicationObj.getString(APPUPLOADDATE));
+							application.setCategoryId(applicationObj.getString(ID));
+							application.setCategoryName(applicationObj.getString(NAME));
 
 							applicationList.add(application);							
 						}
@@ -175,7 +198,7 @@ public class FragMent2 extends Fragment {
 		//objAdapter = new AppsRowAdapter(getActivity(), R.layout.fragment1_row2, arrayOfList);
 		//listView.setAdapter(objAdapter);
     	
-    	listAdapter = new ExpandableListAdapter(mContext, listDataHeader, listDataChild);
+    	listAdapter = new CategoryExpandableListAdapter(mContext, listDataHeader, listDataChild);
         expListView.setAdapter(listAdapter);
 	}
 

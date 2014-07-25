@@ -25,7 +25,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.sds.ssa.adapter.AppsRowAdapter;
+import com.sds.ssa.adapter.ApplicationRowAdapter;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
 import com.sds.ssa.R;
@@ -39,8 +39,6 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 		mContext = context;
 	}
 	
-	//static View v; 
-	//private static final String appLink = "https://ssa-bas-project.googlecode.com/svn/0709_3";
 	private static String appLink = "https://ssa-bas-project.googlecode.com/svn/app";
 
 	private static final String ARRAY_NAME = "application";
@@ -60,11 +58,10 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 	private static final String UPLOADDATE = "appUploadedDate";
 	private static final String CATEGORYID = "categoryId";
 	private static final String CATEGORYNAME = "categoryName";
-	
 
 	List<Application> applicationList;
 	ListView listView;
-	AppsRowAdapter appsRowAdapter;
+	ApplicationRowAdapter appsRowAdapter;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -104,7 +101,6 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 		});
 		return view;
 	}
-	
 	
 	class MyTask extends AsyncTask<String, Void, String> {
 		ProgressDialog pDialog;
@@ -147,9 +143,18 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 
 						application.setAppId(appJsonObj.getString(ID));
 						application.setAppName(appJsonObj.getString(NAME));
+						application.setAppVerCode(appJsonObj.getString(VERCODE));
 						application.setAppVerName(appJsonObj.getString(VERNAME));
+						application.setAppPackageName(appJsonObj.getString(PACKAGENAME));
 						application.setAppIcon(appJsonObj.getString(ICON));
+						application.setAppSummary(appJsonObj.getString(SUMMARY));
 						application.setAppDescription(appJsonObj.getString(DESCRIPTION));
+						application.setAppManual(appJsonObj.getString(MANUAL));
+						application.setAppGrade(appJsonObj.getString(GRADE));
+						application.setAppGradeCount(appJsonObj.getString(GRADECOUNT));
+						application.setAppDownloadUrl(appJsonObj.getString(DOWNLOADULR));
+						application.setCreated(appJsonObj.getString(CREATED));
+						application.setAppUploadedDate(appJsonObj.getString(UPLOADDATE));
 						application.setCategoryId(appJsonObj.getString(CATEGORYID));
 						application.setCategoryName(appJsonObj.getString(CATEGORYNAME));
 
@@ -211,7 +216,7 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 	
 	public void setAdapterToListview() {
 		//appsRowAdapter = new AppsRowAdapter(getActivity(), R.layout.fragment1_row2, applicationList);
-		appsRowAdapter = new AppsRowAdapter(getActivity(), R.layout.fragment1_row1, applicationList);
+		appsRowAdapter = new ApplicationRowAdapter(getActivity(), R.layout.fragment1_row1, applicationList);
 		listView.setAdapter(appsRowAdapter);
 	}
 	public void showToast(String msg) {

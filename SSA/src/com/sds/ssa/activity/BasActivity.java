@@ -2,7 +2,10 @@ package com.sds.ssa.activity;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -44,20 +47,72 @@ public class BasActivity extends FragmentActivity {
 	 */
 	ViewPager mViewPager;
 	
+	
+	private static final String DATABASE_NAME = "myDB.db";
+	private static final String DATABASE_TABLE_NAME = "INSTALLAPP";
+	private static final String DATABASE_CREATE_TABLE = "create table if not exists "
+	            + DATABASE_TABLE_NAME
+	            + " (_id integer primary key autoincrement, "
+	            + " app_id text not null, "
+	            + " app_ver_code text not null, " + " app_install_date text not null)";
+	private static final String DATABASE_DELETE_TABLE = "drop table if exists "
+            + DATABASE_TABLE_NAME;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		//requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+		// Open a new private SQLiteDatabase associated with this Context's
+        // application package. Create database if it doesn't exist.
+        SQLiteDatabase myDB = openOrCreateDatabase(DATABASE_NAME,
+                Context.MODE_PRIVATE, null);
+
+        // Create database table called "COUNTRY"
+        myDB.execSQL(DATABASE_DELETE_TABLE);
+        myDB.execSQL(DATABASE_CREATE_TABLE);
+
+        // Create new rows (hard-coded value for the simplicity of the exercise)
+        // and insert it into the table.
+        ContentValues newRow = new ContentValues();
+
+        // hard-coded for simplicity
+        newRow.put("app_id", "appId_03");
+        newRow.put("app_ver_code", "1");
+        newRow.put("app_install_date", "2014-07-01");
+        myDB.insert(DATABASE_TABLE_NAME, null, newRow);
+
+        newRow = new ContentValues();
+        newRow.put("app_id", "appId_11");
+        newRow.put("app_ver_code", "1");
+        newRow.put("app_install_date", "2014-07-01");
+        myDB.insert(DATABASE_TABLE_NAME, null, newRow);
+
+        newRow = new ContentValues();
+        newRow.put("app_id", "appId_19");
+        newRow.put("app_ver_code", "1");
+        newRow.put("app_install_date", "2014-07-01");
+        myDB.insert(DATABASE_TABLE_NAME, null, newRow);
+
+        // Select columns to retrieve in the form of String array
+        String[] resultColumns = new String[] { "_id", "app_id",
+                "app_ver_code", "app_install_date" };
+        Cursor cursor = myDB.query(DATABASE_TABLE_NAME, resultColumns, null,
+                null, null, null, null, null);
+
+        //System.out.println("##################3 " + cursor.getString(cursor.getColumnIndex("app_id")));
+        
+        
+        //myDB.close();
+        
+        
 		
+		//requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.tab);
 		
 		//getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.window_title);
 		ActionBar actionBar = getActionBar();
 		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4d4d4d"))); // 색상 변경(색상코드)
 		//이거 한 뒤로는 expandableListView 그룹 열고 닫기 색이 변경되엇음?
-		
 		
 		
 		PagerTabStrip pagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_title_strip);
