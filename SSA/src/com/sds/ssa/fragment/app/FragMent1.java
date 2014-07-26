@@ -95,7 +95,10 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 				Intent intent = new Intent(getActivity(), DetailActivity.class);
 				intent.putExtra("url", application.getAppIcon());
 				intent.putExtra("name", application.getAppName());
+				intent.putExtra("categoryname", application.getCategoryName());
+				intent.putExtra("summary", application.getAppSummary());
 				intent.putExtra("desc", application.getAppDescription());
+				intent.putExtra("manual", application.getAppManual());
 				startActivity(intent);
 			}
 		});

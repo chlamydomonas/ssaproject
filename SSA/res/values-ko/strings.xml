@@ -15,4 +15,8 @@
     <string name="downloadMsg">이 앱을 다운로드 하시겠습니까?</string>
     <string name="yes">예</string>
     <string name="no">아니오</string>
+    
+    <string name="summary">소개</string>
+    <string name="description">상세설명</string>
+    <string name="manual">사용법</string>
 </resources>
