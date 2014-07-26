@@ -84,77 +84,78 @@
             android:orientation="vertical" > 
 
 			<HorizontalScrollView
+			    android:id="@+id/screenshot_horizontal"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content">
 			    
-			    <LinearLayout
-			        android:orientation="vertical"
-			  		android:layout_width="wrap_content"
-			  		android:layout_height="wrap_content">
+<!-- 			    <LinearLayout -->
+<!-- 			        android:orientation="vertical" -->
+<!-- 			  		android:layout_width="wrap_content" -->
+<!-- 			  		android:layout_height="wrap_content"> -->
 
-					<LinearLayout
-					    android:orientation="horizontal"
-					  	android:layout_width="wrap_content"
-					  	android:layout_height="wrap_content">
+<!-- 					<LinearLayout -->
+<!-- 					    android:orientation="horizontal" -->
+<!-- 					  	android:layout_width="wrap_content" -->
+<!-- 					  	android:layout_height="wrap_content"> -->
 
-				        <ImageView
-					        android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-					        android:src="@drawable/profile" />
+<!-- 				        <ImageView -->
+<!-- 					        android:layout_width="wrap_content" -->
+<!-- 							android:layout_height="wrap_content" -->
+<!-- 					        android:src="@drawable/profile" /> -->
 				        
-				        <ImageView
-					        android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-					        android:src="@drawable/profile" />
+<!-- 				        <ImageView -->
+<!-- 					        android:layout_width="wrap_content" -->
+<!-- 							android:layout_height="wrap_content" -->
+<!-- 					        android:src="@drawable/profile" /> -->
 				        
-				        <ImageView
-					        android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-					        android:src="@drawable/profile" />
+<!-- 				        <ImageView -->
+<!-- 					        android:layout_width="wrap_content" -->
+<!-- 							android:layout_height="wrap_content" -->
+<!-- 					        android:src="@drawable/profile" /> -->
 				        
-				        <ImageView
-					        android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-					        android:src="@drawable/profile" />
+<!-- 				        <ImageView -->
+<!-- 					        android:layout_width="wrap_content" -->
+<!-- 							android:layout_height="wrap_content" -->
+<!-- 					        android:src="@drawable/profile" /> -->
 				        
-				        <ImageView
-					        android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-					        android:src="@drawable/profile" />
+<!-- 				        <ImageView -->
+<!-- 					        android:layout_width="wrap_content" -->
+<!-- 							android:layout_height="wrap_content" -->
+<!-- 					        android:src="@drawable/profile" /> -->
 				        
-				        <ImageView
-					        android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-					        android:src="@drawable/profile" />
+<!-- 				        <ImageView -->
+<!-- 					        android:layout_width="wrap_content" -->
+<!-- 							android:layout_height="wrap_content" -->
+<!-- 					        android:src="@drawable/profile" /> -->
 				        
-				        <ImageView
-					        android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-					        android:src="@drawable/profile" />
+<!-- 				        <ImageView -->
+<!-- 					        android:layout_width="wrap_content" -->
+<!-- 							android:layout_height="wrap_content" -->
+<!-- 					        android:src="@drawable/profile" /> -->
 				        
-				        <ImageView
-					        android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-					        android:src="@drawable/profile" />
+<!-- 				        <ImageView -->
+<!-- 					        android:layout_width="wrap_content" -->
+<!-- 							android:layout_height="wrap_content" -->
+<!-- 					        android:src="@drawable/profile" /> -->
 				        
-				        <ImageView
-					        android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-					        android:src="@drawable/profile" />
+<!-- 				        <ImageView -->
+<!-- 					        android:layout_width="wrap_content" -->
+<!-- 							android:layout_height="wrap_content" -->
+<!-- 					        android:src="@drawable/profile" /> -->
 				        				        
-				        <ImageView
-					        android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-					        android:src="@drawable/profile" />
+<!-- 				        <ImageView -->
+<!-- 					        android:layout_width="wrap_content" -->
+<!-- 							android:layout_height="wrap_content" -->
+<!-- 					        android:src="@drawable/profile" /> -->
 				        				        				        
-				        <ImageView
-					        android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-					        android:src="@drawable/profile" />
+<!-- 				        <ImageView -->
+<!-- 					        android:layout_width="wrap_content" -->
+<!-- 							android:layout_height="wrap_content" -->
+<!-- 					        android:src="@drawable/profile" /> -->
 					
-					</LinearLayout>
+<!-- 					</LinearLayout> -->
 				
-				</LinearLayout>
+<!-- 				</LinearLayout> -->
 			
 			</HorizontalScrollView>
 				    

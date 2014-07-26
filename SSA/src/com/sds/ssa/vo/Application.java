@@ -18,6 +18,8 @@ public class Application {
 	private String categoryId;
 	private String categoryName;
 	private String appVerDiff;
+	private String appDownloaded;
+	private String fileSize;
 	
 	public String getAppId() {
 		return appId;
@@ -120,6 +122,18 @@ public class Application {
 	}
 	public void setAppVerDiff(String appVerDiff) {
 		this.appVerDiff = appVerDiff;
+	}
+	public String getAppDownloaded() {
+		return appDownloaded;
+	}
+	public void setAppDownloaded(String appDownloaded) {
+		this.appDownloaded = appDownloaded;
+	}
+	public String getFileSize() {
+		return fileSize;
+	}
+	public void setFileSize(String fileSize) {
+		this.fileSize = fileSize;
 	}
 	
 }
