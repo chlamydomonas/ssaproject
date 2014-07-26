@@ -1,7 +1,5 @@
 package com.sds.ssa.fragment.app;
 
-import java.util.Locale;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -64,7 +62,7 @@ public class DetailActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.detail);
+		setContentView(R.layout.fragment1_detail);
 		
 		ActionBar actionBar = getActionBar();
 		actionBar.setHomeButtonEnabled(false);
@@ -76,8 +74,8 @@ public class DetailActivity extends Activity {
 		appSummary = (TextView) findViewById(R.id.appsummary);
 		appManual = (TextView) findViewById(R.id.appmanual);
 		appDesc = (TextView) findViewById(R.id.appdesc);
-		imgView = (ImageView) findViewById(R.id.appIcon);
-		downloadBtn = (Button) findViewById(R.id.downloadBtn);
+		imgView = (ImageView) findViewById(R.id.appicon);
+		downloadBtn = (Button) findViewById(R.id.downloadbtn);
 		
 		Bundle b = getIntent().getExtras();
 

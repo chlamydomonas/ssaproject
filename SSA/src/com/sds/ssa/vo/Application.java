@@ -17,6 +17,8 @@ public class Application {
 	private String appUploadedDate;
 	private String categoryId;
 	private String categoryName;
+	private String appVerDiff;
+	
 	public String getAppId() {
 		return appId;
 	}
@@ -113,4 +115,11 @@ public class Application {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
+	public String getAppVerDiff() {
+		return appVerDiff;
+	}
+	public void setAppVerDiff(String appVerDiff) {
+		this.appVerDiff = appVerDiff;
+	}
+	
 }

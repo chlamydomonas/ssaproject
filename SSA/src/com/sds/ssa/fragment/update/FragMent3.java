@@ -1,39 +1,163 @@
 package com.sds.ssa.fragment.update;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout.LayoutParams;
-import android.widget.RelativeLayout;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.sds.ssa.R;
+import com.sds.ssa.adapter.UpdateRowAdapter;
+import com.sds.ssa.util.Utils;
+import com.sds.ssa.vo.Application;
 
 @SuppressLint("ValidFragment")
 public class FragMent3 extends Fragment {
 
+	
 	Context mContext;
 	
 	public FragMent3(Context context) {
 		mContext = context;
 	}
 	
+	private static String appupdateLink = "https://ssa-bas-project.googlecode.com/svn/appupdate";
+
+	private static final String ARRAY_NAME = "application";
+	private static final String ID = "appId";
+	private static final String NAME = "appName";
+	private static final String VERNAME = "appVerName";
+	private static final String ICON = "appIcon";
+	private static final String APPVERDIFF = "appVerDiff";
+	private static final String DOWNLOADULR = "appDownloadUrl";
+	private static final String CREATED = "created";
+	private static final String CATEGORYNAME = "categoryName";
+
+	List<Application> applicationList;
+	ListView listView;
+	UpdateRowAdapter updateRowAdapter;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		/*ImageView image = new ImageView(getActivity());
-		image.setLayoutParams(new RelativeLayout.LayoutParams(
-				LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
-		image.setBackgroundResource(R.drawable.car);
-		return image;*/
 		
-		View view = inflater.inflate(R.layout.gridview, null);
-		//GridView listView = (GridView) view.findViewById(R.id.mainGrid);
-		//listView.setAdapter(new Adapter());
+		View view = inflater.inflate(R.layout.fragment1_listview, container, false);
+		listView = (ListView) view.findViewById(R.id.listview);
+		listView.setItemsCanFocus(false);
+
+		applicationList = new ArrayList<Application>();
+
+		if (Utils.isNetworkAvailable(getActivity())) {
+			Locale systemLocale = getResources().getConfiguration().locale;
+			String systemLanguage = systemLocale.getLanguage();
+			
+			if(systemLanguage.equals("en")){
+				appupdateLink = "https://ssa-bas-project.googlecode.com/svn/appupdate_en";
+			}
+			new MyTask().execute(appupdateLink);
+		} else {
+			showToast("No Network Connection. Try again.");
+		}
+		listView.setOnItemClickListener(new OnItemClickListener() {
+			
+			@Override
+			public void onItemClick(AdapterView<?> parent, View v,
+					final int position, long id) {
+				
+				Application application = applicationList.get(position);
+				Intent intent = new Intent(getActivity(), UpdateDetailActivity.class);
+				intent.putExtra("url", application.getAppIcon());
+				intent.putExtra("name", application.getAppName());
+				intent.putExtra("categoryname", application.getCategoryName());
+				intent.putExtra("vername", application.getAppVerName());
+				intent.putExtra("appverdiff", application.getAppVerDiff());
+				startActivity(intent);
+			}
+		});
 		return view;
+	}
+	
+	class MyTask extends AsyncTask<String, Void, String> {
+		ProgressDialog pDialog;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+
+			pDialog = new ProgressDialog(getActivity());
+			pDialog.setMessage("Loading...");
+			pDialog.setCancelable(false);
+			pDialog.show();
+		}
+
+		@Override
+		protected String doInBackground(String... params) {
+			return Utils.getJSONString(params[0]);
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+
+			if (null != pDialog && pDialog.isShowing()) {
+				pDialog.dismiss();
+			}
+
+			if (null == result || result.length() == 0) {
+				showToast("No data found from web!!!");
+				getActivity().finish();
+			} else {
+
+				try {
+					JSONObject applicationJson = new JSONObject(result);
+					JSONArray applicationArray = applicationJson.getJSONArray(ARRAY_NAME);
+					for (int i = 0; i < applicationArray.length(); i++) {
+						JSONObject appJsonObj = applicationArray.getJSONObject(i);
+
+						Application application = new Application();
+
+						application.setAppId(appJsonObj.getString(ID));
+						application.setAppName(appJsonObj.getString(NAME));
+						application.setAppVerName(appJsonObj.getString(VERNAME));
+						application.setAppIcon(appJsonObj.getString(ICON));
+						application.setAppDownloadUrl(appJsonObj.getString(DOWNLOADULR));
+						application.setCreated(appJsonObj.getString(CREATED));
+						application.setCategoryName(appJsonObj.getString(CATEGORYNAME));
+						application.setAppVerDiff(appJsonObj.getString(APPVERDIFF));
+
+						applicationList.add(application);
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				setAdapterToListview();
+			}
+		}
+	}
+
+	public void setAdapterToListview() {
+		updateRowAdapter = new UpdateRowAdapter(getActivity(), R.layout.fragment3_row, applicationList);
+		listView.setAdapter(updateRowAdapter);
+	}
+	public void showToast(String msg) {
+		Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
+		
 	}
 }

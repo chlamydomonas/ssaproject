@@ -13,7 +13,7 @@
     	android:background="#d3d3d3" >
 
 	    <ImageView
-	        android:id="@+id/appIcon"
+	        android:id="@+id/appicon"
 	        android:layout_width="80dp"
 	        android:layout_height="80dp"
 	        android:layout_centerVertical="true"
@@ -26,7 +26,7 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_marginTop="15dip"
-	        android:layout_toRightOf="@+id/appIcon"
+	        android:layout_toRightOf="@+id/appicon"
 	        android:ellipsize="end"
 	        android:maxLines="1"
 			android:text="name"
@@ -40,7 +40,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_centerVertical="true"
 	        android:layout_below="@+id/appname"
-	        android:layout_toRightOf="@+id/appIcon"
+	        android:layout_toRightOf="@+id/appicon"
 	        android:layout_marginTop="40dip"
 	        android:ellipsize="end"
 	        android:maxLines="1"
@@ -48,16 +48,20 @@
 	        android:textColor="@android:color/holo_blue_dark"
 	        android:textSize="12dip"
 	        android:textStyle="bold" />
-		
+
 		<Button
-		    android:id="@+id/downloadBtn"
+		    android:id="@+id/downloadbtn"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_alignParentRight="true"
 	        android:layout_alignParentTop="true"
 	        android:layout_centerVertical="true"
 	        android:layout_marginRight="15dp"
-	        android:text="install"
+	        android:text="@string/download"
+	        android:textColor="@android:color/holo_blue_dark"
+	        android:textSize="12dip"
+	        android:textStyle="bold"
+	        android:background="@drawable/download_btn_selector"
 	        android:focusable="false"
 	        android:focusableInTouchMode="false" />
 			
