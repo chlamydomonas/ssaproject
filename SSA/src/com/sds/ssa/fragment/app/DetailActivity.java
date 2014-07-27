@@ -15,6 +15,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.View.OnClickListener;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -273,10 +275,57 @@ public class DetailActivity extends Activity {
         topLinearLayout.setOrientation(LinearLayout.HORIZONTAL); 
 
         for(int i=0; i<screenshotList.size(); i++){
-        	final ImageView imageView = new ImageView (this);
-            imageView.setTag(i);
-            imageView.setImageResource(R.drawable.ic_launcher);
-            topLinearLayout.addView(imageView);
+//        	final ImageView imageView = new ImageView (this);
+//            imageView.setTag(i);
+//            imageView.setImageResource(R.drawable.ic_launcher);
+//            topLinearLayout.addView(imageView);
+
+        	ImageView image = new ImageView( this ); 
+        	
+            options = new DisplayImageOptions.Builder()
+			.showStubImage(R.drawable.profile)
+			.showImageForEmptyUrl(R.drawable.profile).cacheInMemory()
+			.cacheOnDisc().build();
+
+            topLinearLayout.addView(image);
+            
+            DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+            
+            int width = displayMetrics.widthPixels / 3 + displayMetrics.widthPixels/20;
+            int height = displayMetrics.heightPixels / 3;
+            LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(width,height);
+            image.setLayoutParams(parms);
+            
+            image.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
+            	
+			imageLoader = ImageLoader.getInstance();
+			imageLoader.init(ImageLoaderConfiguration.createDefault(this));
+			imageLoader.displayImage(screenshotList.get(i).getScreenShotUrl(), image, options,
+			new ImageLoadingListener() {
+				@Override
+				public void onLoadingComplete() {
+					pbar.setVisibility(View.INVISIBLE);
+
+				}
+
+				@Override
+				public void onLoadingFailed() {
+
+					pbar.setVisibility(View.INVISIBLE);
+				}
+
+				@Override
+				public void onLoadingStarted() {
+					pbar.setVisibility(View.VISIBLE);
+				}
+			});
         }
         scrollView.addView(topLinearLayout);
 	}

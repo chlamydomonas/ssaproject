@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -46,65 +47,16 @@ public class BasActivity extends FragmentActivity {
 	 * The {@link ViewPager} that will host the section contents.
 	 */
 	ViewPager mViewPager;
-	
-	
-	private static final String DATABASE_NAME = "myDB.db";
-	private static final String DATABASE_TABLE_NAME = "INSTALLAPP";
-	private static final String DATABASE_CREATE_TABLE = "create table if not exists "
-	            + DATABASE_TABLE_NAME
-	            + " (_id integer primary key autoincrement, "
-	            + " app_id text not null, "
-	            + " app_ver_code text not null, " + " app_install_date text not null)";
-	private static final String DATABASE_DELETE_TABLE = "drop table if exists "
-            + DATABASE_TABLE_NAME;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		// Open a new private SQLiteDatabase associated with this Context's
-        // application package. Create database if it doesn't exist.
-        SQLiteDatabase myDB = openOrCreateDatabase(DATABASE_NAME,
-                Context.MODE_PRIVATE, null);
 
-        // Create database table called "COUNTRY"
-        myDB.execSQL(DATABASE_DELETE_TABLE);
-        myDB.execSQL(DATABASE_CREATE_TABLE);
+		Intent intent = new Intent(this.getIntent());
 
-        // Create new rows (hard-coded value for the simplicity of the exercise)
-        // and insert it into the table.
-        ContentValues newRow = new ContentValues();
-
-        // hard-coded for simplicity
-        newRow.put("app_id", "appId_03");
-        newRow.put("app_ver_code", "1");
-        newRow.put("app_install_date", "2014-07-01");
-        myDB.insert(DATABASE_TABLE_NAME, null, newRow);
-
-        newRow = new ContentValues();
-        newRow.put("app_id", "appId_11");
-        newRow.put("app_ver_code", "1");
-        newRow.put("app_install_date", "2014-07-01");
-        myDB.insert(DATABASE_TABLE_NAME, null, newRow);
-
-        newRow = new ContentValues();
-        newRow.put("app_id", "appId_19");
-        newRow.put("app_ver_code", "1");
-        newRow.put("app_install_date", "2014-07-01");
-        myDB.insert(DATABASE_TABLE_NAME, null, newRow);
-
-        // Select columns to retrieve in the form of String array
-        String[] resultColumns = new String[] { "_id", "app_id",
-                "app_ver_code", "app_install_date" };
-        Cursor cursor = myDB.query(DATABASE_TABLE_NAME, resultColumns, null,
-                null, null, null, null, null);
-
-        //System.out.println("##################3 " + cursor.getString(cursor.getColumnIndex("app_id")));
-        
-        
-        //myDB.close();
-        
-        
+		// getIntExtra("받는변수명", 기본값)
+		int i  = intent.getIntExtra("userInfo", 1);
+		System.out.println("####################### : " +i);
 		
 		//requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.tab);
