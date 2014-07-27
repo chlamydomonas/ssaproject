@@ -1,0 +1,40 @@
+{
+	"userInfo":{
+		"userId":"admin",
+		"userDept":"deptId_01",
+		"securityLevel":"1",
+		"installedAppList":[{
+			"appId":"appId_02",
+			"appVerCode":"1",
+			"appInstalledDate":"2014-07-11"
+		}, {
+			"appId":"appId_05",
+			"appVerCode":"1",
+			"appInstalledDate":"2014-07-11"
+		}, {
+			"appId":"appId_07",
+			"appVerCode":"1",
+			"appInstalledDate":"2014-07-11"
+		}, {
+			"appId":"appId_11",
+			"appVerCode":"2",
+			"appInstalledDate":"2014-07-11"
+		}, {
+			"appId":"appId_12",
+			"appVerCode":"2",
+			"appInstalledDate":"2014-07-11"
+		}, {
+			"appId":"appId_16",
+			"appVerCode":"1",
+			"appInstalledDate":"2014-07-11"
+		}, {
+			"appId":"appId_19",
+			"appVerCode":"1",
+			"appInstalledDate":"2014-07-11"
+		}, {
+			"appId":"appId_22",
+			"appVerCode":"2",
+			"appInstalledDate":"2014-07-11"
+		}]
+	}
+}

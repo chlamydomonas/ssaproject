@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.sds.ssa.adapter.ApplicationRowAdapter;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
+import com.sds.ssa.vo.UserInfo;
 import com.sds.ssa.R;
 
 @SuppressLint("ValidFragment")
@@ -218,8 +219,8 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 //	}
 	
 	public void setAdapterToListview() {
-		//appsRowAdapter = new AppsRowAdapter(getActivity(), R.layout.fragment1_row2, applicationList);
-		appsRowAdapter = new ApplicationRowAdapter(getActivity(), R.layout.fragment1_row1, applicationList);
+		UserInfo loginUserInfo = (UserInfo)getActivity().getApplicationContext();
+		appsRowAdapter = new ApplicationRowAdapter(getActivity(), R.layout.fragment1_row1, applicationList, loginUserInfo);
 		listView.setAdapter(appsRowAdapter);
 	}
 	public void showToast(String msg) {

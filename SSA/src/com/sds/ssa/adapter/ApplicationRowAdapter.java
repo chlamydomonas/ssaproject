@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v4.app.FragmentActivity;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.ImageLoadingListener;
 import com.sds.ssa.vo.Application;
+import com.sds.ssa.vo.UserInfo;
 import com.sds.ssa.R;
 import com.sds.ssa.R.drawable;
 
@@ -30,16 +32,20 @@ public class ApplicationRowAdapter extends ArrayAdapter<Application> {
 	private Activity activity;
 	private List<Application> applicationList;
 	private Application application;
+	private UserInfo userInfo;
 	private int row;
 	private DisplayImageOptions options;
 	ImageLoader imageLoader;
 
-	public ApplicationRowAdapter(Activity act, int resource, List<Application> appList) {
+	public ApplicationRowAdapter(Activity act, int resource, List<Application> appList, 
+			UserInfo loginUserInfo) {
 		super(act, resource, appList);
 		this.activity = act;
 		this.row = resource;
 		this.applicationList = appList;
+		this.userInfo = loginUserInfo;
 	}
+
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		View view = convertView;
@@ -75,12 +81,20 @@ public class ApplicationRowAdapter extends ArrayAdapter<Application> {
 		holder.appIcon = (ImageView) view.findViewById(R.id.image);
 		holder.pbar = (ProgressBar) view.findViewById(R.id.pbar);
 		holder.downloadBtn = (ImageButton) view.findViewById(R.id.downloadBtn);
+		holder.downloadBtn.setBackgroundResource(R.drawable.download_selector);
 		
-		if(application.getAppId().equals("appId_02") || application.getAppId().equals("appId_11")
-				||application.getAppId().equals("appId_19")){
-			holder.downloadBtn.setBackgroundResource(R.drawable.update_selector);
-		}else {
-			holder.downloadBtn.setBackgroundResource(R.drawable.download_selector);
+		for(int i=0; i < userInfo.getInstalledAppInfoList().size(); i++){
+			int installedAppCode = Integer.parseInt(userInfo.getInstalledAppInfoList().get(i).getAppVerCode());
+			int serverAppCode = Integer.parseInt(application.getAppVerCode());
+
+			if(application.getAppId().equals(userInfo.getInstalledAppInfoList().get(i).getAppId())){
+				if(installedAppCode == serverAppCode){
+					holder.downloadBtn.setBackgroundResource(R.drawable.download_pressed);
+					
+				} else if(installedAppCode < serverAppCode){
+					holder.downloadBtn.setBackgroundResource(R.drawable.update_selector);
+				}
+			}
 		}
 
 		if (holder.appName != null && null != application.getAppName()

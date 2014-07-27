@@ -2,11 +2,8 @@ package com.sds.ssa.activity;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -16,19 +13,16 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sds.ssa.R;
 import com.sds.ssa.fragment.app.FragMent1;
 import com.sds.ssa.fragment.category.FragMent2;
 import com.sds.ssa.fragment.update.FragMent3;
-import com.sds.ssa.R;
+import com.sds.ssa.util.Utils;
+import com.sds.ssa.vo.UserInfo;
 
 @SuppressLint("DefaultLocale")
 public class BasActivity extends FragmentActivity {
@@ -47,16 +41,22 @@ public class BasActivity extends FragmentActivity {
 	 * The {@link ViewPager} that will host the section contents.
 	 */
 	ViewPager mViewPager;
+	//List<InstalledAppInfo> installedAppInfoList;
+	//UserInfo userInfo;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		Intent intent = getIntent();
+		String userInfoParam = intent.getExtras().getString("userInfo");
+		UserInfo userInfo = Utils.getUserInfo(userInfoParam);
 
-		Intent intent = new Intent(this.getIntent());
-
-		// getIntExtra("받는변수명", 기본값)
-		int i  = intent.getIntExtra("userInfo", 1);
-		System.out.println("####################### : " +i);
+		UserInfo loginUserInfo = (UserInfo)getApplicationContext();
+		loginUserInfo.setUserId(userInfo.getUserId());
+		loginUserInfo.setUserDept(userInfo.getUserDept());
+		loginUserInfo.setSecurityLevel(userInfo.getSecurityLevel());
+		loginUserInfo.setInstalledAppInfoList(userInfo.getInstalledAppInfoList());
 		
 		//requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.tab);
@@ -82,6 +82,35 @@ public class BasActivity extends FragmentActivity {
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 
 	}
+
+//	private void setUserInfo() {
+//		Intent intent = getIntent();
+//		String userInfoParam = intent.getExtras().getString("userInfo");
+//		
+//		try {
+//			JSONObject userInfoJson = new JSONObject(userInfoParam);
+//			JSONObject userInfoObj = userInfoJson.getJSONObject("userInfo");
+//	
+//			userInfo.setUserId((String) userInfoObj.get("userId"));
+//			userInfo.setUserDept((String) userInfoObj.get("userDept"));
+//			userInfo.setSecurityLevel((String) userInfoObj.get("securityLevel"));
+//	
+//			JSONArray installedAppListArray = userInfoObj.getJSONArray("installedAppList");
+//	
+//			for (int i = 0; i < installedAppListArray.length(); i++) {
+//				JSONObject installedAppListObj = installedAppListArray.getJSONObject(i);
+//		
+//				InstalledAppInfo installedAppInfo = new InstalledAppInfo();
+//				installedAppInfo.setAppId(installedAppListObj.getString("appId"));
+//				installedAppInfo.setAppVerCode(installedAppListObj.getString("appVerCode"));
+//				installedAppInfo.setAppInstalledDate(installedAppListObj.getString("appInstalledDate"));
+//				
+//				installedAppInfoList.add(installedAppInfo);
+//			}
+//		}catch (JSONException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	@SuppressLint("DefaultLocale")
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
