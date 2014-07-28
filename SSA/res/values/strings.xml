@@ -21,4 +21,6 @@
     <string name="summary">Summary</string>
     <string name="description">Description</string>
     <string name="manual">Manual</string>
+    <string name="review">Review</string>
+    <string name="version">Version</string>
 </resources>

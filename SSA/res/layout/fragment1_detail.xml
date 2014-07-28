@@ -87,76 +87,6 @@
 			    android:id="@+id/screenshot_horizontal"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content">
-			    
-<!-- 			    <LinearLayout -->
-<!-- 			        android:orientation="vertical" -->
-<!-- 			  		android:layout_width="wrap_content" -->
-<!-- 			  		android:layout_height="wrap_content"> -->
-
-<!-- 					<LinearLayout -->
-<!-- 					    android:orientation="horizontal" -->
-<!-- 					  	android:layout_width="wrap_content" -->
-<!-- 					  	android:layout_height="wrap_content"> -->
-
-<!-- 				        <ImageView -->
-<!-- 					        android:layout_width="wrap_content" -->
-<!-- 							android:layout_height="wrap_content" -->
-<!-- 					        android:src="@drawable/profile" /> -->
-				        
-<!-- 				        <ImageView -->
-<!-- 					        android:layout_width="wrap_content" -->
-<!-- 							android:layout_height="wrap_content" -->
-<!-- 					        android:src="@drawable/profile" /> -->
-				        
-<!-- 				        <ImageView -->
-<!-- 					        android:layout_width="wrap_content" -->
-<!-- 							android:layout_height="wrap_content" -->
-<!-- 					        android:src="@drawable/profile" /> -->
-				        
-<!-- 				        <ImageView -->
-<!-- 					        android:layout_width="wrap_content" -->
-<!-- 							android:layout_height="wrap_content" -->
-<!-- 					        android:src="@drawable/profile" /> -->
-				        
-<!-- 				        <ImageView -->
-<!-- 					        android:layout_width="wrap_content" -->
-<!-- 							android:layout_height="wrap_content" -->
-<!-- 					        android:src="@drawable/profile" /> -->
-				        
-<!-- 				        <ImageView -->
-<!-- 					        android:layout_width="wrap_content" -->
-<!-- 							android:layout_height="wrap_content" -->
-<!-- 					        android:src="@drawable/profile" /> -->
-				        
-<!-- 				        <ImageView -->
-<!-- 					        android:layout_width="wrap_content" -->
-<!-- 							android:layout_height="wrap_content" -->
-<!-- 					        android:src="@drawable/profile" /> -->
-				        
-<!-- 				        <ImageView -->
-<!-- 					        android:layout_width="wrap_content" -->
-<!-- 							android:layout_height="wrap_content" -->
-<!-- 					        android:src="@drawable/profile" /> -->
-				        
-<!-- 				        <ImageView -->
-<!-- 					        android:layout_width="wrap_content" -->
-<!-- 							android:layout_height="wrap_content" -->
-<!-- 					        android:src="@drawable/profile" /> -->
-				        				        
-<!-- 				        <ImageView -->
-<!-- 					        android:layout_width="wrap_content" -->
-<!-- 							android:layout_height="wrap_content" -->
-<!-- 					        android:src="@drawable/profile" /> -->
-				        				        				        
-<!-- 				        <ImageView -->
-<!-- 					        android:layout_width="wrap_content" -->
-<!-- 							android:layout_height="wrap_content" -->
-<!-- 					        android:src="@drawable/profile" /> -->
-					
-<!-- 					</LinearLayout> -->
-				
-<!-- 				</LinearLayout> -->
-			
 			</HorizontalScrollView>
 				    
 			<TextView
@@ -215,6 +145,24 @@
 		        android:text="Manual"
 		        android:textColor="@android:color/black" />
 		
+		    <TextView
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/review"
+				android:textColor="@android:color/black"
+		        android:textSize="15dip"
+		        android:textStyle="bold" />
+		    
+		    <ListView
+		        android:id="@+id/commentlistview"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:cacheColorHint="#00000000"
+		        android:clickable="false"
+		        android:dividerHeight="5dp"
+		        android:padding="2dp" >
+		    </ListView>
+    
 		    <ProgressBar
 		        android:id="@+id/pbardesc"
 		        style="@android:style/Widget.ProgressBar.Small.Inverse"

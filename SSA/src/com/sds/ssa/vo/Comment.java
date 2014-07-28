@@ -1,6 +1,6 @@
 package com.sds.ssa.vo;
 
-public class AppComment {
+public class Comment {
 	
 	private String appCommentId;
 	private String deptId;

@@ -18,14 +18,15 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.view.View.OnClickListener;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -33,10 +34,12 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.ImageLoadingListener;
 import com.sds.ssa.R;
 import com.sds.ssa.activity.BasActivity;
+import com.sds.ssa.adapter.CommentRowAdapter;
 import com.sds.ssa.util.Utils;
-import com.sds.ssa.vo.AppComment;
 import com.sds.ssa.vo.Application;
+import com.sds.ssa.vo.Comment;
 import com.sds.ssa.vo.Screenshot;
+import com.sds.ssa.vo.UserInfo;
 
 public class DetailActivity extends Activity {
 	
@@ -45,8 +48,8 @@ public class DetailActivity extends Activity {
 	private static final String ROOT_NAME = "appDetail";
 	private static final String APP_DOWNLOADED = "appDownloaded";
 	private static final String FILE_SIZE = "fileSize";
-	private static final String SCREENSHOT = "appScreenshot";
-	private static final String SCREENSHOT_URL = "screenshotUrl";
+	private static final String APP_SCREENSHOT = "appScreenshot";
+	private static final String APP_SCREENSHOT_URL = "screenshotUrl";
 	private static final String APP_COMMENT = "appComment";
 	private static final String APP_COMMENT_ID = "appCommentId";
 	private static final String DEPT_ID = "deptId";
@@ -66,19 +69,23 @@ public class DetailActivity extends Activity {
 	private ImageView imgView;
 	private Button downloadBtn;
 
-	List<AppComment> appCommentList;
+	List<Comment> commentList;
 	List<Screenshot> screenshotList;
+	ListView listView;
+	CommentRowAdapter commentRowAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fragment1_detail);
+
+		listView = (ListView) findViewById(R.id.commentlistview);
 		
 		ActionBar actionBar = getActionBar();
 		actionBar.setHomeButtonEnabled(false);
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
-		appCommentList = new ArrayList<AppComment>();
+		commentList = new ArrayList<Comment>();
 		screenshotList = new ArrayList<Screenshot>();
 		
 		pbar = (ProgressBar) findViewById(R.id.pbardesc);
@@ -214,13 +221,13 @@ public class DetailActivity extends Activity {
 					application.setAppDownloaded((String) appDetail.get(APP_DOWNLOADED));
 					application.setFileSize((String) appDetail.get(FILE_SIZE));
 
-					JSONArray screenshotArray = appDetail.getJSONArray(SCREENSHOT);
+					JSONArray screenshotArray = appDetail.getJSONArray(APP_SCREENSHOT);
 
 					for (int i = 0; i < screenshotArray.length(); i++) {
 						JSONObject screenshotObj = screenshotArray.getJSONObject(i);
 						
 						Screenshot screenshot = new Screenshot();
-						screenshot.setScreenShotUrl(screenshotObj.getString(SCREENSHOT_URL));
+						screenshot.setScreenShotUrl(screenshotObj.getString(APP_SCREENSHOT_URL));
 						
 						screenshotList.add(screenshot);
 					}
@@ -230,18 +237,18 @@ public class DetailActivity extends Activity {
 					for (int i = 0; i < commentArray.length(); i++) {
 						JSONObject commentObj = commentArray.getJSONObject(i);
 						
-						AppComment appComment = new AppComment();
-						appComment.setAppCommentId(commentObj.getString(APP_COMMENT_ID));
-						appComment.setDeptId(commentObj.getString(DEPT_ID));
-						appComment.setDeptName(commentObj.getString(DEPT_NAME));
-						appComment.setReviewerName(commentObj.getString(REVIEWER_NAME));
-						appComment.setCreated(commentObj.getString(CREATED));
-						appComment.setAppGrade(commentObj.getString(APP_GRADE));
-						appComment.setComment(commentObj.getString(COMMENT));
-						appComment.setInstalledVerName(commentObj.getString(INSTALLED_VER_NAME));
-						appComment.setInstalledVerCode(commentObj.getString(INSTALLED_VER_CODE));
+						Comment comment = new Comment();
+						comment.setAppCommentId(commentObj.getString(APP_COMMENT_ID));
+						comment.setDeptId(commentObj.getString(DEPT_ID));
+						comment.setDeptName(commentObj.getString(DEPT_NAME));
+						comment.setReviewerName(commentObj.getString(REVIEWER_NAME));
+						comment.setCreated(commentObj.getString(CREATED));
+						comment.setAppGrade(commentObj.getString(APP_GRADE));
+						comment.setComment(commentObj.getString(COMMENT));
+						comment.setInstalledVerName(commentObj.getString(INSTALLED_VER_NAME));
+						comment.setInstalledVerCode(commentObj.getString(INSTALLED_VER_CODE));
 						
-						appCommentList.add(appComment);
+						commentList.add(comment);
 					}
 
 				} catch (JSONException e) {
@@ -252,6 +259,9 @@ public class DetailActivity extends Activity {
 				setScreenshotToHorizontal();
 				//setAppDetailToScrollView();
 				
+				if(commentList.size()>0){
+					setAdapterToCommentListView();
+				}
 			}
 		}
 	}
@@ -262,10 +272,12 @@ public class DetailActivity extends Activity {
 	}
 	
 	
-	public void setAppDetailToScrollView() {
-		// TODO Auto-generated method stub
-		
+	public void setAdapterToCommentListView() {
+		UserInfo loginUserInfo = (UserInfo)getApplicationContext();
+		commentRowAdapter = new CommentRowAdapter(this, R.layout.fragment1_detail_row, commentList, loginUserInfo);
+		listView.setAdapter(commentRowAdapter);
 	}
+
 
 	public void setScreenshotToHorizontal() {
 		HorizontalScrollView scrollView = (HorizontalScrollView) findViewById(R.id.screenshot_horizontal);
@@ -291,7 +303,7 @@ public class DetailActivity extends Activity {
             
             DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
             
-            int width = displayMetrics.widthPixels / 3 + displayMetrics.widthPixels/20;
+            int width = displayMetrics.widthPixels / 3 + 10;
             int height = displayMetrics.heightPixels / 3;
             LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(width,height);
             image.setLayoutParams(parms);
@@ -312,12 +324,10 @@ public class DetailActivity extends Activity {
 				@Override
 				public void onLoadingComplete() {
 					pbar.setVisibility(View.INVISIBLE);
-
 				}
 
 				@Override
 				public void onLoadingFailed() {
-
 					pbar.setVisibility(View.INVISIBLE);
 				}
 

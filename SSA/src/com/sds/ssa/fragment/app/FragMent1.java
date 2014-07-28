@@ -43,22 +43,22 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 	private static String appLink = "https://ssa-bas-project.googlecode.com/svn/app";
 
 	private static final String ARRAY_NAME = "application";
-	private static final String ID = "appId";
-	private static final String NAME = "appName";
-	private static final String VERCODE = "appVerCode";
-	private static final String VERNAME = "appVerName";
-	private static final String PACKAGENAME = "appPackageName";
-	private static final String ICON = "appIcon";
-	private static final String SUMMARY = "appSummary";
-	private static final String DESCRIPTION = "appDescription";
-	private static final String MANUAL = "appManual";
-	private static final String GRADE = "appGrade";
-	private static final String GRADECOUNT = "appGradeCount";
-	private static final String DOWNLOADULR = "appDownloadUrl";
+	private static final String APP_ID = "appId";
+	private static final String APP_NAME = "appName";
+	private static final String APP_VER_CODE = "appVerCode";
+	private static final String APP_VER_NAME = "appVerName";
+	private static final String APP_PACKAGE_NAME = "appPackageName";
+	private static final String APP_ICON = "appIcon";
+	private static final String APP_SUMMARY = "appSummary";
+	private static final String APP_DESCRIPTION = "appDescription";
+	private static final String APP_MANUAL = "appManual";
+	private static final String APP_GRADE = "appGrade";
+	private static final String APP_GRADE_COUNT = "appGradeCount";
+	private static final String APP_DOWNLOAD_URL = "appDownloadUrl";
 	private static final String CREATED = "created";
-	private static final String UPLOADDATE = "appUploadedDate";
-	private static final String CATEGORYID = "categoryId";
-	private static final String CATEGORYNAME = "categoryName";
+	private static final String APP_UPLOAD_DATE = "appUploadedDate";
+	private static final String CATEGORY_ID = "categoryId";
+	private static final String CATEGORY_NAME = "categoryName";
 
 	List<Application> applicationList;
 	ListView listView;
@@ -145,22 +145,22 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 
 						Application application = new Application();
 
-						application.setAppId(appJsonObj.getString(ID));
-						application.setAppName(appJsonObj.getString(NAME));
-						application.setAppVerCode(appJsonObj.getString(VERCODE));
-						application.setAppVerName(appJsonObj.getString(VERNAME));
-						application.setAppPackageName(appJsonObj.getString(PACKAGENAME));
-						application.setAppIcon(appJsonObj.getString(ICON));
-						application.setAppSummary(appJsonObj.getString(SUMMARY));
-						application.setAppDescription(appJsonObj.getString(DESCRIPTION));
-						application.setAppManual(appJsonObj.getString(MANUAL));
-						application.setAppGrade(appJsonObj.getString(GRADE));
-						application.setAppGradeCount(appJsonObj.getString(GRADECOUNT));
-						application.setAppDownloadUrl(appJsonObj.getString(DOWNLOADULR));
+						application.setAppId(appJsonObj.getString(APP_ID));
+						application.setAppName(appJsonObj.getString(APP_NAME));
+						application.setAppVerCode(appJsonObj.getString(APP_VER_CODE));
+						application.setAppVerName(appJsonObj.getString(APP_VER_NAME));
+						application.setAppPackageName(appJsonObj.getString(APP_PACKAGE_NAME));
+						application.setAppIcon(appJsonObj.getString(APP_ICON));
+						application.setAppSummary(appJsonObj.getString(APP_SUMMARY));
+						application.setAppDescription(appJsonObj.getString(APP_DESCRIPTION));
+						application.setAppManual(appJsonObj.getString(APP_MANUAL));
+						application.setAppGrade(appJsonObj.getString(APP_GRADE));
+						application.setAppGradeCount(appJsonObj.getString(APP_GRADE_COUNT));
+						application.setAppDownloadUrl(appJsonObj.getString(APP_DOWNLOAD_URL));
 						application.setCreated(appJsonObj.getString(CREATED));
-						application.setAppUploadedDate(appJsonObj.getString(UPLOADDATE));
-						application.setCategoryId(appJsonObj.getString(CATEGORYID));
-						application.setCategoryName(appJsonObj.getString(CATEGORYNAME));
+						application.setAppUploadedDate(appJsonObj.getString(APP_UPLOAD_DATE));
+						application.setCategoryId(appJsonObj.getString(CATEGORY_ID));
+						application.setCategoryName(appJsonObj.getString(CATEGORY_NAME));
 
 						applicationList.add(application);
 					}

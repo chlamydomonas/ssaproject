@@ -41,14 +41,14 @@ public class FragMent3 extends Fragment {
 	private static String appupdateLink = "https://ssa-bas-project.googlecode.com/svn/appupdate";
 
 	private static final String ARRAY_NAME = "application";
-	private static final String ID = "appId";
-	private static final String NAME = "appName";
-	private static final String VERNAME = "appVerName";
-	private static final String ICON = "appIcon";
-	private static final String APPVERDIFF = "appVerDiff";
-	private static final String DOWNLOADULR = "appDownloadUrl";
+	private static final String APP_ID = "appId";
+	private static final String APP_NAME = "appName";
+	private static final String APP_VER_NAME = "appVerName";
+	private static final String APP_ICON = "appIcon";
+	private static final String APP_VER_DIFF = "appVerDiff";
+	private static final String APP_DOWNLOAD_URL = "appDownloadUrl";
 	private static final String CREATED = "created";
-	private static final String CATEGORYNAME = "categoryName";
+	private static final String CATEGORY_NAME = "categoryName";
 
 	List<Application> applicationList;
 	ListView listView;
@@ -133,14 +133,14 @@ public class FragMent3 extends Fragment {
 
 						Application application = new Application();
 
-						application.setAppId(appJsonObj.getString(ID));
-						application.setAppName(appJsonObj.getString(NAME));
-						application.setAppVerName(appJsonObj.getString(VERNAME));
-						application.setAppIcon(appJsonObj.getString(ICON));
-						application.setAppDownloadUrl(appJsonObj.getString(DOWNLOADULR));
+						application.setAppId(appJsonObj.getString(APP_ID));
+						application.setAppName(appJsonObj.getString(APP_NAME));
+						application.setAppVerName(appJsonObj.getString(APP_VER_NAME));
+						application.setAppIcon(appJsonObj.getString(APP_ICON));
+						application.setAppDownloadUrl(appJsonObj.getString(APP_DOWNLOAD_URL));
 						application.setCreated(appJsonObj.getString(CREATED));
-						application.setCategoryName(appJsonObj.getString(CATEGORYNAME));
-						application.setAppVerDiff(appJsonObj.getString(APPVERDIFF));
+						application.setCategoryName(appJsonObj.getString(CATEGORY_NAME));
+						application.setAppVerDiff(appJsonObj.getString(APP_VER_DIFF));
 
 						applicationList.add(application);
 					}
