@@ -11,15 +11,19 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,6 +38,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.ImageLoadingListener;
 import com.sds.ssa.R;
 import com.sds.ssa.activity.BasActivity;
+import com.sds.ssa.adapter.ApplicationRowAdapter;
 import com.sds.ssa.adapter.CommentRowAdapter;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
@@ -69,17 +74,16 @@ public class DetailActivity extends Activity {
 	private ImageView imgView;
 	private Button downloadBtn;
 
-	List<Comment> commentList;
-	List<Screenshot> screenshotList;
-	ListView listView;
+	private List<Screenshot> screenshotList;
+	private LinearLayout linearListView;
+	private ArrayList<Comment> commentList;
 	CommentRowAdapter commentRowAdapter;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.fragment1_detail);
-
-		listView = (ListView) findViewById(R.id.commentlistview);
+		setContentView(R.layout.fragment1_detail);		
+		linearListView = (LinearLayout) findViewById(R.id.commentlistview);
 		
 		ActionBar actionBar = getActionBar();
 		actionBar.setHomeButtonEnabled(false);
@@ -254,13 +258,10 @@ public class DetailActivity extends Activity {
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-
-				//setAdapterToListview();
 				setScreenshotToHorizontal();
-				//setAppDetailToScrollView();
 				
 				if(commentList.size()>0){
-					setAdapterToCommentListView();
+					setCommentListView();
 				}
 			}
 		}
@@ -272,10 +273,64 @@ public class DetailActivity extends Activity {
 	}
 	
 	
-	public void setAdapterToCommentListView() {
-		UserInfo loginUserInfo = (UserInfo)getApplicationContext();
-		commentRowAdapter = new CommentRowAdapter(this, R.layout.fragment1_detail_row, commentList, loginUserInfo);
-		listView.setAdapter(commentRowAdapter);
+	public void setCommentListView() {
+//		commentRowAdapter = new CommentRowAdapter(this, R.layout.fragment1_row1, commentList);
+//		
+//		
+//		LinearLayout list=(LinearLayout)findViewById(R.id.listActivities);
+//		adapter=new LazyAdapter(this, activityList);
+//		list.setAdapter(adapter);
+		
+		for (int i = 0; i < commentList.size(); i++) {
+			LayoutInflater inflater = null;
+			inflater = (LayoutInflater) getApplicationContext()
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			
+			View linearView = inflater.inflate(R.layout.fragment1_detail_row, null);
+
+			TextView userName = (TextView) linearView.findViewById(R.id.username);
+			TextView installVerName = (TextView) linearView.findViewById(R.id.installvername);
+			TextView comment = (TextView) linearView.findViewById(R.id.comment);
+			TextView createdDate = (TextView) linearView.findViewById(R.id.created);
+			ImageView userGrade = (ImageView) linearView.findViewById(R.id.usergrade);
+		
+
+			final String uName = commentList.get(i).getReviewerName();
+			final String dName = commentList.get(i).getDeptName();
+			final String iVerName = commentList.get(i).getInstalledVerName();
+			final String comm = commentList.get(i).getComment();
+			final String create = commentList.get(i).getCreated();
+		    final int uGrade = Integer.parseInt(commentList.get(i).getAppGrade());
+
+			userName.setText(uName+" ("+dName+")");
+			installVerName.setText(this.getString(R.string.version) + " " +iVerName);
+			comment.setText(comm);
+			createdDate.setText(create);
+
+			if(uGrade == 1){
+				userGrade.setBackgroundResource(R.drawable.star_1);
+			}else if(uGrade == 2){
+				userGrade.setBackgroundResource(R.drawable.star_2);
+			}else if(uGrade == 3){
+				userGrade.setBackgroundResource(R.drawable.star_3);
+			}else if(uGrade == 4){
+				userGrade.setBackgroundResource(R.drawable.star_4);
+			}else if(uGrade == 5){
+				userGrade.setBackgroundResource(R.drawable.star_5);
+			}
+
+			linearListView.addView(linearView);
+
+			linearView.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Toast.makeText(DetailActivity.this, "Clicked item;" + uName,
+							Toast.LENGTH_SHORT).show();
+				}
+			});
+		}
 	}
 
 

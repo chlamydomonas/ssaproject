@@ -151,18 +151,14 @@
 				android:text="@string/review"
 				android:textColor="@android:color/black"
 		        android:textSize="15dip"
-		        android:textStyle="bold" />
+		        android:textStyle="bold" />    
 		    
-		    <ListView
-		        android:id="@+id/commentlistview"
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:cacheColorHint="#00000000"
-		        android:clickable="false"
-		        android:dividerHeight="5dp"
-		        android:padding="2dp" >
-		    </ListView>
-    
+		    <LinearLayout
+                android:id="@+id/commentlistview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+		    		    
 		    <ProgressBar
 		        android:id="@+id/pbardesc"
 		        style="@android:style/Widget.ProgressBar.Small.Inverse"
