@@ -18,7 +18,7 @@
                     "appGradeCount": "8",
                     "categoryId": "categoryId_01",
                     "categoryName": "카테고리_01",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_01",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 },
@@ -36,7 +36,7 @@
                     "appGradeCount": "11",
                     "categoryId": "categoryId_01",
                     "categoryName": "카테고리_01",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_02",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 },
@@ -54,7 +54,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_01",
                     "categoryName": "카테고리_01",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_03",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 }
@@ -78,7 +78,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_02",
                     "categoryName": "카테고리_02",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_04",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 },
@@ -96,7 +96,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_02",
                     "categoryName": "카테고리_02",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_05",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 },
@@ -114,7 +114,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_02",
                     "categoryName": "카테고리_02",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_06",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 }
@@ -138,7 +138,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_03",
                     "categoryName": "카테고리_03",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_07",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 },
@@ -156,7 +156,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_03",
                     "categoryName": "카테고리_03",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_08",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 },
@@ -174,7 +174,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_03",
                     "categoryName": "카테고리_03",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_09",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 },
@@ -192,7 +192,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_03",
                     "categoryName": "카테고리_03",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_10",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 }
@@ -216,7 +216,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_04",
                     "categoryName": "카테고리_04",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_11",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 },
@@ -234,7 +234,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_04",
                     "categoryName": "카테고리_04",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_12",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 },
@@ -252,7 +252,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_04",
                     "categoryName": "카테고리_04",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_13",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 }
@@ -276,7 +276,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_05",
                     "categoryName": "카테고리_05",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_14",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 },
@@ -294,7 +294,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_05",
                     "categoryName": "카테고리_05",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_15",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 },
@@ -312,7 +312,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_05",
                     "categoryName": "카테고리_05",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_16",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 },
@@ -330,7 +330,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_05",
                     "categoryName": "카테고리_05",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_17",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 },
@@ -348,7 +348,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_05",
                     "categoryName": "카테고리_05",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_18",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 }
@@ -372,7 +372,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_06",
                     "categoryName": "카테고리_06",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_19",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 },
@@ -390,7 +390,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_06",
                     "categoryName": "카테고리_06",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_20",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 }
@@ -414,7 +414,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_07",
                     "categoryName": "카테고리_07",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_21",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 },
@@ -432,7 +432,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_07",
                     "categoryName": "카테고리_07",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_22",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 },
@@ -450,7 +450,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_07",
                     "categoryName": "카테고리_07",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_23",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 },
@@ -468,7 +468,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_07",
                     "categoryName": "카테고리_07",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_24",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 },
@@ -486,7 +486,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_07",
                     "categoryName": "카테고리_07",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_25",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 },
@@ -504,7 +504,7 @@
                     "appGradeCount": "12",
                     "categoryId": "categoryId_07",
                     "categoryName": "카테고리_07",
-                    "appDownloadUrl": "",
+                    "appDownloadUrl": "appDownloadUrl_26",
                     "created": "2014-07-01",
                     "appUploadedDate": "2014-07-23"
                 }

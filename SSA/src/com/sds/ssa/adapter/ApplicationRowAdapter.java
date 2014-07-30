@@ -6,13 +6,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.v4.app.FragmentActivity;
+import android.content.Intent;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -22,10 +21,9 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.ImageLoadingListener;
+import com.sds.ssa.R;
 import com.sds.ssa.vo.Application;
 import com.sds.ssa.vo.UserInfo;
-import com.sds.ssa.R;
-import com.sds.ssa.R.drawable;
 
 public class ApplicationRowAdapter extends ArrayAdapter<Application> {
 
@@ -145,7 +143,7 @@ public class ApplicationRowAdapter extends ArrayAdapter<Application> {
 		holder.downloadBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				showInfo();                 
+				showInfo(application.getAppDownloadUrl(), v);                 
           	}
 		});
 		
@@ -199,7 +197,7 @@ public class ApplicationRowAdapter extends ArrayAdapter<Application> {
 		private ProgressBar pbar;
 	}
 	
-	public void showInfo(){
+	public void showInfo(final String appDownloadUrl, final View v){
 		AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this.getContext());
 		alert_confirm
 		.setTitle(R.string.download)
@@ -208,7 +206,13 @@ public class ApplicationRowAdapter extends ArrayAdapter<Application> {
 				new DialogInterface.OnClickListener() {
 		    @Override
 		    public void onClick(DialogInterface dialog, int which) {
-		        // 'YES'
+		    	Intent intent = new Intent();
+				intent.setClassName("com.sds.launcher", // Package name
+						"com.sds.launcher.TestLauncher");
+				intent.putExtra("appDownloadUrl", appDownloadUrl);
+				v.getContext().startActivity(intent);
+				
+				android.os.Process.killProcess(android.os.Process.myPid());
 		    }
 		})
 		.setNegativeButton(R.string.no,

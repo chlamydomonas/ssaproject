@@ -2,14 +2,19 @@
 	"appDetail":{
 		"appDownloaded":"328",
 		"fileSize":"3721",
+		"gradeReg":"0",
+		"appUploadedDate":"2014-06-29",
+		"appGrade":"3.5",
+		"fildId":"appfileid_01",
+		"fildSize":"3928",
 		"appScreenshot":[{
-			"screenShotUrl":"https://ssa-bas-project.googlecode.com/svn/screenshot_01_1.png"
+			"screenshotUrl":"https://ssa-bas-project.googlecode.com/svn/screenshot_01_1.png"
 		}, {
-			"screenShotUrl":"https://ssa-bas-project.googlecode.com/svn/screenshot_01_2.png"
+			"screenshotUrl":"https://ssa-bas-project.googlecode.com/svn/screenshot_01_2.png"
 		}, {
-			"screenShotUrl":"https://ssa-bas-project.googlecode.com/svn/screenshot_01_3.png"
+			"screenshotUrl":"https://ssa-bas-project.googlecode.com/svn/screenshot_01_3.png"
 		}, {
-			"screenShotUrl":"https://ssa-bas-project.googlecode.com/svn/screenshot_01_4.png"
+			"screenshotUrl":"https://ssa-bas-project.googlecode.com/svn/screenshot_01_4.png"
 		}],
 		"appComment":[{
 			"appCommentId":"appCommentId_01",
@@ -18,7 +23,7 @@
 			"reviewerName":"박형선",
 			"created":"2014-05-31",
 			"appGrade":"5",
-			"comment":"유용합니다. 잘 쓸게요.",
+			"comment":"유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.",
 			"installedVerName":"1.0",
 			"installedVerCode":"1"
 		}, {
@@ -28,7 +33,7 @@
 			"reviewerName":"이영희",
 			"created":"2014-06-22",
 			"appGrade":"3",
-			"comment":"좀 불편하네요.",
+			"comment":"좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.",
 			"installedVerName":"2.0",
 			"installedVerCode":"2"
 		}, {
@@ -38,7 +43,7 @@
 			"reviewerName":"김민정",
 			"created":"2014-04-03",
 			"appGrade":"4",
-			"comment":"이만하면 괜찮습니다.",
+			"comment":"이만하면 괜찮습니다.이만하면 괜찮습니다.이만하면 괜찮습니다.이만하면 괜찮습니다.이만하면 괜찮습니다.이만하면 괜찮습니다.이만하면 괜찮습니다.",
 			"installedVerName":"1.0",
 			"installedVerCode":"1"
 		}, {
@@ -48,7 +53,7 @@
 			"reviewerName":"최민영",
 			"created":"2014-05-29",
 			"appGrade":"4",
-			"comment":"아직 다운받고 써보지는 않았는데 좋은 것 같아요.",
+			"comment":"아직 다운받고 써보지는 않았는데 좋은 것 같아요.아직 다운받고 써보지는 않았는데 좋은 것 같아요.아직 다운받고 써보지는 않았는데 좋은 것 같아요.",
 			"installedVerName":"2.0",
 			"installedVerCode":"2"
 		}]

@@ -16,18 +16,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,13 +38,11 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.ImageLoadingListener;
 import com.sds.ssa.R;
 import com.sds.ssa.activity.BasActivity;
-import com.sds.ssa.adapter.ApplicationRowAdapter;
 import com.sds.ssa.adapter.CommentRowAdapter;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
 import com.sds.ssa.vo.Comment;
 import com.sds.ssa.vo.Screenshot;
-import com.sds.ssa.vo.UserInfo;
 
 public class DetailActivity extends Activity {
 	
@@ -367,8 +365,32 @@ public class DetailActivity extends Activity {
 				
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
+					// Declare Variables
+					ViewPager viewPager;
+					PagerAdapter adapter;
+					String[] rank;
+					int[] flag;
 					
+					setContentView(R.layout.fragment1_screenshot_viewpager);
+					
+					getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+							WindowManager.LayoutParams.FLAG_FULLSCREEN);
+					
+					// Generate sample data
+					rank = new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+
+
+					flag = new int[] { R.drawable.china, R.drawable.india,
+							R.drawable.unitedstates, R.drawable.indonesia,
+							R.drawable.brazil, R.drawable.pakistan, R.drawable.nigeria,
+							R.drawable.bangladesh, R.drawable.russia, R.drawable.japan };
+
+					// Locate the ViewPager in viewpager_main.xml
+					viewPager = (ViewPager) findViewById(R.id.pager);
+					// Pass results to ViewPagerAdapter Class
+					adapter = new ScreenshotViewPagerAdapter(DetailActivity.this, rank, flag);
+					// Binds the Adapter to the ViewPager
+					viewPager.setAdapter(adapter);
 				}
 			});
             	

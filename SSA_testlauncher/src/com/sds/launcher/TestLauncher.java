@@ -1,7 +1,9 @@
 package com.sds.launcher;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,8 +16,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 
 import com.sds.launcher.vo.InstalledAppInfo;
 import com.sds.launcher.vo.UserInfo;
@@ -34,10 +38,26 @@ public class TestLauncher extends Activity implements View.OnClickListener {
 	
 	List<InstalledAppInfo> installedAppInfoList;
 	
+	private String rootUserInfo = "userInfo";
+	private String installedAppList = "installedAppList";
+	private JSONObject rootObj = new JSONObject();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_test_launcher);
+		
+		Intent intent = getIntent();
+		if(intent.hasExtra("appDownloadUrl")){
+			String appDownloadUrl = intent.getExtras().getString("appDownloadUrl");
+			Log.v("launcher", appDownloadUrl);
+			
+			TextView downloadUrl = (TextView) findViewById(R.id.appdownloadurl);
+			downloadUrl.setText("Plz install : " +appDownloadUrl);
+			
+		}else{
+			Log.v("launcher", "no appDownloadUrl");
+		}
 
 		// Open a new private SQLiteDatabase associated with this Context's
         // application package. Create database if it doesn't exist.
@@ -123,24 +143,13 @@ public class TestLauncher extends Activity implements View.OnClickListener {
         
 		View loginButton = findViewById(R.id.button1);
 		loginButton.setOnClickListener(this);
+		
+		setUserInfo();
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.test_launcher, menu);
-		return true;
-	}
-
-	@Override
-	public void onClick(View v) {
-
-		String rootUserInfo = "userInfo";
-		String installedAppList = "installedAppList";
+	private void setUserInfo() {
 		
-		JSONObject rootObj = new JSONObject();
-		JSONObject userInfoObj = new JSONObject();
-		
+		JSONObject userInfoObj = new JSONObject();		
 		JSONArray userAppInfoArray = new JSONArray();
 		
 		UserInfo userInfo = new UserInfo();
@@ -166,10 +175,22 @@ public class TestLauncher extends Activity implements View.OnClickListener {
 			}
 			userInfoObj.put(installedAppList, userAppInfoArray);
 				
+			TextView userInfoText = (TextView) findViewById(R.id.userinfo);
+			userInfoText.setText(rootObj.toString());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.test_launcher, menu);
+		return true;
+	}
+
+	@Override
+	public void onClick(View v) {
 		Intent intent = new Intent();
 		intent.setClassName("com.sds.ssa", // Package name
 				"com.sds.ssa.activity.BasActivity");
