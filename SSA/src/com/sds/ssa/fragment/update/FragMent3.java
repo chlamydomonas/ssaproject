@@ -88,6 +88,7 @@ public class FragMent3 extends Fragment {
 				intent.putExtra("categoryname", application.getCategoryName());
 				intent.putExtra("vername", application.getAppVerName());
 				intent.putExtra("appverdiff", application.getAppVerDiff());
+				intent.putExtra("downloadUrl", application.getAppDownloadUrl());
 				startActivity(intent);
 			}
 		});

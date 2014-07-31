@@ -12,10 +12,12 @@ import org.json.JSONObject;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +27,7 @@ import android.widget.Toast;
 
 import com.sds.ssa.R;
 import com.sds.ssa.adapter.CategoryExpandableListAdapter;
+import com.sds.ssa.fragment.app.DetailActivity;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
 import com.sds.ssa.vo.Category;
@@ -94,12 +97,7 @@ public class FragMent2 extends Fragment {
 			showToast("No Network Connection!!!");
 		}
 		
-		expListView.setOnChildClickListener(new OnChildClickListener() {
-			public boolean onChildClick(ExpandableListView parent, View v,
-					int groupPosition, int childPosition, long id) {
-						return false;
-			}
-		});
+
         return rootView;
     }
 
@@ -200,6 +198,25 @@ public class FragMent2 extends Fragment {
     	
     	listAdapter = new CategoryExpandableListAdapter(mContext, listDataHeader, listDataChild);
         expListView.setAdapter(listAdapter);
+		expListView.setOnChildClickListener(new OnChildClickListener() {
+			public boolean onChildClick(ExpandableListView parent, View v,
+					int groupPosition, int childPosition, long id) {
+				
+				//Log.v("bas", listDataChild.get(groupPosition).get(childPosition).getAppIcon());
+//						Intent intent = new Intent(getActivity(), DetailActivity.class);
+//						
+//						intent.putExtra("url", listDataChild.get(groupPosition).get(childPosition).getAppIcon());
+//						intent.putExtra("name", listDataChild.get(groupPosition).get(childPosition).getAppName());
+//						intent.putExtra("categoryname", listDataChild.get(groupPosition).get(childPosition).getCategoryName());
+//						intent.putExtra("summary", listDataChild.get(groupPosition).get(childPosition).getAppSummary());
+//						intent.putExtra("desc", listDataChild.get(groupPosition).get(childPosition).getAppDescription());
+//						intent.putExtra("manual", listDataChild.get(groupPosition).get(childPosition).getAppManual());
+//						intent.putExtra("downloadUrl", listDataChild.get(groupPosition).get(childPosition).getAppDownloadUrl());
+//						startActivity(intent);
+						
+						return false;
+			}
+		});
 	}
 
     public void showToast(String msg) {

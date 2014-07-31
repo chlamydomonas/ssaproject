@@ -22,6 +22,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.ImageLoadingListener;
 import com.sds.ssa.R;
+import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
 import com.sds.ssa.vo.UserInfo;
 
@@ -143,18 +144,9 @@ public class ApplicationRowAdapter extends ArrayAdapter<Application> {
 		holder.downloadBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				showInfo(application.getAppDownloadUrl(), v);                 
+				Utils.showDownload(application.getAppDownloadUrl(), v);
           	}
 		});
-		
-		//holder.appIcon.setBackgroundResource(R.drawable.download);
-		//holder.appGrade.setBackgroundResource(R.drawable.star_35);
-//		holder.appIcon.setOnClickListener(new ImageView.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				showInfo("imageview");                 
-//          	}
-//		});
 
 		if (holder.appIcon != null) {
 			if (null != application.getAppIcon()
@@ -197,33 +189,33 @@ public class ApplicationRowAdapter extends ArrayAdapter<Application> {
 		private ProgressBar pbar;
 	}
 	
-	public void showInfo(final String appDownloadUrl, final View v){
-		AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this.getContext());
-		alert_confirm
-		.setTitle(R.string.download)
-		.setMessage(R.string.downloadMsg).setCancelable(false)
-		.setPositiveButton(R.string.yes,
-				new DialogInterface.OnClickListener() {
-		    @Override
-		    public void onClick(DialogInterface dialog, int which) {
-		    	Intent intent = new Intent();
-				intent.setClassName("com.sds.launcher", // Package name
-						"com.sds.launcher.TestLauncher");
-				intent.putExtra("appDownloadUrl", appDownloadUrl);
-				v.getContext().startActivity(intent);
-				
-				android.os.Process.killProcess(android.os.Process.myPid());
-		    }
-		})
-		.setNegativeButton(R.string.no,
-		new DialogInterface.OnClickListener() {
-		    @Override
-		    public void onClick(DialogInterface dialog, int which) {
-		        // 'No'
-		    return;
-		    }
-		});
-		AlertDialog alert = alert_confirm.create();
-		alert.show();
-    }
+//	public void showInfo(final String appDownloadUrl, final View v){
+//		AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this.getContext());
+//		alert_confirm
+//		.setTitle(R.string.download)
+//		.setMessage(R.string.downloadMsg).setCancelable(false)
+//		.setPositiveButton(R.string.yes,
+//				new DialogInterface.OnClickListener() {
+//		    @Override
+//		    public void onClick(DialogInterface dialog, int which) {
+//		    	Intent intent = new Intent();
+//				intent.setClassName("com.sds.launcher", // Package name
+//						"com.sds.launcher.TestLauncher");
+//				intent.putExtra("appDownloadUrl", appDownloadUrl);
+//				v.getContext().startActivity(intent);
+//				
+//				android.os.Process.killProcess(android.os.Process.myPid());
+//		    }
+//		})
+//		.setNegativeButton(R.string.no,
+//		new DialogInterface.OnClickListener() {
+//		    @Override
+//		    public void onClick(DialogInterface dialog, int which) {
+//		        // 'No'
+//		    return;
+//		    }
+//		});
+//		AlertDialog alert = alert_confirm.create();
+//		alert.show();
+//    }
 }

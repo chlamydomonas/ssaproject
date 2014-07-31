@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -68,9 +69,9 @@ public class DetailActivity extends Activity {
 	private ImageLoader imageLoader;
 
 	private ProgressBar pbar;
-	private TextView appName, appDesc, appSummary, appManual, categoryName;
-	private ImageView imgView;
-	private Button downloadBtn;
+	private TextView appName, appDesc, appSummary, appManual, categoryName, created, appVerName;
+	private ImageView imgView, rateStar1, rateStar2, rateStar3, rateStar4, rateStar5;
+	private Button downloadBtn, reviewBtn;
 
 	private List<Screenshot> screenshotList;
 	private LinearLayout linearListView;
@@ -98,6 +99,19 @@ public class DetailActivity extends Activity {
 		appDesc = (TextView) findViewById(R.id.appdesc);
 		imgView = (ImageView) findViewById(R.id.appicon);
 		downloadBtn = (Button) findViewById(R.id.downloadbtn);
+		created = (TextView) findViewById(R.id.created);
+		appVerName = (TextView) findViewById(R.id.appvername);
+		rateStar1 = (ImageView) findViewById(R.id.ratestar1);
+		rateStar2 = (ImageView) findViewById(R.id.ratestar2);	
+		rateStar3 = (ImageView) findViewById(R.id.ratestar3);
+		rateStar4 = (ImageView) findViewById(R.id.ratestar4);
+		rateStar5 = (ImageView) findViewById(R.id.ratestar5);
+		reviewBtn = (Button) findViewById(R.id.reviewbtn);		
+		
+		reviewBtn.getLayoutParams().height = 60;
+		//reviewBtn.getLayoutParams().width = 100;
+		
+		reviewBtn.setLayoutParams(reviewBtn.getLayoutParams());
 		
 		Bundle b = getIntent().getExtras();
 
@@ -106,19 +120,79 @@ public class DetailActivity extends Activity {
 		String desc = b.getString("desc");
 		String manual = b.getString("manual");
 		String categoryname = b.getString("categoryname");
+		String create = b.getString("created");
+		String verName = b.getString("verName");
+		final String downloadUrl = b.getString("downloadUrl");
 
 		appName.setText(name);
 		categoryName.setText(categoryname);
 		appSummary.setText(summary);
 		appDesc.setText(desc);
 		appManual.setText(manual);
+		created.setText(create);
+		appVerName.setText(verName);
 
 		downloadBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				showInfo();                 
+				//showInfo();          
+				Utils.showDownload(downloadUrl, v);  
+				
           	}
 		});
+		
+		reviewBtn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//onCreateDialog(0);
+          	}
+		});
+		rateStar1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				reset();
+				rateStar1.setBackgroundResource(R.drawable.filled_star);
+          	}
+		});
+		rateStar2.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				reset();
+				rateStar1.setBackgroundResource(R.drawable.filled_star);
+				rateStar2.setBackgroundResource(R.drawable.filled_star);
+          	}
+		});
+		rateStar3.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				reset();
+				rateStar1.setBackgroundResource(R.drawable.filled_star);
+				rateStar2.setBackgroundResource(R.drawable.filled_star);
+				rateStar3.setBackgroundResource(R.drawable.filled_star);
+          	}
+		});
+		rateStar4.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				reset();
+				rateStar1.setBackgroundResource(R.drawable.filled_star);
+				rateStar2.setBackgroundResource(R.drawable.filled_star);
+				rateStar3.setBackgroundResource(R.drawable.filled_star);
+				rateStar4.setBackgroundResource(R.drawable.filled_star);
+          	}
+		});
+		rateStar5.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				reset();
+				rateStar1.setBackgroundResource(R.drawable.filled_star);
+				rateStar2.setBackgroundResource(R.drawable.filled_star);
+				rateStar3.setBackgroundResource(R.drawable.filled_star);
+				rateStar4.setBackgroundResource(R.drawable.filled_star);
+				rateStar5.setBackgroundResource(R.drawable.filled_star);
+          	}
+		});
+		
 		
 		String url = b.getString("url");
 		loadImageFromURL(url);
@@ -130,29 +204,75 @@ public class DetailActivity extends Activity {
 		}
 	}
 	
-	protected void showInfo() {
-		AlertDialog.Builder alert_confirm = new AlertDialog.Builder(DetailActivity.this);
-		alert_confirm
-		.setTitle(R.string.download)
-		.setMessage(R.string.downloadMsg).setCancelable(false)
-		.setPositiveButton(R.string.yes,
-				new DialogInterface.OnClickListener() {
-		    @Override
-		    public void onClick(DialogInterface dialog, int which) {
-		        // 'YES'
-		    }
-		})
-		.setNegativeButton(R.string.no,
-		new DialogInterface.OnClickListener() {
-		    @Override
-		    public void onClick(DialogInterface dialog, int which) {
-		        // 'No'
-		    return;
-		    }
-		});
-		AlertDialog alert = alert_confirm.create();
-		alert.show();
+	private void reset() {
+		rateStar1.setBackgroundResource(R.drawable.blank_star);
+		rateStar2.setBackgroundResource(R.drawable.blank_star);
+		rateStar3.setBackgroundResource(R.drawable.blank_star);
+		rateStar4.setBackgroundResource(R.drawable.blank_star);
+		rateStar5.setBackgroundResource(R.drawable.blank_star);
 	}
+
+	protected Dialog onCreateDialog(int id) {
+		   AlertDialog.Builder Alert_builder = new AlertDialog.Builder(DetailActivity.this);
+		   Alert_builder.setTitle("AlertDialog_Title");
+		   Alert_builder.setMessage("AlertDialog_Message");
+		   Alert_builder.setIcon(R.drawable.brazil);
+		   // adding one button
+		   Alert_builder.setPositiveButton("Ok",
+		     new DialogInterface.OnClickListener() {
+
+		      @Override
+		      public void onClick(DialogInterface dialog, int which) {
+		       // do something
+		      }
+		     });
+
+		   return Alert_builder.create();
+		   }
+	
+//	protected Dialog onCreateDialog(int id) {
+//		
+//		AlertDialog.Builder builder = new AlertDialog.Builder(DetailActivity.this);
+//		// Get the layout inflater
+//		LayoutInflater inflater = DetailActivity.this.getLayoutInflater();
+//
+//	    // Inflate and set the layout for the dialog
+//	    // Pass null as the parent view because its going in the dialog layout
+//	    builder.setView(inflater.inflate(R.layout.dialog_signin, null))
+//	    // Add action buttons
+//           .setPositiveButton(R.string.action_menu1, new DialogInterface.OnClickListener() {
+//               @Override
+//               public void onClick(DialogInterface dialog, int id) {
+//                   // sign in the user ...
+//               }
+//           });      
+//	    return builder.create();
+//	   }
+	
+	
+//	protected void showInfo() {
+//		AlertDialog.Builder alert_confirm = new AlertDialog.Builder(DetailActivity.this);
+//		alert_confirm
+//		.setTitle(R.string.download)
+//		.setMessage(R.string.downloadMsg).setCancelable(false)
+//		.setPositiveButton(R.string.yes,
+//				new DialogInterface.OnClickListener() {
+//		    @Override
+//		    public void onClick(DialogInterface dialog, int which) {
+//		        // 'YES'
+//		    }
+//		})
+//		.setNegativeButton(R.string.no,
+//		new DialogInterface.OnClickListener() {
+//		    @Override
+//		    public void onClick(DialogInterface dialog, int which) {
+//		        // 'No'
+//		    return;
+//		    }
+//		});
+//		AlertDialog alert = alert_confirm.create();
+//		alert.show();
+//	}
 
 	private void loadImageFromURL(String url) {
 		options = new DisplayImageOptions.Builder()

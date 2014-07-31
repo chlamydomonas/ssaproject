@@ -19,6 +19,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.ImageLoadingListener;
 import com.sds.ssa.R;
 import com.sds.ssa.activity.BasActivity;
+import com.sds.ssa.util.Utils;
 
 public class UpdateDetailActivity extends Activity {
 	private DisplayImageOptions options;
@@ -52,6 +53,7 @@ public class UpdateDetailActivity extends Activity {
 		String categoryname = b.getString("categoryname");
 		String vername = b.getString("vername");
 		String appverdiff = b.getString("appverdiff");
+		final String downloadUrl = b.getString("downloadUrl");
 
 		appName.setText(name);
 		categoryName.setText(categoryname);
@@ -61,7 +63,8 @@ public class UpdateDetailActivity extends Activity {
 		downloadBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				showInfo();                 
+				//showInfo();     
+				Utils.showDownload(downloadUrl, v);  
           	}
 		});
 		
@@ -100,29 +103,29 @@ public class UpdateDetailActivity extends Activity {
 
 	}
 	
-	protected void showInfo() {
-		AlertDialog.Builder alert_confirm = new AlertDialog.Builder(UpdateDetailActivity.this);
-		alert_confirm
-		.setTitle(R.string.download)
-		.setMessage(R.string.downloadMsg).setCancelable(false)
-		.setPositiveButton(R.string.yes,
-				new DialogInterface.OnClickListener() {
-		    @Override
-		    public void onClick(DialogInterface dialog, int which) {
-		        // 'YES'
-		    }
-		})
-		.setNegativeButton(R.string.no,
-		new DialogInterface.OnClickListener() {
-		    @Override
-		    public void onClick(DialogInterface dialog, int which) {
-		        // 'No'
-		    return;
-		    }
-		});
-		AlertDialog alert = alert_confirm.create();
-		alert.show();
-	}
+//	protected void showInfo() {
+//		AlertDialog.Builder alert_confirm = new AlertDialog.Builder(UpdateDetailActivity.this);
+//		alert_confirm
+//		.setTitle(R.string.download)
+//		.setMessage(R.string.downloadMsg).setCancelable(false)
+//		.setPositiveButton(R.string.yes,
+//				new DialogInterface.OnClickListener() {
+//		    @Override
+//		    public void onClick(DialogInterface dialog, int which) {
+//		        // 'YES'
+//		    }
+//		})
+//		.setNegativeButton(R.string.no,
+//		new DialogInterface.OnClickListener() {
+//		    @Override
+//		    public void onClick(DialogInterface dialog, int which) {
+//		        // 'No'
+//		    return;
+//		    }
+//		});
+//		AlertDialog alert = alert_confirm.create();
+//		alert.show();
+//	}
 	 @Override
 	    public boolean onOptionsItemSelected(MenuItem item) {
 	        switch (item.getItemId()) {

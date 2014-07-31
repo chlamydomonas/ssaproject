@@ -12,10 +12,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.view.View;
 
+import com.sds.ssa.R;
 import com.sds.ssa.vo.InstalledAppInfo;
 import com.sds.ssa.vo.UserInfo;
 
@@ -100,4 +105,34 @@ public class Utils {
 		}
 		return userInfo;
 	}
+	
+	public static void showDownload(final String appDownloadUrl, final View v){
+		AlertDialog.Builder alert_confirm = new AlertDialog.Builder(v.getContext());
+		alert_confirm
+		.setTitle(R.string.download)
+		.setMessage(R.string.downloadMsg).setCancelable(false)
+		.setPositiveButton(R.string.yes,
+				new DialogInterface.OnClickListener() {
+		    @Override
+		    public void onClick(DialogInterface dialog, int which) {
+		    	Intent intent = new Intent();
+				intent.setClassName("com.sds.launcher", // Package name
+						"com.sds.launcher.TestLauncher");
+				intent.putExtra("appDownloadUrl", appDownloadUrl);
+				v.getContext().startActivity(intent);
+				
+				android.os.Process.killProcess(android.os.Process.myPid());
+		    }
+		})
+		.setNegativeButton(R.string.no,
+		new DialogInterface.OnClickListener() {
+		    @Override
+		    public void onClick(DialogInterface dialog, int which) {
+		        // 'No'
+		    return;
+		    }
+		});
+		AlertDialog alert = alert_confirm.create();
+		alert.show();
+    }
 }

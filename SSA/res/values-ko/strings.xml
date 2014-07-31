@@ -23,4 +23,6 @@
     <string name="manual">사용법</string>
     <string name="review">리뷰</string>
     <string name="version">버전</string>
+    <string name="rate_app">앱 평가하기</string>
+    <string name="write_review">리뷰쓰기</string>
 </resources>

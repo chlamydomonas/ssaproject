@@ -23,4 +23,6 @@
     <string name="manual">Manual</string>
     <string name="review">Review</string>
     <string name="version">Version</string>
+    <string name="rate_app">Rate app</string>
+    <string name="write_review">Write</string>
 </resources>

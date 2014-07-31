@@ -28,6 +28,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.ImageLoadingListener;
 import com.sds.ssa.R;
 import com.sds.ssa.fragment.app.DetailActivity;
+import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
 import com.sds.ssa.vo.Category;
 
@@ -145,12 +146,12 @@ public class CategoryExpandableListAdapter extends BaseExpandableListAdapter {
 			}
 		}
 
-//		holder.downloadBtn.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				showInfo();                 
-//          	}
-//		});
+		holder.downloadBtn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Utils.showDownload(application.getAppDownloadUrl(), v);            
+          	}
+		});
 		
 		if (holder.appIcon != null) {
 			if (null != application.getAppIcon()
@@ -265,28 +266,28 @@ public class CategoryExpandableListAdapter extends BaseExpandableListAdapter {
 		private ProgressBar pbar;
 	}
     
-    public void showInfo(){
-		AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this.context);
-		alert_confirm
-		.setTitle(R.string.download)
-		.setMessage(R.string.downloadMsg).setCancelable(false)
-		.setPositiveButton(R.string.yes,
-				new DialogInterface.OnClickListener() {
-		    @Override
-		    public void onClick(DialogInterface dialog, int which) {
-		        // 'YES'
-		    }
-		})
-		.setNegativeButton(R.string.no,
-		new DialogInterface.OnClickListener() {
-		    @Override
-		    public void onClick(DialogInterface dialog, int which) {
-		        // 'No'
-		    return;
-		    }
-		});
-		AlertDialog alert = alert_confirm.create();
-		alert.show();
-    }
+//    public void showInfo(){
+//		AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this.context);
+//		alert_confirm
+//		.setTitle(R.string.download)
+//		.setMessage(R.string.downloadMsg).setCancelable(false)
+//		.setPositiveButton(R.string.yes,
+//				new DialogInterface.OnClickListener() {
+//		    @Override
+//		    public void onClick(DialogInterface dialog, int which) {
+//		        // 'YES'
+//		    }
+//		})
+//		.setNegativeButton(R.string.no,
+//		new DialogInterface.OnClickListener() {
+//		    @Override
+//		    public void onClick(DialogInterface dialog, int which) {
+//		        // 'No'
+//		    return;
+//		    }
+//		});
+//		AlertDialog alert = alert_confirm.create();
+//		alert.show();
+//    }
     // From "AppsRowAdapter" end
 }

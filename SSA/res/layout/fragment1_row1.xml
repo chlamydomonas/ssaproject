@@ -40,7 +40,8 @@
         android:maxLines="1"
         android:text="categoryname"
         android:textColor="@android:color/holo_blue_dark"
-        android:textSize="12dip" />
+        android:textSize="12dip"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/stargrade"
@@ -57,6 +58,8 @@
         android:layout_below="@+id/categoryname"
         android:layout_alignParentRight="true"
         android:layout_alignBottom="@+id/image"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="50dp"
         android:layout_toLeftOf="@+id/downloadBtn"
         android:layout_toRightOf="@+id/image"
         android:ellipsize="end"

@@ -70,7 +70,7 @@
 	<View
 	    android:layout_width="fill_parent"
 	    android:layout_height="2dp"
-	    android:background="@android:color/holo_orange_dark"/>
+	    android:background="@android:color/holo_blue_dark"/>
 	
     <ScrollView 
         android:id="@+id/myview"
@@ -89,69 +89,231 @@
 			    android:layout_height="wrap_content">
 			</HorizontalScrollView>
 				    
+			<RelativeLayout 
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent"
+			    android:paddingLeft="7dp"
+    			android:paddingRight="7dp" >
+			    
+			    <TextView
+				    android:id="@+id/created"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:text="created"
+					android:textColor="#504A4B"
+			        android:textSize="12dip" />
+						    
+				<TextView
+				    android:id="@+id/appvername"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_toRightOf="@+id/created"
+					android:text="appvername"
+					android:textColor="#504A4B"
+			        android:textSize="12dip" />		    
+						    
+			</RelativeLayout>
+    
+			<View
+			    android:layout_width="fill_parent"
+			    android:layout_height="1dp"
+			    android:background="@android:color/holo_blue_dark"/>
+			
 			<TextView
 			    android:id="@+id/summarytext"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
-				android:layout_toLeftOf="@+id/summarytext"
+				android:paddingLeft="7dp"
+    			android:paddingRight="7dp"
+    			android:layout_marginTop="7dp"
 				android:text="@string/summary"
-				android:textColor="@android:color/black"
-		        android:textSize="15dip"
+				android:textColor="#413839"
+		        android:textSize="18dip"
 		        android:textStyle="bold" />
 						        
 		    <TextView
 		        android:id="@+id/appsummary"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
+		        android:paddingLeft="7dp"
+    			android:paddingRight="7dp"
+    			android:layout_marginTop="5dp"
 		        android:layout_alignParentLeft="true"
 		        android:layout_below="@+id/apptitle"
-		        android:layout_margin="5dp"
 		        android:text="Summary"
-		        android:textColor="@android:color/black" />
+		        android:textSize="15dip"
+		        android:textColor="#504A4B" />
 		    
 		    <TextView
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
+				android:paddingLeft="7dp"
+    			android:paddingRight="7dp"
+    			android:layout_marginTop="15dp"
 				android:text="@string/description"
-				android:textColor="@android:color/black"
-		        android:textSize="15dip"
+				android:textColor="#413839"
+		        android:textSize="18dip"
 		        android:textStyle="bold" />
 		    			
 		    <TextView
 		        android:id="@+id/appdesc"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
+		        android:paddingLeft="7dp"
+    			android:paddingRight="7dp"
+    			android:layout_marginTop="5dp"
 		        android:layout_alignParentLeft="true"
 		        android:layout_below="@+id/appsummary"
-		        android:layout_margin="5dp"
 		        android:text="Descrption"
-		        android:textColor="@android:color/black" />
+		        android:textColor="#504A4B" />
 		    
 		    <TextView
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
+				android:paddingLeft="7dp"
+    			android:paddingRight="7dp"
+    			android:layout_marginTop="15dp"
 				android:text="@string/manual"
-				android:textColor="@android:color/black"
-		        android:textSize="15dip"
+				android:textColor="#413839"
+		        android:textSize="18dip"
 		        android:textStyle="bold" />
 		    			
 		    <TextView
 		        android:id="@+id/appmanual"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
+		        android:paddingLeft="7dp"
+    			android:paddingRight="7dp"
+    			android:layout_marginTop="5dp"
+    			android:layout_marginBottom="7dp"
 		        android:layout_alignParentLeft="true"
 		        android:layout_below="@+id/appdesc"
-		        android:layout_margin="5dp"
 		        android:text="Manual"
-		        android:textColor="@android:color/black" />
+		        android:textColor="#504A4B" />
 		
+		    <View
+			    android:layout_width="fill_parent"
+			    android:layout_height="1dp"
+			    android:background="@android:color/holo_blue_dark"/>
+
 		    <TextView
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
-				android:text="@string/review"
-				android:textColor="@android:color/black"
-		        android:textSize="15dip"
-		        android:textStyle="bold" />    
+				android:gravity="center"
+    			android:layout_marginTop="10dp"
+    			android:layout_marginBottom="7dp"
+				android:text="@string/rate_app"
+				android:textColor="#413839"
+		        android:textSize="12dip" />
+		    
+	    	<LinearLayout 
+	        	android:orientation="horizontal"
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent"
+			    android:layout_marginBottom="15dp">
+
+			    <ImageView
+	    	    	android:id="@+id/ratestar1"
+			        android:src="@drawable/blank_star"
+			        android:layout_width="0dip"
+			        android:layout_height="match_parent"
+			        android:layout_weight="1"/>
+			
+			    <ImageView
+			        android:id="@+id/ratestar2"
+			        android:src="@drawable/blank_star"
+			        android:layout_width="0dip"
+			        android:layout_height="match_parent"
+			        android:layout_weight="1"/>
+			
+			    <ImageView
+			        android:id="@+id/ratestar3"
+			        android:src="@drawable/blank_star"
+			        android:layout_width="0dip"
+			        android:layout_height="match_parent"
+			        android:layout_weight="1"/>
+			
+			    <ImageView
+			        android:id="@+id/ratestar4"
+			        android:src="@drawable/blank_star"
+			        android:layout_width="0dip"
+			        android:layout_height="match_parent"
+			        android:layout_weight="1"/>
+			
+			    <ImageView
+			        android:id="@+id/ratestar5"
+			        android:src="@drawable/blank_star"
+			        android:layout_width="0dip"
+			        android:layout_height="match_parent"
+			        android:layout_weight="1"/>
+			</LinearLayout>
+		    
+	    	<View
+			    android:layout_width="fill_parent"
+			    android:layout_height="1dp"
+			    android:background="@android:color/holo_blue_dark"/>
+	    	
+	    	<LinearLayout
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal" >
+			    
+			    <TextView
+			        android:layout_width="0dp"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="left|center_vertical"
+			        android:layout_weight="1"
+			        android:layout_marginTop="10dp" 
+			        android:layout_marginLeft="7dp" 
+			        android:gravity="left|center_vertical"
+			        android:singleLine="true"
+			        android:text="@string/review"
+					android:textColor="#413839"
+			        android:textSize="18dip"
+			        android:textStyle="bold" />    
+			    <Button
+			        android:id="@+id/reviewbtn"
+			        android:layout_marginTop="15dp" 
+			        android:layout_marginRight="7dp" 
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/write_review"
+			        android:textColor="#413839"
+			        android:background="@drawable/review_btn_selector" />
+			    
+			</LinearLayout>
+
+<!-- 	    	<LinearLayout  -->
+<!-- 	        	android:orientation="horizontal" -->
+<!-- 			    android:layout_width="fill_parent" -->
+<!-- 			    android:layout_height="fill_parent" > -->
+			    
+<!-- 			    <TextView -->
+<!-- 					android:layout_width="wrap_content" -->
+<!-- 					android:layout_height="wrap_content" -->
+<!-- 					android:paddingLeft="7dp" -->
+	    			
+<!-- 	    			android:layout_marginTop="15dp" -->
+<!-- 					android:text="@string/review" -->
+<!-- 					android:textColor="#413839" -->
+<!-- 			        android:textSize="18dip" -->
+<!-- 			        android:textStyle="bold" />     -->
+			        
+<!-- 			    <Button -->
+<!-- 				    android:id="@+id/reviewbtn" -->
+<!-- 			        android:layout_width="wrap_content" -->
+<!-- 			        android:layout_height="wrap_content" -->
+<!-- 			        android:paddingRight="7dp" -->
+<!-- 			        android:layout_gravity="center_vertical" -->
+<!-- 			        android:layout_marginTop="15dp" -->
+<!-- 			        android:text="write" -->
+<!-- 			        android:background="@drawable/download_btn_selector" -->
+<!-- 			        android:minHeight="20px" android:maxHeight="100px" android:height="60px" -->
+<!-- 			        android:textColor="#413839" -->
+<!-- 			        android:textSize="12dip" /> -->
+			    
+<!-- 		    </LinearLayout> -->
 		    
 		    <LinearLayout
                 android:id="@+id/commentlistview"

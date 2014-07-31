@@ -69,7 +69,7 @@ public class BasActivity extends FragmentActivity {
 		
 		PagerTabStrip pagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_title_strip);
 		pagerTabStrip.setDrawFullUnderline(true);
-		pagerTabStrip.setTabIndicatorColor(Color.parseColor("#F94D00"));
+		pagerTabStrip.setTabIndicatorColor(Color.parseColor("#2680ff"));
 		
 		supportInvalidateOptionsMenu();
 		// Create the adapter that will return a fragment for each of the three

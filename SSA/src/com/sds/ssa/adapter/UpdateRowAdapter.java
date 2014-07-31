@@ -21,6 +21,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.ImageLoadingListener;
+import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
 import com.sds.ssa.R;
 import com.sds.ssa.R.drawable;
@@ -98,7 +99,7 @@ public class UpdateRowAdapter extends ArrayAdapter<Application> {
 		holder.downloadBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				showInfo();                 
+				Utils.showDownload(application.getAppDownloadUrl(), v);         
           	}
 		});
 
@@ -143,27 +144,27 @@ public class UpdateRowAdapter extends ArrayAdapter<Application> {
 		private ProgressBar pbar;
 	}
 	
-	public void showInfo(){
-		AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this.getContext());
-		alert_confirm
-		.setTitle(R.string.download)
-		.setMessage(R.string.downloadMsg).setCancelable(false)
-		.setPositiveButton(R.string.yes,
-				new DialogInterface.OnClickListener() {
-		    @Override
-		    public void onClick(DialogInterface dialog, int which) {
-		        // 'YES'
-		    }
-		})
-		.setNegativeButton(R.string.no,
-		new DialogInterface.OnClickListener() {
-		    @Override
-		    public void onClick(DialogInterface dialog, int which) {
-		        // 'No'
-		    return;
-		    }
-		});
-		AlertDialog alert = alert_confirm.create();
-		alert.show();
-    }
+//	public void showInfo(){
+//		AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this.getContext());
+//		alert_confirm
+//		.setTitle(R.string.download)
+//		.setMessage(R.string.downloadMsg).setCancelable(false)
+//		.setPositiveButton(R.string.yes,
+//				new DialogInterface.OnClickListener() {
+//		    @Override
+//		    public void onClick(DialogInterface dialog, int which) {
+//		        // 'YES'
+//		    }
+//		})
+//		.setNegativeButton(R.string.no,
+//		new DialogInterface.OnClickListener() {
+//		    @Override
+//		    public void onClick(DialogInterface dialog, int which) {
+//		        // 'No'
+//		    return;
+//		    }
+//		});
+//		AlertDialog alert = alert_confirm.create();
+//		alert.show();
+//    }
 }
