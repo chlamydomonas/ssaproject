@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="300dip"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" 
+        android:background="@android:color/background_light"
+        >
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Title"
+            android:textSize="16sp" 
+            android:textColor="#413839"
+            />
+
+    	<LinearLayout 
+        	android:orientation="horizontal"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_marginBottom="15dp">
+
+		    <ImageView
+    	    	android:id="@+id/ratestar1"
+		        android:src="@drawable/blank_star"
+		        android:layout_width="0dip"
+		        android:layout_height="match_parent"
+		        android:layout_weight="1"/>
+		
+		    <ImageView
+		        android:id="@+id/ratestar2"
+		        android:src="@drawable/blank_star"
+		        android:layout_width="0dip"
+		        android:layout_height="match_parent"
+		        android:layout_weight="1"/>
+		
+		    <ImageView
+		        android:id="@+id/ratestar3"
+		        android:src="@drawable/blank_star"
+		        android:layout_width="0dip"
+		        android:layout_height="match_parent"
+		        android:layout_weight="1"/>
+		
+		    <ImageView
+		        android:id="@+id/ratestar4"
+		        android:src="@drawable/blank_star"
+		        android:layout_width="0dip"
+		        android:layout_height="match_parent"
+		        android:layout_weight="1"/>
+		
+		    <ImageView
+		        android:id="@+id/ratestar5"
+		        android:src="@drawable/blank_star"
+		        android:layout_width="0dip"
+		        android:layout_height="match_parent"
+		        android:layout_weight="1"/>
+		</LinearLayout>
+
+		<EditText
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:gravity="center"
+		    android:singleLine="false"
+		    android:lines="5"
+		    android:layout_marginLeft="10dip"
+		    android:layout_marginRight="10dip" />
+				
+		<LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal" 
+            android:layout_marginTop="40dip"
+            >
+
+            <Button
+                android:id="@+id/cancel_btn"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel" />
+
+            <Button
+                android:id="@+id/confirm_btn"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="@string/confirm" />
+        </LinearLayout>
+		
+    </LinearLayout>
+
+</LinearLayout>

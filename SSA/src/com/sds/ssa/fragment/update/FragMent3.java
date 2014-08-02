@@ -58,7 +58,7 @@ public class FragMent3 extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		
-		View view = inflater.inflate(R.layout.fragment1_listview, container, false);
+		View view = inflater.inflate(R.layout.application_listview, container, false);
 		listView = (ListView) view.findViewById(R.id.listview);
 		listView.setItemsCanFocus(false);
 
@@ -154,7 +154,7 @@ public class FragMent3 extends Fragment {
 	}
 
 	public void setAdapterToListview() {
-		updateRowAdapter = new UpdateRowAdapter(getActivity(), R.layout.fragment3_row, applicationList);
+		updateRowAdapter = new UpdateRowAdapter(getActivity(), R.layout.update_row, applicationList);
 		listView.setAdapter(updateRowAdapter);
 	}
 	public void showToast(String msg) {

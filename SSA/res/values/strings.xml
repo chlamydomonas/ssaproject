@@ -24,5 +24,7 @@
     <string name="review">Review</string>
     <string name="version">Version</string>
     <string name="rate_app">Rate app</string>
-    <string name="write_review">Write</string>
+    <string name="write_review">Write a review</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
 </resources>

@@ -68,7 +68,7 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		
-		View view = inflater.inflate(R.layout.fragment1_listview, container, false);
+		View view = inflater.inflate(R.layout.application_listview, container, false);
 		listView = (ListView) view.findViewById(R.id.listview);
 		listView.setItemsCanFocus(false);
 		//listView.setOnItemClickListener(this);
@@ -223,7 +223,7 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 	
 	public void setAdapterToListview() {
 		UserInfo loginUserInfo = (UserInfo)getActivity().getApplicationContext();
-		appsRowAdapter = new ApplicationRowAdapter(getActivity(), R.layout.fragment1_row1, applicationList, loginUserInfo);
+		appsRowAdapter = new ApplicationRowAdapter(getActivity(), R.layout.application_row, applicationList, loginUserInfo);
 		listView.setAdapter(appsRowAdapter);
 	}
 	public void showToast(String msg) {

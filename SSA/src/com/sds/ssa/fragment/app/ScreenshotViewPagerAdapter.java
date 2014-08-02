@@ -40,7 +40,7 @@ public class ScreenshotViewPagerAdapter extends PagerAdapter {
 
 		inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View itemView = inflater.inflate(R.layout.fragment1_screenshot_item, container,
+		View itemView = inflater.inflate(R.layout.application_detail_screenshot_item, container,
 				false);
 
 		// Locate the ImageView in viewpager_item.xml

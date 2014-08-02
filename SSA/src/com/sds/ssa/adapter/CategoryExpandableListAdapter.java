@@ -86,7 +86,7 @@ public class CategoryExpandableListAdapter extends BaseExpandableListAdapter {
 			LayoutInflater inflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			
-			view = inflater.inflate(R.layout.fragment2_row, null);
+			view = inflater.inflate(R.layout.category_child, null);
 
 			holder = new ViewHolder();
 			view.setTag(holder);
@@ -237,7 +237,7 @@ public class CategoryExpandableListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.fragment2_list, null);
+            convertView = infalInflater.inflate(R.layout.category_group, null);
         }
  
         TextView listHeader = (TextView) convertView

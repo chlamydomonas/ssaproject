@@ -33,7 +33,7 @@ public class UpdateDetailActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.fragment3_detail);
+		setContentView(R.layout.update_detail);
 		
 		ActionBar actionBar = getActionBar();
 		actionBar.setHomeButtonEnabled(false);
@@ -57,9 +57,13 @@ public class UpdateDetailActivity extends Activity {
 
 		appName.setText(name);
 		categoryName.setText(categoryname);
-		//appVerName.setText(vername); //error occurs! why???
+		appVerName.setText(vername); //error occurs! why???
 		appVerDiff.setText(appverdiff);
 
+		downloadBtn.getLayoutParams().height = 80;
+		downloadBtn.setLayoutParams(downloadBtn.getLayoutParams());
+		downloadBtn.setText(R.string.update);
+		
 		downloadBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -102,30 +106,7 @@ public class UpdateDetailActivity extends Activity {
 				});
 
 	}
-	
-//	protected void showInfo() {
-//		AlertDialog.Builder alert_confirm = new AlertDialog.Builder(UpdateDetailActivity.this);
-//		alert_confirm
-//		.setTitle(R.string.download)
-//		.setMessage(R.string.downloadMsg).setCancelable(false)
-//		.setPositiveButton(R.string.yes,
-//				new DialogInterface.OnClickListener() {
-//		    @Override
-//		    public void onClick(DialogInterface dialog, int which) {
-//		        // 'YES'
-//		    }
-//		})
-//		.setNegativeButton(R.string.no,
-//		new DialogInterface.OnClickListener() {
-//		    @Override
-//		    public void onClick(DialogInterface dialog, int which) {
-//		        // 'No'
-//		    return;
-//		    }
-//		});
-//		AlertDialog alert = alert_confirm.create();
-//		alert.show();
-//	}
+
 	 @Override
 	    public boolean onOptionsItemSelected(MenuItem item) {
 	        switch (item.getItemId()) {

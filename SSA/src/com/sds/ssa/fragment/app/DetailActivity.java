@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.ActionBar;
+import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -40,6 +41,7 @@ import com.nostra13.universalimageloader.core.ImageLoadingListener;
 import com.sds.ssa.R;
 import com.sds.ssa.activity.BasActivity;
 import com.sds.ssa.adapter.CommentRowAdapter;
+import com.sds.ssa.util.CustomDialog;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
 import com.sds.ssa.vo.Comment;
@@ -47,6 +49,7 @@ import com.sds.ssa.vo.Screenshot;
 
 public class DetailActivity extends Activity {
 	
+	private CustomDialog mCustomDialog;
 	private static String appDetailLink = "https://ssa-bas-project.googlecode.com/svn/appdetail";
 	
 	private static final String ROOT_NAME = "appDetail";
@@ -81,7 +84,7 @@ public class DetailActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.fragment1_detail);		
+		setContentView(R.layout.application_detail);		
 		linearListView = (LinearLayout) findViewById(R.id.commentlistview);
 		
 		ActionBar actionBar = getActionBar();
@@ -110,8 +113,11 @@ public class DetailActivity extends Activity {
 		
 		reviewBtn.getLayoutParams().height = 60;
 		//reviewBtn.getLayoutParams().width = 100;
-		
 		reviewBtn.setLayoutParams(reviewBtn.getLayoutParams());
+		
+		downloadBtn.getLayoutParams().height = 80;
+		downloadBtn.setLayoutParams(downloadBtn.getLayoutParams());
+		downloadBtn.setText(R.string.download);
 		
 		Bundle b = getIntent().getExtras();
 
@@ -141,55 +147,64 @@ public class DetailActivity extends Activity {
           	}
 		});
 		
-		reviewBtn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				//onCreateDialog(0);
-          	}
-		});
+//		reviewBtn.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				mCustomDialog = new CustomDialog(v.getContext(), 
+//						"8ÔøΩÎ∂øÏìΩ ÔøΩ—â‚îÅÔøΩ„ÖªÏ≠èÔøΩÔøΩ!",
+//						"ÔøΩÍ≥πÏÜïËπÇÎåÄÏú≠Â™õÔøΩÏòÑ~!!!",
+//						leftClickListener);
+//				mCustomDialog.show();
+//          	}
+//		});
 		rateStar1.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				reset();
-				rateStar1.setBackgroundResource(R.drawable.filled_star);
+				rateStar1.setImageResource(R.drawable.filled_star);
+				registerComment(v,  1);
           	}
 		});
 		rateStar2.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				reset();
-				rateStar1.setBackgroundResource(R.drawable.filled_star);
-				rateStar2.setBackgroundResource(R.drawable.filled_star);
+				rateStar1.setImageResource(R.drawable.filled_star);
+				rateStar2.setImageResource(R.drawable.filled_star);
+				registerComment(v, 2);
           	}
 		});
 		rateStar3.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				reset();
-				rateStar1.setBackgroundResource(R.drawable.filled_star);
-				rateStar2.setBackgroundResource(R.drawable.filled_star);
-				rateStar3.setBackgroundResource(R.drawable.filled_star);
+				rateStar1.setImageResource(R.drawable.filled_star);
+				rateStar2.setImageResource(R.drawable.filled_star);
+				rateStar3.setImageResource(R.drawable.filled_star);
+				registerComment(v, 3);
           	}
 		});
 		rateStar4.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				reset();
-				rateStar1.setBackgroundResource(R.drawable.filled_star);
-				rateStar2.setBackgroundResource(R.drawable.filled_star);
-				rateStar3.setBackgroundResource(R.drawable.filled_star);
-				rateStar4.setBackgroundResource(R.drawable.filled_star);
+				rateStar1.setImageResource(R.drawable.filled_star);
+				rateStar2.setImageResource(R.drawable.filled_star);
+				rateStar3.setImageResource(R.drawable.filled_star);
+				rateStar4.setImageResource(R.drawable.filled_star);
+				registerComment(v, 4);
           	}
 		});
 		rateStar5.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				reset();
-				rateStar1.setBackgroundResource(R.drawable.filled_star);
-				rateStar2.setBackgroundResource(R.drawable.filled_star);
-				rateStar3.setBackgroundResource(R.drawable.filled_star);
-				rateStar4.setBackgroundResource(R.drawable.filled_star);
-				rateStar5.setBackgroundResource(R.drawable.filled_star);
+				rateStar1.setImageResource(R.drawable.filled_star);
+				rateStar2.setImageResource(R.drawable.filled_star);
+				rateStar3.setImageResource(R.drawable.filled_star);
+				rateStar4.setImageResource(R.drawable.filled_star);
+				rateStar5.setImageResource(R.drawable.filled_star);
+				registerComment(v, 5);
           	}
 		});
 		
@@ -204,76 +219,39 @@ public class DetailActivity extends Activity {
 		}
 	}
 	
-	private void reset() {
-		rateStar1.setBackgroundResource(R.drawable.blank_star);
-		rateStar2.setBackgroundResource(R.drawable.blank_star);
-		rateStar3.setBackgroundResource(R.drawable.blank_star);
-		rateStar4.setBackgroundResource(R.drawable.blank_star);
-		rateStar5.setBackgroundResource(R.drawable.blank_star);
+	protected void registerComment(View v, int star) {
+		mCustomDialog = new CustomDialog(v.getContext(), 
+				star,
+				cancelClickListener,
+				confirmClickListener);
+		mCustomDialog.show();
 	}
 
-	protected Dialog onCreateDialog(int id) {
-		   AlertDialog.Builder Alert_builder = new AlertDialog.Builder(DetailActivity.this);
-		   Alert_builder.setTitle("AlertDialog_Title");
-		   Alert_builder.setMessage("AlertDialog_Message");
-		   Alert_builder.setIcon(R.drawable.brazil);
-		   // adding one button
-		   Alert_builder.setPositiveButton("Ok",
-		     new DialogInterface.OnClickListener() {
-
-		      @Override
-		      public void onClick(DialogInterface dialog, int which) {
-		       // do something
-		      }
-		     });
-
-		   return Alert_builder.create();
-		   }
+	private void reset() {
+		rateStar1.setImageResource(R.drawable.blank_star);
+		rateStar2.setImageResource(R.drawable.blank_star);
+		rateStar3.setImageResource(R.drawable.blank_star);
+		rateStar4.setImageResource(R.drawable.blank_star);
+		rateStar5.setImageResource(R.drawable.blank_star);
+	}
 	
-//	protected Dialog onCreateDialog(int id) {
-//		
-//		AlertDialog.Builder builder = new AlertDialog.Builder(DetailActivity.this);
-//		// Get the layout inflater
-//		LayoutInflater inflater = DetailActivity.this.getLayoutInflater();
-//
-//	    // Inflate and set the layout for the dialog
-//	    // Pass null as the parent view because its going in the dialog layout
-//	    builder.setView(inflater.inflate(R.layout.dialog_signin, null))
-//	    // Add action buttons
-//           .setPositiveButton(R.string.action_menu1, new DialogInterface.OnClickListener() {
-//               @Override
-//               public void onClick(DialogInterface dialog, int id) {
-//                   // sign in the user ...
-//               }
-//           });      
-//	    return builder.create();
-//	   }
-	
-	
-//	protected void showInfo() {
-//		AlertDialog.Builder alert_confirm = new AlertDialog.Builder(DetailActivity.this);
-//		alert_confirm
-//		.setTitle(R.string.download)
-//		.setMessage(R.string.downloadMsg).setCancelable(false)
-//		.setPositiveButton(R.string.yes,
-//				new DialogInterface.OnClickListener() {
-//		    @Override
-//		    public void onClick(DialogInterface dialog, int which) {
-//		        // 'YES'
-//		    }
-//		})
-//		.setNegativeButton(R.string.no,
-//		new DialogInterface.OnClickListener() {
-//		    @Override
-//		    public void onClick(DialogInterface dialog, int which) {
-//		        // 'No'
-//		    return;
-//		    }
-//		});
-//		AlertDialog alert = alert_confirm.create();
-//		alert.show();
-//	}
+	private View.OnClickListener cancelClickListener = new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			reset();
+			mCustomDialog.dismiss();
+		}
+	};
 
+	private View.OnClickListener confirmClickListener = new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			reset();
+			Toast.makeText(getApplicationContext(), "confirm", 
+					Toast.LENGTH_SHORT).show();
+		}
+	};
+	
 	private void loadImageFromURL(String url) {
 		options = new DisplayImageOptions.Builder()
 				.showStubImage(R.drawable.profile)
@@ -282,27 +260,25 @@ public class DetailActivity extends Activity {
 
 		imageLoader = ImageLoader.getInstance();
 		imageLoader.init(ImageLoaderConfiguration.createDefault(this));
-		imageLoader.displayImage(url, imgView, options,
-				new ImageLoadingListener() {
-					@Override
-					public void onLoadingComplete() {
-						pbar.setVisibility(View.INVISIBLE);
+		imageLoader.displayImage(url, imgView, options, new ImageLoadingListener() {
+			@Override
+			public void onLoadingComplete() {
+				pbar.setVisibility(View.INVISIBLE);
 
-					}
+			}
 
-					@Override
-					public void onLoadingFailed() {
+			@Override
+			public void onLoadingFailed() {
 
-						pbar.setVisibility(View.INVISIBLE);
-					}
+				pbar.setVisibility(View.INVISIBLE);
+			}
 
-					@Override
-					public void onLoadingStarted() {
-						pbar.setVisibility(View.VISIBLE);
-					}
-				});
+			@Override
+			public void onLoadingStarted() {
+				pbar.setVisibility(View.VISIBLE);
+			}
+		});
 	}
-	
 	
 	class MyTask extends AsyncTask<String, Void, String> {
 		ProgressDialog pDialog;
@@ -332,7 +308,7 @@ public class DetailActivity extends Activity {
 
 			if (null == result || result.length() == 0) {
 				//showToast("No data found from web!!!");
-				//DetailActivity.this.finish(); //ø¯∑° app fragmentø°º≠ ≥—æÓø¬ ¡§∫∏∏∏ ∫∏ø©¡ÿ¥Ÿ.
+				//DetailActivity.this.finish(); //ÏõêÎûò app fragmentÏóêÏÑú ÎÑòÏñ¥Ïò® Ï†ïÎ≥¥Îßå Î≥¥Ïó¨Ï§ÄÎã§.
 			} else {
 
 				try {
@@ -404,7 +380,7 @@ public class DetailActivity extends Activity {
 			inflater = (LayoutInflater) getApplicationContext()
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			
-			View linearView = inflater.inflate(R.layout.fragment1_detail_row, null);
+			View linearView = inflater.inflate(R.layout.application_detail_comment_row, null);
 
 			TextView userName = (TextView) linearView.findViewById(R.id.username);
 			TextView installVerName = (TextView) linearView.findViewById(R.id.installvername);
@@ -491,7 +467,7 @@ public class DetailActivity extends Activity {
 					String[] rank;
 					int[] flag;
 					
-					setContentView(R.layout.fragment1_screenshot_viewpager);
+					setContentView(R.layout.application_detail_screenshot_viewpager);
 					
 					getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 							WindowManager.LayoutParams.FLAG_FULLSCREEN);

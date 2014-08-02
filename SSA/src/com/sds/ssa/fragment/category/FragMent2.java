@@ -72,7 +72,7 @@ public class FragMent2 extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		
-		View rootView = inflater.inflate(R.layout.fragment2_expandable, container, false);
+		View rootView = inflater.inflate(R.layout.category_expandable, container, false);
 		expListView = (ExpandableListView) rootView.findViewById(R.id.lvExp);
 
 		DisplayMetrics dm = new DisplayMetrics();
