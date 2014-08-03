@@ -16,6 +16,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -90,6 +92,7 @@ public class DetailActivity extends Activity {
 		ActionBar actionBar = getActionBar();
 		actionBar.setHomeButtonEnabled(false);
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4d4d4d"))); 
 
 		commentList = new ArrayList<Comment>();
 		screenshotList = new ArrayList<Screenshot>();
@@ -457,36 +460,43 @@ public class DetailActivity extends Activity {
             LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(width,height);
             image.setLayoutParams(parms);
             
+            final int order = i;
             image.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
-					// Declare Variables
-					ViewPager viewPager;
-					PagerAdapter adapter;
-					String[] rank;
-					int[] flag;
+//					// Declare Variables
+//					ViewPager viewPager;
+//					PagerAdapter adapter;
+//					String[] rank;
+//					int[] flag;
+//					
+//					setContentView(R.layout.application_detail_screenshot_viewpager);
+//					
+//					getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//							WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//					
+//					// Generate sample data
+//					rank = new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+//
+//
+//					flag = new int[] { R.drawable.china, R.drawable.india,
+//							R.drawable.unitedstates, R.drawable.indonesia,
+//							R.drawable.brazil, R.drawable.pakistan, R.drawable.nigeria,
+//							R.drawable.bangladesh, R.drawable.russia, R.drawable.japan };
+//
+//					// Locate the ViewPager in viewpager_main.xml
+//					viewPager = (ViewPager) findViewById(R.id.pager);
+//					// Pass results to ViewPagerAdapter Class
+//					adapter = new ScreenshotViewPagerAdapter(DetailActivity.this, rank, flag);
+//					// Binds the Adapter to the ViewPager
+//					viewPager.setAdapter(adapter);
 					
-					setContentView(R.layout.application_detail_screenshot_viewpager);
 					
-					getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-							WindowManager.LayoutParams.FLAG_FULLSCREEN);
+					Intent intent = new Intent(getApplicationContext(), ScreenshotActivity.class);
+					//intent.putExtra("order", Integer.toString(order));
+					startActivity(intent);
 					
-					// Generate sample data
-					rank = new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
-
-
-					flag = new int[] { R.drawable.china, R.drawable.india,
-							R.drawable.unitedstates, R.drawable.indonesia,
-							R.drawable.brazil, R.drawable.pakistan, R.drawable.nigeria,
-							R.drawable.bangladesh, R.drawable.russia, R.drawable.japan };
-
-					// Locate the ViewPager in viewpager_main.xml
-					viewPager = (ViewPager) findViewById(R.id.pager);
-					// Pass results to ViewPagerAdapter Class
-					adapter = new ScreenshotViewPagerAdapter(DetailActivity.this, rank, flag);
-					// Binds the Adapter to the ViewPager
-					viewPager.setAdapter(adapter);
 				}
 			});
             	

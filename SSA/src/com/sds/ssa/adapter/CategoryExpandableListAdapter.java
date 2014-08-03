@@ -1,20 +1,15 @@
 package com.sds.ssa.adapter;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -27,7 +22,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.ImageLoadingListener;
 import com.sds.ssa.R;
-import com.sds.ssa.fragment.app.DetailActivity;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
 import com.sds.ssa.vo.Category;
@@ -86,8 +80,9 @@ public class CategoryExpandableListAdapter extends BaseExpandableListAdapter {
 			LayoutInflater inflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			
-			view = inflater.inflate(R.layout.category_child, null);
-
+			//view = inflater.inflate(R.layout.category_child, null);
+			view = inflater.inflate(R.layout.category_child, parent, false);	
+			
 			holder = new ViewHolder();
 			view.setTag(holder);
 		} else {
