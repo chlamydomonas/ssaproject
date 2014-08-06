@@ -37,7 +37,7 @@ import com.nostra13.universalimageloader.core.ImageLoadingListener;
 import com.sds.ssa.R;
 import com.sds.ssa.activity.BasActivity;
 import com.sds.ssa.adapter.CommentRowAdapter;
-import com.sds.ssa.util.CustomDialog;
+import com.sds.ssa.util.ReviewDialog;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
 import com.sds.ssa.vo.Comment;
@@ -45,7 +45,7 @@ import com.sds.ssa.vo.Screenshot;
 
 public class DetailActivity extends Activity {
 	
-	private CustomDialog mCustomDialog;
+	private ReviewDialog reviewDialog;
 	private static String appDetailLink = "https://ssa-bas-project.googlecode.com/svn/appdetail";
 	
 	private static final String ROOT_NAME = "appDetail";
@@ -217,11 +217,11 @@ public class DetailActivity extends Activity {
 	}
 	
 	protected void registerComment(View v, int star) {
-		mCustomDialog = new CustomDialog(v.getContext(), 
+		reviewDialog = new ReviewDialog(v.getContext(), 
 				star,
 				cancelClickListener,
 				confirmClickListener);
-		mCustomDialog.show();
+		reviewDialog.show();
 	}
 
 	private void reset() {
@@ -236,7 +236,7 @@ public class DetailActivity extends Activity {
 		@Override
 		public void onClick(View v) {
 			reset();
-			mCustomDialog.dismiss();
+			reviewDialog.dismiss();
 		}
 	};
 

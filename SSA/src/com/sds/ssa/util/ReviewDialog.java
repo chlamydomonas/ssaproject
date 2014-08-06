@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.sds.ssa.R;
 
-public class CustomDialog extends Dialog{
+public class ReviewDialog extends Dialog{
 
 	private TextView titleView;
 	private ImageView rateStar1, rateStar2, rateStar3, rateStar4, rateStar5;
@@ -20,7 +20,7 @@ public class CustomDialog extends Dialog{
 	private View.OnClickListener cancelClickListener;
 	private View.OnClickListener confirmClickListener;
 	
-	public CustomDialog(Context context , int star , 
+	public ReviewDialog(Context context , int star , 
 			View.OnClickListener cancelListener, View.OnClickListener confirmListener) {
 		super(context , android.R.style.Theme_Translucent_NoTitleBar);
 		this.star = star;
