@@ -1,5 +1,8 @@
 package com.sds.ssa.adapter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import android.app.Activity;
@@ -8,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,17 +84,40 @@ public class ApplicationRowAdapter extends ArrayAdapter<Application> {
 		holder.appIcon = (ImageView) view.findViewById(R.id.image);
 		holder.pbar = (ProgressBar) view.findViewById(R.id.pbar);
 		holder.downloadBtn = (ImageButton) view.findViewById(R.id.downloadBtn);
-		holder.downloadBtn.setBackgroundResource(R.drawable.download_selector);
+		holder.isNewIcon = (ImageView) view.findViewById(R.id.isnewicon);
 		
+		holder.downloadBtn.setBackgroundResource(R.drawable.download_selector);
+
+		String appUpdatedDate = application.getAppUploadedDate();
+	    long timeInMillis;
+	    long days = 0;
+		try {
+			timeInMillis = System.currentTimeMillis() -
+					                    new SimpleDateFormat("yyyy-MM-dd").parse(appUpdatedDate).getTime();
+			days = timeInMillis / (24L * 60 * 60 * 1000);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		String isNewDay = getContext().getString(R.string.is_new_day);
+	    if(days < Integer.parseInt(isNewDay)){
+	    	holder.isNewIcon.setBackgroundResource(R.drawable.new_icon);
+	    }else{
+	    	holder.isNewIcon.setBackgroundResource(0);
+	    }
+		
+	    
+	    int downloadType = 0;
 		for(int i=0; i < userInfo.getInstalledAppInfoList().size(); i++){
 			int installedAppCode = Integer.parseInt(userInfo.getInstalledAppInfoList().get(i).getAppVerCode());
 			int serverAppCode = Integer.parseInt(application.getAppVerCode());
 
 			if(application.getAppId().equals(userInfo.getInstalledAppInfoList().get(i).getAppId())){
 				if(installedAppCode == serverAppCode){
+					downloadType = 2;
 					holder.downloadBtn.setBackgroundResource(R.drawable.download_pressed);
 					
 				} else if(installedAppCode < serverAppCode){
+					downloadType = 1;
 					holder.downloadBtn.setBackgroundResource(R.drawable.update_selector);
 				}
 			}
@@ -185,37 +212,7 @@ public class ApplicationRowAdapter extends ArrayAdapter<Application> {
 	public class ViewHolder {
 		public TextView appName, appDesc, appId, categoryName;
 		public ImageButton downloadBtn;
-		private ImageView appIcon, appGrade;
+		private ImageView appIcon, appGrade, isNewIcon;
 		private ProgressBar pbar;
 	}
-	
-//	public void showInfo(final String appDownloadUrl, final View v){
-//		AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this.getContext());
-//		alert_confirm
-//		.setTitle(R.string.download)
-//		.setMessage(R.string.downloadMsg).setCancelable(false)
-//		.setPositiveButton(R.string.yes,
-//				new DialogInterface.OnClickListener() {
-//		    @Override
-//		    public void onClick(DialogInterface dialog, int which) {
-//		    	Intent intent = new Intent();
-//				intent.setClassName("com.sds.launcher", // Package name
-//						"com.sds.launcher.TestLauncher");
-//				intent.putExtra("appDownloadUrl", appDownloadUrl);
-//				v.getContext().startActivity(intent);
-//				
-//				android.os.Process.killProcess(android.os.Process.myPid());
-//		    }
-//		})
-//		.setNegativeButton(R.string.no,
-//		new DialogInterface.OnClickListener() {
-//		    @Override
-//		    public void onClick(DialogInterface dialog, int which) {
-//		        // 'No'
-//		    return;
-//		    }
-//		});
-//		AlertDialog alert = alert_confirm.create();
-//		alert.show();
-//    }
 }
