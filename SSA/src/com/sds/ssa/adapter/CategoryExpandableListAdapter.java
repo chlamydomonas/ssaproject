@@ -8,14 +8,12 @@ import android.graphics.Typeface;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -61,9 +59,6 @@ public class CategoryExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition,
             boolean isLastChild, View convertView, ViewGroup parent) {
-    	
-    	final int a = groupPosition;
-    	final int b = childPosition;
 
     	// from "AppsRowAdater" start    	
     	options = new DisplayImageOptions.Builder()
@@ -179,24 +174,27 @@ public class CategoryExpandableListAdapter extends BaseExpandableListAdapter {
 				holder.appIcon.setImageResource(R.drawable.ic_launcher);
 			}			
 		}
-		view.setOnClickListener(new OnClickListener() {
-			//application = (Application) getChild(groupPosition, childPosition);
-			
-			@Override
-			public void onClick(View v) {
-				
-//				Application clickedApp = (Application) getChild(a, b);
+		
+//		view.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				
+//				Application clickedApp = (Application) getChild(groupPosition, childPosition);
 //				Intent intent = new Intent(context, DetailActivity.class);
-//				intent.putExtra("url", clickedApp.getLink());
-//				intent.putExtra("name", clickedApp.getName());
-//				intent.putExtra("desc", clickedApp.getDescription());
+//				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//				intent.putExtra("url", clickedApp.getAppIcon());
+//				intent.putExtra("name", clickedApp.getAppName());
+//				intent.putExtra("categoryname", clickedApp.getCategoryName());
+//				intent.putExtra("summary", clickedApp.getAppSummary());
+//				intent.putExtra("desc", clickedApp.getAppDescription());
+//				intent.putExtra("manual", clickedApp.getAppManual());
+//				intent.putExtra("downloadUrl", clickedApp.getAppDownloadUrl());
+//				intent.putExtra("created", clickedApp.getCreated());
+//				intent.putExtra("verName", clickedApp.getAppVerName());
 //				context.startActivity(intent);
-				
-				Application clickedApp = (Application) getChild(a, b);
-				Toast.makeText(context, clickedApp.getAppName(),
-						Toast.LENGTH_SHORT).show();
-			}
-		});
+//			}
+//		});
+		
 		return view;
 		// From "AppsRowAdapter" end
     }
@@ -260,29 +258,4 @@ public class CategoryExpandableListAdapter extends BaseExpandableListAdapter {
 		private ImageView appIcon, appGrade;
 		private ProgressBar pbar;
 	}
-    
-//    public void showInfo(){
-//		AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this.context);
-//		alert_confirm
-//		.setTitle(R.string.download)
-//		.setMessage(R.string.downloadMsg).setCancelable(false)
-//		.setPositiveButton(R.string.yes,
-//				new DialogInterface.OnClickListener() {
-//		    @Override
-//		    public void onClick(DialogInterface dialog, int which) {
-//		        // 'YES'
-//		    }
-//		})
-//		.setNegativeButton(R.string.no,
-//		new DialogInterface.OnClickListener() {
-//		    @Override
-//		    public void onClick(DialogInterface dialog, int which) {
-//		        // 'No'
-//		    return;
-//		    }
-//		});
-//		AlertDialog alert = alert_confirm.create();
-//		alert.show();
-//    }
-    // From "AppsRowAdapter" end
 }

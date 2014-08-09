@@ -9,10 +9,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -25,11 +23,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.sds.ssa.R;
 import com.sds.ssa.adapter.ApplicationRowAdapter;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
 import com.sds.ssa.vo.UserInfo;
-import com.sds.ssa.R;
 
 @SuppressLint("ValidFragment")
 public class FragMent1 extends Fragment implements OnItemClickListener {
@@ -40,8 +38,6 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 		mContext = context;
 	}
 	
-	private static String appLink = "https://ssa-bas-project.googlecode.com/svn/app";
-
 	private static final String ARRAY_NAME = "application";
 	private static final String APP_ID = "appId";
 	private static final String APP_NAME = "appName";
@@ -78,9 +74,10 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 		if (Utils.isNetworkAvailable(getActivity())) {
 			Locale systemLocale = getResources().getConfiguration().locale;
 			String systemLanguage = systemLocale.getLanguage();
+			String appLink = this.getString(R.string.server_address) + this.getString(R.string.app_link);
 			
 			if(systemLanguage.equals("en")){
-				appLink = "https://ssa-bas-project.googlecode.com/svn/app_en";
+				appLink = appLink + "_en";
 			}
 			new MyTask().execute(appLink);
 		} else {

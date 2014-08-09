@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,10 +45,7 @@ import com.sds.ssa.vo.Comment;
 import com.sds.ssa.vo.Screenshot;
 
 public class DetailActivity extends Activity {
-	
-	private ReviewDialog reviewDialog;
-	private static String appDetailLink = "https://ssa-bas-project.googlecode.com/svn/appdetail";
-	
+
 	private static final String ROOT_NAME = "appDetail";
 	private static final String APP_DOWNLOADED = "appDownloaded";
 	private static final String FILE_SIZE = "fileSize";
@@ -65,17 +63,19 @@ public class DetailActivity extends Activity {
 	private static final String INSTALLED_VER_CODE = "installedVerCode";
 	
 	private DisplayImageOptions options;
-	private ImageLoader imageLoader;
+	private ImageLoader imageLoader;	
 
 	private ProgressBar pbar;
 	private TextView appName, appDesc, appSummary, appManual, categoryName, created, appVerName;
 	private ImageView imgView, rateStar1, rateStar2, rateStar3, rateStar4, rateStar5;
 	private Button downloadBtn, reviewBtn;
 
+	private ReviewDialog reviewDialog;	
 	private List<Screenshot> screenshotList;
 	private LinearLayout linearListView;
 	private ArrayList<Comment> commentList;
 	CommentRowAdapter commentRowAdapter;
+	ListView listView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -210,6 +210,8 @@ public class DetailActivity extends Activity {
 		loadImageFromURL(url);
 
 		if (Utils.isNetworkAvailable(DetailActivity.this)) {
+			String appDetailLink = this.getString(R.string.server_address) + this.getString(R.string.detail_link);
+			
 			new MyTask().execute(appDetailLink);
 		} else {
 			showToast("No Network Connection. Try again.");
@@ -365,13 +367,9 @@ public class DetailActivity extends Activity {
 	
 	
 	public void setCommentListView() {
-//		commentRowAdapter = new CommentRowAdapter(this, R.layout.fragment1_row1, commentList);
-//		
-//		
-//		LinearLayout list=(LinearLayout)findViewById(R.id.listActivities);
-//		adapter=new LazyAdapter(this, activityList);
-//		list.setAdapter(adapter);
-		
+		//commentRowAdapter = new CommentRowAdapter(this, R.layout.application_detail_comment_row, commentList);
+		//listView.setAdapter(commentRowAdapter);
+
 		for (int i = 0; i < commentList.size(); i++) {
 			LayoutInflater inflater = null;
 			inflater = (LayoutInflater) getApplicationContext()
@@ -429,15 +427,9 @@ public class DetailActivity extends Activity {
 		HorizontalScrollView scrollView = (HorizontalScrollView) findViewById(R.id.screenshot_horizontal);
 
         LinearLayout topLinearLayout = new LinearLayout(this);
-       // topLinearLayout.setLayoutParams(android.widget.LinearLayout.LayoutParams.FILL_PARENT,android.widget.LinearLayout.LayoutParams.FILL_PARENT);
         topLinearLayout.setOrientation(LinearLayout.HORIZONTAL); 
 
         for(int i=0; i<screenshotList.size(); i++){
-//        	final ImageView imageView = new ImageView (this);
-//            imageView.setTag(i);
-//            imageView.setImageResource(R.drawable.ic_launcher);
-//            topLinearLayout.addView(imageView);
-
         	ImageView image = new ImageView( this ); 
         	
             options = new DisplayImageOptions.Builder()
@@ -487,81 +479,6 @@ public class DetailActivity extends Activity {
 			});
         }
         scrollView.addView(topLinearLayout);
-	}
-	
-	public void setScreenshotToHorizontal_origin() {
-		HorizontalScrollView scrollView = (HorizontalScrollView) findViewById(R.id.screenshot_horizontal);
-
-        LinearLayout topLinearLayout = new LinearLayout(this);
-       // topLinearLayout.setLayoutParams(android.widget.LinearLayout.LayoutParams.FILL_PARENT,android.widget.LinearLayout.LayoutParams.FILL_PARENT);
-        topLinearLayout.setOrientation(LinearLayout.HORIZONTAL); 
-
-        for (int i = 0; i < 15; i++){
-        	
-            final ImageView imageView = new ImageView (this);
-            imageView.setTag(i);
-            imageView.setImageResource(R.drawable.ic_launcher);
-
-            //imageView.setImageURI(Uri.parse("https://ssa-bas-project.googlecode.com/svn/screenshot_01_1.png"));
-            topLinearLayout.addView(imageView);
-
-//            imageView.setOnClickListener(new OnClickListener() {
-//				
-//				@Override
-//				public void onClick(View v) {
-//					// TODO Auto-generated method stub
-//					
-//				}
-//			});
-        }
-
-        scrollView.addView(topLinearLayout);
-
-
-//      ImageView img=(ImageView)findViewById(R.id.imageView1);
-//      final ImageLoader imageLoader = ImageLoader.getInstance();
-//      
-//      
-//      
-//      ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
-//      .threadPoolSize(3)
-//      .threadPriority(Thread.NORM_PRIORITY - 2)
-//      .memoryCacheSize(1500000) // 1.5 Mb
-//      .discCacheSize(50000000) // 50 Mb
-//      .httpReadTimeout(10000) // 10 s
-//      .denyCacheImageMultipleSizesInMemory()
-//      .enableLogging() // Not necessary in common
-//      .build();
-//  // Initialize ImageLoader with configuration.
-//  ImageLoader.getInstance().init(config);
-//      
-//      final DisplayImageOptions options = new DisplayImageOptions.Builder()
-//      .showStubImage(R.drawable.ic_launcher)
-//      .cacheInMemory()
-//      .cacheOnDisc()
-//      .build();
-//      
-//      imageLoader.displayImage("http://3.bp.blogspot.com/_Sd45ASngYHA/TVC78RORKoI/AAAAAAAAARk/y0GcNkTmb40/s1600/android+logo1.jpg",img,options);
-//      
-//      img.setOnClickListener(new OnClickListener()
-//      {
-//          
-//          @Overridt
-//          public void onClick(View v)
-//          {
-//              // TODO Auto-generated method stub
-//              Dialog d =new Dialog(TestActivity.this);
-//              d.setContentView(R.layout.dialog);
-//          
-//              d.setCancelable(true);
-//              
-//              ImageView d_img=(ImageView)d.findViewById(R.id.dialog_img);
-////                d.setLayoutParams(L)
-//              imageLoader.displayImage("http://3.bp.blogspot.com/_Sd45ASngYHA/TVC78RORKoI/AAAAAAAAARk/y0GcNkTmb40/s1600/android+logo1.jpg",d_img,options);
-//              
-//              d.show();
-//              }
-//      });
 	}
 
 	@Override

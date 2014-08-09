@@ -38,8 +38,6 @@ public class FragMent3 extends Fragment {
 		mContext = context;
 	}
 	
-	private static String appupdateLink = "https://ssa-bas-project.googlecode.com/svn/appupdate";
-
 	private static final String ARRAY_NAME = "application";
 	private static final String APP_ID = "appId";
 	private static final String APP_NAME = "appName";
@@ -67,11 +65,12 @@ public class FragMent3 extends Fragment {
 		if (Utils.isNetworkAvailable(getActivity())) {
 			Locale systemLocale = getResources().getConfiguration().locale;
 			String systemLanguage = systemLocale.getLanguage();
-			
+			String appUpdateLink = this.getString(R.string.server_address) + this.getString(R.string.update_link);
+					
 			if(systemLanguage.equals("en")){
-				appupdateLink = "https://ssa-bas-project.googlecode.com/svn/appupdate_en";
+				appUpdateLink = appUpdateLink + "_en";
 			}
-			new MyTask().execute(appupdateLink);
+			new MyTask().execute(appUpdateLink);
 		} else {
 			showToast("No Network Connection. Try again.");
 		}

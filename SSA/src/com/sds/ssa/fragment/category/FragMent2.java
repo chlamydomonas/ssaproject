@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.Toast;
@@ -36,8 +37,6 @@ import com.sds.ssa.vo.Category;
 public class FragMent2 extends Fragment {
 
 	Context mContext;
-	
-	private static String categoryLink = "https://ssa-bas-project.googlecode.com/svn/category";
 	
 	private static final String CATEGORY_ARRAY_NAME = "category";
 	private static final String CATEGORY_ID = "categoryId";
@@ -88,9 +87,10 @@ public class FragMent2 extends Fragment {
 		if (Utils.isNetworkAvailable(getActivity())) {
 			Locale systemLocale = getResources().getConfiguration().locale;
 			String systemLanguage = systemLocale.getLanguage();
+			String categoryLink = this.getString(R.string.server_address) + this.getString(R.string.category_link);
 			
 			if(systemLanguage.equals("en")){
-				categoryLink = "https://ssa-bas-project.googlecode.com/svn/category_en";
+				categoryLink = categoryLink + "_en";
 			}
 			new MyTask().execute(categoryLink);
 		} else {
@@ -201,20 +201,23 @@ public class FragMent2 extends Fragment {
 		expListView.setOnChildClickListener(new OnChildClickListener() {
 			public boolean onChildClick(ExpandableListView parent, View v,
 					int groupPosition, int childPosition, long id) {
+
+				Log.v("bas", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getAppIcon());
 				
-				//Log.v("bas", listDataChild.get(groupPosition).get(childPosition).getAppIcon());
-//						Intent intent = new Intent(getActivity(), DetailActivity.class);
-//						
-//						intent.putExtra("url", listDataChild.get(groupPosition).get(childPosition).getAppIcon());
-//						intent.putExtra("name", listDataChild.get(groupPosition).get(childPosition).getAppName());
-//						intent.putExtra("categoryname", listDataChild.get(groupPosition).get(childPosition).getCategoryName());
-//						intent.putExtra("summary", listDataChild.get(groupPosition).get(childPosition).getAppSummary());
-//						intent.putExtra("desc", listDataChild.get(groupPosition).get(childPosition).getAppDescription());
-//						intent.putExtra("manual", listDataChild.get(groupPosition).get(childPosition).getAppManual());
-//						intent.putExtra("downloadUrl", listDataChild.get(groupPosition).get(childPosition).getAppDownloadUrl());
-//						startActivity(intent);
-						
-						return false;
+				Intent intent = new Intent(getActivity(), DetailActivity.class);
+				
+				intent.putExtra("url", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getAppIcon());
+				intent.putExtra("name", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getAppName());
+				intent.putExtra("categoryname", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getCategoryName());
+				intent.putExtra("summary", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getAppSummary());
+				intent.putExtra("desc", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getAppDescription());
+				intent.putExtra("manual", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getAppManual());
+				intent.putExtra("downloadUrl", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getAppDownloadUrl());
+				intent.putExtra("created", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getCreated());
+				intent.putExtra("verName", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getAppVerName());
+				startActivity(intent);
+				
+				return false;
 			}
 		});
 	}

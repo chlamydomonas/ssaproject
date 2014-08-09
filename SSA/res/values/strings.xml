@@ -1,6 +1,11 @@
 <resources>
-
+ 	<string name="server_address">https://ssa-bas-project.googlecode.com/svn/</string>
+ 	<string name="app_link">app</string>
+ 	<string name="category_link">category</string>
+ 	<string name="update_link">appupdate</string>
+ 	<string name="detail_link">appdetail</string>
     <string name="is_new_day">7</string>
+    
     <string name="app_name">SSA BizAppStore</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>

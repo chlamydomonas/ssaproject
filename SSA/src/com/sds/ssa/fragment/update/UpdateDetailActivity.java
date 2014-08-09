@@ -2,8 +2,6 @@ package com.sds.ssa.fragment.update;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -70,7 +68,6 @@ public class UpdateDetailActivity extends Activity {
 		downloadBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				//showInfo();     
 				Utils.showDownload(downloadUrl, v);  
           	}
 		});
@@ -107,20 +104,21 @@ public class UpdateDetailActivity extends Activity {
 						pbar.setVisibility(View.VISIBLE);
 					}
 				});
-
 	}
-
-	 @Override
-	    public boolean onOptionsItemSelected(MenuItem item) {
-	        switch (item.getItemId()) {
-	        case android.R.id.home:
-	            //finish();
-	        	Intent intent = new Intent(this, BasActivity.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            startActivity(intent);
-	            return true;
-	        default:
-	            return super.onOptionsItemSelected(item);
-	        }
+	
+	//onMenuItemSelected events didn't get called in Fragment
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			//finish();
+        	Intent intent = new Intent(this, BasActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            return true;
+            
+	    default:
+	    	return super.onOptionsItemSelected(item);
 	    }
+	}
 }
