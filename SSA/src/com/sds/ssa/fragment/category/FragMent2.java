@@ -30,6 +30,7 @@ import com.sds.ssa.R;
 import com.sds.ssa.adapter.CategoryExpandableListAdapter;
 import com.sds.ssa.fragment.app.DetailActivity;
 import com.sds.ssa.util.Utils;
+import com.sds.ssa.util.AppParams;
 import com.sds.ssa.vo.Application;
 import com.sds.ssa.vo.Category;
 
@@ -37,26 +38,6 @@ import com.sds.ssa.vo.Category;
 public class FragMent2 extends Fragment {
 
 	Context mContext;
-	
-	private static final String CATEGORY_ARRAY_NAME = "category";
-	private static final String CATEGORY_ID = "categoryId";
-	private static final String CATEGORY_NAME = "categoryName";
-	
-	private static final String APPLICATION_ARRAY_NAME = "application";
-	private static final String APP_ID = "appId";
-	private static final String APP_NAME = "appName";
-	private static final String APP_VER_CODE = "appVerCode";
-	private static final String APP_VER_NAME = "appVerName";
-	private static final String APP_PACKAGE_NAME = "appPackageName";
-	private static final String APP_ICON = "appIcon";
-	private static final String APP_SUMMARY = "appSummary";
-	private static final String APP_DESCRIPTION = "appDescription";
-	private static final String APP_MANUAL = "appManual";
-	private static final String APP_GRADE = "appGrade";
-	private static final String APP_GRADE_COUNT = "appGradeCount";
-	private static final String APP_DOWNLOAD_URL = "appDownloadUrl";
-	private static final String APP_CREATED = "created";
-	private static final String APP_UPLOAD_DATE = "appUploadedDate";
 	
 	CategoryExpandableListAdapter listAdapter;
     ExpandableListView expListView;
@@ -144,16 +125,16 @@ public class FragMent2 extends Fragment {
 					listDataChild = new HashMap<Category, List<Application>>();
 					
 					JSONObject mainJson = new JSONObject(result);
-					JSONArray categoryArray = mainJson.getJSONArray(CATEGORY_ARRAY_NAME);
+					JSONArray categoryArray = mainJson.getJSONArray(AppParams.CATEGORY_ARRAY_NAME);
 					for (int i = 0; i < categoryArray.length(); i++) {
 						JSONObject categoryObj = categoryArray.getJSONObject(i);
 
 						Category category = new Category();
-						category.setId(categoryObj.getString(CATEGORY_ID));
-						category.setName(categoryObj.getString(CATEGORY_NAME));
+						category.setId(categoryObj.getString(AppParams.CATEGORY_ID));
+						category.setName(categoryObj.getString(AppParams.CATEGORY_NAME));
 						listDataHeader.add(category);
 						
-						JSONArray applicationArray = categoryObj.getJSONArray(APPLICATION_ARRAY_NAME);
+						JSONArray applicationArray = categoryObj.getJSONArray(AppParams.APPLICATION_ARRAY_NAME);
 						List<Application> applicationList = new ArrayList<Application>();						
 						
 						for (int j = 0; j < applicationArray.length(); j++) {
@@ -161,22 +142,22 @@ public class FragMent2 extends Fragment {
 
 							Application application = new Application();
 							
-							application.setAppId(applicationObj.getString(APP_ID));
-							application.setAppName(applicationObj.getString(APP_NAME));
-							application.setAppVerCode(applicationObj.getString(APP_VER_CODE));
-							application.setAppVerName(applicationObj.getString(APP_VER_NAME));
-							application.setAppPackageName(applicationObj.getString(APP_PACKAGE_NAME));
-							application.setAppIcon(applicationObj.getString(APP_ICON));
-							application.setAppSummary(applicationObj.getString(APP_SUMMARY));
-							application.setAppDescription(applicationObj.getString(APP_DESCRIPTION));
-							application.setAppManual(applicationObj.getString(APP_MANUAL));
-							application.setAppGrade(applicationObj.getString(APP_GRADE));
-							application.setAppGradeCount(applicationObj.getString(APP_GRADE_COUNT));
-							application.setAppDownloadUrl(applicationObj.getString(APP_DOWNLOAD_URL));
-							application.setCreated(applicationObj.getString(APP_CREATED));
-							application.setAppUploadedDate(applicationObj.getString(APP_UPLOAD_DATE));
-							application.setCategoryId(applicationObj.getString(CATEGORY_ID));
-							application.setCategoryName(applicationObj.getString(CATEGORY_NAME));
+							application.setAppId(applicationObj.getString(AppParams.APP_ID));
+							application.setAppName(applicationObj.getString(AppParams.APP_NAME));
+							application.setAppVerCode(applicationObj.getString(AppParams.APP_VER_CODE));
+							application.setAppVerName(applicationObj.getString(AppParams.APP_VER_NAME));
+							application.setAppPackageName(applicationObj.getString(AppParams.APP_PACKAGE_NAME));
+							application.setAppIcon(applicationObj.getString(AppParams.APP_ICON));
+							application.setAppSummary(applicationObj.getString(AppParams.APP_SUMMARY));
+							application.setAppDescription(applicationObj.getString(AppParams.APP_DESCRIPTION));
+							application.setAppManual(applicationObj.getString(AppParams.APP_MANUAL));
+							application.setAppGrade(applicationObj.getString(AppParams.APP_GRADE));
+							application.setAppGradeCount(applicationObj.getString(AppParams.APP_GRADE_COUNT));
+							application.setAppDownloadUrl(applicationObj.getString(AppParams.APP_DOWNLOAD_URL));
+							application.setCreated(applicationObj.getString(AppParams.APP_CREATED));
+							application.setAppUploadedDate(applicationObj.getString(AppParams.APP_UPLOAD_DATE));
+							application.setCategoryId(applicationObj.getString(AppParams.CATEGORY_ID));
+							application.setCategoryName(applicationObj.getString(AppParams.CATEGORY_NAME));
 
 							applicationList.add(application);							
 						}

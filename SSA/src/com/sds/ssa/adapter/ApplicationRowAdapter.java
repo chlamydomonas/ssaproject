@@ -7,6 +7,7 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Context;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -166,6 +167,9 @@ public class ApplicationRowAdapter extends ArrayAdapter<Application> {
 		holder.downloadBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				Log.v("bas", application.getAppDownloadUrl());
+				//Log.v("bas", Integer.toString(downloadType));
+				
 				Utils.showDownload(application.getAppDownloadUrl(), v);
           	}
 		});

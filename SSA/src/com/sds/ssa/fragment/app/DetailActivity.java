@@ -38,6 +38,7 @@ import com.nostra13.universalimageloader.core.ImageLoadingListener;
 import com.sds.ssa.R;
 import com.sds.ssa.activity.BasActivity;
 import com.sds.ssa.adapter.CommentRowAdapter;
+import com.sds.ssa.util.AppParams;
 import com.sds.ssa.util.ReviewDialog;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
@@ -46,22 +47,6 @@ import com.sds.ssa.vo.Screenshot;
 
 public class DetailActivity extends Activity {
 
-	private static final String ROOT_NAME = "appDetail";
-	private static final String APP_DOWNLOADED = "appDownloaded";
-	private static final String FILE_SIZE = "fileSize";
-	private static final String APP_SCREENSHOT = "appScreenshot";
-	private static final String APP_SCREENSHOT_URL = "screenshotUrl";
-	private static final String APP_COMMENT = "appComment";
-	private static final String APP_COMMENT_ID = "appCommentId";
-	private static final String DEPT_ID = "deptId";
-	private static final String DEPT_NAME = "deptName";
-	private static final String REVIEWER_NAME = "reviewerName";
-	private static final String CREATED = "created";
-	private static final String APP_GRADE = "appGrade";
-	private static final String COMMENT = "comment";
-	private static final String INSTALLED_VER_NAME = "installedVerName";
-	private static final String INSTALLED_VER_CODE = "installedVerCode";
-	
 	private DisplayImageOptions options;
 	private ImageLoader imageLoader;	
 
@@ -312,38 +297,38 @@ public class DetailActivity extends Activity {
 
 				try {
 					JSONObject appDetailJson = new JSONObject(result);
-					JSONObject appDetail = appDetailJson.getJSONObject(ROOT_NAME);
+					JSONObject appDetail = appDetailJson.getJSONObject(AppParams.DETAIL_ROOT_NAME);
 
 					Application application = new Application();
-					application.setAppDownloaded((String) appDetail.get(APP_DOWNLOADED));
-					application.setFileSize((String) appDetail.get(FILE_SIZE));
+					application.setAppDownloaded((String) appDetail.get(AppParams.APP_DOWNLOADED));
+					application.setFileSize((String) appDetail.get(AppParams.FILE_SIZE));
 
-					JSONArray screenshotArray = appDetail.getJSONArray(APP_SCREENSHOT);
+					JSONArray screenshotArray = appDetail.getJSONArray(AppParams.APP_SCREENSHOT);
 
 					for (int i = 0; i < screenshotArray.length(); i++) {
 						JSONObject screenshotObj = screenshotArray.getJSONObject(i);
 						
 						Screenshot screenshot = new Screenshot();
-						screenshot.setScreenShotUrl(screenshotObj.getString(APP_SCREENSHOT_URL));
+						screenshot.setScreenShotUrl(screenshotObj.getString(AppParams.APP_SCREENSHOT_URL));
 						
 						screenshotList.add(screenshot);
 					}
 					
-					JSONArray commentArray = appDetail.getJSONArray(APP_COMMENT);
+					JSONArray commentArray = appDetail.getJSONArray(AppParams.APP_COMMENT);
 
 					for (int i = 0; i < commentArray.length(); i++) {
 						JSONObject commentObj = commentArray.getJSONObject(i);
 						
 						Comment comment = new Comment();
-						comment.setAppCommentId(commentObj.getString(APP_COMMENT_ID));
-						comment.setDeptId(commentObj.getString(DEPT_ID));
-						comment.setDeptName(commentObj.getString(DEPT_NAME));
-						comment.setReviewerName(commentObj.getString(REVIEWER_NAME));
-						comment.setCreated(commentObj.getString(CREATED));
-						comment.setAppGrade(commentObj.getString(APP_GRADE));
-						comment.setComment(commentObj.getString(COMMENT));
-						comment.setInstalledVerName(commentObj.getString(INSTALLED_VER_NAME));
-						comment.setInstalledVerCode(commentObj.getString(INSTALLED_VER_CODE));
+						comment.setAppCommentId(commentObj.getString(AppParams.APP_COMMENT_ID));
+						comment.setDeptId(commentObj.getString(AppParams.DEPT_ID));
+						comment.setDeptName(commentObj.getString(AppParams.DEPT_NAME));
+						comment.setReviewerName(commentObj.getString(AppParams.REVIEWER_NAME));
+						comment.setCreated(commentObj.getString(AppParams.APP_CREATED));
+						comment.setAppGrade(commentObj.getString(AppParams.APP_GRADE));
+						comment.setComment(commentObj.getString(AppParams.COMMENT));
+						comment.setInstalledVerName(commentObj.getString(AppParams.INSTALLED_VER_NAME));
+						comment.setInstalledVerCode(commentObj.getString(AppParams.INSTALLED_VER_CODE));
 						
 						commentList.add(comment);
 					}

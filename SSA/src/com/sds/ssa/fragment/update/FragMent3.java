@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.sds.ssa.R;
 import com.sds.ssa.adapter.UpdateRowAdapter;
 import com.sds.ssa.util.Utils;
+import com.sds.ssa.util.AppParams;
 import com.sds.ssa.vo.Application;
 
 @SuppressLint("ValidFragment")
@@ -37,16 +38,6 @@ public class FragMent3 extends Fragment {
 	public FragMent3(Context context) {
 		mContext = context;
 	}
-	
-	private static final String ARRAY_NAME = "application";
-	private static final String APP_ID = "appId";
-	private static final String APP_NAME = "appName";
-	private static final String APP_VER_NAME = "appVerName";
-	private static final String APP_ICON = "appIcon";
-	private static final String APP_VER_DIFF = "appVerDiff";
-	private static final String APP_DOWNLOAD_URL = "appDownloadUrl";
-	private static final String CREATED = "created";
-	private static final String CATEGORY_NAME = "categoryName";
 
 	List<Application> applicationList;
 	ListView listView;
@@ -127,20 +118,20 @@ public class FragMent3 extends Fragment {
 
 				try {
 					JSONObject applicationJson = new JSONObject(result);
-					JSONArray applicationArray = applicationJson.getJSONArray(ARRAY_NAME);
+					JSONArray applicationArray = applicationJson.getJSONArray(AppParams.APP_ARRAY_NAME);
 					for (int i = 0; i < applicationArray.length(); i++) {
 						JSONObject appJsonObj = applicationArray.getJSONObject(i);
 
 						Application application = new Application();
 
-						application.setAppId(appJsonObj.getString(APP_ID));
-						application.setAppName(appJsonObj.getString(APP_NAME));
-						application.setAppVerName(appJsonObj.getString(APP_VER_NAME));
-						application.setAppIcon(appJsonObj.getString(APP_ICON));
-						application.setAppDownloadUrl(appJsonObj.getString(APP_DOWNLOAD_URL));
-						application.setCreated(appJsonObj.getString(CREATED));
-						application.setCategoryName(appJsonObj.getString(CATEGORY_NAME));
-						application.setAppVerDiff(appJsonObj.getString(APP_VER_DIFF));
+						application.setAppId(appJsonObj.getString(AppParams.APP_ID));
+						application.setAppName(appJsonObj.getString(AppParams.APP_NAME));
+						application.setAppVerName(appJsonObj.getString(AppParams.APP_VER_NAME));
+						application.setAppIcon(appJsonObj.getString(AppParams.APP_ICON));
+						application.setAppDownloadUrl(appJsonObj.getString(AppParams.APP_DOWNLOAD_URL));
+						application.setCreated(appJsonObj.getString(AppParams.APP_CREATED));
+						application.setCategoryName(appJsonObj.getString(AppParams.CATEGORY_NAME));
+						application.setAppVerDiff(appJsonObj.getString(AppParams.APP_VER_DIFF));
 
 						applicationList.add(application);
 					}

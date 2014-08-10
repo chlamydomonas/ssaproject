@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.sds.ssa.R;
 import com.sds.ssa.adapter.ApplicationRowAdapter;
 import com.sds.ssa.util.Utils;
+import com.sds.ssa.util.AppParams;
 import com.sds.ssa.vo.Application;
 import com.sds.ssa.vo.UserInfo;
 
@@ -37,24 +38,6 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 	public FragMent1(Context context) {
 		mContext = context;
 	}
-	
-	private static final String ARRAY_NAME = "application";
-	private static final String APP_ID = "appId";
-	private static final String APP_NAME = "appName";
-	private static final String APP_VER_CODE = "appVerCode";
-	private static final String APP_VER_NAME = "appVerName";
-	private static final String APP_PACKAGE_NAME = "appPackageName";
-	private static final String APP_ICON = "appIcon";
-	private static final String APP_SUMMARY = "appSummary";
-	private static final String APP_DESCRIPTION = "appDescription";
-	private static final String APP_MANUAL = "appManual";
-	private static final String APP_GRADE = "appGrade";
-	private static final String APP_GRADE_COUNT = "appGradeCount";
-	private static final String APP_DOWNLOAD_URL = "appDownloadUrl";
-	private static final String CREATED = "created";
-	private static final String APP_UPLOAD_DATE = "appUploadedDate";
-	private static final String CATEGORY_ID = "categoryId";
-	private static final String CATEGORY_NAME = "categoryName";
 
 	List<Application> applicationList;
 	ListView listView;
@@ -139,28 +122,28 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 
 				try {
 					JSONObject applicationJson = new JSONObject(result);
-					JSONArray applicationArray = applicationJson.getJSONArray(ARRAY_NAME);
+					JSONArray applicationArray = applicationJson.getJSONArray(AppParams.APP_ARRAY_NAME);
 					for (int i = 0; i < applicationArray.length(); i++) {
 						JSONObject appJsonObj = applicationArray.getJSONObject(i);
 
 						Application application = new Application();
 
-						application.setAppId(appJsonObj.getString(APP_ID));
-						application.setAppName(appJsonObj.getString(APP_NAME));
-						application.setAppVerCode(appJsonObj.getString(APP_VER_CODE));
-						application.setAppVerName(appJsonObj.getString(APP_VER_NAME));
-						application.setAppPackageName(appJsonObj.getString(APP_PACKAGE_NAME));
-						application.setAppIcon(appJsonObj.getString(APP_ICON));
-						application.setAppSummary(appJsonObj.getString(APP_SUMMARY));
-						application.setAppDescription(appJsonObj.getString(APP_DESCRIPTION));
-						application.setAppManual(appJsonObj.getString(APP_MANUAL));
-						application.setAppGrade(appJsonObj.getString(APP_GRADE));
-						application.setAppGradeCount(appJsonObj.getString(APP_GRADE_COUNT));
-						application.setAppDownloadUrl(appJsonObj.getString(APP_DOWNLOAD_URL));
-						application.setCreated(appJsonObj.getString(CREATED));
-						application.setAppUploadedDate(appJsonObj.getString(APP_UPLOAD_DATE));
-						application.setCategoryId(appJsonObj.getString(CATEGORY_ID));
-						application.setCategoryName(appJsonObj.getString(CATEGORY_NAME));
+						application.setAppId(appJsonObj.getString(AppParams.APP_ID));
+						application.setAppName(appJsonObj.getString(AppParams.APP_NAME));
+						application.setAppVerCode(appJsonObj.getString(AppParams.APP_VER_CODE));
+						application.setAppVerName(appJsonObj.getString(AppParams.APP_VER_NAME));
+						application.setAppPackageName(appJsonObj.getString(AppParams.APP_PACKAGE_NAME));
+						application.setAppIcon(appJsonObj.getString(AppParams.APP_ICON));
+						application.setAppSummary(appJsonObj.getString(AppParams.APP_SUMMARY));
+						application.setAppDescription(appJsonObj.getString(AppParams.APP_DESCRIPTION));
+						application.setAppManual(appJsonObj.getString(AppParams.APP_MANUAL));
+						application.setAppGrade(appJsonObj.getString(AppParams.APP_GRADE));
+						application.setAppGradeCount(appJsonObj.getString(AppParams.APP_GRADE_COUNT));
+						application.setAppDownloadUrl(appJsonObj.getString(AppParams.APP_DOWNLOAD_URL));
+						application.setCreated(appJsonObj.getString(AppParams.APP_CREATED));
+						application.setAppUploadedDate(appJsonObj.getString(AppParams.APP_UPLOAD_DATE));
+						application.setCategoryId(appJsonObj.getString(AppParams.CATEGORY_ID));
+						application.setCategoryName(appJsonObj.getString(AppParams.CATEGORY_NAME));
 
 						applicationList.add(application);
 					}
