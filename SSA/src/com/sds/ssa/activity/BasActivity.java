@@ -24,6 +24,7 @@ import com.sds.ssa.fragment.app.DetailActivity;
 import com.sds.ssa.fragment.app.FragMent1;
 import com.sds.ssa.fragment.category.FragMent2;
 import com.sds.ssa.fragment.update.FragMent3;
+import com.sds.ssa.search.SearchActivity;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.UserInfo;
 
@@ -136,7 +137,7 @@ public class BasActivity extends FragmentActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.tab, menu);
+		getMenuInflater().inflate(R.menu.search, menu);
 
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
 //            searchItem = menu.findItem(R.id.action_settings);
@@ -163,28 +164,9 @@ public class BasActivity extends FragmentActivity {
 	private OnQueryTextListener queryTextListener = new OnQueryTextListener() {
 		@Override
 		public boolean onQueryTextSubmit(String query) {
-
-			//Toast.makeText(
-			//		BasActivity.this,		// Qualify 'this" with Activity class
-    		//		"You selected " + query,		
-    		//		Toast.LENGTH_SHORT).show();
-			//setContentView(R.layout.tab);
-			
-			//Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
-			//startActivity(intent);
-            	
-			Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
-			intent.putExtra("url", "https://ssa-bas-project.googlecode.com/svn/b.png");
-			intent.putExtra("name", "애플리케이션_01");
-			intent.putExtra("categoryname", "카테고리_01");
-			intent.putExtra("summary", "A, a는 로마자의 첫 번째 글자이다");
-			intent.putExtra("desc", "A는 소를 의미하는 그림 문자에서부터 왔다.\n이름[편집]\n라틴어·독일어·네덜란드어·인도네시아어·베트남어·에스페란토: 아 [aː]\n프랑스어·이탈리아어·스페인어: 아 [a]\n영어: 에이 [eɪ] (오스트레일리아 영어: 아이 [aɪ])\n일본어: 에 エー [eː]\n역사[편집]");
-			intent.putExtra("manual", "A는 다음을 가리키는 말이다. \n교육에서 A는 최고 성적을 나타낸다.\n그리스어 접두사 a-는 '...이/가없음'을 뜻하는 접두사로, 영어와 독일어, 그리고 로망스어군에 속한 언어들의 많은 낱말에서 쓰인다.\n논리학에서 뒤집힌 A(∀)는 '모든...'을 뜻한다.\n도량형에서 A는 SI 단위계에서 전류의 단위인 암페어를 나타낸다.\n a(atto)는 10-18을 뜻하는 SI 접두사이다.a는 넓이의 단위인 아르를 뜻한다.\n수학에서 11진법 이상의 진법의 수에서 A를 숫자 '열'이란 뜻의 자리수로 쓴다.\n mathbb{A}는 대수적 수 전체의 집합을 나타낸다.\n영어에서 'a'는 부정관사이다.\n영화 《A》는 1969년도의 이탈리아 영화이다.\n음악에서 A는 음이름이다. C장조에서 A는 '라'가 된다.\n 의학에서 혈액형 가운데 하나인 A형\n영양소 가운데 하나인 비타민 A\n전기에서 A는 건전지의 크기를 나타낸다.\n종이의 A 시리즈는 종이규격 가운데 하나다.\n컴퓨터에서 <a>는 특정 페이지를 가리키는 HTML 요소이다.\n플레잉 카드에서 A는 에이스를 나타낸다.\n미국의 마이너 리그 베이스볼은 A (싱글 A), AA (더블 A), AAA (트리플 A) 등으로 나뉘며 이 중 AAA (트리플 A)가 수준이 가장 높다.");
-			intent.putExtra("downloadUrl", "appDownloadUrl_01");
-			intent.putExtra("created", "2014-07-01");
-			intent.putExtra("verName", "1.0");
+			Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+			intent.putExtra("searchWord", query);
 			startActivity(intent);
-			
 			return false;
 		}
 

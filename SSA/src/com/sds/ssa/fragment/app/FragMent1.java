@@ -164,52 +164,17 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 			}
 		}
 	}
-
-//	@Override
-//	public void onItemClick(AdapterView<?> parent, View view, int position,
-//			long id) {
-//		//showDeleteDialog(position);
-//		Application application = applicationList.get(position);
-//		Intent intent = new Intent(getActivity(), DetailActivity.class);
-//		intent.putExtra("url", application.getAppIcon());
-//		intent.putExtra("name", application.getAppName());
-//		intent.putExtra("desc", application.getAppDescription());
-//		startActivity(intent);
-//	}
-	
-//	private void showDeleteDialog(final int position) {
-//		AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
-//				.create();
-//		alertDialog.setTitle("Delete ??");
-//		alertDialog.setMessage("Are you sure want to Delete it??");
-//		alertDialog.setButton("No", new DialogInterface.OnClickListener() {
-//
-//			@Override
-//			public void onClick(DialogInterface dialog, int which) {
-//				dialog.dismiss();
-//			}
-//		});
-//		alertDialog.setButton2("Yes", new DialogInterface.OnClickListener() {
-//
-//			@Override
-//			public void onClick(DialogInterface dialog, int which) {
-//				applicationList.remove(position);
-//				appsRowAdapter.notifyDataSetChanged();
-//
-//			}
-//		});
-//		alertDialog.show();
-//	}
 	
 	public void setAdapterToListview() {
 		UserInfo loginUserInfo = (UserInfo)getActivity().getApplicationContext();
 		appsRowAdapter = new ApplicationRowAdapter(getActivity(), R.layout.application_row, applicationList, loginUserInfo);
 		listView.setAdapter(appsRowAdapter);
 	}
+	
 	public void showToast(String msg) {
 		Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
-		
 	}
+	
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {

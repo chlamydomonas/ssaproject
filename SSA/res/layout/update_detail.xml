@@ -85,9 +85,8 @@
 	
 	<View
 	    android:layout_width="fill_parent"
-	    android:layout_height="1dp"
-	    android:background="@android:color/holo_blue_dark"
-	    android:padding="10dp"/>
+	    android:layout_height="2dp"
+	    android:background="@android:color/holo_blue_dark"/>
 	
     <ScrollView 
         android:id="@+id/myview"

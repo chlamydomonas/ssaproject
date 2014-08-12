@@ -4,6 +4,7 @@
  	<string name="category_link">category</string>
  	<string name="update_link">appupdate</string>
  	<string name="detail_link">appdetail</string>
+ 	<string name="search_link">search</string>
     <string name="is_new_day">7</string>
     
     <string name="app_name">SSA BizAppStore</string>
