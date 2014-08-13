@@ -22,11 +22,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.SearchView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.SearchView.OnQueryTextListener;
 import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
+import android.widget.Toast;
 
 import com.sds.ssa.R;
 import com.sds.ssa.activity.BasActivity;
@@ -35,7 +35,6 @@ import com.sds.ssa.fragment.app.DetailActivity;
 import com.sds.ssa.util.AppParams;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
-import com.sds.ssa.vo.UserInfo;
 
 public class SearchActivity extends Activity implements OnItemClickListener {
 
@@ -82,6 +81,7 @@ public class SearchActivity extends Activity implements OnItemClickListener {
 				
 				Application application = applicationList.get(position);
 				Intent intent = new Intent(SearchActivity.this, DetailActivity.class);
+				intent.putExtra("id", application.getAppId());
 				intent.putExtra("url", application.getAppIcon());
 				intent.putExtra("name", application.getAppName());
 				intent.putExtra("categoryname", application.getCategoryName());
@@ -91,6 +91,7 @@ public class SearchActivity extends Activity implements OnItemClickListener {
 				intent.putExtra("downloadUrl", application.getAppDownloadUrl());
 				intent.putExtra("created", application.getCreated());
 				intent.putExtra("verName", application.getAppVerName());
+				intent.putExtra("verCode", application.getAppVerCode());
 				startActivity(intent);
 			}
 		});
@@ -199,8 +200,7 @@ public class SearchActivity extends Activity implements OnItemClickListener {
 	}
 
 	public void setAdapterToListview() {
-		UserInfo loginUserInfo = (UserInfo)this.getApplicationContext();
-		appsRowAdapter = new ApplicationRowAdapter(this, R.layout.application_row, applicationList, loginUserInfo);
+		appsRowAdapter = new ApplicationRowAdapter(this, R.layout.application_row, applicationList);
 		listView.setAdapter(appsRowAdapter);
 	}
 

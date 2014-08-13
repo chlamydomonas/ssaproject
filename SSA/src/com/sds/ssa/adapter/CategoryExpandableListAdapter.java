@@ -23,6 +23,7 @@ import com.sds.ssa.R;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
 import com.sds.ssa.vo.Category;
+import com.sds.ssa.vo.UserInfo;
 
 public class CategoryExpandableListAdapter extends BaseExpandableListAdapter {
  
@@ -95,6 +96,24 @@ public class CategoryExpandableListAdapter extends BaseExpandableListAdapter {
 		holder.downloadBtn = (ImageButton) view.findViewById(R.id.downloadBtn);
 		holder.downloadBtn.setBackgroundResource(R.drawable.download_selector);
 		
+		UserInfo userInfo = (UserInfo)this.context;
+
+		int downloadType = 0;
+		for(int i=0; i < userInfo.getInstalledAppInfoList().size(); i++){
+			int installedAppCode = Integer.parseInt(userInfo.getInstalledAppInfoList().get(i).getAppVerCode());
+			int serverAppCode = Integer.parseInt(application.getAppVerCode());
+
+			if(application.getAppId().equals(userInfo.getInstalledAppInfoList().get(i).getAppId())){
+				if(installedAppCode == serverAppCode){
+					downloadType = 2;
+					holder.downloadBtn.setBackgroundResource(R.drawable.download_pressed);
+					
+				} else if(installedAppCode < serverAppCode){
+					downloadType = 1;
+					holder.downloadBtn.setBackgroundResource(R.drawable.update_selector);
+				}
+			}
+		}
 		if (holder.appName != null && null != application.getAppName()
 				&& application.getAppName().trim().length() > 0) {
 			holder.appName.setText(Html.fromHtml(application.getAppName()));

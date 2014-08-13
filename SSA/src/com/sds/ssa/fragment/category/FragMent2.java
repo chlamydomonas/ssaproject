@@ -21,7 +21,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.Toast;
@@ -29,8 +28,8 @@ import android.widget.Toast;
 import com.sds.ssa.R;
 import com.sds.ssa.adapter.CategoryExpandableListAdapter;
 import com.sds.ssa.fragment.app.DetailActivity;
-import com.sds.ssa.util.Utils;
 import com.sds.ssa.util.AppParams;
+import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
 import com.sds.ssa.vo.Category;
 
@@ -187,6 +186,7 @@ public class FragMent2 extends Fragment {
 				
 				Intent intent = new Intent(getActivity(), DetailActivity.class);
 				
+				intent.putExtra("id", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getAppId());
 				intent.putExtra("url", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getAppIcon());
 				intent.putExtra("name", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getAppName());
 				intent.putExtra("categoryname", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getCategoryName());
@@ -196,6 +196,7 @@ public class FragMent2 extends Fragment {
 				intent.putExtra("downloadUrl", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getAppDownloadUrl());
 				intent.putExtra("created", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getCreated());
 				intent.putExtra("verName", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getAppVerName());
+				intent.putExtra("verCode", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getAppVerCode());
 				startActivity(intent);
 				
 				return false;

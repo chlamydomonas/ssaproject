@@ -44,6 +44,7 @@ import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
 import com.sds.ssa.vo.Comment;
 import com.sds.ssa.vo.Screenshot;
+import com.sds.ssa.vo.UserInfo;
 
 public class DetailActivity extends Activity {
 
@@ -119,6 +120,27 @@ public class DetailActivity extends Activity {
 		appManual.setText(manual);
 		created.setText(create);
 		appVerName.setText(verName);
+		
+		UserInfo userInfo = (UserInfo)this.getApplicationContext();
+		String appId = b.getString("id");
+		String appVerCode = b.getString("verCode");
+		
+		int downloadType = 0;
+		for(int i=0; i < userInfo.getInstalledAppInfoList().size(); i++){
+			int installedAppCode = Integer.parseInt(userInfo.getInstalledAppInfoList().get(i).getAppVerCode());
+			int serverAppCode = Integer.parseInt(appVerCode);
+
+			if(appId.equals(userInfo.getInstalledAppInfoList().get(i).getAppId())){
+				if(installedAppCode == serverAppCode){
+					downloadType = 2;
+					downloadBtn.setVisibility(View.GONE);
+					
+				} else if(installedAppCode < serverAppCode){
+					downloadType = 1;
+					downloadBtn.setText(R.string.update);
+				}
+			}
+		}
 
 		downloadBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -352,7 +374,7 @@ public class DetailActivity extends Activity {
 	
 	
 	public void setCommentListView() {
-		//commentRowAdapter = new CommentRowAdapter(this, R.layout.application_detail_comment_row, commentList);
+		//commentRowAdapter = new CommentRowAdapter(DetailActivity.this, R.layout.application_detail_comment_row, commentList);
 		//listView.setAdapter(commentRowAdapter);
 
 		for (int i = 0; i < commentList.size(); i++) {

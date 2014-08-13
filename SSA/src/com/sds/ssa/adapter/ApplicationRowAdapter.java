@@ -31,18 +31,15 @@ public class ApplicationRowAdapter extends ArrayAdapter<Application> {
 	private Activity activity;
 	private List<Application> applicationList;
 	private Application application;
-	private UserInfo userInfo;
 	private int row;
 	private DisplayImageOptions options;
 	ImageLoader imageLoader;
 
-	public ApplicationRowAdapter(Activity act, int resource, List<Application> appList, 
-			UserInfo loginUserInfo) {
+	public ApplicationRowAdapter(Activity act, int resource, List<Application> appList) {
 		super(act, resource, appList);
 		this.activity = act;
 		this.row = resource;
 		this.applicationList = appList;
-		this.userInfo = loginUserInfo;
 	}
 
 	@Override
@@ -101,7 +98,7 @@ public class ApplicationRowAdapter extends ArrayAdapter<Application> {
 	    	holder.isNewIcon.setBackgroundResource(0);
 	    }
 		
-	    
+	    UserInfo userInfo = (UserInfo)this.activity.getApplicationContext();
 	    int downloadType = 0;
 		for(int i=0; i < userInfo.getInstalledAppInfoList().size(); i++){
 			int installedAppCode = Integer.parseInt(userInfo.getInstalledAppInfoList().get(i).getAppVerCode());
