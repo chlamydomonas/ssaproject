@@ -1,50 +1,18 @@
 package com.sds.ssa.activity;
 
-import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.SearchManager;
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerTabStrip;
-import android.support.v4.view.ViewPager;
-import android.view.Menu;
-import android.widget.SearchView;
-import android.widget.SearchView.OnQueryTextListener;
-import android.widget.Toast;
+import android.util.DisplayMetrics;
+import android.util.Log;
 
-import com.sds.ssa.R;
-import com.sds.ssa.fragment.app.DetailActivity;
-import com.sds.ssa.fragment.app.FragMent1;
-import com.sds.ssa.fragment.category.FragMent2;
-import com.sds.ssa.fragment.update.FragMent3;
-import com.sds.ssa.search.SearchActivity;
+import com.sds.ssa.phone.PhoneActivity;
+import com.sds.ssa.tablet.ItemListActivity;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.UserInfo;
 
-@SuppressLint("DefaultLocale")
-public class BasActivity extends FragmentActivity {
-	
-	/**
-	 * The {@link android.support.v4.view.PagerAdapter} that will provide
-	 * fragments for each of the sections. We use a
-	 * {@link android.support.v4.app.FragmentPagerAdapter} derivative, which
-	 * will keep every loaded fragment in memory. If this becomes too memory
-	 * intensive, it may be best to switch to a
-	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-	 */
-	SectionsPagerAdapter mSectionsPagerAdapter;
-
-	/**
-	 * The {@link ViewPager} that will host the section contents.
-	 */
-	ViewPager mViewPager;
+public class BasActivity extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -63,118 +31,52 @@ public class BasActivity extends FragmentActivity {
 			loginUserInfo.setInstalledAppInfoList(userInfo.getInstalledAppInfoList());
 		}
 		
-		//requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-		setContentView(R.layout.tab);
+		boolean isPhone = true;
 		
-		//getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.window_title);
-		ActionBar actionBar = getActionBar();
-		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4d4d4d"))); // 색상 변경(색상코드)
-		//이거 한 뒤로는 expandableListView 그룹 열고 닫기 색이 변경되엇음?
+		DisplayMetrics dm = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(dm);
+		int width=dm.widthPixels;
+		int height=dm.heightPixels;
+		int dens=dm.densityDpi;
+		double wi=(double)width/(double)dens;
+		double hi=(double)height/(double)dens;
+		double x = Math.pow(wi,2);
+		double y = Math.pow(hi,2);
+		double screenInches = Math.sqrt(x+y);
 		
+		Log.v("bas", Build.VERSION.RELEASE); // 4.4.2
+		Log.v("bas", Integer.toString(Build.VERSION.SDK_INT)); //19
+		Log.v("bas", Double.toString(screenInches)); //4.41021541423999
 		
-		PagerTabStrip pagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_title_strip);
-		pagerTabStrip.setDrawFullUnderline(true);
-		pagerTabStrip.setTabIndicatorColor(Color.parseColor("#2680ff"));
+		int deviceSdkVersion = Build.VERSION.SDK_INT;
 		
-		supportInvalidateOptionsMenu();
-		// Create the adapter that will return a fragment for each of the three
-		// primary sections of the app.
-		mSectionsPagerAdapter = new SectionsPagerAdapter(getApplicationContext(),
-				getSupportFragmentManager());
-
-		// Set up the ViewPager with the sections adapter.
-		mViewPager = (ViewPager) findViewById(R.id.pager);
-		mViewPager.setAdapter(mSectionsPagerAdapter);
-
-	}
-
-	@SuppressLint("DefaultLocale")
-	public class SectionsPagerAdapter extends FragmentPagerAdapter {
-		Context mContext;
-
-		public SectionsPagerAdapter(Context context, FragmentManager fm) {
-			super(fm);
-			mContext = context;
-		}
-
-		@Override
-		public Fragment getItem(int position) {
-			// getItem is called to instantiate the fragment for the given page.
-			// Return a DummySectionFragment (defined as a static inner class
-			// below) with the page number as its lone argument.
-			switch(position) {
-			case 0:
-				return new FragMent1(mContext);
-			case 1:
-				return new FragMent2(mContext);
-			case 2:
-				return new FragMent3(mContext);
+		if(deviceSdkVersion < 10){ // phone
+			isPhone = true;
+			
+		}else if(11 <= deviceSdkVersion &&  deviceSdkVersion <= 13){ // tablet
+			isPhone = false;
+			
+		}else if(deviceSdkVersion >= 14){
+			int smaller = width;
+			if(width > height){
+				smaller = height;
 			}
-			return null;
-		}
-
-		@Override
-		public int getCount() {
-			// Show 3 total pages.
-			return 3;
-		}
-		
-		@SuppressLint("DefaultLocale")
-		@Override
-		public CharSequence getPageTitle(int position) {
-			// TODO Auto-generated method stub
-			switch (position) {
-			case 0:
-				return mContext.getString(R.string.title_section1).toUpperCase();
-			case 1:
-				return mContext.getString(R.string.title_section2).toUpperCase();
-			case 2:
-				return mContext.getString(R.string.title_section3).toUpperCase();
+			if(screenInches > 7.0 && smaller > 700){
+				isPhone = false;
+			}else{
+				isPhone = true;
 			}
-			return null;
 		}
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.search, menu);
-
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-//            searchItem = menu.findItem(R.id.action_settings);
-//            searchView = (SearchView) searchItem.getActionView();
-//            searchView.setQueryHint("물품명 또는 분류");
-//            searchView.setOnQueryTextListener(queryTextListener);      
-// 
-//            SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-//            if(null!=searchManager ) {   
-//                searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-//            }
-//            searchView.setIconifiedByDefault(true);
-//             
-//        }
 		
-		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-		SearchView searchView = (SearchView) menu.findItem(R.id.menu_settings).getActionView();
-	    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-	    searchView.setQueryHint(getString(R.string.searchword));
-	    searchView.setOnQueryTextListener(queryTextListener);
-        return true;
+		if(isPhone){
+			Intent phoneIntent = new Intent(getApplicationContext(), PhoneActivity.class);
+			startActivity(phoneIntent);
+			finish();
+		}else{
+			Intent tabletIntent = new Intent(getApplicationContext(), ItemListActivity.class);
+			startActivity(tabletIntent);
+			finish();
+		}
 	}
-	
-	private OnQueryTextListener queryTextListener = new OnQueryTextListener() {
-		@Override
-		public boolean onQueryTextSubmit(String query) {
-			Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
-			intent.putExtra("searchWord", query);
-			startActivity(intent);
-			return false;
-		}
-
-		@Override
-		public boolean onQueryTextChange(String newText) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-	};
 
 }
