@@ -14,6 +14,8 @@ import com.sds.ssa.vo.UserInfo;
 
 public class BasActivity extends Activity {
 
+	private String userInfoParam;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -21,7 +23,7 @@ public class BasActivity extends Activity {
 		Intent intent = getIntent();
 		
 		if(intent.hasExtra("userInfo")){
-			String userInfoParam = intent.getExtras().getString("userInfo");
+			userInfoParam = intent.getExtras().getString("userInfo");
 			UserInfo userInfo = Utils.getUserInfo(userInfoParam);
 
 			UserInfo loginUserInfo = (UserInfo)getApplicationContext();
@@ -70,10 +72,12 @@ public class BasActivity extends Activity {
 		
 		if(isPhone){
 			Intent phoneIntent = new Intent(getApplicationContext(), PhoneActivity.class);
+			phoneIntent.putExtra("userInfo", userInfoParam);
 			startActivity(phoneIntent);
 			finish();
 		}else{
 			Intent tabletIntent = new Intent(getApplicationContext(), ItemListActivity.class);
+			tabletIntent.putExtra("userInfo", userInfoParam);
 			startActivity(tabletIntent);
 			finish();
 		}

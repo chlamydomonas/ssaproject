@@ -11,7 +11,6 @@ import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -36,16 +35,15 @@ import com.sds.ssa.vo.Category;
 @SuppressLint("ValidFragment")
 public class FragMent2 extends Fragment {
 
-	Context mContext;
-	
 	CategoryExpandableListAdapter listAdapter;
     ExpandableListView expListView;
     List<Category> listDataHeader;
     HashMap<Category, List<Application>> listDataChild;
 
-	public FragMent2(Context context) {
-		mContext = context;
-	}
+	 public static FragMent2 newInstance() {
+		 FragMent2 fragment = new FragMent2();
+	     return fragment;
+	}	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -176,7 +174,7 @@ public class FragMent2 extends Fragment {
 		//objAdapter = new AppsRowAdapter(getActivity(), R.layout.fragment1_row2, arrayOfList);
 		//listView.setAdapter(objAdapter);
     	
-    	listAdapter = new CategoryExpandableListAdapter(mContext, listDataHeader, listDataChild);
+    	listAdapter = new CategoryExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
         expListView.setAdapter(listAdapter);
 		expListView.setOnChildClickListener(new OnChildClickListener() {
 			public boolean onChildClick(ExpandableListView parent, View v,

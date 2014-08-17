@@ -10,7 +10,6 @@ import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -31,12 +30,11 @@ import com.sds.ssa.vo.Application;
 
 @SuppressLint("ValidFragment")
 public class FragMent1 extends Fragment implements OnItemClickListener {
-	
-	Context mContext;
-	
-	public FragMent1(Context context) {
-		mContext = context;
-	}
+
+    public static FragMent1 newInstance() {
+    	FragMent1 fragment = new FragMent1();
+        return fragment;
+    }	
 
 	List<Application> applicationList;
 	ListView listView;

@@ -3,6 +3,7 @@ package com.sds.ssa.adapter;
 import java.util.HashMap;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.text.Html;
@@ -27,7 +28,8 @@ import com.sds.ssa.vo.UserInfo;
 
 public class CategoryExpandableListAdapter extends BaseExpandableListAdapter {
  
-    private Context context;
+    //private Context context;
+    private Activity activity;
     private List<Category> listDataHeader;
     private HashMap<Category, List<Application>> listDataChild;
     
@@ -37,11 +39,11 @@ public class CategoryExpandableListAdapter extends BaseExpandableListAdapter {
     ImageLoader imageLoader;
 	// from "AppsRowAdater" end
 	  
-    public CategoryExpandableListAdapter(Context context,
+    public CategoryExpandableListAdapter(Activity act,
 			List<Category> listDataHeader,
 			HashMap<Category, List<Application>> listDataChild) {
 
-    	this.context = context;
+    	this.activity = act;
         this.listDataHeader = listDataHeader;
         this.listDataChild = listDataChild;
 	}
@@ -73,7 +75,7 @@ public class CategoryExpandableListAdapter extends BaseExpandableListAdapter {
         View view = convertView;
 		ViewHolder holder;
 		if (view == null) {
-			LayoutInflater inflater = (LayoutInflater) this.context
+			LayoutInflater inflater = (LayoutInflater) activity
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			
 			//view = inflater.inflate(R.layout.category_child, null);
@@ -96,7 +98,7 @@ public class CategoryExpandableListAdapter extends BaseExpandableListAdapter {
 		holder.downloadBtn = (ImageButton) view.findViewById(R.id.downloadBtn);
 		holder.downloadBtn.setBackgroundResource(R.drawable.download_selector);
 		
-		UserInfo userInfo = (UserInfo)this.context;
+		UserInfo userInfo = (UserInfo)this.activity.getApplicationContext();
 
 		int downloadType = 0;
 		for(int i=0; i < userInfo.getInstalledAppInfoList().size(); i++){
@@ -168,7 +170,7 @@ public class CategoryExpandableListAdapter extends BaseExpandableListAdapter {
 				final ProgressBar pbar = holder.pbar;
 
 				imageLoader.init(ImageLoaderConfiguration
-						.createDefault(context));
+						.createDefault(activity));
 				imageLoader.displayImage(application.getAppIcon(), holder.appIcon,
 						options, new ImageLoadingListener() {
 							@Override
@@ -247,7 +249,7 @@ public class CategoryExpandableListAdapter extends BaseExpandableListAdapter {
         String headerTitle = category.getName();
         
         if (convertView == null) {
-            LayoutInflater infalInflater = (LayoutInflater) this.context
+            LayoutInflater infalInflater = (LayoutInflater) this.activity
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.category_group, null);
         }

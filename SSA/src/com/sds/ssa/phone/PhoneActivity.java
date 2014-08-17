@@ -1,164 +1,228 @@
-package com.sds.ssa.phone;
 
-import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.SearchManager;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+package com.sds.ssa.phone;
+import android.app.Activity;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerTabStrip;
-import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
-import android.widget.SearchView;
-import android.widget.SearchView.OnQueryTextListener;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sds.ssa.R;
-import com.sds.ssa.fragment.app.FragMent1;
-import com.sds.ssa.fragment.category.FragMent2;
-import com.sds.ssa.fragment.update.FragMent3;
-import com.sds.ssa.search.SearchActivity;
-import com.sds.ssa.util.Utils;
+import com.sds.ssa.adapter.NavigationAdapter;
+import com.sds.ssa.fragments.ViewPagerFragment;
+import com.sds.ssa.util.Menus;
 import com.sds.ssa.vo.UserInfo;
 
-@SuppressLint("DefaultLocale")
-public class PhoneActivity extends FragmentActivity {
+public class PhoneActivity extends ActionBarActivity{
+		
+    private int lastPosition = 0;
+	private ListView listDrawer;    
+		
+	private int counterItemDownloads;
 	
-	/**
-	 * The {@link android.support.v4.view.PagerAdapter} that will provide
-	 * fragments for each of the sections. We use a
-	 * {@link android.support.v4.app.FragmentPagerAdapter} derivative, which
-	 * will keep every loaded fragment in memory. If this becomes too memory
-	 * intensive, it may be best to switch to a
-	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-	 */
-	SectionsPagerAdapter mSectionsPagerAdapter;
+	private DrawerLayout layoutDrawer;		
+	private LinearLayout linearDrawer;
+	private RelativeLayout userDrawer;
+	
+	private TextView titleDrawer;
+	private TextView subTitleDrawer;
 
-	/**
-	 * The {@link ViewPager} that will host the section contents.
-	 */
-	ViewPager mViewPager;
-
+	private NavigationAdapter navigationAdapter;
+	private ActionBarDrawerToggleCompat drawerToggle;	
+		
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);	
+		getSupportActionBar().setIcon(R.drawable.title_icon);
 		
-		Intent intent = getIntent();
+		setContentView(R.layout.navigation_main);		
 		
-		if(intent.hasExtra("userInfo")){
-			String userInfoParam = intent.getExtras().getString("userInfo");
-			UserInfo userInfo = Utils.getUserInfo(userInfoParam);
-
-			UserInfo loginUserInfo = (UserInfo)getApplicationContext();
-			loginUserInfo.setUserId(userInfo.getUserId());
-			loginUserInfo.setUserDept(userInfo.getUserDept());
-			loginUserInfo.setSecurityLevel(userInfo.getSecurityLevel());
-			loginUserInfo.setInstalledAppInfoList(userInfo.getInstalledAppInfoList());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);		
+        
+        listDrawer = (ListView) findViewById(R.id.listDrawer);        
+		linearDrawer = (LinearLayout) findViewById(R.id.linearDrawer);		
+		layoutDrawer = (DrawerLayout) findViewById(R.id.layoutDrawer);
+		
+		UserInfo userInfo = (UserInfo)this.getApplicationContext();
+		
+		titleDrawer = (TextView) findViewById(R.id.titleDrawer);
+		titleDrawer.setText(userInfo.getUserId());
+		subTitleDrawer = (TextView) findViewById(R.id.subTitleDrawer);
+		subTitleDrawer.setText(userInfo.getUserDept());
+		
+		userDrawer = (RelativeLayout) findViewById(R.id.userDrawer); 
+		userDrawer.setOnClickListener(userOnClick);
+		
+		if (listDrawer != null) {
+			navigationAdapter = NavigationList.getNavigationAdapter(this);
 		}
 		
-		//requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-		setContentView(R.layout.tab);
-		
-		//getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.window_title);
-		ActionBar actionBar = getActionBar();
-		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4d4d4d"))); // ?�상 �?��(?�상코드)
-		//?�거 ???�로??expandableListView 그룹 ?�고 ?�기 ?�이 �?��?�엇??
-		
-		
-		PagerTabStrip pagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_title_strip);
-		pagerTabStrip.setDrawFullUnderline(true);
-		pagerTabStrip.setTabIndicatorColor(Color.parseColor("#2680ff"));
-		
-		supportInvalidateOptionsMenu();
-		// Create the adapter that will return a fragment for each of the three
-		// primary sections of the app.
-		mSectionsPagerAdapter = new SectionsPagerAdapter(getApplicationContext(),
-				getSupportFragmentManager());
+		listDrawer.setAdapter(navigationAdapter);
+		listDrawer.setOnItemClickListener(new DrawerItemClickListener());
 
-		// Set up the ViewPager with the sections adapter.
-		mViewPager = (ViewPager) findViewById(R.id.pager);
-		mViewPager.setAdapter(mSectionsPagerAdapter);
-
+		drawerToggle = new ActionBarDrawerToggleCompat(this, layoutDrawer);		
+		layoutDrawer.setDrawerListener(drawerToggle);
+       		
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		
+		if (savedInstanceState != null) { 			
+			navigationAdapter.resetarCheck();			
+			navigationAdapter.setChecked(lastPosition, true);
+	    }else{
+	    	setLastPosition(lastPosition); 
+	    	setFragmentList(lastPosition);	    	
+	    }			             
 	}
-
-	@SuppressLint("DefaultLocale")
-	public class SectionsPagerAdapter extends FragmentPagerAdapter {
-		Context mContext;
-
-		public SectionsPagerAdapter(Context context, FragmentManager fm) {
-			super(fm);
-			mContext = context;
-		}
-
-		@Override
-		public Fragment getItem(int position) {
-			// getItem is called to instantiate the fragment for the given page.
-			// Return a DummySectionFragment (defined as a static inner class
-			// below) with the page number as its lone argument.
-			switch(position) {
-			case 0:
-				return new FragMent1(mContext);
-			case 1:
-				return new FragMent2(mContext);
-			case 2:
-				return new FragMent3(mContext);
-			}
-			return null;
-		}
-
-		@Override
-		public int getCount() {
-			// Show 3 total pages.
-			return 3;
-		}
-		
-		@SuppressLint("DefaultLocale")
-		@Override
-		public CharSequence getPageTitle(int position) {
-			// TODO Auto-generated method stub
-			switch (position) {
-			case 0:
-				return mContext.getString(R.string.title_section1).toUpperCase();
-			case 1:
-				return mContext.getString(R.string.title_section2).toUpperCase();
-			case 2:
-				return mContext.getString(R.string.title_section3).toUpperCase();
-			}
-			return null;
-		}
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);					
 	}
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {  
 
+        if (drawerToggle.onOptionsItemSelected(item)) {
+              return true;
+        }		
+        
+		switch (item.getItemId()) {		
+		case Menus.HOME:
+			if (layoutDrawer.isDrawerOpen(linearDrawer)) {
+				layoutDrawer.closeDrawer(linearDrawer);
+			} else {
+				layoutDrawer.openDrawer(linearDrawer);
+			}
+			return true;			
+		default:
+			return super.onOptionsItemSelected(item);			
+		}		             
+    }
+		
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+    	hideMenus(menu, lastPosition);
+        return super.onPrepareOptionsMenu(menu);  
+    }
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.search, menu);
-
-		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-		SearchView searchView = (SearchView) menu.findItem(R.id.menu_settings).getActionView();
-	    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-	    searchView.setQueryHint(getString(R.string.searchword));
-	    searchView.setOnQueryTextListener(queryTextListener);
-        return true;
+		return super.onCreateOptionsMenu(menu);        		
 	}
 	
-	private OnQueryTextListener queryTextListener = new OnQueryTextListener() {
+	@Override
+	protected void onPostCreate(Bundle savedInstanceState) {
+		super.onPostCreate(savedInstanceState);	     
+	    drawerToggle.syncState();	
+	 }	
+
+	public void setIconActionBar(int icon) {    	
+    	getSupportActionBar().setIcon(icon);
+    }	
+	
+	public void setLastPosition(int position){		
+		this.lastPosition = position;
+	}	
+		
+	private class ActionBarDrawerToggleCompat extends ActionBarDrawerToggle {
+
+		public ActionBarDrawerToggleCompat(Activity mActivity, DrawerLayout mDrawerLayout){
+			super(
+			    mActivity,
+			    mDrawerLayout, 
+  			    R.drawable.ic_action_navigation_drawer, 
+				R.string.drawer_open,
+				R.string.drawer_close);
+		}
+		
 		@Override
-		public boolean onQueryTextSubmit(String query) {
-			Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
-			intent.putExtra("searchWord", query);
-			startActivity(intent);
-			return false;
+		public void onDrawerClosed(View view) {			
+			supportInvalidateOptionsMenu();				
 		}
 
 		@Override
-		public boolean onQueryTextChange(String newText) {
+		public void onDrawerOpened(View drawerView) {	
+			navigationAdapter.notifyDataSetChanged();			
+			supportInvalidateOptionsMenu();			
+		}		
+	}
+		  
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		// TODO Auto-generated method stub
+		super.onConfigurationChanged(newConfig);
+		drawerToggle.onConfigurationChanged(newConfig);		
+	}
+	
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {          	        	
+	    	setLastPosition(position);        	
+	    	setFragmentList(lastPosition);	    	
+	    	layoutDrawer.closeDrawer(linearDrawer);	    	
+        }
+    }	
+    
+	private OnClickListener userOnClick = new OnClickListener() {		
+		@Override
+		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			return false;
+			layoutDrawer.closeDrawer(linearDrawer);
 		}
-	};
+	};	
+	
+	private void setFragmentList(int position){
+		
+		FragmentManager fragmentManager = getSupportFragmentManager();							
+		
+		switch (position) {
+		case 0:			
+			fragmentManager.beginTransaction().replace(R.id.content_frame, new ViewPagerFragment()).commit();
+			break;					
+		case 1:			
+			Toast.makeText(PhoneActivity.this, "msg", Toast.LENGTH_LONG).show();
+			//fragmentManager.beginTransaction().replace(R.id.content_frame, new ViewPagerFragment()).commit();
+			break;			
+		}			
+	
+		navigationAdapter.resetarCheck();			
+		navigationAdapter.setChecked(position, true);
+	}
 
+    private void hideMenus(Menu menu, int position) {
+    	    	
+        boolean drawerOpen = layoutDrawer.isDrawerOpen(linearDrawer);    	
+    	
+        switch (position) {
+		case 1: 
+	        menu.findItem(Menus.UPDATE).setVisible(!drawerOpen);	        	        	       
+	        menu.findItem(Menus.SEARCH).setVisible(!drawerOpen);        
+			break;
+			
+		case 2:  	        	       
+	        menu.findItem(Menus.SEARCH).setVisible(!drawerOpen);        			
+			break;				
+			//implement other fragments here			
+		}          
+    }	
+    
+	public int getCounterItemDownloads() {
+		return counterItemDownloads;
+	}
+
+	public void setCounterItemDownloads(int value) {
+		this.counterItemDownloads = value;
+	}
 }

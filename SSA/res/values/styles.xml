@@ -1,9 +1,11 @@
 <resources>
-    <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-        <item name="android:actionBarStyle">@style/MyActionBar</item>
+
+	<style name="ActionBarTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="actionBarStyle">@style/ActionBar</item>	    	    
+    </style>
+    
+    <style name="ActionBar" parent="@style/Widget.AppCompat.ActionBar">          
+        <item name="background">@color/gray</item>                
     </style>
 
-    <style name="MyActionBar" parent="@android:Widget.Holo.Light.ActionBar.Solid.Inverse">
-    	<item name="android:background">#ff33b5e5</item> <!-- it doesn't work -->
-  	</style>
 </resources>

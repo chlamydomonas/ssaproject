@@ -168,12 +168,12 @@ public class SearchActivity extends Activity implements OnItemClickListener {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.search, menu);
+		getMenuInflater().inflate(R.menu.menu, menu);
 
 		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-		SearchView searchView = (SearchView) menu.findItem(R.id.menu_settings).getActionView();
+		SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
 	    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-	    searchView.setQueryHint(getString(R.string.searchword));
+	    searchView.setQueryHint(getString(R.string.search));
 	    searchView.setOnQueryTextListener(queryTextListener);
         return true;
 	}

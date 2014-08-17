@@ -10,7 +10,6 @@ import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -25,20 +24,18 @@ import android.widget.Toast;
 
 import com.sds.ssa.R;
 import com.sds.ssa.adapter.UpdateRowAdapter;
-import com.sds.ssa.util.Utils;
 import com.sds.ssa.util.AppParams;
+import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
 
 @SuppressLint("ValidFragment")
 public class FragMent3 extends Fragment {
 
-	
-	Context mContext;
-	
-	public FragMent3(Context context) {
-		mContext = context;
-	}
-
+    public static FragMent3 newInstance() {
+    	FragMent3 fragment = new FragMent3();
+        return fragment;
+    }
+    
 	List<Application> applicationList;
 	ListView listView;
 	UpdateRowAdapter updateRowAdapter;
