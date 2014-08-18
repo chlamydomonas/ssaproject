@@ -8,39 +8,49 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.SearchView.OnQueryTextListener;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.SearchView.OnQueryTextListener;
 import android.widget.Toast;
 
 import com.sds.ssa.R;
 import com.sds.ssa.activity.BasActivity;
 import com.sds.ssa.adapter.ApplicationRowAdapter;
 import com.sds.ssa.fragment.app.DetailActivity;
+import com.sds.ssa.phone.PhoneActivity;
+import com.sds.ssa.search.SearchActivity;
 import com.sds.ssa.util.AppParams;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
+
 
 public class SearchActivity extends Activity implements OnItemClickListener {
 
 	List<Application> applicationList;
 	ListView listView;
 	ApplicationRowAdapter appsRowAdapter;
+	private boolean searchCheck;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -166,19 +176,27 @@ public class SearchActivity extends Activity implements OnItemClickListener {
 		}
 	}
 
+	/*
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.menu, menu);
-
-		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-		SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
-	    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-	    searchView.setQueryHint(getString(R.string.search));
-	    searchView.setOnQueryTextListener(queryTextListener);
-        return true;
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);		
+		inflater.inflate(R.menu.menu, menu);
+		
+		SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.menu_search));
+		searchView.setQueryHint(this.getString(R.string.search));
+		
+		((EditText)searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text))
+		.setHintTextColor(getResources().getColor(R.color.white));	    
+		searchView.setOnQueryTextListener(OnQuerySearchView);
+									
+		menu.findItem(R.id.menu_update).setVisible(false);		
+		menu.findItem(R.id.menu_search).setVisible(true);	
+		
+		searchCheck = false;	
 	}
 	
-	private OnQueryTextListener queryTextListener = new OnQueryTextListener() {
+	private OnQueryTextListener OnQuerySearchView = new OnQueryTextListener() {
+		
 		@Override
 		public boolean onQueryTextSubmit(String query) {
 			Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
@@ -186,13 +204,17 @@ public class SearchActivity extends Activity implements OnItemClickListener {
 			startActivity(intent);
 			return false;
 		}
-
+		
 		@Override
-		public boolean onQueryTextChange(String newText) {
-			// TODO Auto-generated method stub
+		public boolean onQueryTextChange(String query) {
+			if (searchCheck){
+				Log.v("bas", "onQueryTextChange");
+				//자동 완성 같은 건 없음;
+			}
 			return false;
 		}
 	};
+	*/
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
@@ -212,12 +234,18 @@ public class SearchActivity extends Activity implements OnItemClickListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
         case android.R.id.home:
-        	Intent intent = new Intent(this, BasActivity.class);
+        	Intent intent = new Intent(this, PhoneActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
-            return true;
+            break;
+      
+        case R.id.menu_search:
+        	searchCheck = true;
+    		break;
+            
         default:
             return super.onOptionsItemSelected(item);
         }
+		return true;
 	}
 }

@@ -7,6 +7,7 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import com.sds.ssa.R;
 import com.sds.ssa.adapter.NavigationAdapter;
+import com.sds.ssa.fragment.update.FragMent3;
 import com.sds.ssa.fragments.ViewPagerFragment;
 import com.sds.ssa.util.Menus;
 import com.sds.ssa.vo.UserInfo;
@@ -88,12 +90,15 @@ public class PhoneActivity extends ActionBarActivity{
 	
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
+		// TODO Auto-generated method stub		
+		
+		Log.v("bas", "onSaveInstanceState");
 		super.onSaveInstanceState(outState);					
 	}
 	
 	@Override
     public boolean onOptionsItemSelected(MenuItem item) {  
-
+		Log.v("bas", "onOptionsItemSelected");
         if (drawerToggle.onOptionsItemSelected(item)) {
               return true;
         }		
@@ -113,17 +118,20 @@ public class PhoneActivity extends ActionBarActivity{
 		
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+    	Log.v("bas", "onPrepareOptionsMenu");
     	hideMenus(menu, lastPosition);
         return super.onPrepareOptionsMenu(menu);  
     }
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		Log.v("bas", "onCreateOptionsMenu");
 		return super.onCreateOptionsMenu(menu);        		
 	}
 	
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
+		Log.v("bas", "onPostCreate");
 		super.onPostCreate(savedInstanceState);	     
 	    drawerToggle.syncState();	
 	 }	
@@ -132,8 +140,9 @@ public class PhoneActivity extends ActionBarActivity{
     	getSupportActionBar().setIcon(icon);
     }	
 	
-	public void setLastPosition(int position){		
-		this.lastPosition = position;
+	public void setLastPosition(int posicao){		
+		Log.v("bas", "setLastPosition");
+		this.lastPosition = posicao;
 	}	
 		
 	private class ActionBarDrawerToggleCompat extends ActionBarDrawerToggle {
@@ -161,6 +170,7 @@ public class PhoneActivity extends ActionBarActivity{
 		  
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
+		Log.v("bas", "onConfigurationChanged");
 		// TODO Auto-generated method stub
 		super.onConfigurationChanged(newConfig);
 		drawerToggle.onConfigurationChanged(newConfig);		
@@ -191,18 +201,19 @@ public class PhoneActivity extends ActionBarActivity{
 		case 0:			
 			fragmentManager.beginTransaction().replace(R.id.content_frame, new ViewPagerFragment()).commit();
 			break;					
-		case 1:			
-			Toast.makeText(PhoneActivity.this, "msg", Toast.LENGTH_LONG).show();
-			//fragmentManager.beginTransaction().replace(R.id.content_frame, new ViewPagerFragment()).commit();
+		case 1:
+			fragmentManager.beginTransaction().replace(R.id.content_frame, new FragMent3()).commit();
 			break;			
 		}			
 	
-		navigationAdapter.resetarCheck();			
-		navigationAdapter.setChecked(position, true);
+		if (position < 5){
+			navigationAdapter.resetarCheck();			
+			navigationAdapter.setChecked(position, true);
+		}
 	}
 
     private void hideMenus(Menu menu, int position) {
-    	    	
+    	Log.v("bas", "hideMenus");
         boolean drawerOpen = layoutDrawer.isDrawerOpen(linearDrawer);    	
     	
         switch (position) {
@@ -210,11 +221,6 @@ public class PhoneActivity extends ActionBarActivity{
 	        menu.findItem(Menus.UPDATE).setVisible(!drawerOpen);	        	        	       
 	        menu.findItem(Menus.SEARCH).setVisible(!drawerOpen);        
 			break;
-			
-		case 2:  	        	       
-	        menu.findItem(Menus.SEARCH).setVisible(!drawerOpen);        			
-			break;				
-			//implement other fragments here			
 		}          
     }	
     

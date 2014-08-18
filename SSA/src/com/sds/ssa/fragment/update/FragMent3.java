@@ -14,16 +14,25 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.SearchView.OnQueryTextListener;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.sds.ssa.R;
 import com.sds.ssa.adapter.UpdateRowAdapter;
+import com.sds.ssa.search.SearchActivity;
 import com.sds.ssa.util.AppParams;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
@@ -39,6 +48,7 @@ public class FragMent3 extends Fragment {
 	List<Application> applicationList;
 	ListView listView;
 	UpdateRowAdapter updateRowAdapter;
+	private boolean searchCheck;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,6 +91,61 @@ public class FragMent3 extends Fragment {
 		});
 		return view;
 	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		setHasOptionsMenu(true);
+	}
+	
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);		
+		inflater.inflate(R.menu.menu, menu);
+		
+	    SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.menu_search));
+	    searchView.setQueryHint(this.getString(R.string.search));
+	    
+	    ((EditText)searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text))
+        .setHintTextColor(getResources().getColor(R.color.white));	    
+	    searchView.setOnQueryTextListener(OnQuerySearchView);
+					    	   	    
+	    menu.findItem(R.id.menu_update).setVisible(false);		
+		menu.findItem(R.id.menu_search).setVisible(true);	
+  	    
+		searchCheck = false;	
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+
+		case R.id.menu_search:
+			searchCheck = true;
+			break;
+		}		
+		return true;
+	}	
+	
+	private OnQueryTextListener OnQuerySearchView = new OnQueryTextListener() {
+		
+		@Override
+		public boolean onQueryTextSubmit(String query) {
+			Intent intent = new Intent(getActivity(), SearchActivity.class);
+			intent.putExtra("searchWord", query);
+			startActivity(intent);
+			return false;
+		}
+		
+		@Override
+		public boolean onQueryTextChange(String query) {
+			if (searchCheck){
+				Log.v("bas", "onQueryTextChange");
+				//자동 완성 같은 건 없음;
+			}
+			return false;
+		}
+	};
 	
 	class MyTask extends AsyncTask<String, Void, String> {
 		ProgressDialog pDialog;
