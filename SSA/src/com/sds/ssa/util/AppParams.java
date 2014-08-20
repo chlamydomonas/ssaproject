@@ -16,6 +16,7 @@ public class AppParams {
 	public static final String COMMENT_USER_ID = "commentUserId";
 	public static final String COMMENT_DEPT_NAME = "commentDeptName";
 	public static final String COMMENT_USER_NAME = "commentUserName";
+	public static final String COMMENT_DATE = "commentDate";
 
 	public static final String APP_ARRAY_NAME = "application";
 	public static final String APP_ID = "appId";

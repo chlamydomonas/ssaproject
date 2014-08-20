@@ -149,9 +149,7 @@ public class DetailActivity extends Activity {
 			String installedAppId = userInfo.getInstalledAppInfoList().get(i).getAppId();
 			if(appId.equals(installedAppId)){
 				reviewBtn.setVisibility(View.VISIBLE);
-				Log.v("bas", userInfo.getInstalledAppInfoList().get(i).getAppId());
 			}
-			
 		}
 
 		downloadBtn.setOnClickListener(new View.OnClickListener() {
@@ -366,14 +364,14 @@ public class DetailActivity extends Activity {
 						JSONObject commentObj = commentArray.getJSONObject(i);
 						
 						Comment comment = new Comment();
-						comment.setCommentAppId(commentObj.getString(AppParams.COMMENT_APP_ID));
-						//comment.setDeptId(commentObj.getString(AppParams.DEPT_ID));
-						comment.setCommentDeptName(commentObj.getString(AppParams.COMMENT_DEPT_NAME));
-						comment.setCommentUserName(commentObj.getString(AppParams.COMMENT_USER_NAME));
-						comment.setCommentDate(commentObj.getString(AppParams.APP_CREATED));
 						comment.setAppGrade(commentObj.getString(AppParams.APP_GRADE));
 						comment.setComments(commentObj.getString(AppParams.COMMENTS));
+						comment.setCommentDate(commentObj.getString(AppParams.COMMENT_DATE));
+						comment.setCommentAppId(commentObj.getString(AppParams.COMMENT_APP_ID));
 						comment.setCommentAppVersion(commentObj.getString(AppParams.COMMENT_APP_VERSION));
+						comment.setCommentUserId(commentObj.getString(AppParams.COMMENT_USER_ID));
+						comment.setCommentDeptName(commentObj.getString(AppParams.COMMENT_DEPT_NAME));
+						comment.setCommentUserName(commentObj.getString(AppParams.COMMENT_USER_NAME));
 						
 						commentList.add(comment);
 					}
@@ -385,6 +383,9 @@ public class DetailActivity extends Activity {
 				
 				if(commentList.size()>0){
 					setCommentListView();
+				}else{
+					appGrade.setImageResource(R.drawable.star_0);
+					reviewerCount.setText("(0)");
 				}
 			}
 		}
@@ -392,9 +393,7 @@ public class DetailActivity extends Activity {
 
 	public void showToast(String msg) {
 		Toast.makeText(DetailActivity.this, msg, Toast.LENGTH_LONG).show();
-		
 	}
-	
 	
 	public void setCommentListView() {
 		//commentRowAdapter = new CommentRowAdapter(DetailActivity.this, R.layout.application_detail_comment_row, commentList);
@@ -402,95 +401,91 @@ public class DetailActivity extends Activity {
 
 		List<String> arrList = new ArrayList<String>();
 		
-		if(commentList.size() > 0){
+		int totalGrade = 0;
+		for (int i = 0; i < commentList.size(); i++) {
+			arrList.add(commentList.get(i).getCommentUserId()); //사실 ID로 해야 한다. 나중에 고친다.
 			
-			int totalGrade = 0;
-			for (int i = 0; i < commentList.size(); i++) {
-				arrList.add(commentList.get(i).getCommentUserId()); //사실 ID로 해야 한다. 나중에 고친다.
-				
-				LayoutInflater inflater = null;
-				inflater = (LayoutInflater) getApplicationContext()
-						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				
-				View linearView = inflater.inflate(R.layout.application_detail_comment_row, null);
-	
-				TextView userName = (TextView) linearView.findViewById(R.id.username);
-				TextView installVerName = (TextView) linearView.findViewById(R.id.installvername);
-				TextView comment = (TextView) linearView.findViewById(R.id.comment);
-				TextView createdDate = (TextView) linearView.findViewById(R.id.created);
-				ImageView userGrade = (ImageView) linearView.findViewById(R.id.usergrade);
+			LayoutInflater inflater = null;
+			inflater = (LayoutInflater) getApplicationContext()
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			
-	
-				final String uName = commentList.get(i).getCommentUserName();
-				final String dName = commentList.get(i).getCommentDeptName();
-				final String iVerName = commentList.get(i).getCommentAppVersion();
-				final String comm = commentList.get(i).getComments();
-				final String create = commentList.get(i).getCommentDate();
-			    final int uGrade = Integer.parseInt(commentList.get(i).getAppGrade());
-	
-			    totalGrade += uGrade;
-				userName.setText(uName+" ("+dName+")");
-				installVerName.setText(this.getString(R.string.version) + " " +iVerName);
-				comment.setText(comm);
-				createdDate.setText(create);
-	
-				if(uGrade == 1){
-					userGrade.setBackgroundResource(R.drawable.star_1);
-				}else if(uGrade == 2){
-					userGrade.setBackgroundResource(R.drawable.star_2);
-				}else if(uGrade == 3){
-					userGrade.setBackgroundResource(R.drawable.star_3);
-				}else if(uGrade == 4){
-					userGrade.setBackgroundResource(R.drawable.star_4);
-				}else if(uGrade == 5){
-					userGrade.setBackgroundResource(R.drawable.star_5);
+			View linearView = inflater.inflate(R.layout.application_detail_comment_row, null);
+
+			TextView userName = (TextView) linearView.findViewById(R.id.username);
+			TextView installVerName = (TextView) linearView.findViewById(R.id.installvername);
+			TextView comment = (TextView) linearView.findViewById(R.id.comment);
+			TextView createdDate = (TextView) linearView.findViewById(R.id.created);
+			ImageView userGrade = (ImageView) linearView.findViewById(R.id.usergrade);
+		
+
+			final String uName = commentList.get(i).getCommentUserName();
+			final String dName = commentList.get(i).getCommentDeptName();
+			final String iVerName = commentList.get(i).getCommentAppVersion();
+			final String comm = commentList.get(i).getComments();
+			final String create = commentList.get(i).getCommentDate();
+		    final int uGrade = Integer.parseInt(commentList.get(i).getAppGrade());
+
+		    totalGrade += uGrade;
+			userName.setText(uName+" ("+dName+")");
+			installVerName.setText(this.getString(R.string.version) + " " +iVerName);
+			comment.setText(comm);
+			createdDate.setText(create);
+
+			if(uGrade == 1){
+				userGrade.setBackgroundResource(R.drawable.star_1);
+			}else if(uGrade == 2){
+				userGrade.setBackgroundResource(R.drawable.star_2);
+			}else if(uGrade == 3){
+				userGrade.setBackgroundResource(R.drawable.star_3);
+			}else if(uGrade == 4){
+				userGrade.setBackgroundResource(R.drawable.star_4);
+			}else if(uGrade == 5){
+				userGrade.setBackgroundResource(R.drawable.star_5);
+			}
+
+			linearListView.addView(linearView);
+
+			/*
+			linearView.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Toast.makeText(DetailActivity.this, "Clicked item;" + uName,
+							Toast.LENGTH_SHORT).show();
 				}
-	
-				linearListView.addView(linearView);
-	
-				linearView.setOnClickListener(new OnClickListener() {
-	
-					@Override
-					public void onClick(View v) {
-						// TODO Auto-generated method stub
-						Toast.makeText(DetailActivity.this, "Clicked item;" + uName,
-								Toast.LENGTH_SHORT).show();
-					}
-				});
-			}
-			float averageGrade = totalGrade/commentList.size();
-			
-			if(averageGrade == 0){
-				appGrade.setImageResource(R.drawable.star_0);
-			}else if(0 < averageGrade && averageGrade <= 0.5){
-				appGrade.setImageResource(R.drawable.star_05);
-			}else if(0.5 < averageGrade && averageGrade <= 1){
-				appGrade.setImageResource(R.drawable.star_1);
-			}else if(1 < averageGrade && averageGrade <= 1.5){
-				appGrade.setImageResource(R.drawable.star_15);
-			}else if(1.5 < averageGrade && averageGrade <= 2){
-				appGrade.setImageResource(R.drawable.star_2);
-			}else if(2 < averageGrade && averageGrade <= 2.5){
-				appGrade.setImageResource(R.drawable.star_25);
-			}else if(2.5 < averageGrade && averageGrade <= 3){
-				appGrade.setImageResource(R.drawable.star_3);
-			}else if(3 < averageGrade && averageGrade <= 3.5){
-				appGrade.setImageResource(R.drawable.star_35);
-			}else if(3.5 < averageGrade && averageGrade <= 4){
-				appGrade.setImageResource(R.drawable.star_4);
-			}else if(4 < averageGrade && averageGrade <= 4.5){
-				appGrade.setImageResource(R.drawable.star_45);
-			}else if(4.5 < averageGrade && averageGrade <= 5){
-				appGrade.setImageResource(R.drawable.star_5);
-			}
-			
-			HashSet hs = new HashSet(arrList);
-			List<String> newArrList = new ArrayList<String>(hs);
-			reviewerCount.setText("("+newArrList.size()+")");
-		}else{
-			appGrade.setImageResource(R.drawable.star_0);
-			reviewerCount.setText("(0)");
+			});
+			*/
 		}
+		float averageGrade = totalGrade/commentList.size();
+		
+		if(averageGrade == 0){
+			appGrade.setImageResource(R.drawable.star_0);
+		}else if(0 < averageGrade && averageGrade <= 0.5){
+			appGrade.setImageResource(R.drawable.star_05);
+		}else if(0.5 < averageGrade && averageGrade <= 1){
+			appGrade.setImageResource(R.drawable.star_1);
+		}else if(1 < averageGrade && averageGrade <= 1.5){
+			appGrade.setImageResource(R.drawable.star_15);
+		}else if(1.5 < averageGrade && averageGrade <= 2){
+			appGrade.setImageResource(R.drawable.star_2);
+		}else if(2 < averageGrade && averageGrade <= 2.5){
+			appGrade.setImageResource(R.drawable.star_25);
+		}else if(2.5 < averageGrade && averageGrade <= 3){
+			appGrade.setImageResource(R.drawable.star_3);
+		}else if(3 < averageGrade && averageGrade <= 3.5){
+			appGrade.setImageResource(R.drawable.star_35);
+		}else if(3.5 < averageGrade && averageGrade <= 4){
+			appGrade.setImageResource(R.drawable.star_4);
+		}else if(4 < averageGrade && averageGrade <= 4.5){
+			appGrade.setImageResource(R.drawable.star_45);
+		}else if(4.5 < averageGrade && averageGrade <= 5){
+			appGrade.setImageResource(R.drawable.star_5);
+		}
+		
+		HashSet hs = new HashSet(arrList);
+		List<String> newArrList = new ArrayList<String>(hs);
+		reviewerCount.setText("("+newArrList.size()+")");
 	}
 
 
