@@ -54,19 +54,19 @@ public class CommentRowAdapter extends ArrayAdapter<Comment> {
 		holder.comment = (TextView) view.findViewById(R.id.comment);
 		holder.userGrade = (ImageView) view.findViewById(R.id.usergrade);
 
-		if (holder.userName != null && null != comment.getReviewerName()
-				&& comment.getReviewerName().trim().length() > 0) {
-			holder.userName.setText(Html.fromHtml(comment.getReviewerName()));
+		if (holder.userName != null && null != comment.getCommentUserName()
+				&& comment.getCommentUserName().trim().length() > 0) {
+			holder.userName.setText(Html.fromHtml(comment.getCommentUserName()));
 		}
 
-		if (holder.installVerName != null && null != comment.getInstalledVerName()
-				&& comment.getInstalledVerName().trim().length() > 0) {
-			holder.installVerName.setText(Html.fromHtml(comment.getInstalledVerName()));
+		if (holder.installVerName != null && null != comment.getCommentAppVersion()
+				&& comment.getCommentAppVersion().trim().length() > 0) {
+			holder.installVerName.setText(Html.fromHtml(comment.getCommentAppVersion()));
 		}
 		
-		if (holder.comment != null && null != comment.getComment()
-				&& comment.getComment().trim().length() > 0) {
-			holder.comment.setText(Html.fromHtml(comment.getComment()));
+		if (holder.comment != null && null != comment.getComments()
+				&& comment.getComments().trim().length() > 0) {
+			holder.comment.setText(Html.fromHtml(comment.getComments()));
 		}
 
 		return view;

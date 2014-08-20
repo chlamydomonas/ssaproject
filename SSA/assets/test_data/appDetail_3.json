@@ -1,0 +1,79 @@
+{
+	"appDetail":{
+		"appDownloaded":"4231",
+		"fileSize":"22511",
+		"appUploadedDate":"2014-05-01",
+		"fildId":"appfileid_03",
+		"appScreenshot":[{
+			"screenshotUrl":"https://ssa-bas-project.googlecode.com/svn/screenshot_03_1.png"
+		}, {
+			"screenshotUrl":"https://ssa-bas-project.googlecode.com/svn/screenshot_03_2.png"
+		}, {
+			"screenshotUrl":"https://ssa-bas-project.googlecode.com/svn/screenshot_03_3.png"
+		}],
+		"appComment":[{
+			"appGrade":"5",
+			"comments":"유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.유용합니다. 잘 쓸게요.",
+			"commentDate":"2014-05-31",
+			"commentAppId":"",
+			"commentAppVersion":"1.0",
+			"commentUserId":"hyoungsun.park",
+			"commentDeptName":"부서_01",
+			"commentUserName":"박형선"
+		}, {
+			"appGrade":"5",
+			"comment":"아직 안 써봤는데, 믿고 별 5개 드립니다. 유용하게 사용했으면 합니다. 앞으로 건의 사항 있으면 들어주실 거죠? VOC를 잘 반영해주셨으면 합니다.",
+			"commentDate":"2014-05-31",
+			"commentAppId":"",
+			"commentAppVersion":"1.0",
+			"commentUserId":"hyoungsun.park",
+			"commentDeptName":"부서_01",
+			"commentUserName":"박형선"
+		}, {
+			"appGrade":"3",
+			"comments":"좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.",
+			"commentDate":"2014-06-22",
+			"commentAppId":"",
+			"commentAppVersion":"2.0",
+			"commentUserId":"younghee.lee",
+			"commentDeptName":"부서_02",
+			"commentUserName":"이영희"
+		}, {
+			"appGrade":"4",
+			"comments":"이만하면 괜찮습니다.이만하면 괜찮습니다.이만하면 괜찮습니다.이만하면 괜찮습니다.이만하면 괜찮습니다.이만하면 괜찮습니다.이만하면 괜찮습니다.",
+			"commentDate":"2014-04-03",
+			"commentAppId":"",
+			"commentAppVersion":"1.0",
+			"commentUserId":"minjeong.kim",
+			"commentDeptName":"부서_03",
+			"commentUserName":"김민정"
+		}, {
+			"appGrade":"2",
+			"comment":"500자 제한 걸려서 다 못 썼는데요...진짜 기능 별로입니다. 너무 안 좋네요. 사용하기 불편하고..원하는 기능도 없고..이거 언제 업뎃해주나요? 그리고 여기다가 불만 사항 쓰면 차기 업뎃 때 반영해주실 겁니까?",
+			"commentDate":"2014-05-13",
+			"commentAppId":"",
+			"commentAppVersion":"2.0",
+			"commentUserId":"seonghyun.yoon",
+			"commentDeptName":"부서_04",
+			"commentUserName":"윤성현"
+		}, {
+			"appGrade":"2",
+			"comment":"평점을 이미 줘서 수정할 수 없는데..가능하면 별점을 최하점으로 재조정하고 싶습니다. 기능이 이게 뭔가요?",
+			"commentDate":"2014-05-11",
+			"commentAppId":"",
+			"commentAppVersion":"2.0",
+			"commentUserId":"seonghyun.yoon",
+			"commentDeptName":"부서_04",
+			"commentUserName":"윤성현"
+		}, {
+			"appGrade":"2",
+			"comment":"별로네요.",
+			"commentDate":"2014-05-10",
+			"commentAppId":"",
+			"commentAppVersion":"2.0",
+			"commentUserId":"seonghyun.yoon",
+			"commentDeptName":"부서_04",
+			"commentUserName":"윤성현"
+		}]
+	}
+}

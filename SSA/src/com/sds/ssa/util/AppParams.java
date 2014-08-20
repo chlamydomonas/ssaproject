@@ -9,14 +9,14 @@ public class AppParams {
 	public static final String APP_SCREENSHOT_URL = "screenshotUrl";
 	public static final String APP_COMMENT = "appComment";
 	public static final String APP_COMMENT_ID = "appCommentId";
-	public static final String DEPT_ID = "deptId";
-	public static final String DEPT_NAME = "deptName";
-	public static final String REVIEWER_NAME = "reviewerName";
 	public static final String APP_GRADE = "appGrade";
-	public static final String COMMENT = "comment";
-	public static final String INSTALLED_VER_NAME = "installedVerName";
-	public static final String INSTALLED_VER_CODE = "installedVerCode";
-	
+	public static final String COMMENTS = "comments";
+	public static final String COMMENT_APP_ID = "commentAppId";
+	public static final String COMMENT_APP_VERSION = "commentAppVersion";
+	public static final String COMMENT_USER_ID = "commentUserId";
+	public static final String COMMENT_DEPT_NAME = "commentDeptName";
+	public static final String COMMENT_USER_NAME = "commentUserName";
+
 	public static final String APP_ARRAY_NAME = "application";
 	public static final String APP_ID = "appId";
 	public static final String APP_NAME = "appName";

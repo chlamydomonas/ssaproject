@@ -1,0 +1,14 @@
+{
+	"appDetail":{
+		"appDownloaded":"43",
+		"fileSize":"14288",
+		"appUploadedDate":"2014-07-12",
+		"fildId":"appfileid_02",
+		"appScreenshot":[{
+			"screenshotUrl":"https://ssa-bas-project.googlecode.com/svn/screenshot_02_1.png"
+		}, {
+			"screenshotUrl":"https://ssa-bas-project.googlecode.com/svn/screenshot_02_2.png"
+		}],
+		"appComment":[]
+	}
+}

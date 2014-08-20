@@ -263,21 +263,44 @@
 			        android:layout_height="wrap_content"
 			        android:layout_gravity="left|center_vertical"
 			        android:layout_weight="1"
-			        android:layout_marginTop="10dp" 
-			        android:layout_marginLeft="7dp" 
-			        android:gravity="left|center_vertical"
+			        android:layout_marginTop="9dp" 
+			        android:layout_marginLeft="7dp"
 			        android:singleLine="true"
 			        android:text="@string/review"
 					android:textColor="#413839"
 			        android:textSize="18dip"
 			        android:textStyle="bold" />    
+			        
+			    <ImageView
+			        android:id="@+id/appgrade"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="right|center_vertical"
+			        android:layout_marginTop="7dp" 
+			        android:layout_marginRight="10dp" 
+			        android:gravity="right|center_vertical" />
+			    
+			    <TextView
+			        android:id="@+id/reviewercount"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="right|center_vertical"
+			        android:layout_weight="1"
+			        android:layout_marginTop="7dp" 
+			        android:layout_marginRight="7dp" 
+			        android:gravity="right|center_vertical"
+			        android:layout_toRightOf="@+id/appgrade"
+			        android:text="(0)"
+					android:textColor="#413839"
+			        android:textSize="12dip" />    
+			        
 			    <Button
 			        android:id="@+id/reviewbtn"
 			        android:layout_marginTop="15dp" 
 			        android:layout_marginRight="7dp" 
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
-			        android:text="@string/write_review"
+			        android:visibility="gone"
 			        android:textColor="#413839"
 			        android:textSize="12dip"
 			        android:background="@drawable/review_btn_selector" />

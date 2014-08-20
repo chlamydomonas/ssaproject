@@ -2,68 +2,62 @@ package com.sds.ssa.vo;
 
 public class Comment {
 	
-	private String appCommentId;
-	private String deptId;
-	private String deptName;
-	private String reviewerName;
-	private String created;
 	private String appGrade;
-	private String comment;
-	private String installedVerName;
-	private String installedVerCode;
-	
-	public String getAppCommentId() {
-		return appCommentId;
-	}
-	public void setAppCommentId(String appCommentId) {
-		this.appCommentId = appCommentId;
-	}
-	public String getDeptId() {
-		return deptId;
-	}
-	public void setDeptId(String deptId) {
-		this.deptId = deptId;
-	}
-	public String getDeptName() {
-		return deptName;
-	}
-	public void setDeptName(String deptName) {
-		this.deptName = deptName;
-	}
-	public String getReviewerName() {
-		return reviewerName;
-	}
-	public void setReviewerName(String reviewerName) {
-		this.reviewerName = reviewerName;
-	}
-	public String getCreated() {
-		return created;
-	}
-	public void setCreated(String created) {
-		this.created = created;
-	}
+	private String comments;
+	private String commentDate;
+	private String commentAppId;
+	private String commentAppVersion;
+	private String commentUserId;
+	private String commentDeptName;
+	private String commentUserName;
 	public String getAppGrade() {
 		return appGrade;
 	}
 	public void setAppGrade(String appGrade) {
 		this.appGrade = appGrade;
 	}
-	public String getComment() {
-		return comment;
+	public String getComments() {
+		return comments;
 	}
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
-	public String getInstalledVerName() {
-		return installedVerName;
+	public String getCommentDate() {
+		return commentDate;
 	}
-	public void setInstalledVerName(String installedVerName) {
-		this.installedVerName = installedVerName;
+	public void setCommentDate(String commentDate) {
+		this.commentDate = commentDate;
 	}
-	public String getInstalledVerCode() {
-		return installedVerCode;
+	public String getCommentAppId() {
+		return commentAppId;
 	}
-	public void setInstalledVerCode(String installedVerCode) {
-		this.installedVerCode = installedVerCode;
+	public void setCommentAppId(String commentAppId) {
+		this.commentAppId = commentAppId;
 	}
+	public String getCommentAppVersion() {
+		return commentAppVersion;
+	}
+	public void setCommentAppVersion(String commentAppVersion) {
+		this.commentAppVersion = commentAppVersion;
+	}
+	public String getCommentUserId() {
+		return commentUserId;
+	}
+	public void setCommentUserId(String commentUserId) {
+		this.commentUserId = commentUserId;
+	}
+	public String getCommentDeptName() {
+		return commentDeptName;
+	}
+	public void setCommentDeptName(String commentDeptName) {
+		this.commentDeptName = commentDeptName;
+	}
+	public String getCommentUserName() {
+		return commentUserName;
+	}
+	public void setCommentUserName(String commentUserName) {
+		this.commentUserName = commentUserName;
+	}
+
 }
+

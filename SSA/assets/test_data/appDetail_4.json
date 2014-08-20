@@ -1,0 +1,45 @@
+{
+	"appDetail":{
+		"appDownloaded":"328",
+		"fileSize":"3721",
+		"appUploadedDate":"2014-06-29",
+		"fildId":"appfileid_01",
+		"appScreenshot":[{
+			"screenshotUrl":"https://ssa-bas-project.googlecode.com/svn/screenshot_04_1.png"
+		}, {
+			"screenshotUrl":"https://ssa-bas-project.googlecode.com/svn/screenshot_04_2.png"
+		}, {
+			"screenshotUrl":"https://ssa-bas-project.googlecode.com/svn/screenshot_04_3.png"
+		}, {
+			"screenshotUrl":"https://ssa-bas-project.googlecode.com/svn/screenshot_04_4.png"
+		}],
+		"appComment":[{
+			"appGrade":"3",
+			"comments":"좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.좀 불편하네요.",
+			"commentDate":"2014-06-22",
+			"commentAppId":"",
+			"commentAppVersion":"2.0",
+			"commentUserId":"younghee.lee",
+			"commentDeptName":"부서_02",
+			"commentUserName":"이영희"
+		}, {
+			"appGrade":"1",
+			"comments":"별로네요...실망스럽습니다.",
+			"commentDate":"2014-04-03",
+			"commentAppId":"",
+			"commentAppVersion":"1.0",
+			"commentUserId":"minjeong.kim",
+			"commentDeptName":"부서_03",
+			"commentUserName":"김민정"
+		}, {
+			"appGrade":"4",
+			"comments":"아직 다운받고 써보지는 않았는데 좋은 것 같아요.아직 다운받고 써보지는 않았는데 좋은 것 같아요.아직 다운받고 써보지는 않았는데 좋은 것 같아요.",
+			"commentDate":"2014-05-29",
+			"commentAppId":"",
+			"commentAppVersion":"2.0",
+			"commentUserId":"minyougn.choi",
+			"commentDeptName":"부서_04",
+			"commentUserName":"최민영"
+		}]
+	}
+}

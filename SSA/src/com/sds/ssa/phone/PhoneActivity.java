@@ -17,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.sds.ssa.R;
 import com.sds.ssa.adapter.NavigationAdapter;
@@ -198,10 +197,12 @@ public class PhoneActivity extends ActionBarActivity{
 		FragmentManager fragmentManager = getSupportFragmentManager();							
 		
 		switch (position) {
-		case 0:			
+		case 0:
+			getActionBar().setTitle(getString(R.string.app_name));
 			fragmentManager.beginTransaction().replace(R.id.content_frame, new ViewPagerFragment()).commit();
 			break;					
 		case 1:
+			getActionBar().setTitle(getString(R.string.update));
 			fragmentManager.beginTransaction().replace(R.id.content_frame, new FragMent3()).commit();
 			break;			
 		}			
