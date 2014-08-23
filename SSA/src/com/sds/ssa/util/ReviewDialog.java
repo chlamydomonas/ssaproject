@@ -41,11 +41,12 @@ public class ReviewDialog extends Dialog{
 		
 		setLayout();
 		setTitle();
-		setRateStart1();
-		setRateStart2();
-		setRateStart3();
-		setRateStart4();
-		setRateStart5();
+		setRateStar0();
+		setRateStar1();
+		setRateStar2();
+		setRateStar3();
+		setRateStar4();
+		setRateStar5();
 		setCancelClickListener(cancelClickListener);
 		setConfirmClickListener(confirmClickListener);
 	}
@@ -66,7 +67,11 @@ public class ReviewDialog extends Dialog{
 		titleView.setText(R.string.write_review);
 	}
 	
-	private void setRateStart1() {
+	private void setRateStar0() {
+		reset();
+	}
+	
+	private void setRateStar1() {
 		if(star == 1){
 			rateStar1.setImageResource(R.drawable.filled_star);
 		}
@@ -80,7 +85,7 @@ public class ReviewDialog extends Dialog{
 		});
 	}
 
-	private void setRateStart2() {
+	private void setRateStar2() {
 		if(star == 2){
 			rateStar1.setImageResource(R.drawable.filled_star);
 			rateStar2.setImageResource(R.drawable.filled_star);
@@ -96,7 +101,7 @@ public class ReviewDialog extends Dialog{
 		});
 	}
 	
-	private void setRateStart3() {
+	private void setRateStar3() {
 		if(star == 3){
 			rateStar1.setImageResource(R.drawable.filled_star);
 			rateStar2.setImageResource(R.drawable.filled_star);
@@ -114,7 +119,7 @@ public class ReviewDialog extends Dialog{
 		});
 	}
 
-	private void setRateStart4() {
+	private void setRateStar4() {
 		if(star == 4){
 			rateStar1.setImageResource(R.drawable.filled_star);
 			rateStar2.setImageResource(R.drawable.filled_star);
@@ -134,7 +139,7 @@ public class ReviewDialog extends Dialog{
 		});
 	}
 	
-	private void setRateStart5() {
+	private void setRateStar5() {
 		if(star == 5){
 			rateStar1.setImageResource(R.drawable.filled_star);
 			rateStar2.setImageResource(R.drawable.filled_star);

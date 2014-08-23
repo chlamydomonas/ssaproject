@@ -55,7 +55,7 @@ public class DetailActivity extends Activity {
 
 	private ProgressBar pbar;
 	private TextView appName, appDesc, appSummary, appManual, categoryName, created, appVerName, reviewerCount;
-	private ImageView imgView, rateStar1, rateStar2, rateStar3, rateStar4, rateStar5, appGrade;
+	private ImageView imgView, /*rateStar1, rateStar2, rateStar3, rateStar4, rateStar5,*/ appGrade;
 	private Button downloadBtn, reviewBtn;
 
 	private ReviewDialog reviewDialog;	
@@ -89,11 +89,11 @@ public class DetailActivity extends Activity {
 		downloadBtn = (Button) findViewById(R.id.downloadbtn);
 		created = (TextView) findViewById(R.id.created);
 		appVerName = (TextView) findViewById(R.id.appvername);
-		rateStar1 = (ImageView) findViewById(R.id.ratestar1);
-		rateStar2 = (ImageView) findViewById(R.id.ratestar2);	
-		rateStar3 = (ImageView) findViewById(R.id.ratestar3);
-		rateStar4 = (ImageView) findViewById(R.id.ratestar4);
-		rateStar5 = (ImageView) findViewById(R.id.ratestar5);
+//		rateStar1 = (ImageView) findViewById(R.id.ratestar1);
+//		rateStar2 = (ImageView) findViewById(R.id.ratestar2);	
+//		rateStar3 = (ImageView) findViewById(R.id.ratestar3);
+//		rateStar4 = (ImageView) findViewById(R.id.ratestar4);
+//		rateStar5 = (ImageView) findViewById(R.id.ratestar5);
 		reviewBtn = (Button) findViewById(R.id.reviewbtn);
 		appGrade = (ImageView) findViewById(R.id.appgrade);
 		reviewerCount = (TextView) findViewById(R.id.reviewercount);
@@ -161,16 +161,23 @@ public class DetailActivity extends Activity {
           	}
 		});
 		
-//		reviewBtn.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				mCustomDialog = new CustomDialog(v.getContext(), 
-//						"8�붿쓽 �щ━�ㅻ쭏��!",
-//						"�곹솕蹂대윭媛�옄~!!!",
-//						leftClickListener);
-//				mCustomDialog.show();
-//          	}
-//		});
+		final String thisUserId = userInfo.getUserId();
+		reviewBtn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				
+				int registeredGrade = 0;
+				for(int i=0; i<commentList.size(); i++){
+					if(commentList.get(i).getCommentUserId().equals(thisUserId)){
+						Log.v("bas", commentList.get(i).getAppGrade());
+						registeredGrade = Integer.parseInt(commentList.get(i).getAppGrade());
+					}
+				}
+				//registerComment(v, registeredGrade);
+				registerComment(v, 0);
+          	}
+		});
+		/*
 		rateStar1.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -221,7 +228,7 @@ public class DetailActivity extends Activity {
 				registerComment(v, 5);
           	}
 		});
-		
+		*/
 		
 		String url = b.getString("url");
 		loadImageFromURL(url);
@@ -255,6 +262,7 @@ public class DetailActivity extends Activity {
 		reviewDialog.show();
 	}
 
+	/*
 	private void reset() {
 		rateStar1.setImageResource(R.drawable.blank_star);
 		rateStar2.setImageResource(R.drawable.blank_star);
@@ -262,11 +270,12 @@ public class DetailActivity extends Activity {
 		rateStar4.setImageResource(R.drawable.blank_star);
 		rateStar5.setImageResource(R.drawable.blank_star);
 	}
+	*/
 	
 	private View.OnClickListener cancelClickListener = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			reset();
+			//reset();
 			reviewDialog.dismiss();
 		}
 	};
@@ -274,7 +283,7 @@ public class DetailActivity extends Activity {
 	private View.OnClickListener confirmClickListener = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			reset();
+			//();
 			Toast.makeText(getApplicationContext(), "confirm", 
 					Toast.LENGTH_SHORT).show();
 		}

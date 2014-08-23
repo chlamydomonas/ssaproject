@@ -198,6 +198,7 @@
 		        android:text="Manual"
 		        android:textColor="#504A4B" />
 		
+		    <!-- 
 		    <View
 			    android:layout_width="fill_parent"
 			    android:layout_height="1dp"
@@ -212,7 +213,7 @@
 				android:text="@string/rate_app"
 				android:textColor="#413839"
 		        android:textSize="12dip" />
-		    
+
 	    	<LinearLayout 
 	        	android:orientation="horizontal"
 			    android:layout_width="fill_parent"
@@ -254,6 +255,7 @@
 			        android:layout_height="match_parent"
 			        android:layout_weight="1"/>
 			</LinearLayout>
+		    -->
 		    
 	    	<View
 			    android:layout_width="fill_parent"
@@ -268,9 +270,8 @@
 			    <TextView
 			        android:layout_width="0dp"
 			        android:layout_height="wrap_content"
-			        android:layout_gravity="left|center_vertical"
 			        android:layout_weight="1"
-			        android:layout_marginTop="9dp" 
+			        android:layout_marginTop="10dp" 
 			        android:layout_marginLeft="7dp"
 			        android:singleLine="true"
 			        android:text="@string/review"
@@ -282,28 +283,22 @@
 			        android:id="@+id/appgrade"
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
-			        android:layout_gravity="right|center_vertical"
-			        android:layout_marginTop="7dp" 
-			        android:layout_marginRight="10dp" 
-			        android:gravity="right|center_vertical" />
+			        android:layout_marginTop="17dp" 
+			        android:layout_marginRight="10dp"  />
 			    
 			    <TextView
 			        android:id="@+id/reviewercount"
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
-			        android:layout_gravity="right|center_vertical"
-			        android:layout_weight="1"
-			        android:layout_marginTop="7dp" 
+			        android:layout_marginTop="8dp" 
 			        android:layout_marginRight="7dp" 
-			        android:gravity="right|center_vertical"
-			        android:layout_toRightOf="@+id/appgrade"
 			        android:text="(0)"
 					android:textColor="#413839"
 			        android:textSize="12dip" />    
 			        
 			    <Button
 			        android:id="@+id/reviewbtn"
-			        android:layout_marginTop="15dp" 
+			        android:layout_marginTop="8dp" 
 			        android:layout_marginRight="7dp" 
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
@@ -318,7 +313,8 @@
                 android:id="@+id/commentlistview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:orientation="vertical"
+                android:layout_marginBottom="13dip" />
 
 		</LinearLayout>
     
