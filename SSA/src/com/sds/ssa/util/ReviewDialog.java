@@ -76,13 +76,15 @@ public class ReviewDialog extends Dialog{
 			rateStar1.setImageResource(R.drawable.filled_star);
 		}
 		
-		rateStar1.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				reset();
-				rateStar1.setImageResource(R.drawable.filled_star);
-          	}
-		});
+		if(star == 0){
+			rateStar1.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					reset();
+					rateStar1.setImageResource(R.drawable.filled_star);
+	          	}
+			});
+		}
 	}
 
 	private void setRateStar2() {
@@ -91,14 +93,16 @@ public class ReviewDialog extends Dialog{
 			rateStar2.setImageResource(R.drawable.filled_star);
 		}
 		
-		rateStar2.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				reset();
-				rateStar1.setImageResource(R.drawable.filled_star);
-				rateStar2.setImageResource(R.drawable.filled_star);
-          	}
-		});
+		if(star == 0){
+			rateStar2.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					reset();
+					rateStar1.setImageResource(R.drawable.filled_star);
+					rateStar2.setImageResource(R.drawable.filled_star);
+	          	}
+			});
+		}
 	}
 	
 	private void setRateStar3() {
@@ -108,15 +112,17 @@ public class ReviewDialog extends Dialog{
 			rateStar3.setImageResource(R.drawable.filled_star);
 		}
 		
-		rateStar3.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				reset();
-				rateStar1.setImageResource(R.drawable.filled_star);
-				rateStar2.setImageResource(R.drawable.filled_star);
-				rateStar3.setImageResource(R.drawable.filled_star);
-          	}
-		});
+		if(star == 0){
+			rateStar3.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					reset();
+					rateStar1.setImageResource(R.drawable.filled_star);
+					rateStar2.setImageResource(R.drawable.filled_star);
+					rateStar3.setImageResource(R.drawable.filled_star);
+	          	}
+			});
+		}
 	}
 
 	private void setRateStar4() {
@@ -127,16 +133,18 @@ public class ReviewDialog extends Dialog{
 			rateStar4.setImageResource(R.drawable.filled_star);	
 		}
 		
-		rateStar4.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				reset();
-				rateStar1.setImageResource(R.drawable.filled_star);
-				rateStar2.setImageResource(R.drawable.filled_star);
-				rateStar3.setImageResource(R.drawable.filled_star);
-				rateStar4.setImageResource(R.drawable.filled_star);
-          	}
-		});
+		if(star == 0){
+			rateStar4.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					reset();
+					rateStar1.setImageResource(R.drawable.filled_star);
+					rateStar2.setImageResource(R.drawable.filled_star);
+					rateStar3.setImageResource(R.drawable.filled_star);
+					rateStar4.setImageResource(R.drawable.filled_star);
+	          	}
+			});
+		}
 	}
 	
 	private void setRateStar5() {
@@ -148,17 +156,19 @@ public class ReviewDialog extends Dialog{
 			rateStar5.setImageResource(R.drawable.filled_star);
 		}
 		
-		rateStar5.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				reset();
-				rateStar1.setImageResource(R.drawable.filled_star);
-				rateStar2.setImageResource(R.drawable.filled_star);
-				rateStar3.setImageResource(R.drawable.filled_star);
-				rateStar4.setImageResource(R.drawable.filled_star);
-				rateStar5.setImageResource(R.drawable.filled_star);
-          	}
-		});
+		if(star == 0){
+			rateStar5.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					reset();
+					rateStar1.setImageResource(R.drawable.filled_star);
+					rateStar2.setImageResource(R.drawable.filled_star);
+					rateStar3.setImageResource(R.drawable.filled_star);
+					rateStar4.setImageResource(R.drawable.filled_star);
+					rateStar5.setImageResource(R.drawable.filled_star);
+	          	}
+			});
+		}
 	}
 	
 	private void setCancelClickListener(View.OnClickListener cancelListener){

@@ -160,21 +160,19 @@ public class DetailActivity extends Activity {
 				
           	}
 		});
-		
+
 		final String thisUserId = userInfo.getUserId();
 		reviewBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
+			
 				int registeredGrade = 0;
 				for(int i=0; i<commentList.size(); i++){
 					if(commentList.get(i).getCommentUserId().equals(thisUserId)){
-						Log.v("bas", commentList.get(i).getAppGrade());
 						registeredGrade = Integer.parseInt(commentList.get(i).getAppGrade());
 					}
 				}
-				//registerComment(v, registeredGrade);
-				registerComment(v, 0);
+				registerComment(v, registeredGrade);
           	}
 		});
 		/*
@@ -232,8 +230,11 @@ public class DetailActivity extends Activity {
 		
 		String url = b.getString("url");
 		loadImageFromURL(url);
-		String lastChar = appId.substring(appId.length()-1, appId.length());
-		int lastNum = Integer.parseInt(lastChar);
+		
+		
+		// Hardcoding start
+		String idNum = appId.split("_")[1];
+		int lastNum = Integer.parseInt(idNum);
 		String lastAddress = this.getString(R.string.detail_link_1);
 		if(lastNum % 4 == 1){
 			lastAddress = this.getString(R.string.detail_link_1);
@@ -244,6 +245,7 @@ public class DetailActivity extends Activity {
 		}else if(lastNum % 4 == 0){
 			lastAddress = this.getString(R.string.detail_link_4);
 		}
+		// Hardcoding end
 		
 		if (Utils.isNetworkAvailable(DetailActivity.this)) {
 			String appDetailLink = this.getString(R.string.server_address) + lastAddress;
@@ -368,7 +370,7 @@ public class DetailActivity extends Activity {
 					}
 					
 					JSONArray commentArray = appDetail.getJSONArray(AppParams.APP_COMMENT);
-
+					
 					for (int i = 0; i < commentArray.length(); i++) {
 						JSONObject commentObj = commentArray.getJSONObject(i);
 						
