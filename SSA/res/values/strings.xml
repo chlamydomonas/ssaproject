@@ -38,4 +38,5 @@
     <string name="write_review">Write a review</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
+    <string name="myapp">My App</string>
 </resources>

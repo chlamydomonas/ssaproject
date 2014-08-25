@@ -65,8 +65,8 @@ public class CategoryExpandableListAdapter extends BaseExpandableListAdapter {
 
     	// from "AppsRowAdater" start    	
     	options = new DisplayImageOptions.Builder()
-				.showStubImage(R.drawable.profile)
-				.showImageForEmptyUrl(R.drawable.profile).cacheInMemory()
+				.showStubImage(R.drawable.noimage)
+				.showImageForEmptyUrl(R.drawable.noimage).cacheInMemory()
 				.cacheOnDisc().build();
     	imageLoader = ImageLoader.getInstance();
         // from "AppsRowAdater" end

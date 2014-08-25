@@ -294,7 +294,7 @@ int drawable list_devider 0x7f020071
 int drawable list_selector 0x7f020072
 int drawable listview_background 0x7f020073
 int drawable new_icon 0x7f020074
-int drawable profile 0x7f020075
+int drawable noimage 0x7f020075
 int drawable rectangle_counter 0x7f020076
 int drawable review_btn_selector 0x7f020077
 int drawable selector 0x7f020078
@@ -518,6 +518,7 @@ int string drawer_close 0x7f0a0010
 int string drawer_open 0x7f0a000f
 int string is_new_day 0x7f0a001b
 int string manual 0x7f0a0027
+int string myapp 0x7f0a002e
 int string no 0x7f0a0024
 int string rate_app 0x7f0a002a
 int string review 0x7f0a0028
@@ -529,7 +530,7 @@ int string title_section1 0x7f0a001c
 int string title_section2 0x7f0a001d
 int string title_section3 0x7f0a001e
 int string update 0x7f0a0021
-int string updateMsg 0x7f0a002e
+int string updateMsg 0x7f0a002f
 int string update_link 0x7f0a0014
 int string updatedMsg 0x7f0a0022
 int string version 0x7f0a0029

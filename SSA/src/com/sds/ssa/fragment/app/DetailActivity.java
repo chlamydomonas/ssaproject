@@ -55,7 +55,7 @@ public class DetailActivity extends Activity {
 
 	private ProgressBar pbar;
 	private TextView appName, appDesc, appSummary, appManual, categoryName, created, appVerName, reviewerCount;
-	private ImageView imgView, /*rateStar1, rateStar2, rateStar3, rateStar4, rateStar5,*/ appGrade;
+	private ImageView imgView, appGrade;
 	private Button downloadBtn, reviewBtn;
 
 	private ReviewDialog reviewDialog;	
@@ -89,11 +89,6 @@ public class DetailActivity extends Activity {
 		downloadBtn = (Button) findViewById(R.id.downloadbtn);
 		created = (TextView) findViewById(R.id.created);
 		appVerName = (TextView) findViewById(R.id.appvername);
-//		rateStar1 = (ImageView) findViewById(R.id.ratestar1);
-//		rateStar2 = (ImageView) findViewById(R.id.ratestar2);	
-//		rateStar3 = (ImageView) findViewById(R.id.ratestar3);
-//		rateStar4 = (ImageView) findViewById(R.id.ratestar4);
-//		rateStar5 = (ImageView) findViewById(R.id.ratestar5);
 		reviewBtn = (Button) findViewById(R.id.reviewbtn);
 		appGrade = (ImageView) findViewById(R.id.appgrade);
 		reviewerCount = (TextView) findViewById(R.id.reviewercount);
@@ -175,63 +170,10 @@ public class DetailActivity extends Activity {
 				registerComment(v, registeredGrade);
           	}
 		});
-		/*
-		rateStar1.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				reset();
-				rateStar1.setImageResource(R.drawable.filled_star);
-				registerComment(v,  1);
-          	}
-		});
-		rateStar2.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				reset();
-				rateStar1.setImageResource(R.drawable.filled_star);
-				rateStar2.setImageResource(R.drawable.filled_star);
-				registerComment(v, 2);
-          	}
-		});
-		rateStar3.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				reset();
-				rateStar1.setImageResource(R.drawable.filled_star);
-				rateStar2.setImageResource(R.drawable.filled_star);
-				rateStar3.setImageResource(R.drawable.filled_star);
-				registerComment(v, 3);
-          	}
-		});
-		rateStar4.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				reset();
-				rateStar1.setImageResource(R.drawable.filled_star);
-				rateStar2.setImageResource(R.drawable.filled_star);
-				rateStar3.setImageResource(R.drawable.filled_star);
-				rateStar4.setImageResource(R.drawable.filled_star);
-				registerComment(v, 4);
-          	}
-		});
-		rateStar5.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				reset();
-				rateStar1.setImageResource(R.drawable.filled_star);
-				rateStar2.setImageResource(R.drawable.filled_star);
-				rateStar3.setImageResource(R.drawable.filled_star);
-				rateStar4.setImageResource(R.drawable.filled_star);
-				rateStar5.setImageResource(R.drawable.filled_star);
-				registerComment(v, 5);
-          	}
-		});
-		*/
 		
 		String url = b.getString("url");
 		loadImageFromURL(url);
-		
-		
+
 		// Hardcoding start
 		String idNum = appId.split("_")[1];
 		int lastNum = Integer.parseInt(idNum);
@@ -264,16 +206,6 @@ public class DetailActivity extends Activity {
 		reviewDialog.show();
 	}
 
-	/*
-	private void reset() {
-		rateStar1.setImageResource(R.drawable.blank_star);
-		rateStar2.setImageResource(R.drawable.blank_star);
-		rateStar3.setImageResource(R.drawable.blank_star);
-		rateStar4.setImageResource(R.drawable.blank_star);
-		rateStar5.setImageResource(R.drawable.blank_star);
-	}
-	*/
-	
 	private View.OnClickListener cancelClickListener = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
@@ -293,8 +225,8 @@ public class DetailActivity extends Activity {
 	
 	private void loadImageFromURL(String url) {
 		options = new DisplayImageOptions.Builder()
-				.showStubImage(R.drawable.profile)
-				.showImageForEmptyUrl(R.drawable.profile).cacheInMemory()
+				.showStubImage(R.drawable.noimage)
+				.showImageForEmptyUrl(R.drawable.noimage).cacheInMemory()
 				.cacheOnDisc().build();
 
 		imageLoader = ImageLoader.getInstance();
@@ -410,11 +342,8 @@ public class DetailActivity extends Activity {
 		//commentRowAdapter = new CommentRowAdapter(DetailActivity.this, R.layout.application_detail_comment_row, commentList);
 		//listView.setAdapter(commentRowAdapter);
 
-		List<String> arrList = new ArrayList<String>();
-		
-		int totalGrade = 0;
+		float totalGrade = (float) 0.0;
 		for (int i = 0; i < commentList.size(); i++) {
-			arrList.add(commentList.get(i).getCommentUserId()); //사실 ID로 해야 한다. 나중에 고친다.
 			
 			LayoutInflater inflater = null;
 			inflater = (LayoutInflater) getApplicationContext()
@@ -455,48 +384,35 @@ public class DetailActivity extends Activity {
 			}
 
 			linearListView.addView(linearView);
-
-			/*
-			linearView.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					Toast.makeText(DetailActivity.this, "Clicked item;" + uName,
-							Toast.LENGTH_SHORT).show();
-				}
-			});
-			*/
 		}
-		float averageGrade = totalGrade/commentList.size();
-		
-		if(averageGrade == 0){
+
+		float commentSize = commentList.size();
+		float averageGrade = totalGrade/commentSize;
+
+		if(averageGrade < 0.25){
 			appGrade.setImageResource(R.drawable.star_0);
-		}else if(0 < averageGrade && averageGrade <= 0.5){
+		}else if(0.25 <= averageGrade && averageGrade < 0.75){
 			appGrade.setImageResource(R.drawable.star_05);
-		}else if(0.5 < averageGrade && averageGrade <= 1){
+		}else if(0.75 <= averageGrade && averageGrade < 1.25){
 			appGrade.setImageResource(R.drawable.star_1);
-		}else if(1 < averageGrade && averageGrade <= 1.5){
+		}else if(1.25 <= averageGrade && averageGrade < 1.75){
 			appGrade.setImageResource(R.drawable.star_15);
-		}else if(1.5 < averageGrade && averageGrade <= 2){
+		}else if(1.75 <= averageGrade && averageGrade < 2.25){
 			appGrade.setImageResource(R.drawable.star_2);
-		}else if(2 < averageGrade && averageGrade <= 2.5){
+		}else if(2.25 <= averageGrade && averageGrade < 2.75){
 			appGrade.setImageResource(R.drawable.star_25);
-		}else if(2.5 < averageGrade && averageGrade <= 3){
+		}else if(2.75 <= averageGrade && averageGrade < 3.25){
 			appGrade.setImageResource(R.drawable.star_3);
-		}else if(3 < averageGrade && averageGrade <= 3.5){
+		}else if(3.25 <= averageGrade && averageGrade < 3.75){
 			appGrade.setImageResource(R.drawable.star_35);
-		}else if(3.5 < averageGrade && averageGrade <= 4){
+		}else if(3.75 <= averageGrade && averageGrade < 4.25){
 			appGrade.setImageResource(R.drawable.star_4);
-		}else if(4 < averageGrade && averageGrade <= 4.5){
+		}else if(4.25 <= averageGrade && averageGrade < 4.75){
 			appGrade.setImageResource(R.drawable.star_45);
-		}else if(4.5 < averageGrade && averageGrade <= 5){
+		}else if(4.75 <= averageGrade){
 			appGrade.setImageResource(R.drawable.star_5);
 		}
-		
-		HashSet hs = new HashSet(arrList);
-		List<String> newArrList = new ArrayList<String>(hs);
-		reviewerCount.setText("("+newArrList.size()+")");
+		reviewerCount.setText("("+commentList.size()+")");
 	}
 
 
@@ -510,8 +426,8 @@ public class DetailActivity extends Activity {
         	ImageView image = new ImageView( this ); 
         	
             options = new DisplayImageOptions.Builder()
-			.showStubImage(R.drawable.profile)
-			.showImageForEmptyUrl(R.drawable.profile).cacheInMemory()
+			.showStubImage(R.drawable.noimage)
+			.showImageForEmptyUrl(R.drawable.noimage).cacheInMemory()
 			.cacheOnDisc().build();
 
             topLinearLayout.addView(image);

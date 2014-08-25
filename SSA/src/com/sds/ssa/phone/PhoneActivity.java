@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.sds.ssa.R;
 import com.sds.ssa.adapter.NavigationAdapter;
+import com.sds.ssa.fragment.myapp.MyAppFragMent;
 import com.sds.ssa.fragment.update.FragMent3;
 import com.sds.ssa.fragments.ViewPagerFragment;
 import com.sds.ssa.util.Menus;
@@ -202,8 +203,8 @@ public class PhoneActivity extends ActionBarActivity{
 			fragmentManager.beginTransaction().replace(R.id.content_frame, new ViewPagerFragment()).commit();
 			break;					
 		case 1:
-			getActionBar().setTitle(getString(R.string.update));
-			fragmentManager.beginTransaction().replace(R.id.content_frame, new FragMent3()).commit();
+			getActionBar().setTitle(getString(R.string.myapp));
+			fragmentManager.beginTransaction().replace(R.id.content_frame, new MyAppFragMent()).commit();
 			break;			
 		}			
 	

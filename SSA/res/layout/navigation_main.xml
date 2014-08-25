@@ -56,7 +56,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="14dp"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/profile" />
+                    android:src="@drawable/noimage" />
             </RelativeLayout>
 
             <ListView

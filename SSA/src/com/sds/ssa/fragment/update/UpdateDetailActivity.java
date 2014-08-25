@@ -79,8 +79,8 @@ public class UpdateDetailActivity extends Activity {
 	
 	private void loadImageFromURL(String url) {
 		options = new DisplayImageOptions.Builder()
-				.showStubImage(R.drawable.profile)
-				.showImageForEmptyUrl(R.drawable.profile).cacheInMemory()
+				.showStubImage(R.drawable.noimage)
+				.showImageForEmptyUrl(R.drawable.noimage).cacheInMemory()
 				.cacheOnDisc().build();
 
 		imageLoader = ImageLoader.getInstance();
