@@ -22,7 +22,6 @@ import com.sds.ssa.R;
 import com.sds.ssa.adapter.ViewPagerAdapter;
 import com.sds.ssa.sliding.SamplePagerItem;
 import com.sds.ssa.sliding.SlidingTabLayout;
-import com.sds.ssa.util.Menus;
 
 public class ViewPagerFragment extends Fragment{
 	

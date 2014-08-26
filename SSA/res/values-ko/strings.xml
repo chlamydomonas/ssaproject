@@ -23,4 +23,5 @@
     <string name="cancel">취소</string>
     <string name="confirm">확인</string>
     <string name="myapp">나의 앱</string>
+    <string name="latestversion">최신 버전</string>
 </resources>

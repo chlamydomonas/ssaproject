@@ -39,4 +39,5 @@
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
     <string name="myapp">My App</string>
+    <string name="latestversion">Latest Version</string>
 </resources>

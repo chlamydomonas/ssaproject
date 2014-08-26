@@ -9,7 +9,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -32,11 +34,13 @@ import android.widget.Toast;
 
 import com.sds.ssa.R;
 import com.sds.ssa.adapter.ApplicationRowAdapter;
+import com.sds.ssa.adapter.UpdateRowAdapter;
 import com.sds.ssa.fragment.app.DetailActivity;
 import com.sds.ssa.search.SearchActivity;
 import com.sds.ssa.util.AppParams;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
+import com.sds.ssa.vo.UserInfo;
 
 @SuppressLint("ValidFragment")
 public class MyAppFragMent extends Fragment implements OnItemClickListener {
@@ -47,21 +51,29 @@ public class MyAppFragMent extends Fragment implements OnItemClickListener {
     }	
 
 	List<Application> applicationList;
-	ListView listView;
-	ApplicationRowAdapter appsRowAdapter;
+	List<Application> installedList;
+	List<Application> updateList;
+	ListView updatelistview;
+	ListView installedlistview;
+	ApplicationRowAdapter installedRowAdapter;
+	UpdateRowAdapter updateRowAdapter;
 	private boolean searchCheck;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		
-		View view = inflater.inflate(R.layout.application_listview, container, false);
-		listView = (ListView) view.findViewById(R.id.listview);
-		listView.setItemsCanFocus(false);
-		//listView.setOnItemClickListener(this);
+		View view = inflater.inflate(R.layout.myapp_listview, container, false);
+		updatelistview = (ListView) view.findViewById(R.id.updatelistview);
+		updatelistview.setItemsCanFocus(false);
+		
+		installedlistview = (ListView) view.findViewById(R.id.installedlistview);
+		installedlistview.setItemsCanFocus(false);
 		
 		applicationList = new ArrayList<Application>();
-
+		installedList = new ArrayList<Application>();
+		updateList = new ArrayList<Application>();
+		
 		if (Utils.isNetworkAvailable(getActivity())) {
 			Locale systemLocale = getResources().getConfiguration().locale;
 			String systemLanguage = systemLocale.getLanguage();
@@ -74,13 +86,36 @@ public class MyAppFragMent extends Fragment implements OnItemClickListener {
 		} else {
 			showToast("No Network Connection. Try again.");
 		}
-		listView.setOnItemClickListener(new OnItemClickListener() {
-			
+		
+		
+		updatelistview.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v,
 					final int position, long id) {
 				
-				Application application = applicationList.get(position);
+				Application application = updateList.get(position);
+				Intent intent = new Intent(getActivity(), DetailActivity.class);
+				intent.putExtra("id", application.getAppId());
+				intent.putExtra("url", application.getAppIcon());
+				intent.putExtra("name", application.getAppName());
+				intent.putExtra("categoryname", application.getCategoryName());
+				intent.putExtra("summary", application.getAppSummary());
+				intent.putExtra("desc", application.getAppDescription());
+				intent.putExtra("manual", application.getAppManual());
+				intent.putExtra("downloadUrl", application.getAppDownloadUrl());
+				intent.putExtra("created", application.getCreated());
+				intent.putExtra("verName", application.getAppVerName());
+				intent.putExtra("verCode", application.getAppVerCode());
+				startActivity(intent);
+			}
+		});
+		
+		installedlistview.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View v,
+					final int position, long id) {
+				
+				Application application = installedList.get(position);
 				Intent intent = new Intent(getActivity(), DetailActivity.class);
 				intent.putExtra("id", application.getAppId());
 				intent.putExtra("url", application.getAppIcon());
@@ -117,7 +152,7 @@ public class MyAppFragMent extends Fragment implements OnItemClickListener {
         .setHintTextColor(getResources().getColor(R.color.white));	    
 	    searchView.setOnQueryTextListener(OnQuerySearchView);
 					    	   	    
-	    menu.findItem(R.id.menu_update).setVisible(false);		
+	    menu.findItem(R.id.menu_update).setVisible(true);		
 		menu.findItem(R.id.menu_search).setVisible(true);	
   	    
 		searchCheck = false;	
@@ -127,6 +162,14 @@ public class MyAppFragMent extends Fragment implements OnItemClickListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 
+		case R.id.menu_update:
+			String updateAppUrls = "";
+			for(int i=0; i < updateList.size(); i++){
+				updateAppUrls += updateList.get(i).getAppDownloadUrl()+";";
+			}
+			Utils.showDownload(updateAppUrls, this.getView());
+			break;
+			
 		case R.id.menu_search:
 			searchCheck = true;
 			break;
@@ -229,27 +272,39 @@ public class MyAppFragMent extends Fragment implements OnItemClickListener {
 
 						applicationList.add(application);
 					}
+					
+					for(int i=0; i<applicationList.size(); i++){
+						UserInfo userInfo = (UserInfo)getActivity().getApplicationContext();
+
+						for(int j=0; j < userInfo.getInstalledAppInfoList().size(); j++){
+							int installedAppCode = Integer.parseInt(userInfo.getInstalledAppInfoList().get(j).getAppVerCode());
+							int serverAppCode = Integer.parseInt(applicationList.get(i).getAppVerCode());
+
+							if(applicationList.get(i).getAppId().equals(userInfo.getInstalledAppInfoList().get(j).getAppId())){
+								if(installedAppCode == serverAppCode){
+									installedList.add(applicationList.get(i));
+								} else if(installedAppCode < serverAppCode){
+									updateList.add(applicationList.get(i));
+								}
+							}
+						}
+					}
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
 				// check data...
 
-				/*
-				Collections.sort(applicationList, new Comparator<Item>() {
-
-					@Override
-					public int compare(Item lhs, Item rhs) {
-						return (lhs.getAge() - rhs.getAge());
-					}
-				});*/
 				setAdapterToListview();
 			}
 		}
 	}
 	
 	public void setAdapterToListview() {
-		appsRowAdapter = new ApplicationRowAdapter(getActivity(), R.layout.application_row, applicationList);
-		listView.setAdapter(appsRowAdapter);
+		updateRowAdapter = new UpdateRowAdapter(getActivity(), R.layout.application_row, updateList);
+		updatelistview.setAdapter(updateRowAdapter);
+		
+		installedRowAdapter = new ApplicationRowAdapter(getActivity(), R.layout.application_row, installedList);
+		installedlistview.setAdapter(installedRowAdapter);
 	}
 	
 	public void showToast(String msg) {

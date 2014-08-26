@@ -21,9 +21,7 @@ import android.widget.TextView;
 import com.sds.ssa.R;
 import com.sds.ssa.adapter.NavigationAdapter;
 import com.sds.ssa.fragment.myapp.MyAppFragMent;
-import com.sds.ssa.fragment.update.FragMent3;
 import com.sds.ssa.fragments.ViewPagerFragment;
-import com.sds.ssa.util.Menus;
 import com.sds.ssa.vo.UserInfo;
 
 public class PhoneActivity extends ActionBarActivity{
@@ -98,13 +96,13 @@ public class PhoneActivity extends ActionBarActivity{
 	
 	@Override
     public boolean onOptionsItemSelected(MenuItem item) {  
-		Log.v("bas", "onOptionsItemSelected");
+		Log.v("bas", Integer.toString(item.getItemId()));
         if (drawerToggle.onOptionsItemSelected(item)) {
               return true;
         }		
         
 		switch (item.getItemId()) {		
-		case Menus.HOME:
+		case R.id.home:
 			if (layoutDrawer.isDrawerOpen(linearDrawer)) {
 				layoutDrawer.closeDrawer(linearDrawer);
 			} else {
@@ -215,14 +213,17 @@ public class PhoneActivity extends ActionBarActivity{
 	}
 
     private void hideMenus(Menu menu, int position) {
-    	Log.v("bas", "hideMenus");
         boolean drawerOpen = layoutDrawer.isDrawerOpen(linearDrawer);    	
     	
         switch (position) {
 		case 1: 
-	        menu.findItem(Menus.UPDATE).setVisible(!drawerOpen);	        	        	       
-	        menu.findItem(Menus.SEARCH).setVisible(!drawerOpen);        
+	        menu.findItem(R.id.menu_update).setVisible(!drawerOpen);	        	        	       
+	        menu.findItem(R.id.menu_search).setVisible(!drawerOpen);        
 			break;
+			
+		case 2:     	        	       
+	        menu.findItem(R.id.menu_search).setVisible(!drawerOpen);        			
+			break;	
 		}          
     }	
     

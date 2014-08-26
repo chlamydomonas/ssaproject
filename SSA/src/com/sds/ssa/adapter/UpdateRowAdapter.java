@@ -3,15 +3,12 @@ package com.sds.ssa.adapter;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -21,10 +18,9 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.ImageLoadingListener;
+import com.sds.ssa.R;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
-import com.sds.ssa.R;
-import com.sds.ssa.R.drawable;
 
 public class UpdateRowAdapter extends ArrayAdapter<Application> {
 
@@ -115,7 +111,6 @@ public class UpdateRowAdapter extends ArrayAdapter<Application> {
 							@Override
 							public void onLoadingComplete() {
 								pbar.setVisibility(View.INVISIBLE);
-
 							}
 
 							@Override
@@ -126,7 +121,6 @@ public class UpdateRowAdapter extends ArrayAdapter<Application> {
 							@Override
 							public void onLoadingStarted() {
 								pbar.setVisibility(View.VISIBLE);
-
 							}
 						});
 
@@ -143,28 +137,4 @@ public class UpdateRowAdapter extends ArrayAdapter<Application> {
 		private ImageView appIcon;
 		private ProgressBar pbar;
 	}
-	
-//	public void showInfo(){
-//		AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this.getContext());
-//		alert_confirm
-//		.setTitle(R.string.download)
-//		.setMessage(R.string.downloadMsg).setCancelable(false)
-//		.setPositiveButton(R.string.yes,
-//				new DialogInterface.OnClickListener() {
-//		    @Override
-//		    public void onClick(DialogInterface dialog, int which) {
-//		        // 'YES'
-//		    }
-//		})
-//		.setNegativeButton(R.string.no,
-//		new DialogInterface.OnClickListener() {
-//		    @Override
-//		    public void onClick(DialogInterface dialog, int which) {
-//		        // 'No'
-//		    return;
-//		    }
-//		});
-//		AlertDialog alert = alert_confirm.create();
-//		alert.show();
-//    }
 }
