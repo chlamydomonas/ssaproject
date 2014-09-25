@@ -351,6 +351,7 @@ int id content_frame 0x7f050066
 int id counter 0x7f050063
 int id created 0x7f050045
 int id default_activity_button 0x7f050028
+int id detaillistview 0x7f05005f
 int id dialog 0x7f05000e
 int id disableHome 0x7f050008
 int id downloadBtn 0x7f050056
@@ -369,7 +370,6 @@ int id imageView1 0x7f05005e
 int id installedlistview 0x7f050061
 int id installvername 0x7f050051
 int id isnewicon 0x7f050055
-int id item_detail 0x7f05005f
 int id item_detail_container 0x7f05003c
 int id item_list 0x7f05003d
 int id layoutDrawer 0x7f050065
