@@ -13,6 +13,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,6 @@ import android.widget.Toast;
 import com.sds.ssa.R;
 import com.sds.ssa.adapter.ApplicationRowAdapter;
 import com.sds.ssa.fragment.app.DetailActivity;
-import com.sds.ssa.tablet.dummy.DummyContent;
 import com.sds.ssa.util.AppParams;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
@@ -46,29 +46,22 @@ public class ItemDetailFragment extends Fragment {
 	 */
 	public static final String ARG_ITEM_ID = "item_id";
 
-	/**
-	 * The dummy content this fragment is presenting.
-	 */
-	private DummyContent.DummyItem mItem;
-
+	private String selectedId;
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
 	 * fragment (e.g. upon screen orientation changes).
 	 */
 	public ItemDetailFragment() {
 	}
+	
+	public ItemDetailFragment(String id) {
+		selectedId = id;
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		if (getArguments().containsKey(ARG_ITEM_ID)) {
-			// Load the dummy content specified by the fragment
-			// arguments. In a real-world scenario, use a Loader
-			// to load content from a content provider.
-			mItem = DummyContent.ITEM_MAP.get(getArguments().getString(
-					ARG_ITEM_ID));
-		}
 	}
 
 	@Override
@@ -77,55 +70,73 @@ public class ItemDetailFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.fragment_item_detail,
 				container, false);
 
-		// Show the dummy content as text in a TextView.
-		if (mItem != null) {
+		//View view = inflater.inflate(R.layout.application_listview, container, false);
+		listView = (ListView) rootView.findViewById(R.id.detaillistview);
+		listView.setItemsCanFocus(false);
+		//listView.setOnItemClickListener(this);
 
-			//View view = inflater.inflate(R.layout.application_listview, container, false);
-			listView = (ListView) rootView.findViewById(R.id.detaillistview);
-			listView.setItemsCanFocus(false);
-			//listView.setOnItemClickListener(this);
+		applicationList = new ArrayList<Application>();
 
-			applicationList = new ArrayList<Application>();
+		if (Utils.isNetworkAvailable(getActivity())) {
+			//selectedId
+			Locale systemLocale = getResources().getConfiguration().locale;
+			String systemLanguage = systemLocale.getLanguage();
+			//String appLink = this.getString(R.string.server_address) + this.getString(R.string.app_link);
+			String link = this.getString(R.string.server_address);
 
-			if (Utils.isNetworkAvailable(getActivity())) {
-				Locale systemLocale = getResources().getConfiguration().locale;
-				String systemLanguage = systemLocale.getLanguage();
-				String appLink = this.getString(R.string.server_address) + this.getString(R.string.app_link);
+			Log.v("bas", selectedId);
+			if(selectedId.equals("ALL")){
+				link += this.getString(R.string.app_link);
 				
 				if(systemLanguage.equals("en")){
-					appLink = appLink + "_en";
+					link += "_en";
 				}
-				new MyTask().execute(appLink);
-			} else {
-				showToast("No Network Connection. Try again.");
-			}
-			listView.setOnItemClickListener(new OnItemClickListener() {
+			}else if(selectedId.equals("UPDATE")){
+				link += this.getString(R.string.update_link);
 				
-				@Override
-				public void onItemClick(AdapterView<?> parent, View v,
-						final int position, long id) {
-					
-					Application application = applicationList.get(position);
-					Intent intent = new Intent(getActivity(), DetailActivity.class);
-					intent.putExtra("id", application.getAppId());
-					intent.putExtra("url", application.getAppIcon());
-					intent.putExtra("name", application.getAppName());
-					intent.putExtra("categoryname", application.getCategoryName());
-					intent.putExtra("summary", application.getAppSummary());
-					intent.putExtra("desc", application.getAppDescription());
-					intent.putExtra("manual", application.getAppManual());
-					intent.putExtra("downloadUrl", application.getAppDownloadUrl());
-					intent.putExtra("created", application.getCreated());
-					intent.putExtra("verName", application.getAppVerName());
-					intent.putExtra("verCode", application.getAppVerCode());
-					startActivity(intent);
+				if(systemLanguage.equals("en")){
+					link += "_en";
 				}
-			});
+			}else if(selectedId.equals("SEARCH")){
+				//TEMP
+				link += this.getString(R.string.app_link);
+				
+				if(systemLanguage.equals("en")){
+					link += "_en";
+				}
+			}else{
+				link += this.getString(R.string.app_link);
+				link += "?categoryId=" + selectedId;
+			}
 			
-			//detailList.setAdapter(appsRowAdapter);
-			//rootView.findViewById(R.id.item_detail)).setText(mItem.content);
+			Log.v("bas", link);
+			
+			new MyTask().execute(link);
+		} else {
+			showToast("No Network Connection. Try again.");
 		}
-
+		listView.setOnItemClickListener(new OnItemClickListener() {
+			
+			@Override
+			public void onItemClick(AdapterView<?> parent, View v,
+					final int position, long id) {
+				
+				Application application = applicationList.get(position);
+				Intent intent = new Intent(getActivity(), DetailActivity.class);
+				intent.putExtra("id", application.getAppId());
+				intent.putExtra("url", application.getAppIcon());
+				intent.putExtra("name", application.getAppName());
+				intent.putExtra("categoryname", application.getCategoryName());
+				intent.putExtra("summary", application.getAppSummary());
+				intent.putExtra("desc", application.getAppDescription());
+				intent.putExtra("manual", application.getAppManual());
+				intent.putExtra("downloadUrl", application.getAppDownloadUrl());
+				intent.putExtra("created", application.getCreated());
+				intent.putExtra("verName", application.getAppVerName());
+				intent.putExtra("verCode", application.getAppVerCode());
+				startActivity(intent);
+			}
+		});
 		return rootView;
 	}
 	

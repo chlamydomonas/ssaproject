@@ -1,0 +1,58 @@
+{
+    "application": [
+        {
+            "appId": "appId_04",
+            "appName": "application_04",
+            "appVerCode": "1",
+            "appVerName": "1.0",
+            "appPackageName": "com.sds.emm.app4",
+            "appIcon": "https://ssa-bas-project.googlecode.com/svn/d.png",
+            "appSummary": "D (named dee /ˈdiː/[1]) is the fourth letter of the basic modern Latin alphabet.",
+            "appDescription": "The Semitic letter Dâlet may have developed from the logogram for a fish or a door. There are various Egyptian hieroglyphs that might have inspired this. In Semitic, Ancient Greek and Latin, the letter represented /d/; in the Etruscan alphabet the letter was superfluous but still retained (see letter B). The equivalent Greek letter is Delta",
+            "appManual": "In nearly all languages that use the Latin alphabet and the International Phonetic Alphabet 'd' represents the voiced alveolar or voiced dental plosive /d/, but in the Vietnamese alphabet, it represents the sound /z/ (or /j/ in southern dialects). In Fijian it represents a prenasalized stop /nd/.[2] In some languages where voiceless unaspirated stops contrast with voiceless aspirated stops, 'd' represents an unaspirated /t/, while 't' represents an aspirated /tʰ/. Examples of such languages include Icelandic, Scottish Gaelic, Navajo, Estonian and the Pinyin transliteration of Mandarin.",
+            "appGrade": "1.2",
+            "appGradeCount": "12",
+            "categoryId": "categoryId_02",
+            "categoryName": "category_02",
+            "appDownloadUrl": "appDownloadUrl_04",
+            "created": "2014-07-01",
+            "appUploadedDate": "2014-07-23"
+        },
+        {
+            "appId": "appId_05",
+            "appName": "application_05",
+            "appVerCode": "1",
+            "appVerName": "1.0",
+            "appPackageName": "com.sds.emm.app5",
+            "appIcon": "https://ssa-bas-project.googlecode.com/svn/e.png",
+            "appSummary": "E (named e /ˈiː/, plural ees)[1] is the fifth letter and a vowel in the ISO basic Latin alphabet. It is the most commonly used letter in many languages, including",
+            "appDescription": "The Latin letter 'E' differs little from its derivational source, the Greek letter epsilon, 'Ε'. In etymology, the Semitic hê  has been suggested to have started as a praying or calling human figure (hillul 'jubilation'), and was probably based on a similar Egyptian hieroglyph that indicated a different pronunciation. In Semitic, the letter represented /h/ (and /e/ in foreign words), in Greek hê became epsilon with the value /e/. Etruscans and Romans followed this usage. Although Middle English spelling used 'e' to represent long and short /e/, the Great Vowel Shift changed long /eː/ (as in 'me' or 'bee') to /iː/ while short /e/ (as in 'met' or 'bed') remained a mid vowel.",
+            "appManual": "In English orthography, e can represent the 'short e' sound /ɛ/, the 'long e' sound /iː/ or be silent when word-final, with a 'lengthening' effect on previous vowels (for example rat has a short vowel and rate has a long one). Some of the digraphs it occurs in are ee, ea, eu/ew, ei/ey, i.e., ui. In loanwords, 'e' or 'é' can represent the sound /eɪ/ as in 'café'.",
+            "appGrade": "1.8",
+            "appGradeCount": "12",
+            "categoryId": "categoryId_02",
+            "categoryName": "category_02",
+            "appDownloadUrl": "appDownloadUrl_05",
+            "created": "2014-07-01",
+            "appUploadedDate": "2014-07-23"
+        },
+        {
+            "appId": "appId_06",
+            "appName": "application_06",
+            "appVerCode": "1",
+            "appVerName": "1.0",
+            "appPackageName": "com.sds.emm.app6",
+            "appIcon": "https://ssa-bas-project.googlecode.com/svn/f.png",
+            "appSummary": "F (named ef[1] /ˈɛf/)[2] is the sixth letter in the ISO basic Latin alphabet.",
+            "appDescription": "The origin of 'F' is the Semitic letter vâv (or waw) that represented a sound like /v/ or /w/. Graphically it originally probably depicted either a hook or a club. It may have been based on a comparable Egyptian hieroglyph such as that which represented the word mace (transliterated as ḥ(dj)):-",
+            "appManual": "n the English writing system 'f' is used to represent the sound /f/. It is commonly doubled at the end of words. Exceptionally, it represents the voiced sound /v/ in the common word 'of'. In the orthographies of other languages, 'f' commonly represents /f/, [ɸ] or /v/.",
+            "appGrade": "2.2",
+            "appGradeCount": "12",
+            "categoryId": "categoryId_02",
+            "categoryName": "category_02",
+            "appDownloadUrl": "appDownloadUrl_06",
+            "created": "2014-07-01",
+            "appUploadedDate": "2014-07-23"
+        }
+    ]
+}

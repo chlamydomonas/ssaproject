@@ -60,10 +60,7 @@ public class ItemListActivity extends Activity implements
 			// In two-pane mode, show the detail view in this activity by
 			// adding or replacing the detail fragment using a
 			// fragment transaction.
-			Bundle arguments = new Bundle();
-			arguments.putString(ItemDetailFragment.ARG_ITEM_ID, id);
-			ItemDetailFragment fragment = new ItemDetailFragment();
-			fragment.setArguments(arguments);
+			ItemDetailFragment fragment = new ItemDetailFragment(id);
 			getFragmentManager().beginTransaction()
 					.replace(R.id.item_detail_container, fragment).commit();
 

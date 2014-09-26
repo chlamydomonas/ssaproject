@@ -1,0 +1,58 @@
+{
+    "application": [
+        {
+            "appId": "appId_11",
+            "appName": "애플리케이션_11",
+            "appVerCode": "2",
+            "appVerName": "1.0",
+            "appPackageName": "com.sds.emm.app11",
+            "appIcon": "https://ssa-bas-project.googlecode.com/svn/k.png",
+            "appSummary": "K, k(kay 케이[*] [keɪ])는 로마 문자의 열한 번째 글자이다.",
+            "appDescription": "K는 손바닥을 뜻하는 그림 문자에서 왔다.",
+            "appManual": "확장형이진화십진코드(EBCDIC)에서 대문자 K의 코드는 210이고, 소문자 k의 코드는 146이다.",
+            "appGrade": "3.5",
+            "appGradeCount": "12",
+            "categoryId": "categoryId_04",
+            "categoryName": "카테고리_04",
+            "appDownloadUrl": "appDownloadUrl_11",
+            "created": "2014-07-01",
+            "appUploadedDate": "2014-07-23"
+        },
+        {
+            "appId": "appId_12",
+            "appName": "애플리케이션_12",
+            "appVerCode": "4",
+            "appVerName": "1.0",
+            "appPackageName": "com.sds.emm.app12",
+            "appIcon": "https://ssa-bas-project.googlecode.com/svn/l.png",
+            "appSummary": "L, l(el 엘[*] [ɛl])은 로마 문자의 12번째 글자이다.",
+            "appDescription": "L은 몰이 막대기를 뜻하는 그림 문자에서 비롯되었다.",
+            "appManual": "EBCDIC에서 대문자 L의 코드는 211이고, 소문자 l의 코드는 147이다.",
+            "appGrade": "3.8",
+            "appGradeCount": "12",
+            "categoryId": "categoryId_04",
+            "categoryName": "카테고리_04",
+            "appDownloadUrl": "appDownloadUrl_12",
+            "created": "2014-07-01",
+            "appUploadedDate": "2014-07-23"
+        },
+        {
+            "appId": "appId_13",
+            "appName": "애플리케이션_13",
+            "appVerCode": "1",
+            "appVerName": "1.0",
+            "appPackageName": "com.sds.emm.app13",
+            "appIcon": "https://ssa-bas-project.googlecode.com/svn/m.png",
+            "appSummary": "M(em 엠[*], [ɛm])은 로마 문자의 13번째 글자이다.",
+            "appDescription": "M은 물을 의미하는 그림문자에서부터 왔다.",
+            "appManual": "EBCDIC에서 대문자 M의 코드는 212이고, 소문자 m의 코드는 148이다.",
+            "appGrade": "4.0",
+            "appGradeCount": "12",
+            "categoryId": "categoryId_04",
+            "categoryName": "카테고리_04",
+            "appDownloadUrl": "appDownloadUrl_13",
+            "created": "2014-07-01",
+            "appUploadedDate": "2014-07-23"
+        }
+    ]
+}

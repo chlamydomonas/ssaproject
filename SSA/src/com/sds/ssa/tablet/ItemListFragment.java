@@ -14,16 +14,18 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.sds.ssa.R;
-import com.sds.ssa.adapter.CategoryRowAdapter;
+import com.sds.ssa.adapter.AllTypeRowAdapter;
 import com.sds.ssa.tablet.dummy.DummyContent;
 import com.sds.ssa.util.AppParams;
 import com.sds.ssa.util.Utils;
+import com.sds.ssa.vo.AllType;
 import com.sds.ssa.vo.Category;
 
 /**
@@ -37,7 +39,8 @@ import com.sds.ssa.vo.Category;
  */
 public class ItemListFragment extends ListFragment {
 
-	List<Category> categoryList;
+	//List<Category> categoryList;
+	List<AllType> allTypeList;
 	
 	/**
 	 * The serialization (saved instance state) Bundle key representing the
@@ -95,7 +98,8 @@ public class ItemListFragment extends ListFragment {
 				android.R.id.text1, DummyContent.ITEMS));*/
 		
 		
-		categoryList = new ArrayList<Category>();
+		//categoryList = new ArrayList<Category>();
+		allTypeList = new ArrayList<AllType>();
 
 		if (Utils.isNetworkAvailable(getActivity())) {
 			Locale systemLocale = getResources().getConfiguration().locale;
@@ -157,6 +161,12 @@ public class ItemListFragment extends ListFragment {
 				getActivity().finish();
 			} else {
 
+				AllType allType = new AllType();
+				allType.setId("ALL");
+				allType.setName("ALL");
+				allType.setType("FIX");
+				allTypeList.add(allType);
+				
 				try {					
 					JSONObject mainJson = new JSONObject(result);
 					JSONArray categoryArray = mainJson.getJSONArray(AppParams.CATEGORY_ARRAY_NAME);
@@ -164,13 +174,33 @@ public class ItemListFragment extends ListFragment {
 					for (int i = 0; i < categoryArray.length(); i++) {
 						JSONObject categoryObj = categoryArray.getJSONObject(i);
 
+						/*
 						Category category = new Category();
 						category.setId(categoryObj.getString(AppParams.CATEGORY_ID));
 						category.setName(categoryObj.getString(AppParams.CATEGORY_NAME));
 						
 						categoryList.add(category);
+						*/
+						
+						AllType categoryType = new AllType();
+						categoryType.setId(categoryObj.getString(AppParams.CATEGORY_ID));
+						categoryType.setName(categoryObj.getString(AppParams.CATEGORY_NAME));
+						categoryType.setType("CATEGORY");
+						allTypeList.add(categoryType);
 					}
 
+					AllType searchType = new AllType();
+					searchType.setId("SEARCH");
+					searchType.setName("SEARCH");
+					searchType.setType("FIX");
+					allTypeList.add(searchType);
+					
+					AllType updateType = new AllType();
+					updateType.setId("UPDATE");
+					updateType.setName("UPDATE");
+					updateType.setType("FIX");
+					allTypeList.add(updateType);
+					
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
@@ -180,7 +210,8 @@ public class ItemListFragment extends ListFragment {
 	}
 	
 	public void setAdapterToListview() {
-		setListAdapter(new CategoryRowAdapter(getActivity(), R.layout.category_row, categoryList));
+		//setListAdapter(new CategoryRowAdapter(getActivity(), R.layout.category_row, categoryList));
+		setListAdapter(new AllTypeRowAdapter(getActivity(), R.layout.alltype_row, allTypeList));
 	}
 	
 	public void showToast(String msg) {
@@ -216,7 +247,14 @@ public class ItemListFragment extends ListFragment {
 
 		// Notify the active callbacks interface (the activity, if the
 		// fragment is attached to one) that an item has been selected.
-		mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+		
+		//Category category = categoryList.get(position);
+		//Log.v("bas", category.getId());
+		AllType allType = allTypeList.get(position);
+		Log.v("bas", allType.getId());
+		//Log.v("bas", DummyContent.ITEMS.get(position).id);
+		//mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+		mCallbacks.onItemSelected(allType.getId());
 	}
 
 	@Override

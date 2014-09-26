@@ -1,0 +1,40 @@
+{
+    "application": [
+        {
+            "appId": "appId_19",
+            "appName": "애플리케이션_19",
+            "appVerCode": "2",
+            "appVerName": "1.0",
+            "appPackageName": "com.sds.emm.app19",
+            "appIcon": "https://ssa-bas-project.googlecode.com/svn/s.png",
+            "appSummary": "S, s(ess 에스[*] [ɛs])는 로마 문자의 19번째이다.",
+            "appDescription": "S는 활을 뜻하는 그림 문자에서 왔다",
+            "appManual": "EBCDIC에서 대문자 S의 코드는 226이고, 소문자 s의 코드는 162이다.",
+            "appGrade": "2.2",
+            "appGradeCount": "12",
+            "categoryId": "categoryId_06",
+            "categoryName": "카테고리_06",
+            "appDownloadUrl": "appDownloadUrl_19",
+            "created": "2014-07-01",
+            "appUploadedDate": "2014-07-23"
+        },
+        {
+            "appId": "appId_20",
+            "appName": "애플리케이션_20",
+            "appVerCode": "1",
+            "appVerName": "1.0",
+            "appPackageName": "com.sds.emm.app20",
+            "appIcon": "https://ssa-bas-project.googlecode.com/svn/t.png",
+            "appSummary": "T, t(tee 티[*] [tiː])는 로마 문자의 20번째 글자이다. 빈도: 9.056%/전체 2위/자음 1위.",
+            "appDescription": "wikipedia에 T의 역사는 없음",
+            "appManual": "EBCDIC에서 대문자 T의 코드는 227이고, 소문자 t의 코드는 163이다.",
+            "appGrade": "1.2",
+            "appGradeCount": "12",
+            "categoryId": "categoryId_06",
+            "categoryName": "카테고리_06",
+            "appDownloadUrl": "appDownloadUrl_20",
+            "created": "2014-07-01",
+            "appUploadedDate": "2014-07-23"
+        }
+    ]
+}

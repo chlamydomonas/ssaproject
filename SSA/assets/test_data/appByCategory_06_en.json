@@ -1,0 +1,40 @@
+{
+    "application": [
+        {
+            "appId": "appId_19",
+            "appName": "application_19",
+            "appVerCode": "2",
+            "appVerName": "1.0",
+            "appPackageName": "com.sds.emm.app19",
+            "appIcon": "https://ssa-bas-project.googlecode.com/svn/s.png",
+            "appSummary": "S (named ess /ˈɛs/,[1] plural esses[2]) is the nineteenth (19th) letter in the ISO basic Latin alphabet.",
+            "appDescription": "Semitic Šîn ('teeth') represented a voiceless postalveolar fricative /ʃ/ (as in 'ship'). Greek did not have this sound, so the Greek sigma (Σ) came to represent /s/. In Etruscan and Latin, the /s/ value was maintained, and only in modern languages has the letter been used to represent other sounds.",
+            "appManual": "The letter S represents the voiceless alveolar or voiceless dental sibilant /s/ in most languages and the IPA. It also commonly represents the voiced alveolar or voiced dental sibilant /z/, as in Portuguese 'mesa' or English 'rose' and 'bands', or may represent the voiceless palato-alveolar fricative [ʃ], as in most Portuguese dialects when syllable-finally, in Hungarian, in German (before 'p', 't') and some English words as 'sugar', since yod-coalescence became a dominant feature, and [ʒ], as in English 'measure' (also because of yod-coalescence), European Portuguese 'Islão' or, in many sociolects of Brazilian Portuguese, 'esdrúxulo', while in some Andalusian dialects, it is merged with Peninsular Spanish 'c' and 'z' and pronounced [θ].",
+            "appGrade": "2.2",
+            "appGradeCount": "12",
+            "categoryId": "categoryId_06",
+            "categoryName": "category_06",
+            "appDownloadUrl": "appDownloadUrl_19",
+            "created": "2014-07-01",
+            "appUploadedDate": "2014-07-23"
+        },
+        {
+            "appId": "appId_20",
+            "appName": "application_20",
+            "appVerCode": "1",
+            "appVerName": "1.0",
+            "appPackageName": "com.sds.emm.app20",
+            "appIcon": "https://ssa-bas-project.googlecode.com/svn/t.png",
+            "appSummary": "T (named tee /ˈtiː/[1]) is the 20th letter in the ISO basic Latin alphabet. It is the most commonly used consonant and the second most common letter in the English language.[2]",
+            "appDescription": "Taw was the last letter of the Western Semitic and Hebrew alphabets. The sound value of Semitic Taw, Greek alphabet Tαυ (Tau), Old Italic and Latin T has remained fairly constant, representing [t] in each of these; and it has also kept its original basic shape in all of these alphabets.",
+            "appManual": "In English, 〈t〉 often denotes the voiceless alveolar plosive (International Phonetic Alphabet and X-SAMPA: /t/), as in 'tart', 'tee', or 'ties', often with aspiration at the beginnings of words or before stressed vowels.",
+            "appGrade": "1.2",
+            "appGradeCount": "12",
+            "categoryId": "categoryId_06",
+            "categoryName": "category_06",
+            "appDownloadUrl": "appDownloadUrl_20",
+            "created": "2014-07-01",
+            "appUploadedDate": "2014-07-23"
+        }
+    ]
+}

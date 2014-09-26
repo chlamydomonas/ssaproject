@@ -1,0 +1,58 @@
+{
+    "application": [
+        {
+            "appId": "appId_01",
+            "appName": "application_01",
+            "appVerCode": "1",
+            "appVerName": "1.0",
+            "appPackageName": "com.sds.emm.app1",
+            "appIcon": "https://ssa-bas-project.googlecode.com/svn/a1.png",
+            "appSummary": "A (named a /ˈeɪ/, plural aes[nb 1]) is the first letter and vowel in the ISO basic Latin alphabet. It is similar to the Ancient Greek letter alpha, from which it derives. The upper-case version consists of two more or less vertical lines, joined at the top, and crossed in their middle by a horizontal bar.",
+            "appDescription": "The earliest certain ancestor of 'A' is aleph (also called 'aleph), the first letter of the Phoenician alphabet[2] (which, by consisting entirely of consonants, is an abjad rather than a true alphabet). In turn, the origin of aleph may have been a pictogram of an ox head in proto-Sinaitic script[3] influenced by Egyptian hieroglyphs, styled as a triangular head with two horns extended.",
+            "appManual": "In English orthography, the letter A currently represents six different vowel sounds: A by itself frequently denotes the near-open front unrounded vowel (/æ/) as in pad; the open back unrounded vowel (/ɑː/) as in father, its original, Latin and Greek, sound;[3] a closer, further fronted sound as in 'hare', which developed as the sound progressed from 'father' to 'ace';[2] in concert with a later orthographic vowel, the diphthong /eɪ/ as in ace and major, due to effects of the Great Vowel Shift; the more rounded form in 'water' or its closely related cousin, found in 'was'.[2]",
+            "appGrade": "3.3",
+            "appGradeCount": "8",
+            "categoryId": "categoryId_01",
+            "categoryName": "category_01",
+            "appDownloadUrl": "appDownloadUrl_01",
+            "created": "2014-07-01",
+            "appUploadedDate": "2014-08-07"
+        },
+        {
+            "appId": "appId_02",
+            "appName": "application_02",
+            "appVerCode": "2",
+            "appVerName": "1.0",
+            "appPackageName": "com.sds.emm.app2",
+            "appIcon": "https://ssa-bas-project.googlecode.com/svn/b.png",
+            "appSummary": "B (named bee /ˈbiː/[1]) is the second letter in the ISO basic Latin alphabet. It is used to represent a variety of bilabial sounds (depending on language), but most commonly a voiced bilabial stop.",
+            "appDescription": "The capital letter 'B' may have started as a pictogram of the floorplan of a house in Egyptian hieroglyphs. By 1050 BC, the Phoenician alphabet's letter had a linear form that served as the beth.",
+            "appManual": "In English, most other languages that use the Latin alphabet, and the International Phonetic Alphabet, 'b' denotes the voiced bilabial plosive /b/, as in 'bib'. In English it is sometimes silent; most instances are derived from old monosyllablic words with the 'b' final and immediately preceded by an 'm', such as 'lamb' and 'bomb'; a few are examples of etymological spelling to make the word more like its Latin original, such as 'debt' or 'doubt'.",
+            "appGrade": "4.8",
+            "appGradeCount": "11",
+            "categoryId": "categoryId_01",
+            "categoryName": "category_01",
+            "appDownloadUrl": "appDownloadUrl_02",
+            "created": "2014-07-01",
+            "appUploadedDate": "2014-08-07"
+        },
+        {
+            "appId": "appId_03",
+            "appName": "application_03",
+            "appVerCode": "1",
+            "appVerName": "1.0",
+            "appPackageName": "com.sds.emm.app3",
+            "appIcon": "https://ssa-bas-project.googlecode.com/svn/c.png",
+            "appSummary": "C (named cee /ˈsiː/[1]) is the third letter in the ISO basic Latin alphabet.",
+            "appDescription": "'C' comes from the same letter as 'G'. The Semites named it gimel. The sign is possibly adapted from an Egyptian hieroglyph for a staff sling, which may have been the meaning of the name gimel. Another possibility is that it depicted a camel, the Semitic name for which was gamal. Barry B. Powell, a specialist in the history of writing, states 'It is hard to imagine how gimel = 'camel' can be derived from the picture of a camel (it may show his hump, or his head and neck!)'.",
+            "appManual": "When the Roman alphabet was introduced into Britain, 'c' represented only /k/ and this value of the letter has been retained in loanwords to all the insular Celtic languages: in Welsh, Irish, Gaelic, 'c' represents only /k/. The Old English or 'Anglo-Saxon' writing was learned from the Celts, apparently of Ireland; hence 'c' in Old English also originally represented /k/; the Modern English words kin, break, broken, thick, and seek, all come from Old English words written with 'c': cyn, brecan, brocen, þicc, and séoc. But during the course of the Old English period, /k/ before front vowels (/e/ and /i/) were palatalized, having changed by the tenth century to [tʃ], though 'c' was still used, as in cir(i)ce, wrecc(e)a. On the continent, meanwhile, a similar phonetic change had also been going on (for example, in Italian).",
+            "appGrade": "0.5",
+            "appGradeCount": "12",
+            "categoryId": "categoryId_01",
+            "categoryName": "category_01",
+            "appDownloadUrl": "appDownloadUrl_03",
+            "created": "2014-07-01",
+            "appUploadedDate": "2014-07-23"
+        }
+    ]
+}

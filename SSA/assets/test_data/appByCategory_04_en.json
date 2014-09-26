@@ -1,0 +1,58 @@
+{
+    "application": [
+        {
+            "appId": "appId_11",
+            "appName": "application_11",
+            "appVerCode": "2",
+            "appVerName": "1.0",
+            "appPackageName": "com.sds.emm.app11",
+            "appIcon": "https://ssa-bas-project.googlecode.com/svn/k.png",
+            "appSummary": "K (named kay /ˈkeɪ/)[1] is the eleventh letter of the ISO basic Latin alphabet.",
+            "appDescription": "K is the 11th letter of the English alphabet. In English, the letter K usually represents the voiceless velar plosive; this sound is also transcribed by /k/ in the International Phonetic Alphabet and X-SAMPA. The letter k is silent in initial position when followed by 'n', like in 'know', 'knight'.",
+            "appManual": "The letter K comes from the letter Κ (kappa), which was taken from the Semitic kap, the symbol for an open hand.[2] This, in turn, was likely adapted by Semites who had lived in Egypt from the hieroglyph for 'hand' representing D in the Egyptian word for hand, d-r-t. The Semites evidently assigned it the sound value /k/ instead, because their word for hand started with that sound.[3]",
+            "appGrade": "3.5",
+            "appGradeCount": "12",
+            "categoryId": "categoryId_04",
+            "categoryName": "category_04",
+            "appDownloadUrl": "appDownloadUrl_11",
+            "created": "2014-07-01",
+            "appUploadedDate": "2014-07-23"
+        },
+        {
+            "appId": "appId_12",
+            "appName": "application_12",
+            "appVerCode": "4",
+            "appVerName": "1.0",
+            "appPackageName": "com.sds.emm.app12",
+            "appIcon": "https://ssa-bas-project.googlecode.com/svn/l.png",
+            "appSummary": "L (named el[1] /ˈɛl/)[2] is the twelfth letter of the ISO basic Latin alphabet.",
+            "appDescription": "Lamedh may have come from a pictogram of an ox goad or cattle prod. Some have suggested a shepherd's staff.",
+            "appManual": "In English orthography, 'l' usually represents the phoneme /l/, which can have several sound values, depending on whether it occurs before or after a vowel. The alveolar lateral approximant (the sound represented in IPA by lowercase [l]) occurs before a vowel, as in 'lip' or 'please', while the velarized alveolar lateral approximant (IPA [ɫ]) occurs in 'bell' and 'milk'. This velarization does not occur in many European languages that use L; it is also a factor making the pronunciation of L difficult for users of languages that lack L or have different values for it, such as Japanese or some southern dialects of Chinese.",
+            "appGrade": "3.8",
+            "appGradeCount": "12",
+            "categoryId": "categoryId_04",
+            "categoryName": "category_04",
+            "appDownloadUrl": "appDownloadUrl_12",
+            "created": "2014-07-01",
+            "appUploadedDate": "2014-07-23"
+        },
+        {
+            "appId": "appId_13",
+            "appName": "application_13",
+            "appVerCode": "1",
+            "appVerName": "1.0",
+            "appPackageName": "com.sds.emm.app13",
+            "appIcon": "https://ssa-bas-project.googlecode.com/svn/m.png",
+            "appSummary": "M (named em /ˈɛm/)[1] is the thirteenth letter of the ISO basic Latin alphabet.",
+            "appDescription": "The letter M is derived from the Phoenician Mem, via the Greek Mu (Μ, μ). Semitic Mem probably originally pictured water. It is thought that Semitic people working in Egypt c. 2000 BC borrowed a hieroglyph for 'water' that was first used for an alveolar nasal (/n/), because of the Egyptian word for water, n-t. This same symbol became used for /m/ in Semitic, because the word for water began with that sound.",
+            "appManual": "The letter 'm' represents the bilabial consonant sound, [m], in the orthography of Latin, as well as in many modern languages. In English, the Oxford English Dictionary (first edition) says that 'm' is sometimes a vowel in words like spasm and in the suffix -ism. In modern terminology, this would be described as a syllabic consonant — IPA [m̩].",
+            "appGrade": "4.0",
+            "appGradeCount": "12",
+            "categoryId": "categoryId_04",
+            "categoryName": "category_04",
+            "appDownloadUrl": "appDownloadUrl_13",
+            "created": "2014-07-01",
+            "appUploadedDate": "2014-07-23"
+        }
+    ]
+}
