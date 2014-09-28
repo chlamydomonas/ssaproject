@@ -78,13 +78,10 @@ public class TabletItemDetailFragment extends Fragment {
 		applicationList = new ArrayList<Application>();
 
 		if (Utils.isNetworkAvailable(getActivity())) {
-			//selectedId
 			Locale systemLocale = getResources().getConfiguration().locale;
 			String systemLanguage = systemLocale.getLanguage();
-			//String appLink = this.getString(R.string.server_address) + this.getString(R.string.app_link);
 			String link = this.getString(R.string.server_address);
 
-			Log.v("bas", selectedId);
 			if(selectedId.equals("ALL")){
 				link += this.getString(R.string.app_link);
 				
@@ -97,13 +94,6 @@ public class TabletItemDetailFragment extends Fragment {
 				if(systemLanguage.equals("en")){
 					link += "_en";
 				}
-			}else if(selectedId.equals("SEARCH")){
-				//TEMP
-				link += this.getString(R.string.app_link);
-				
-				if(systemLanguage.equals("en")){
-					link += "_en";
-				}
 			}else{
 				link += this.getString(R.string.app_category_link);
 				link += "_" + selectedId;
@@ -112,9 +102,6 @@ public class TabletItemDetailFragment extends Fragment {
 					link += "_en";
 				}
 			}
-			
-			Log.v("bas", link);
-			
 			new MyTask().execute(link);
 		} else {
 			showToast("No Network Connection. Try again.");
@@ -205,8 +192,6 @@ public class TabletItemDetailFragment extends Fragment {
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-				// check data...
-
 				setAdapterToListview();
 			}
 		}

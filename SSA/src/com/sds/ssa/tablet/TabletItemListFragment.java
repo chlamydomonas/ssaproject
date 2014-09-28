@@ -44,7 +44,6 @@ import com.sds.ssa.vo.AllType;
  */
 public class TabletItemListFragment extends ListFragment {
 
-	//List<Category> categoryList;
 	List<AllType> allTypeList;
 	private boolean searchCheck;
 	
@@ -124,10 +123,7 @@ public class TabletItemListFragment extends ListFragment {
 			setActivatedPosition(savedInstanceState
 					.getInt(STATE_ACTIVATED_POSITION));
 		}
-		
-		//onListItemClick(listView, view, position, id);
 	}
-
 	
 	class MyTask extends AsyncTask<String, Void, String> {
 		ProgressDialog pDialog;
@@ -173,14 +169,6 @@ public class TabletItemListFragment extends ListFragment {
 					for (int i = 0; i < categoryArray.length(); i++) {
 						JSONObject categoryObj = categoryArray.getJSONObject(i);
 
-						/*
-						Category category = new Category();
-						category.setId(categoryObj.getString(AppParams.CATEGORY_ID));
-						category.setName(categoryObj.getString(AppParams.CATEGORY_NAME));
-						
-						categoryList.add(category);
-						*/
-						
 						AllType categoryType = new AllType();
 						categoryType.setId(categoryObj.getString(AppParams.CATEGORY_ID));
 						categoryType.setName(categoryObj.getString(AppParams.CATEGORY_NAME));
@@ -202,16 +190,13 @@ public class TabletItemListFragment extends ListFragment {
 	}
 	
 	public void setAdapterToListview() {
-		//setListAdapter(new CategoryRowAdapter(getActivity(), R.layout.category_row, categoryList));
 		setListAdapter(new AllTypeRowAdapter(getActivity(), R.layout.alltype_row, allTypeList));
 	}
 	
 	public void showToast(String msg) {
 		Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
 		
-	}
-
-	
+	}	
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -223,31 +208,32 @@ public class TabletItemListFragment extends ListFragment {
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);		
 		inflater.inflate(R.menu.menu, menu);
+		Log.e("bas", "TableItemListFragment.onCreateOptionsMenu()");
 		
-	    SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.menu_search));
+		SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.menu_search));
 	    searchView.setQueryHint(this.getString(R.string.search));
 
 	    ((EditText)searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text))
         .setHintTextColor(getResources().getColor(R.color.white));	    
 	    searchView.setOnQueryTextListener(OnQuerySearchView);
-					    	   	    
-	    menu.findItem(R.id.menu_update).setVisible(false);		
-		menu.findItem(R.id.menu_search).setVisible(true);	
+					  
+	    if(id != null && id.equals("UPDATE")) {
+	    	menu.findItem(R.id.menu_update).setVisible(true);		
+			menu.findItem(R.id.menu_search).setVisible(true);	
+	    } else {
+	    	menu.findItem(R.id.menu_update).setVisible(false);	
+			menu.findItem(R.id.menu_search).setVisible(true);	
+	    }
   	    
-		searchCheck = false;	
+		searchCheck = false;
 	}
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
 
-		case R.id.menu_search:
-			searchCheck = true;
-			break;
-		}		
-		return true;
-	}	
-	
+	@Override
+	public void onPrepareOptionsMenu(Menu menu) {
+		super.onPrepareOptionsMenu(menu);
+		Log.e("bas", "TableItemListFragment.onPrepareOptionsMenu()");
+	}
+
 	private OnQueryTextListener OnQuerySearchView = new OnQueryTextListener() {
 		
 		@Override
@@ -262,7 +248,6 @@ public class TabletItemListFragment extends ListFragment {
 		public boolean onQueryTextChange(String query) {
 			if (searchCheck){
 				Log.v("bas", "onQueryTextChange");
-				//자동 완성 같은 건 없음;
 			}
 			return false;
 		}
@@ -289,19 +274,24 @@ public class TabletItemListFragment extends ListFragment {
 		mCallbacks = sDummyCallbacks;
 	}
 
+	private String id;
+	
 	@Override
 	public void onListItemClick(ListView listView, View view, int position,
 			long id) {
 		super.onListItemClick(listView, view, position, id);
 
+		Log.e("bas", "TableItemListFragment.onListItemClick()");
 		// Notify the active callbacks interface (the activity, if the
 		// fragment is attached to one) that an item has been selected.
 
 		AllType allType = allTypeList.get(position);
-		Log.v("bas", allType.getId());
-
-		//mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+		
+		this.id = allType.getId();
 		mCallbacks.onItemSelected(allType.getId());
+		
+		getActivity().invalidateOptionsMenu();
+		
 	}
 
 	@Override

@@ -2,12 +2,17 @@ package com.sds.ssa.tablet;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 import com.sds.ssa.R;
+import com.sds.ssa.search.SearchActivity;
 
 /**
  * An activity representing a list of Items. This activity has different
@@ -54,47 +59,13 @@ public class TabletItemListActivity extends ActionBarActivity implements
 		// TODO: If exposing deep links into your app, handle intents here.
 	}
 
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		// TODO Auto-generated method stub		
-		
-		Log.v("bas", "onSaveInstanceState");
-		super.onSaveInstanceState(outState);					
-	}
-	
-	
-	
-	
-	
-	
-	
-	@Override
-    public boolean onOptionsItemSelected(MenuItem item) {  
-		return super.onOptionsItemSelected(item);	
-    }
-		
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        return super.onPrepareOptionsMenu(menu);  
-    }
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		return super.onCreateOptionsMenu(menu);        		
-	}
-	
-	@Override
-	protected void onPostCreate(Bundle savedInstanceState) {
-		super.onPostCreate(savedInstanceState);
-	 }	
-
-	
 	/**
 	 * Callback method from {@link TabletItemListFragment.Callbacks} indicating that
 	 * the item with the given ID was selected.
 	 */
 	@Override
 	public void onItemSelected(String id) {
+		Log.e("bas", "onItemSelected(): " + mTwoPane);
 		if (mTwoPane) {
 			// In two-pane mode, show the detail view in this activity by
 			// adding or replacing the detail fragment using a
@@ -111,4 +82,51 @@ public class TabletItemListActivity extends ActionBarActivity implements
 			startActivity(detailIntent);
 		}
 	}
+	
+	private String id;
+
+	/*
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		//super.onPrepareOptionsMenu(menu);
+		Log.e("bas", "onPrepareOptionsMenu()");
+
+		SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.menu_search));
+	    searchView.setQueryHint(this.getString(R.string.search));
+
+	    ((EditText)searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text))
+        .setHintTextColor(getResources().getColor(R.color.white));	    
+	    searchView.setOnQueryTextListener(OnQuerySearchView);
+					  
+	    if(id != null && id.equals("UPDATE")) {
+	    	menu.findItem(R.id.menu_update).setVisible(true);		
+			menu.findItem(R.id.menu_search).setVisible(true);	
+	    } else {
+	    	menu.findItem(R.id.menu_update).setVisible(false);	
+	    	//menu.findItem(R.id.menu_update).setVisible(true);
+			menu.findItem(R.id.menu_search).setVisible(true);	
+	    }
+  	    
+		searchCheck = false;	
+		return true;
+	}
+	
+	boolean searchCheck;
+	private OnQueryTextListener OnQuerySearchView = new OnQueryTextListener() {
+		
+		@Override
+		public boolean onQueryTextSubmit(String query) {
+			
+			return false;
+		}
+		
+		@Override
+		public boolean onQueryTextChange(String query) {
+			if (searchCheck){
+				Log.v("bas", "onQueryTextChange");
+			}
+			return false;
+		}
+	};
+	*/
 }
