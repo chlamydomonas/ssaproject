@@ -31,10 +31,10 @@ import com.sds.ssa.vo.Application;
 
 /**
  * A fragment representing a single Item detail screen. This fragment is either
- * contained in a {@link ItemListActivity} in two-pane mode (on tablets) or a
- * {@link ItemDetailActivity} on handsets.
+ * contained in a {@link TabletItemListActivity} in two-pane mode (on tablets) or a
+ * {@link TabletItemDetailActivity} on handsets.
  */
-public class ItemDetailFragment extends Fragment {
+public class TabletItemDetailFragment extends Fragment {
 	
 	List<Application> applicationList;
 	ListView listView;
@@ -51,10 +51,10 @@ public class ItemDetailFragment extends Fragment {
 	 * Mandatory empty constructor for the fragment manager to instantiate the
 	 * fragment (e.g. upon screen orientation changes).
 	 */
-	public ItemDetailFragment() {
+	public TabletItemDetailFragment() {
 	}
 	
-	public ItemDetailFragment(String id) {
+	public TabletItemDetailFragment(String id) {
 		selectedId = id;
 	}
 
@@ -105,8 +105,12 @@ public class ItemDetailFragment extends Fragment {
 					link += "_en";
 				}
 			}else{
-				link += this.getString(R.string.app_link);
-				link += "?categoryId=" + selectedId;
+				link += this.getString(R.string.app_category_link);
+				link += "_" + selectedId;
+				
+				if(systemLanguage.equals("en")){
+					link += "_en";
+				}
 			}
 			
 			Log.v("bas", link);

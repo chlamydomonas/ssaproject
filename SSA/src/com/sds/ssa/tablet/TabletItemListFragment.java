@@ -14,33 +14,39 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.sds.ssa.R;
 import com.sds.ssa.adapter.AllTypeRowAdapter;
-import com.sds.ssa.tablet.dummy.DummyContent;
+import com.sds.ssa.search.SearchActivity;
 import com.sds.ssa.util.AppParams;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.AllType;
-import com.sds.ssa.vo.Category;
 
 /**
  * A list fragment representing a list of Items. This fragment also supports
  * tablet devices by allowing list items to be given an 'activated' state upon
  * selection. This helps indicate which item is currently being viewed in a
- * {@link ItemDetailFragment}.
+ * {@link TabletItemDetailFragment}.
  * <p>
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
-public class ItemListFragment extends ListFragment {
+public class TabletItemListFragment extends ListFragment {
 
 	//List<Category> categoryList;
 	List<AllType> allTypeList;
+	private boolean searchCheck;
 	
 	/**
 	 * The serialization (saved instance state) Bundle key representing the
@@ -85,20 +91,13 @@ public class ItemListFragment extends ListFragment {
 	 * Mandatory empty constructor for the fragment manager to instantiate the
 	 * fragment (e.g. upon screen orientation changes).
 	 */
-	public ItemListFragment() {
+	public TabletItemListFragment() {
 	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		// TODO: replace with a real list adapter.
-		/*setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-				android.R.layout.simple_list_item_activated_1,
-				android.R.id.text1, DummyContent.ITEMS));*/
 		
-		
-		//categoryList = new ArrayList<Category>();
 		allTypeList = new ArrayList<AllType>();
 
 		if (Utils.isNetworkAvailable(getActivity())) {
@@ -163,7 +162,7 @@ public class ItemListFragment extends ListFragment {
 
 				AllType allType = new AllType();
 				allType.setId("ALL");
-				allType.setName("ALL");
+				allType.setName(getString(R.string.all));
 				allType.setType("FIX");
 				allTypeList.add(allType);
 				
@@ -188,16 +187,9 @@ public class ItemListFragment extends ListFragment {
 						categoryType.setType("CATEGORY");
 						allTypeList.add(categoryType);
 					}
-
-					AllType searchType = new AllType();
-					searchType.setId("SEARCH");
-					searchType.setName("SEARCH");
-					searchType.setType("FIX");
-					allTypeList.add(searchType);
-					
 					AllType updateType = new AllType();
 					updateType.setId("UPDATE");
-					updateType.setName("UPDATE");
+					updateType.setName(getString(R.string.update));
 					updateType.setType("FIX");
 					allTypeList.add(updateType);
 					
@@ -219,6 +211,63 @@ public class ItemListFragment extends ListFragment {
 		
 	}
 
+	
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		setHasOptionsMenu(true);
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);		
+		inflater.inflate(R.menu.menu, menu);
+		
+	    SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.menu_search));
+	    searchView.setQueryHint(this.getString(R.string.search));
+
+	    ((EditText)searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text))
+        .setHintTextColor(getResources().getColor(R.color.white));	    
+	    searchView.setOnQueryTextListener(OnQuerySearchView);
+					    	   	    
+	    menu.findItem(R.id.menu_update).setVisible(false);		
+		menu.findItem(R.id.menu_search).setVisible(true);	
+  	    
+		searchCheck = false;	
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+
+		case R.id.menu_search:
+			searchCheck = true;
+			break;
+		}		
+		return true;
+	}	
+	
+	private OnQueryTextListener OnQuerySearchView = new OnQueryTextListener() {
+		
+		@Override
+		public boolean onQueryTextSubmit(String query) {
+			Intent intent = new Intent(getActivity(), SearchActivity.class);
+			intent.putExtra("searchWord", query);
+			startActivity(intent);
+			return false;
+		}
+		
+		@Override
+		public boolean onQueryTextChange(String query) {
+			if (searchCheck){
+				Log.v("bas", "onQueryTextChange");
+				//자동 완성 같은 건 없음;
+			}
+			return false;
+		}
+	};
+	
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
@@ -247,12 +296,10 @@ public class ItemListFragment extends ListFragment {
 
 		// Notify the active callbacks interface (the activity, if the
 		// fragment is attached to one) that an item has been selected.
-		
-		//Category category = categoryList.get(position);
-		//Log.v("bas", category.getId());
+
 		AllType allType = allTypeList.get(position);
 		Log.v("bas", allType.getId());
-		//Log.v("bas", DummyContent.ITEMS.get(position).id);
+
 		//mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
 		mCallbacks.onItemSelected(allType.getId());
 	}

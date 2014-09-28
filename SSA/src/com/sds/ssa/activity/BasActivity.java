@@ -8,7 +8,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.sds.ssa.phone.PhoneActivity;
-import com.sds.ssa.tablet.ItemListActivity;
+import com.sds.ssa.tablet.TabletItemListActivity;
 import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.UserInfo;
 
@@ -76,7 +76,7 @@ public class BasActivity extends Activity {
 			startActivity(phoneIntent);
 			finish();
 		}else{
-			Intent tabletIntent = new Intent(getApplicationContext(), ItemListActivity.class);
+			Intent tabletIntent = new Intent(getApplicationContext(), TabletItemListActivity.class);
 			tabletIntent.putExtra("userInfo", userInfoParam);
 			startActivity(tabletIntent);
 			finish();

@@ -8,7 +8,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context="com.sds.ssa.tablet.ItemListActivity" >
+    tools:context="com.sds.ssa.tablet.TabletItemListActivity" >
 
     <!--
     This layout is a two-pane layout for the Items
@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/item_list"
-        android:name="com.sds.ssa.tablet.ItemListFragment"
+        android:name="com.sds.ssa.tablet.TabletItemListFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="2"

@@ -9,6 +9,7 @@
  	<string name="server_address">https://ssa-bas-project.googlecode.com/svn/</string>
  	<string name="app_link">app</string>
  	<string name="category_link">category</string>
+ 	<string name="app_category_link">appByCategory</string>
  	<string name="update_link">appupdate</string>
  	<string name="detail_link">appdetail</string>
  	<string name="detail_link_1">appdetail_1</string>
@@ -18,13 +19,13 @@
  	<string name="search_link">search</string>
     <string name="is_new_day">7</string>
 
-    <string name="title_section1">Applications</string>
-    <string name="title_section2">Categories</string>
-    <string name="title_section3">Update</string>
+    <string name="application">Applications</string>
+    <string name="category">Categories</string>
+    <string name="update">Update</string>
+    <string name="all">All</string>
     
     <string name="download">Download</string>
     <string name="downloadMsg">Do you want to download this application?</string>
-    <string name="update">Update</string>
     <string name="updatedMsg">Do you want to update this application?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
