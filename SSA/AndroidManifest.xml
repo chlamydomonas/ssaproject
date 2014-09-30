@@ -64,7 +64,8 @@
         
         <activity
             android:name="com.sds.ssa.tablet.ItemListActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:theme="@style/ActionBarTheme" >
         </activity>
         <activity
             android:name="com.sds.ssa.tablet.ItemDetailActivity"

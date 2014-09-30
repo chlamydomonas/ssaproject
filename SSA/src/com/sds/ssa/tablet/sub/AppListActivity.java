@@ -1,9 +1,12 @@
 package com.sds.ssa.tablet.sub;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 
 import com.sds.ssa.R;
+import com.sds.ssa.tablet.ItemListActivity;
 
 /**
  * An activity representing a list of Items. This activity has different
@@ -50,6 +53,11 @@ public class AppListActivity extends ActionBarActivity implements
 		// 'activated' state when touched.
 		((AppListFragment) getFragmentManager().findFragmentById(
 				R.id.app_list)).setActivateOnItemClick(true);
+		
+		
+		AppDetailFragment fragment = new AppDetailFragment(b.getString("id"));
+		getFragmentManager().beginTransaction()
+				.replace(R.id.app_detail_container, fragment).commit();
 	}
 
 	/**
@@ -64,5 +72,18 @@ public class AppListActivity extends ActionBarActivity implements
 		AppDetailFragment fragment = new AppDetailFragment(id);
 		getFragmentManager().beginTransaction()
 				.replace(R.id.app_detail_container, fragment).commit();
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+        case android.R.id.home:
+        	Intent intent = new Intent(this, ItemListActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+        }
 	}
 }

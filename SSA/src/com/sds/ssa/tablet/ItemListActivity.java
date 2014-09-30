@@ -43,6 +43,10 @@ public class ItemListActivity extends ActionBarActivity implements
 			// 'activated' state when touched.
 			((ItemListFragment) getFragmentManager().findFragmentById(
 					R.id.item_list)).setActivateOnItemClick(true);
+			
+			ItemDetailFragment fragment = new ItemDetailFragment("ALL");
+			getFragmentManager().beginTransaction()
+					.replace(R.id.item_detail_container, fragment).commit();
 		}
 
 		// TODO: If exposing deep links into your app, handle intents here.
