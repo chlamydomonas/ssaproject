@@ -63,16 +63,29 @@
         </activity>
         
         <activity
-            android:name="com.sds.ssa.tablet.TabletItemListActivity"
+            android:name="com.sds.ssa.tablet.ItemListActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.sds.ssa.tablet.TabletItemDetailActivity"
+            android:name="com.sds.ssa.tablet.ItemDetailActivity"
             android:label="@string/app_name"
-            android:parentActivityName="com.sds.ssa.tablet.TabletItemListActivity" >
+            android:parentActivityName="com.sds.ssa.tablet.ItemListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.sds.ssa.tablet.TabletItemListActivity" />
+                android:value="com.sds.ssa.tablet.ItemListActivity" />
+        </activity>
+        
+        <activity
+            android:name="com.sds.ssa.tablet.sub.AppListActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.sds.ssa.tablet.sub.AppDetailActivity"
+            android:label="@string/app_name"
+            android:parentActivityName="com.sds.ssa.tablet.sub.AppListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sds.ssa.tablet.sub.AppListActivity" />
         </activity>
     </application>
 
