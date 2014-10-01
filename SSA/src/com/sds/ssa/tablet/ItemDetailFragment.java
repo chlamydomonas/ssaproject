@@ -13,6 +13,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -128,6 +129,8 @@ public class ItemDetailFragment extends Fragment {
 				intent.putExtra("created", application.getCreated());
 				intent.putExtra("verName", application.getAppVerName());
 				intent.putExtra("verCode", application.getAppVerCode());
+				intent.putExtra("order", position);
+				intent.putParcelableArrayListExtra("list", (ArrayList<? extends Parcelable>) applicationList);
 				startActivity(intent);
 			}
 		});

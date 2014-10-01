@@ -3,10 +3,12 @@ package com.sds.ssa.tablet.sub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.sds.ssa.R;
 import com.sds.ssa.tablet.ItemListActivity;
+import com.sds.ssa.vo.Application;
 
 /**
  * An activity representing a list of Items. This activity has different
@@ -25,37 +27,34 @@ import com.sds.ssa.tablet.ItemListActivity;
  */
 public class AppListActivity extends ActionBarActivity implements
 		AppListFragment.Callbacks {
+	
+	private Application application;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tablet_activity_app_list);
 
-		// The detail container view will be present only in the
-		// large-screen layouts (res/values-large and
-		// res/values-sw600dp). If this view is present, then the
-		// activity should be in two-pane mode.
-
-		
-		Bundle b = getIntent().getExtras();
-
-		String name = b.getString("name");
-		String summary = b.getString("summary");
-		String desc = b.getString("desc");
-		String manual = b.getString("manual");
-		String categoryname = b.getString("categoryname");
-		String create = b.getString("created");
-		String verName = b.getString("verName");
-		final String downloadUrl = b.getString("downloadUrl");
-		
-		
-		// In two-pane mode, list items should be given the
-		// 'activated' state when touched.
 		((AppListFragment) getFragmentManager().findFragmentById(
 				R.id.app_list)).setActivateOnItemClick(true);
 		
 		
-		AppDetailFragment fragment = new AppDetailFragment(b.getString("id"));
+		Bundle b = getIntent().getExtras();
+
+		application = new Application();
+		application.setAppId(b.getString("id"));
+		application.setAppIcon(b.getString("url"));
+		application.setAppName(b.getString("name"));
+		application.setCategoryName(b.getString("categoryname"));
+		application.setAppSummary(b.getString("summary"));
+		application.setAppDescription(b.getString("desc"));
+		application.setAppManual(b.getString("manual"));
+		application.setAppDownloadUrl(b.getString("downloadUrl"));
+		application.setCreated(b.getString("created"));
+		application.setAppVerName(b.getString("verName"));
+		application.setAppVerCode(b.getString("verCode"));
+		
+		AppDetailFragment fragment = new AppDetailFragment(application);
 		getFragmentManager().beginTransaction()
 				.replace(R.id.app_detail_container, fragment).commit();
 	}
@@ -65,11 +64,11 @@ public class AppListActivity extends ActionBarActivity implements
 	 * the item with the given ID was selected.
 	 */
 	@Override
-	public void onItemSelected(String id) {
+	public void onItemSelected(Application application) {
 		// In two-pane mode, show the detail view in this activity by
 		// adding or replacing the detail fragment using a
 		// fragment transaction.
-		AppDetailFragment fragment = new AppDetailFragment(id);
+		AppDetailFragment fragment = new AppDetailFragment(application);
 		getFragmentManager().beginTransaction()
 				.replace(R.id.app_detail_container, fragment).commit();
 	}

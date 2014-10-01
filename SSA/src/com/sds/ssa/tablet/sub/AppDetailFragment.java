@@ -56,7 +56,20 @@ public class AppDetailFragment extends Fragment {
 	 */
 	public static final String ARG_ITEM_ID = "item_id";
 
-	private String selectedId;
+	private String id;
+	private String url;
+	private String name;
+	private String categoryname;
+	private String summary;
+	private String desc;
+	private String manual;
+	private String downloadUrl;
+	private String create;
+	private String verName;
+	private String verCode;
+	
+	
+
 	private DisplayImageOptions options;
 	private ImageLoader imageLoader;	
 
@@ -78,10 +91,25 @@ public class AppDetailFragment extends Fragment {
 	 * fragment (e.g. upon screen orientation changes).
 	 */
 	public AppDetailFragment() {
+		
 	}
 	
 	public AppDetailFragment(String id) {
-		selectedId = id;
+		//selectedId = id;
+	}
+
+	public AppDetailFragment(Application application) {
+		id = application.getAppId();
+		url = application.getAppIcon();
+		name = application.getAppName();
+		categoryname = application.getCategoryName();
+		summary = application.getAppSummary();
+		desc = application.getAppDescription();
+		manual = application.getAppManual();
+		downloadUrl = application.getAppDownloadUrl();
+		create = application.getCreated();
+		verName = application.getAppVerName();
+		verCode = application.getAppVerCode();
 	}
 
 	@Override
@@ -124,17 +152,6 @@ public class AppDetailFragment extends Fragment {
 		downloadBtn.setLayoutParams(downloadBtn.getLayoutParams());
 		downloadBtn.setText(R.string.download);
 		
-		Bundle b = getActivity().getIntent().getExtras();
-
-		String name = b.getString("name");
-		String summary = b.getString("summary");
-		String desc = b.getString("desc");
-		String manual = b.getString("manual");
-		String categoryname = b.getString("categoryname");
-		String create = b.getString("created");
-		String verName = b.getString("verName");
-		final String downloadUrl = b.getString("downloadUrl");
-
 		appName.setText(name);
 		categoryName.setText(categoryname);
 		appSummary.setText(summary);
@@ -144,8 +161,8 @@ public class AppDetailFragment extends Fragment {
 		appVerName.setText(verName);
 		
 		UserInfo userInfo = (UserInfo)getActivity().getApplicationContext();
-		String appId = b.getString("id");
-		String appVerCode = b.getString("verCode");
+		String appId = id;
+		String appVerCode = verCode;
 		
 		int downloadType = 0;
 		for(int i=0; i < userInfo.getInstalledAppInfoList().size(); i++){
@@ -193,7 +210,7 @@ public class AppDetailFragment extends Fragment {
           	}
 		});
 		
-		String url = b.getString("url");
+		//String appIconUrl = url;
 		loadImageFromURL(url);
 
 		// Hardcoding start

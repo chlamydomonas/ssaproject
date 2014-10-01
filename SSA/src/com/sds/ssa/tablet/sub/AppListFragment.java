@@ -2,16 +2,10 @@ package com.sds.ssa.tablet.sub;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ListFragment;
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
@@ -22,12 +16,9 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.sds.ssa.R;
 import com.sds.ssa.adapter.TabletApplicationRowAdapter;
-import com.sds.ssa.util.AppParams;
-import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
 
 /**
@@ -71,7 +62,8 @@ public class AppListFragment extends ListFragment {
 		/**
 		 * Callback for when an item has been selected.
 		 */
-		public void onItemSelected(String id);
+		//public void onItemSelected(String id);
+		public void onItemSelected(Application application);
 	}
 
 	/**
@@ -80,7 +72,9 @@ public class AppListFragment extends ListFragment {
 	 */
 	private static Callbacks sDummyCallbacks = new Callbacks() {
 		@Override
-		public void onItemSelected(String id) {
+		//public void onItemSelected(String id) {
+		//}
+		public void onItemSelected(Application application) {
 		}
 	};
 
@@ -95,32 +89,15 @@ public class AppListFragment extends ListFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		//allTypeList = new ArrayList<AllType>();
+		Intent intent = getActivity().getIntent();
 		applicationList = new ArrayList<Application>();
 
-		/*
-		Bundle b = getIntent().getExtras();
-
-		String name = b.getString("name");
-		String summary = b.getString("summary");
-		String desc = b.getString("desc");
-		String manual = b.getString("manual");
-		String categoryname = b.getString("categoryname");
-		*/
-				
-				
-		if (Utils.isNetworkAvailable(getActivity())) {
-			Locale systemLocale = getResources().getConfiguration().locale;
-			String systemLanguage = systemLocale.getLanguage();
-			String categoryLink = this.getString(R.string.server_address) + this.getString(R.string.app_link);
-			
-			if(systemLanguage.equals("en")){
-				categoryLink = categoryLink + "_en";
-			}
-			new MyTask().execute(categoryLink);
-		} else {
-			showToast("No Network Connection!!!");
+		if(intent.hasExtra("list")){
+			applicationList = intent.getParcelableArrayListExtra("list");
+		}else{
+			applicationList = new ArrayList<Application>();
 		}
+		setListAdapter(new TabletApplicationRowAdapter(getActivity(), R.layout.tablet_application_row, applicationList));
 	}
 
 	@Override
@@ -134,82 +111,6 @@ public class AppListFragment extends ListFragment {
 					.getInt(STATE_ACTIVATED_POSITION));
 		}
 	}
-	
-	class MyTask extends AsyncTask<String, Void, String> {
-		ProgressDialog pDialog;
-
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-
-			pDialog = new ProgressDialog(getActivity());
-			pDialog.setMessage("Loading...");
-			pDialog.setCancelable(false);
-			pDialog.show();
-		}
-
-		@Override
-		protected String doInBackground(String... params) {
-			return Utils.getJSONString(params[0]);
-		}
-
-		@Override
-		protected void onPostExecute(String result) {
-			super.onPostExecute(result);
-
-			if (null != pDialog && pDialog.isShowing()) {
-				pDialog.dismiss();
-			}
-
-			if (null == result || result.length() == 0) {
-				showToast("No data found from web!!!");
-				getActivity().finish();
-			} else {
-
-				try {					
-					JSONObject applicationJson = new JSONObject(result);
-					JSONArray applicationArray = applicationJson.getJSONArray(AppParams.APP_ARRAY_NAME);
-					for (int i = 0; i < applicationArray.length(); i++) {
-						JSONObject appJsonObj = applicationArray.getJSONObject(i);
-
-						Application application = new Application();
-
-						application.setAppId(appJsonObj.getString(AppParams.APP_ID));
-						application.setAppName(appJsonObj.getString(AppParams.APP_NAME));
-						application.setAppVerCode(appJsonObj.getString(AppParams.APP_VER_CODE));
-						application.setAppVerName(appJsonObj.getString(AppParams.APP_VER_NAME));
-						application.setAppPackageName(appJsonObj.getString(AppParams.APP_PACKAGE_NAME));
-						application.setAppIcon(appJsonObj.getString(AppParams.APP_ICON));
-						application.setAppSummary(appJsonObj.getString(AppParams.APP_SUMMARY));
-						application.setAppDescription(appJsonObj.getString(AppParams.APP_DESCRIPTION));
-						application.setAppManual(appJsonObj.getString(AppParams.APP_MANUAL));
-						application.setAppGrade(appJsonObj.getString(AppParams.APP_GRADE));
-						application.setAppGradeCount(appJsonObj.getString(AppParams.APP_GRADE_COUNT));
-						application.setAppDownloadUrl(appJsonObj.getString(AppParams.APP_DOWNLOAD_URL));
-						application.setCreated(appJsonObj.getString(AppParams.APP_CREATED));
-						application.setAppUploadedDate(appJsonObj.getString(AppParams.APP_UPLOAD_DATE));
-						application.setCategoryId(appJsonObj.getString(AppParams.CATEGORY_ID));
-						application.setCategoryName(appJsonObj.getString(AppParams.CATEGORY_NAME));
-
-						applicationList.add(application);
-					}
-					
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				setAdapterToListview();
-			}
-		}
-	}
-	
-	public void setAdapterToListview() {		
-		setListAdapter(new TabletApplicationRowAdapter(getActivity(), R.layout.tablet_application_row, applicationList));
-	}
-	
-	public void showToast(String msg) {
-		Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
-		
-	}	
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -253,7 +154,7 @@ public class AppListFragment extends ListFragment {
 			//startActivity(intent);
 			//return false;
 			
-			mCallbacks.onItemSelected(query);
+			//mCallbacks.onItemSelected(query);
 			return false;
 			
 		}
@@ -288,7 +189,7 @@ public class AppListFragment extends ListFragment {
 		mCallbacks = sDummyCallbacks;
 	}
 
-	private String id;
+	//private String id;
 	
 	@Override
 	public void onListItemClick(ListView listView, View view, int position,
@@ -301,9 +202,9 @@ public class AppListFragment extends ListFragment {
 
 		Application application = applicationList.get(position);
 		
-		this.id = application.getAppId();
-		mCallbacks.onItemSelected(application.getAppId());
-		
+		//this.id = application.getAppId();
+		//mCallbacks.onItemSelected(application.getAppId());
+		mCallbacks.onItemSelected(application);
 		getActivity().invalidateOptionsMenu();
 		
 	}
