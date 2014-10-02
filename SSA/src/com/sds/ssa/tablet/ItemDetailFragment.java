@@ -14,7 +14,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,6 @@ import android.widget.Toast;
 
 import com.sds.ssa.R;
 import com.sds.ssa.adapter.ApplicationRowAdapter;
-import com.sds.ssa.fragment.app.DetailActivity;
 import com.sds.ssa.tablet.sub.AppListActivity;
 import com.sds.ssa.util.AppParams;
 import com.sds.ssa.util.Utils;
@@ -63,7 +61,6 @@ public class ItemDetailFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 	}
 
 	@Override
@@ -72,10 +69,8 @@ public class ItemDetailFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.tablet_fragment_item_detail,
 				container, false);
 
-		//View view = inflater.inflate(R.layout.application_listview, container, false);
 		listView = (ListView) rootView.findViewById(R.id.detaillistview);
 		listView.setItemsCanFocus(false);
-		//listView.setOnItemClickListener(this);
 
 		applicationList = new ArrayList<Application>();
 
@@ -86,12 +81,6 @@ public class ItemDetailFragment extends Fragment {
 
 			if(selectedId.equals("ALL")){
 				link += this.getString(R.string.app_link);
-				
-				if(systemLanguage.equals("en")){
-					link += "_en";
-				}
-			}else if(selectedId.equals("UPDATE")){
-				link += this.getString(R.string.update_link);
 				
 				if(systemLanguage.equals("en")){
 					link += "_en";
@@ -114,22 +103,10 @@ public class ItemDetailFragment extends Fragment {
 			public void onItemClick(AdapterView<?> parent, View v,
 					final int position, long id) {
 
-				Application application = applicationList.get(position);
 				Intent intent = new Intent(getActivity(), AppListActivity.class);
 				
-				Log.v("bas", application.getAppId());
-				intent.putExtra("id", application.getAppId());
-				intent.putExtra("url", application.getAppIcon());
-				intent.putExtra("name", application.getAppName());
-				intent.putExtra("categoryname", application.getCategoryName());
-				intent.putExtra("summary", application.getAppSummary());
-				intent.putExtra("desc", application.getAppDescription());
-				intent.putExtra("manual", application.getAppManual());
-				intent.putExtra("downloadUrl", application.getAppDownloadUrl());
-				intent.putExtra("created", application.getCreated());
-				intent.putExtra("verName", application.getAppVerName());
-				intent.putExtra("verCode", application.getAppVerCode());
 				intent.putExtra("order", position);
+				intent.putExtra("selectedType", selectedId);
 				intent.putParcelableArrayListExtra("list", (ArrayList<? extends Parcelable>) applicationList);
 				startActivity(intent);
 			}

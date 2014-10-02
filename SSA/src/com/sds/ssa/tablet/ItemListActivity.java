@@ -48,8 +48,6 @@ public class ItemListActivity extends ActionBarActivity implements
 			getFragmentManager().beginTransaction()
 					.replace(R.id.item_detail_container, fragment).commit();
 		}
-
-		// TODO: If exposing deep links into your app, handle intents here.
 	}
 
 	/**
@@ -58,8 +56,14 @@ public class ItemListActivity extends ActionBarActivity implements
 	 */
 	@Override
 	public void onItemSelected(String id) {
-		ItemDetailFragment fragment = new ItemDetailFragment(id);
-		getFragmentManager().beginTransaction()
-				.replace(R.id.item_detail_container, fragment).commit();
+		 if(id.equals("UPDATE")){
+			 ItemUpdateDetailFragment fragment = new ItemUpdateDetailFragment(id);
+				getFragmentManager().beginTransaction()
+						.replace(R.id.item_detail_container, fragment).commit();
+		 }else{
+			 ItemDetailFragment fragment = new ItemDetailFragment(id);
+				getFragmentManager().beginTransaction()
+						.replace(R.id.item_detail_container, fragment).commit();
+		 }
 	}
 }

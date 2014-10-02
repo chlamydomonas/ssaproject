@@ -19,6 +19,7 @@ import android.widget.ListView;
 
 import com.sds.ssa.R;
 import com.sds.ssa.adapter.TabletApplicationRowAdapter;
+import com.sds.ssa.adapter.TabletUpdateRowAdapter;
 import com.sds.ssa.vo.Application;
 
 /**
@@ -32,7 +33,6 @@ import com.sds.ssa.vo.Application;
  */
 public class AppListFragment extends ListFragment {
 
-	//List<AllType> allTypeList;
 	List<Application> applicationList;
 	private boolean searchCheck;
 	
@@ -62,7 +62,6 @@ public class AppListFragment extends ListFragment {
 		/**
 		 * Callback for when an item has been selected.
 		 */
-		//public void onItemSelected(String id);
 		public void onItemSelected(Application application);
 	}
 
@@ -72,8 +71,6 @@ public class AppListFragment extends ListFragment {
 	 */
 	private static Callbacks sDummyCallbacks = new Callbacks() {
 		@Override
-		//public void onItemSelected(String id) {
-		//}
 		public void onItemSelected(Application application) {
 		}
 	};
@@ -91,13 +88,19 @@ public class AppListFragment extends ListFragment {
 		
 		Intent intent = getActivity().getIntent();
 		applicationList = new ArrayList<Application>();
-
+		String selectedType = intent.getExtras().getString("selectedType");
+		
 		if(intent.hasExtra("list")){
 			applicationList = intent.getParcelableArrayListExtra("list");
 		}else{
 			applicationList = new ArrayList<Application>();
 		}
-		setListAdapter(new TabletApplicationRowAdapter(getActivity(), R.layout.tablet_application_row, applicationList));
+		
+		if(selectedType.equals("UPDATE")){
+			setListAdapter(new TabletUpdateRowAdapter(getActivity(), R.layout.tablet_update_row, applicationList));
+		}else{
+			setListAdapter(new TabletApplicationRowAdapter(getActivity(), R.layout.tablet_application_row, applicationList));
+		}
 	}
 
 	@Override
@@ -122,7 +125,7 @@ public class AppListFragment extends ListFragment {
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);		
 		inflater.inflate(R.menu.menu, menu);
-		Log.e("bas", "TableItemListFragment.onCreateOptionsMenu()");
+		Log.e("bas", "AppListFragment.onCreateOptionsMenu()");
 		
 		SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.menu_search));
 	    searchView.setQueryHint(this.getString(R.string.search));
@@ -189,8 +192,6 @@ public class AppListFragment extends ListFragment {
 		mCallbacks = sDummyCallbacks;
 	}
 
-	//private String id;
-	
 	@Override
 	public void onListItemClick(ListView listView, View view, int position,
 			long id) {
@@ -201,9 +202,6 @@ public class AppListFragment extends ListFragment {
 		// fragment is attached to one) that an item has been selected.
 
 		Application application = applicationList.get(position);
-		
-		//this.id = application.getAppId();
-		//mCallbacks.onItemSelected(application.getAppId());
 		mCallbacks.onItemSelected(application);
 		getActivity().invalidateOptionsMenu();
 		

@@ -1,9 +1,11 @@
 package com.sds.ssa.tablet.sub;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.sds.ssa.R;
@@ -28,7 +30,7 @@ import com.sds.ssa.vo.Application;
 public class AppListActivity extends ActionBarActivity implements
 		AppListFragment.Callbacks {
 	
-	private Application application;
+	private List<Application> applicationList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,26 +39,23 @@ public class AppListActivity extends ActionBarActivity implements
 
 		((AppListFragment) getFragmentManager().findFragmentById(
 				R.id.app_list)).setActivateOnItemClick(true);
-		
-		
-		Bundle b = getIntent().getExtras();
 
-		application = new Application();
-		application.setAppId(b.getString("id"));
-		application.setAppIcon(b.getString("url"));
-		application.setAppName(b.getString("name"));
-		application.setCategoryName(b.getString("categoryname"));
-		application.setAppSummary(b.getString("summary"));
-		application.setAppDescription(b.getString("desc"));
-		application.setAppManual(b.getString("manual"));
-		application.setAppDownloadUrl(b.getString("downloadUrl"));
-		application.setCreated(b.getString("created"));
-		application.setAppVerName(b.getString("verName"));
-		application.setAppVerCode(b.getString("verCode"));
-		
-		AppDetailFragment fragment = new AppDetailFragment(application);
-		getFragmentManager().beginTransaction()
-				.replace(R.id.app_detail_container, fragment).commit();
+		Intent intent = getIntent();
+		applicationList = new ArrayList<Application>();
+
+		applicationList = intent.getParcelableArrayListExtra("list");
+		int order = intent.getExtras().getInt("order");
+		String selectedType = intent.getExtras().getString("selectedType");
+
+		if(selectedType.equals("UPDATE")){
+			AppUpdateDetailFragment fragment = new AppUpdateDetailFragment(applicationList.get(order));
+			getFragmentManager().beginTransaction()
+					.replace(R.id.app_detail_container, fragment).commit();
+		}else{
+			AppDetailFragment fragment = new AppDetailFragment(applicationList.get(order));
+			getFragmentManager().beginTransaction()
+					.replace(R.id.app_detail_container, fragment).commit();
+		}
 	}
 
 	/**
@@ -68,9 +67,19 @@ public class AppListActivity extends ActionBarActivity implements
 		// In two-pane mode, show the detail view in this activity by
 		// adding or replacing the detail fragment using a
 		// fragment transaction.
-		AppDetailFragment fragment = new AppDetailFragment(application);
-		getFragmentManager().beginTransaction()
-				.replace(R.id.app_detail_container, fragment).commit();
+		
+		Intent intent = getIntent();
+		String selectedType = intent.getExtras().getString("selectedType");
+
+		if(selectedType.equals("UPDATE")){
+			AppUpdateDetailFragment fragment = new AppUpdateDetailFragment(application);
+			getFragmentManager().beginTransaction()
+					.replace(R.id.app_detail_container, fragment).commit();
+		}else{
+			AppDetailFragment fragment = new AppDetailFragment(application);
+			getFragmentManager().beginTransaction()
+					.replace(R.id.app_detail_container, fragment).commit();
+		}
 	}
 	
 	@Override

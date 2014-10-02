@@ -67,8 +67,6 @@ public class AppDetailFragment extends Fragment {
 	private String create;
 	private String verName;
 	private String verCode;
-	
-	
 
 	private DisplayImageOptions options;
 	private ImageLoader imageLoader;	
@@ -91,11 +89,6 @@ public class AppDetailFragment extends Fragment {
 	 * fragment (e.g. upon screen orientation changes).
 	 */
 	public AppDetailFragment() {
-		
-	}
-	
-	public AppDetailFragment(String id) {
-		//selectedId = id;
 	}
 
 	public AppDetailFragment(Application application) {
@@ -115,7 +108,6 @@ public class AppDetailFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 	}
 
 	@Override
@@ -210,7 +202,6 @@ public class AppDetailFragment extends Fragment {
           	}
 		});
 		
-		//String appIconUrl = url;
 		loadImageFromURL(url);
 
 		// Hardcoding start
@@ -238,7 +229,6 @@ public class AppDetailFragment extends Fragment {
 		return rootView;
 	}
 
-	
 	protected void registerComment(View v, int star) {
 		reviewDialog = new ReviewDialog(v.getContext(), 
 				star,
@@ -276,12 +266,10 @@ public class AppDetailFragment extends Fragment {
 			@Override
 			public void onLoadingComplete() {
 				pbar.setVisibility(View.INVISIBLE);
-
 			}
 
 			@Override
 			public void onLoadingFailed() {
-
 				pbar.setVisibility(View.INVISIBLE);
 			}
 
@@ -320,7 +308,6 @@ public class AppDetailFragment extends Fragment {
 
 			if (null == result || result.length() == 0) {
 				//showToast("No data found from web!!!");
-				//DetailActivity.this.finish(); //원래 app fragment에서 넘어온 정보만 보여준다.
 			} else {
 
 				try {
@@ -380,9 +367,6 @@ public class AppDetailFragment extends Fragment {
 	}
 	
 	public void setCommentListView() {
-		//commentRowAdapter = new CommentRowAdapter(DetailActivity.this, R.layout.application_detail_comment_row, commentList);
-		//listView.setAdapter(commentRowAdapter);
-
 		float totalGrade = (float) 0.0;
 		for (int i = 0; i < commentList.size(); i++) {
 			
@@ -397,7 +381,6 @@ public class AppDetailFragment extends Fragment {
 			TextView comment = (TextView) linearView.findViewById(R.id.comment);
 			TextView createdDate = (TextView) linearView.findViewById(R.id.created);
 			ImageView userGrade = (ImageView) linearView.findViewById(R.id.usergrade);
-		
 
 			final String uName = commentList.get(i).getCommentUserName();
 			final String dName = commentList.get(i).getCommentDeptName();
@@ -423,7 +406,6 @@ public class AppDetailFragment extends Fragment {
 			}else if(uGrade == 5){
 				userGrade.setBackgroundResource(R.drawable.star_5);
 			}
-
 			linearListView.addView(linearView);
 		}
 
@@ -455,7 +437,6 @@ public class AppDetailFragment extends Fragment {
 		}
 		reviewerCount.setText("("+commentList.size()+")");
 	}
-
 
 	public void setScreenshotToHorizontal() {
 		HorizontalScrollView scrollView = (HorizontalScrollView) rootView.findViewById(R.id.screenshot_horizontal);
