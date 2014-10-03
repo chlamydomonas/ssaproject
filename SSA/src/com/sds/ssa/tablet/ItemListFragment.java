@@ -43,6 +43,8 @@ public class ItemListFragment extends ListFragment {
 
 	List<AllType> allTypeList;
 	private boolean searchCheck;
+	private String id;
+	private String searchWord = null;
 	
 	/**
 	 * The serialization (saved instance state) Bundle key representing the
@@ -70,7 +72,7 @@ public class ItemListFragment extends ListFragment {
 		/**
 		 * Callback for when an item has been selected.
 		 */
-		public void onItemSelected(String id);
+		public void onItemSelected(String id, String searchWord);
 	}
 
 	/**
@@ -79,7 +81,7 @@ public class ItemListFragment extends ListFragment {
 	 */
 	private static Callbacks sDummyCallbacks = new Callbacks() {
 		@Override
-		public void onItemSelected(String id) {
+		public void onItemSelected(String id, String searchWord) {
 		}
 	};
 
@@ -241,8 +243,8 @@ public class ItemListFragment extends ListFragment {
 			//intent.putExtra("searchWord", query);
 			//startActivity(intent);
 			//return false;
-			
-			mCallbacks.onItemSelected(query);
+		
+			mCallbacks.onItemSelected("SEARCH", query);
 			return false;
 			
 		}
@@ -277,7 +279,7 @@ public class ItemListFragment extends ListFragment {
 		mCallbacks = sDummyCallbacks;
 	}
 
-	private String id;
+	
 	
 	@Override
 	public void onListItemClick(ListView listView, View view, int position,
@@ -291,7 +293,7 @@ public class ItemListFragment extends ListFragment {
 		AllType allType = allTypeList.get(position);
 		
 		this.id = allType.getId();
-		mCallbacks.onItemSelected(allType.getId());
+		mCallbacks.onItemSelected(allType.getId(), searchWord);
 		
 		getActivity().invalidateOptionsMenu();
 		

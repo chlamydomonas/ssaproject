@@ -182,8 +182,7 @@ public class AppDetailFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				//showInfo();          
-				Utils.showDownload(downloadUrl, v);  
-				
+				Utils.showDownload(downloadUrl, v);
           	}
 		});
 

@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,7 @@ public class ItemDetailFragment extends Fragment {
 	public static final String ARG_ITEM_ID = "item_id";
 
 	private String selectedId;
+	private String search = null;
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
 	 * fragment (e.g. upon screen orientation changes).
@@ -54,8 +56,9 @@ public class ItemDetailFragment extends Fragment {
 	public ItemDetailFragment() {
 	}
 	
-	public ItemDetailFragment(String id) {
+	public ItemDetailFragment(String id, String searchWord) {
 		selectedId = id;
+		search = searchWord;
 	}
 
 	@Override
@@ -79,8 +82,18 @@ public class ItemDetailFragment extends Fragment {
 			String systemLanguage = systemLocale.getLanguage();
 			String link = this.getString(R.string.server_address);
 
+			Log.v("bas", "SFSS");
+			Log.v("bas", selectedId);
 			if(selectedId.equals("ALL")){
 				link += this.getString(R.string.app_link);
+				
+				if(systemLanguage.equals("en")){
+					link += "_en";
+				}
+			}else if(selectedId.equals("SEARCH")){
+				
+				//add searchword later
+				link += this.getString(R.string.search_link);
 				
 				if(systemLanguage.equals("en")){
 					link += "_en";
@@ -93,6 +106,7 @@ public class ItemDetailFragment extends Fragment {
 					link += "_en";
 				}
 			}
+			Log.v("bas", link);
 			new MyTask().execute(link);
 		} else {
 			showToast("No Network Connection. Try again.");

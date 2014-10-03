@@ -44,7 +44,7 @@ public class ItemListActivity extends ActionBarActivity implements
 			((ItemListFragment) getFragmentManager().findFragmentById(
 					R.id.item_list)).setActivateOnItemClick(true);
 			
-			ItemDetailFragment fragment = new ItemDetailFragment("ALL");
+			ItemDetailFragment fragment = new ItemDetailFragment("ALL", null);
 			getFragmentManager().beginTransaction()
 					.replace(R.id.item_detail_container, fragment).commit();
 		}
@@ -55,13 +55,20 @@ public class ItemListActivity extends ActionBarActivity implements
 	 * the item with the given ID was selected.
 	 */
 	@Override
-	public void onItemSelected(String id) {
+	public void onItemSelected(String id, String searchWord) {
 		 if(id.equals("UPDATE")){
+			 setTitle(R.string.app_name);
 			 ItemUpdateDetailFragment fragment = new ItemUpdateDetailFragment(id);
 				getFragmentManager().beginTransaction()
 						.replace(R.id.item_detail_container, fragment).commit();
+		 }else if(id.equals("SEARCH")){
+			 setTitle(searchWord);
+			 ItemDetailFragment fragment = new ItemDetailFragment(id, searchWord);
+				getFragmentManager().beginTransaction()
+						.replace(R.id.item_detail_container, fragment).commit();
 		 }else{
-			 ItemDetailFragment fragment = new ItemDetailFragment(id);
+			 setTitle(R.string.app_name);
+			 ItemDetailFragment fragment = new ItemDetailFragment(id, null);
 				getFragmentManager().beginTransaction()
 						.replace(R.id.item_detail_container, fragment).commit();
 		 }

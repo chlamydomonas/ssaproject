@@ -7,14 +7,9 @@ import android.app.Activity;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.SearchView.OnQueryTextListener;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import com.sds.ssa.R;
@@ -34,7 +29,6 @@ import com.sds.ssa.vo.Application;
 public class AppListFragment extends ListFragment {
 
 	List<Application> applicationList;
-	private boolean searchCheck;
 	
 	/**
 	 * The serialization (saved instance state) Bundle key representing the
@@ -125,52 +119,24 @@ public class AppListFragment extends ListFragment {
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);		
 		inflater.inflate(R.menu.menu, menu);
-		Log.e("bas", "AppListFragment.onCreateOptionsMenu()");
-		
-		SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.menu_search));
-	    searchView.setQueryHint(this.getString(R.string.search));
 
-	    ((EditText)searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text))
-        .setHintTextColor(getResources().getColor(R.color.white));	    
-	    searchView.setOnQueryTextListener(OnQuerySearchView);
-					  
-	    menu.findItem(R.id.menu_update).setVisible(false);	
-	    menu.findItem(R.id.menu_search).setVisible(true);
-			
-		searchCheck = false;
+		menu.findItem(R.id.menu_search).setVisible(false);	
+		
+	    Intent intent = getActivity().getIntent();
+		String selectedType = intent.getExtras().getString("selectedType");
+
+		if(selectedType.equals("UPDATE")){
+			menu.findItem(R.id.menu_update).setVisible(true);		
+	    } else {
+	    	menu.findItem(R.id.menu_update).setVisible(false);
+	    }
 	}
 
 	@Override
 	public void onPrepareOptionsMenu(Menu menu) {
 		super.onPrepareOptionsMenu(menu);
-		Log.e("bas", "TableItemListFragment.onPrepareOptionsMenu()");
 	}
 
-	private OnQueryTextListener OnQuerySearchView = new OnQueryTextListener() {
-		
-		@Override
-		public boolean onQueryTextSubmit(String query) {
-			
-			//onitemse
-			//Intent intent = new Intent(getActivity(), SearchActivity.class);
-			//intent.putExtra("searchWord", query);
-			//startActivity(intent);
-			//return false;
-			
-			//mCallbacks.onItemSelected(query);
-			return false;
-			
-		}
-		
-		@Override
-		public boolean onQueryTextChange(String query) {
-			if (searchCheck){
-				Log.v("bas", "onQueryTextChange");
-			}
-			return false;
-		}
-	};
-	
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
@@ -197,14 +163,12 @@ public class AppListFragment extends ListFragment {
 			long id) {
 		super.onListItemClick(listView, view, position, id);
 
-		Log.e("bas", "TableItemListFragment.onListItemClick()");
 		// Notify the active callbacks interface (the activity, if the
 		// fragment is attached to one) that an item has been selected.
 
 		Application application = applicationList.get(position);
 		mCallbacks.onItemSelected(application);
 		getActivity().invalidateOptionsMenu();
-		
 	}
 
 	@Override
