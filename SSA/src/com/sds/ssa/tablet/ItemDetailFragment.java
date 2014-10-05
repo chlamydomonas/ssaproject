@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -40,6 +41,7 @@ public class ItemDetailFragment extends Fragment {
 	List<Application> applicationList;
 	ListView listView;
 	ApplicationRowAdapter appsRowAdapter;
+	Activity mActivity;
 	
 	/**
 	 * The fragment argument representing the item ID that this fragment
@@ -64,6 +66,7 @@ public class ItemDetailFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setRetainInstance(true);
 	}
 
 	@Override
@@ -84,6 +87,7 @@ public class ItemDetailFragment extends Fragment {
 
 			Log.v("bas", "SFSS");
 			Log.v("bas", selectedId);
+			
 			if(selectedId.equals("ALL")){
 				link += this.getString(R.string.app_link);
 				
@@ -128,6 +132,13 @@ public class ItemDetailFragment extends Fragment {
 		return rootView;
 	}
 	
+	@Override
+	public void onAttach(Activity activity) {
+		// TODO Auto-generated method stub
+		super.onAttach(activity);
+		mActivity = activity;
+	}
+
 	class MyTask extends AsyncTask<String, Void, String> {
 		ProgressDialog pDialog;
 
@@ -195,7 +206,7 @@ public class ItemDetailFragment extends Fragment {
 	}
 	
 	public void setAdapterToListview() {
-		appsRowAdapter = new ApplicationRowAdapter(getActivity(), R.layout.application_row, applicationList);
+		appsRowAdapter = new ApplicationRowAdapter(mActivity, R.layout.application_row, applicationList);
 		listView.setAdapter(appsRowAdapter);
 	}
 	

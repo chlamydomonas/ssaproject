@@ -17,7 +17,7 @@
  	<string name="detail_link_3">appdetail_3</string>
  	<string name="detail_link_4">appdetail_4</string>
  	<string name="search_link">search</string>
-    <string name="is_new_day">7</string>
+    <string name="is_new_day">75</string>
 
     <string name="application">Applications</string>
     <string name="category">Categories</string>

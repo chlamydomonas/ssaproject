@@ -19,6 +19,7 @@ import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -95,6 +96,7 @@ public class ItemListFragment extends ListFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		 setRetainInstance(true);
 		
 		allTypeList = new ArrayList<AllType>();
 
@@ -207,7 +209,6 @@ public class ItemListFragment extends ListFragment {
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);		
 		inflater.inflate(R.menu.menu, menu);
-		Log.e("bas", "TableItemListFragment.onCreateOptionsMenu()");
 		
 		SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.menu_search));
 	    searchView.setQueryHint(this.getString(R.string.search));
@@ -226,27 +227,35 @@ public class ItemListFragment extends ListFragment {
   	    
 		searchCheck = false;
 	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+
+		case R.id.menu_update:
+			showToast("Update all");
+			/*
+			String updateAppUrls = "";
+			for(int i=0; i < updateList.size(); i++){
+				updateAppUrls += updateList.get(i).getAppDownloadUrl()+";";
+			}
+			Utils.showDownload(updateAppUrls, this.getView());*/
+			break;
+		}		
+		return true;
+	}
 
 	@Override
 	public void onPrepareOptionsMenu(Menu menu) {
 		super.onPrepareOptionsMenu(menu);
-		Log.e("bas", "TableItemListFragment.onPrepareOptionsMenu()");
 	}
 
 	private OnQueryTextListener OnQuerySearchView = new OnQueryTextListener() {
 		
 		@Override
 		public boolean onQueryTextSubmit(String query) {
-			
-			//onitemse
-			//Intent intent = new Intent(getActivity(), SearchActivity.class);
-			//intent.putExtra("searchWord", query);
-			//startActivity(intent);
-			//return false;
-		
 			mCallbacks.onItemSelected("SEARCH", query);
 			return false;
-			
 		}
 		
 		@Override
@@ -278,8 +287,6 @@ public class ItemListFragment extends ListFragment {
 		// Reset the active callbacks interface to the dummy implementation.
 		mCallbacks = sDummyCallbacks;
 	}
-
-	
 	
 	@Override
 	public void onListItemClick(ListView listView, View view, int position,
@@ -296,7 +303,6 @@ public class ItemListFragment extends ListFragment {
 		mCallbacks.onItemSelected(allType.getId(), searchWord);
 		
 		getActivity().invalidateOptionsMenu();
-		
 	}
 
 	@Override

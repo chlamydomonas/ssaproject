@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -39,6 +40,7 @@ public class ItemUpdateDetailFragment extends Fragment {
 	List<Application> applicationList;
 	ListView listView;
 	UpdateRowAdapter updateRowAdapter;
+	Activity mActivity;
 	
 	/**
 	 * The fragment argument representing the item ID that this fragment
@@ -61,6 +63,7 @@ public class ItemUpdateDetailFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setRetainInstance(true);
 	}
 
 	@Override
@@ -103,6 +106,13 @@ public class ItemUpdateDetailFragment extends Fragment {
 			}
 		});
 		return rootView;
+	}
+	
+	@Override
+	public void onAttach(Activity activity) {
+		// TODO Auto-generated method stub
+		super.onAttach(activity);
+		mActivity = activity;
 	}
 	
 	class MyTask extends AsyncTask<String, Void, String> {
@@ -164,7 +174,7 @@ public class ItemUpdateDetailFragment extends Fragment {
 	}
 	
 	public void setAdapterToListview() {
-		updateRowAdapter = new UpdateRowAdapter(getActivity(), R.layout.update_row, applicationList);
+		updateRowAdapter = new UpdateRowAdapter(mActivity, R.layout.update_row, applicationList);
 		listView.setAdapter(updateRowAdapter);
 	}
 	

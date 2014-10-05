@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -83,6 +84,7 @@ public class AppDetailFragment extends Fragment {
 	CommentRowAdapter commentRowAdapter;
 	ListView listView;
 	View rootView;
+	Activity mActivity;
 	
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -108,6 +110,7 @@ public class AppDetailFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setRetainInstance(true);
 	}
 
 	@Override
@@ -226,6 +229,13 @@ public class AppDetailFragment extends Fragment {
 			showToast("No Network Connection. Try again.");
 		}
 		return rootView;
+	}
+	
+	@Override
+	public void onAttach(Activity activity) {
+		// TODO Auto-generated method stub
+		super.onAttach(activity);
+		mActivity = activity;
 	}
 
 	protected void registerComment(View v, int star) {
@@ -370,7 +380,7 @@ public class AppDetailFragment extends Fragment {
 		for (int i = 0; i < commentList.size(); i++) {
 			
 			LayoutInflater inflater = null;
-			inflater = (LayoutInflater) this.getActivity().getApplicationContext()
+			inflater = (LayoutInflater) this.mActivity.getApplicationContext()
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			
 			View linearView = inflater.inflate(R.layout.application_detail_comment_row, null);
@@ -390,7 +400,7 @@ public class AppDetailFragment extends Fragment {
 
 		    totalGrade += uGrade;
 			userName.setText(uName+" ("+dName+")");
-			installVerName.setText(this.getString(R.string.version) + " " +iVerName);
+			installVerName.setText(mActivity.getString(R.string.version) + " " +iVerName);
 			comment.setText(comm);
 			createdDate.setText(create);
 
@@ -440,11 +450,11 @@ public class AppDetailFragment extends Fragment {
 	public void setScreenshotToHorizontal() {
 		HorizontalScrollView scrollView = (HorizontalScrollView) rootView.findViewById(R.id.screenshot_horizontal);
 
-        LinearLayout topLinearLayout = new LinearLayout(getActivity());
+        LinearLayout topLinearLayout = new LinearLayout(mActivity);
         topLinearLayout.setOrientation(LinearLayout.HORIZONTAL); 
 
         for(int i=0; i<screenshotList.size(); i++){
-        	ImageView image = new ImageView(getActivity()); 
+        	ImageView image = new ImageView(mActivity); 
         	
             options = new DisplayImageOptions.Builder()
 			.showStubImage(R.drawable.noimage)
@@ -453,7 +463,7 @@ public class AppDetailFragment extends Fragment {
 
             topLinearLayout.addView(image);
             
-            DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+            DisplayMetrics displayMetrics = mActivity.getResources().getDisplayMetrics();
             
             int width = displayMetrics.widthPixels / 3 + 10;
             int height = displayMetrics.heightPixels / 3;
@@ -473,7 +483,7 @@ public class AppDetailFragment extends Fragment {
 			});
             	
 			imageLoader = ImageLoader.getInstance();
-			imageLoader.init(ImageLoaderConfiguration.createDefault(getActivity()));
+			imageLoader.init(ImageLoaderConfiguration.createDefault(mActivity));
 			imageLoader.displayImage(screenshotList.get(i).getScreenShotUrl(), image, options,
 			new ImageLoadingListener() {
 				@Override

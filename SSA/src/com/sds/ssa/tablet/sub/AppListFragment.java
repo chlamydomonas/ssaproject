@@ -9,12 +9,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
 import com.sds.ssa.R;
 import com.sds.ssa.adapter.TabletApplicationRowAdapter;
 import com.sds.ssa.adapter.TabletUpdateRowAdapter;
+import com.sds.ssa.util.Utils;
 import com.sds.ssa.vo.Application;
 
 /**
@@ -79,6 +81,7 @@ public class AppListFragment extends ListFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		 setRetainInstance(true);
 		
 		Intent intent = getActivity().getIntent();
 		applicationList = new ArrayList<Application>();
@@ -200,5 +203,20 @@ public class AppListFragment extends ListFragment {
 		}
 
 		mActivatedPosition = position;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+
+		case R.id.menu_update:
+			String updateAppUrls = "";
+			for(int i=0; i < applicationList.size(); i++){
+				updateAppUrls += applicationList.get(i).getAppDownloadUrl()+";";
+			}
+			Utils.showDownload(updateAppUrls, this.getView());
+			break;
+		}		
+		return true;
 	}
 }
