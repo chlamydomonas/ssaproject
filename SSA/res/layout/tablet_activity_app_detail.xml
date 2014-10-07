@@ -3,6 +3,6 @@
     android:id="@+id/app_detail_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sds.ssa.tablet.sub.AppDetailActivity"
+    tools:context="com.sds.bas.tablet.sub.AppDetailActivity"
     tools:ignore="MergeRootFrame" />
 

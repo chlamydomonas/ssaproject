@@ -4,7 +4,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-	<com.sds.ssa.sliding.SlidingTabLayout
+	<com.sds.bas.phone.sliding.SlidingTabLayout
         android:id="@+id/mTabs"
         android:layout_width="match_parent"
         android:layout_height="48dip"/>    

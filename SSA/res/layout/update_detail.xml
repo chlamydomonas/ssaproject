@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#f9f9f9"
     android:orientation="vertical"
-	tools:context="com.sds.ssa.fragment.app.DetailActivity" >
+	tools:context="com.sds.bas.phone.home.app.DetailActivity" >
 	
 	<RelativeLayout
 	    android:layout_width="fill_parent"

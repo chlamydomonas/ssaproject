@@ -8,7 +8,7 @@
         android:minSdkVersion="15"
         android:targetSdkVersion="18" />
 
-    <uses-permission android:name="sdsssa.permission.TEST" />
+    <uses-permission android:name="sds.permission.BizAppStore" />
     
     <application
         android:allowBackup="true"

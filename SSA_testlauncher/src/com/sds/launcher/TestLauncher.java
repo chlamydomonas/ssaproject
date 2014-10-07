@@ -1,9 +1,7 @@
 package com.sds.launcher;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -192,8 +190,8 @@ public class TestLauncher extends Activity implements View.OnClickListener {
 	@Override
 	public void onClick(View v) {
 		Intent intent = new Intent();
-		intent.setClassName("com.sds.ssa", // Package name
-				"com.sds.ssa.activity.BasActivity");
+		intent.setClassName("com.sds.bas", // Package name
+				"com.sds.bas.activity.BasActivity");
 		intent.putExtra(rootUserInfo, rootObj.toString());
 		startActivity(intent);
 	}

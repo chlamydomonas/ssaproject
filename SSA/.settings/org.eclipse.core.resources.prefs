@@ -1,5 +1,5 @@
 eclipse.preferences.version=1
-encoding//src/com/sds/ssa/activity/BasActivity.java=UTF-8
-encoding//src/com/sds/ssa/fragment/app/DetailActivity.java=UTF-8
-encoding//src/com/sds/ssa/phone/PhoneActivity.java=UTF-8
-encoding//src/com/sds/ssa/util/ReviewDialog.java=UTF-8
+encoding//src/com/sds/bas/activity/BasActivity.java=UTF-8
+encoding//src/com/sds/bas/phone/PhoneActivity.java=UTF-8
+encoding//src/com/sds/bas/phone/home/app/DetailActivity.java=UTF-8
+encoding//src/com/sds/bas/util/ReviewDialog.java=UTF-8

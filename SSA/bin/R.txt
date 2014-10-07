@@ -542,10 +542,11 @@ int string rate_app 0x7f0a002b
 int string review 0x7f0a0029
 int string search 0x7f0a000e
 int string search_link 0x7f0a001b
+int string search_result 0x7f0a0031
 int string server_address 0x7f0a0011
 int string summary 0x7f0a0026
 int string update 0x7f0a001f
-int string updateMsg 0x7f0a0031
+int string updateMsg 0x7f0a0032
 int string update_link 0x7f0a0015
 int string updatedMsg 0x7f0a0023
 int string version 0x7f0a002a

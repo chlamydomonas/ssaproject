@@ -1,11 +1,11 @@
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_list"
-    android:name="com.sds.ssa.tablet.sub.AppListFragment"
+    android:name="com.sds.bas.tablet.sub.AppListFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
-    tools:context="com.sds.ssa.tablet.sub.AppListActivity"
+    tools:context="com.sds.bas.tablet.sub.AppListActivity"
     tools:layout="@android:layout/app_list_content" />
 
