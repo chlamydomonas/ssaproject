@@ -234,9 +234,12 @@ public class SearchActivity extends Activity implements OnItemClickListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
         case android.R.id.home:
+        	/*
         	Intent intent = new Intent(this, PhoneActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
+            startActivity(intent)
+            ;*/
+        	onBackPressed();
             break;
       
         case R.id.menu_search:

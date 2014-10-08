@@ -478,10 +478,12 @@ public class DetailActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
         case android.R.id.home:
-            //finish();
+            /*
         	Intent intent = new Intent(this, BasActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+            */
+        	onBackPressed();
             return true;
         default:
             return super.onOptionsItemSelected(item);

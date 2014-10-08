@@ -6,10 +6,8 @@ import java.util.List;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.MenuItem;
 
-import com.sds.bas.tablet.main.ItemListActivity;
 import com.sds.bas.vo.Application;
 import com.sds.ssa.R;
 
@@ -32,12 +30,16 @@ public class AppListActivity extends ActionBarActivity implements
 		AppListFragment.Callbacks {
 	
 	private List<Application> applicationList;
-
+	private String selectedType;
+	private String keyWord;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tablet_activity_app_list);
 
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		((AppListFragment) getFragmentManager().findFragmentById(
 				R.id.app_list)).setActivateOnItemClick(true);
 
@@ -46,10 +48,10 @@ public class AppListActivity extends ActionBarActivity implements
 
 		applicationList = intent.getParcelableArrayListExtra("list");
 		int order = intent.getExtras().getInt("order");
-		String selectedType = intent.getExtras().getString("selectedType");
+		selectedType = intent.getExtras().getString("selectedType");
+		keyWord = intent.getExtras().getString("keyWord");
 
 		if(selectedType.equals("UPDATE")){
-			Log.v("bas", "UPDATE");
 			setTitle(R.string.update);
 			
 			AppUpdateDetailFragment fragment = new AppUpdateDetailFragment(applicationList.get(order));
@@ -59,10 +61,10 @@ public class AppListActivity extends ActionBarActivity implements
 			if(selectedType.equals("ALL")){
 				setTitle(R.string.all);
 			}else if(selectedType.equals("SEARCH")){
-				setTitle("[" + intent.getExtras().getString("keyWord") + "] " + getString(R.string.search_result));
+				setTitle("[" + keyWord + "] " + getString(R.string.search_result));
 			}else {
 				//setTitle(selectedType);
-				setTitle(intent.getExtras().getString("keyWord"));
+				setTitle(keyWord);
 			}
 			
 			AppDetailFragment fragment = new AppDetailFragment(applicationList.get(order));
@@ -82,7 +84,7 @@ public class AppListActivity extends ActionBarActivity implements
 		// fragment transaction.
 		
 		Intent intent = getIntent();
-		String selectedType = intent.getExtras().getString("selectedType");
+		selectedType = intent.getExtras().getString("selectedType");
 
 		if(selectedType.equals("UPDATE")){
 			AppUpdateDetailFragment fragment = new AppUpdateDetailFragment(application);
@@ -99,9 +101,7 @@ public class AppListActivity extends ActionBarActivity implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
         case android.R.id.home:
-        	Intent intent = new Intent(this, ItemListActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
+        	onBackPressed();
             return true;
         default:
             return super.onOptionsItemSelected(item);
