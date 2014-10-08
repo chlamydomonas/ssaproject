@@ -41,7 +41,6 @@ public class ItemDetailFragment extends Fragment {
 	List<Application> applicationList;
 	ListView listView;
 	ApplicationRowAdapter appsRowAdapter;
-	Activity mActivity;
 	
 	/**
 	 * The fragment argument representing the item ID that this fragment
@@ -140,9 +139,7 @@ public class ItemDetailFragment extends Fragment {
 	
 	@Override
 	public void onAttach(Activity activity) {
-		// TODO Auto-generated method stub
 		super.onAttach(activity);
-		mActivity = activity;
 	}
 
 	class MyTask extends AsyncTask<String, Void, String> {
@@ -212,7 +209,7 @@ public class ItemDetailFragment extends Fragment {
 	}
 	
 	public void setAdapterToListview() {
-		appsRowAdapter = new ApplicationRowAdapter(mActivity, R.layout.application_row, applicationList);
+		appsRowAdapter = new ApplicationRowAdapter(getActivity(), R.layout.application_row, applicationList);
 		listView.setAdapter(appsRowAdapter);
 	}
 	

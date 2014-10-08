@@ -40,13 +40,11 @@ public class ItemUpdateDetailFragment extends Fragment {
 	List<Application> applicationList;
 	ListView listView;
 	UpdateRowAdapter updateRowAdapter;
-	Activity mActivity;
 	
 	/**
 	 * The fragment argument representing the item ID that this fragment
 	 * represents.
 	 */
-	public static final String ARG_ITEM_ID = "item_id";
 
 	private String selectedId;
 	/**
@@ -110,9 +108,7 @@ public class ItemUpdateDetailFragment extends Fragment {
 	
 	@Override
 	public void onAttach(Activity activity) {
-		// TODO Auto-generated method stub
 		super.onAttach(activity);
-		mActivity = activity;
 	}
 	
 	class MyTask extends AsyncTask<String, Void, String> {
@@ -174,7 +170,7 @@ public class ItemUpdateDetailFragment extends Fragment {
 	}
 	
 	public void setAdapterToListview() {
-		updateRowAdapter = new UpdateRowAdapter(mActivity, R.layout.update_row, applicationList);
+		updateRowAdapter = new UpdateRowAdapter(getActivity(), R.layout.update_row, applicationList);
 		listView.setAdapter(updateRowAdapter);
 	}
 	

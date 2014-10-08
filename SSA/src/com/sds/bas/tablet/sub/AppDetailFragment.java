@@ -84,7 +84,6 @@ public class AppDetailFragment extends Fragment {
 	CommentRowAdapter commentRowAdapter;
 	ListView listView;
 	View rootView;
-	Activity mActivity;
 	
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -233,9 +232,7 @@ public class AppDetailFragment extends Fragment {
 	
 	@Override
 	public void onAttach(Activity activity) {
-		// TODO Auto-generated method stub
 		super.onAttach(activity);
-		mActivity = activity;
 	}
 
 	protected void registerComment(View v, int star) {
@@ -380,7 +377,7 @@ public class AppDetailFragment extends Fragment {
 		for (int i = 0; i < commentList.size(); i++) {
 			
 			LayoutInflater inflater = null;
-			inflater = (LayoutInflater) this.mActivity.getApplicationContext()
+			inflater = (LayoutInflater) this.getActivity().getApplicationContext()
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			
 			View linearView = inflater.inflate(R.layout.application_detail_comment_row, null);
@@ -400,7 +397,7 @@ public class AppDetailFragment extends Fragment {
 
 		    totalGrade += uGrade;
 			userName.setText(uName+" ("+dName+")");
-			installVerName.setText(mActivity.getString(R.string.version) + " " +iVerName);
+			installVerName.setText(getActivity().getString(R.string.version) + " " +iVerName);
 			comment.setText(comm);
 			createdDate.setText(create);
 
@@ -450,11 +447,11 @@ public class AppDetailFragment extends Fragment {
 	public void setScreenshotToHorizontal() {
 		HorizontalScrollView scrollView = (HorizontalScrollView) rootView.findViewById(R.id.screenshot_horizontal);
 
-        LinearLayout topLinearLayout = new LinearLayout(mActivity);
+        LinearLayout topLinearLayout = new LinearLayout(getActivity());
         topLinearLayout.setOrientation(LinearLayout.HORIZONTAL); 
 
         for(int i=0; i<screenshotList.size(); i++){
-        	ImageView image = new ImageView(mActivity); 
+        	ImageView image = new ImageView(getActivity()); 
         	
             options = new DisplayImageOptions.Builder()
 			.showStubImage(R.drawable.noimage)
@@ -463,7 +460,7 @@ public class AppDetailFragment extends Fragment {
 
             topLinearLayout.addView(image);
             
-            DisplayMetrics displayMetrics = mActivity.getResources().getDisplayMetrics();
+            DisplayMetrics displayMetrics = getActivity().getResources().getDisplayMetrics();
             
             int width = displayMetrics.widthPixels / 3 + 10;
             int height = displayMetrics.heightPixels / 3;
@@ -483,7 +480,7 @@ public class AppDetailFragment extends Fragment {
 			});
             	
 			imageLoader = ImageLoader.getInstance();
-			imageLoader.init(ImageLoaderConfiguration.createDefault(mActivity));
+			imageLoader.init(ImageLoaderConfiguration.createDefault(getActivity()));
 			imageLoader.displayImage(screenshotList.get(i).getScreenShotUrl(), image, options,
 			new ImageLoadingListener() {
 				@Override
