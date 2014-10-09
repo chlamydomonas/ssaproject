@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ListFragment;
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
@@ -301,6 +302,13 @@ public class ItemListFragment extends ListFragment {
 		
 		this.id = allType.getId();
 		mCallbacks.onItemSelected(allType.getId(), searchWord);
+
+		for(int i = 0; i < allTypeList.size(); i++){
+			if(i != position){
+				listView.getChildAt(i).setBackgroundColor(Color.parseColor("#656565"));
+			}
+		}
+		view.setBackgroundColor(Color.parseColor("#ffa500"));
 		
 		getActivity().invalidateOptionsMenu();
 	}

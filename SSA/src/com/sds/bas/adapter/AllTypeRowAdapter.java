@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,10 @@ public class AllTypeRowAdapter extends ArrayAdapter<AllType> {
 
 			holder = new ViewHolder();
 			view.setTag(holder);
+
+			if(position==0){
+				view.setBackgroundColor(Color.parseColor("#ffa500"));
+			}
 		} else {
 			holder = (ViewHolder) view.getTag();
 		}

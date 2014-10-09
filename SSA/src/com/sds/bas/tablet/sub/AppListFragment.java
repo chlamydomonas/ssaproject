@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.Activity;
 import android.app.ListFragment;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,7 +31,9 @@ import com.sds.ssa.R;
  */
 public class AppListFragment extends ListFragment {
 
-	List<Application> applicationList;
+	private List<Application> applicationList;
+	private String selectedType;
+	private int order;
 	
 	/**
 	 * The serialization (saved instance state) Bundle key representing the
@@ -85,7 +88,10 @@ public class AppListFragment extends ListFragment {
 		
 		Intent intent = getActivity().getIntent();
 		applicationList = new ArrayList<Application>();
-		String selectedType = intent.getExtras().getString("selectedType");
+		
+		applicationList = intent.getParcelableArrayListExtra("list");
+		selectedType = intent.getExtras().getString("selectedType");
+		order = intent.getExtras().getInt("order");
 		
 		if(intent.hasExtra("list")){
 			applicationList = intent.getParcelableArrayListExtra("list");
@@ -94,9 +100,9 @@ public class AppListFragment extends ListFragment {
 		}
 		
 		if(selectedType.equals("UPDATE")){
-			setListAdapter(new TabletUpdateRowAdapter(getActivity(), R.layout.tablet_update_row, applicationList));
+			setListAdapter(new TabletUpdateRowAdapter(getActivity(), R.layout.tablet_update_row, applicationList, order));
 		}else{
-			setListAdapter(new TabletApplicationRowAdapter(getActivity(), R.layout.tablet_application_row, applicationList));
+			setListAdapter(new TabletApplicationRowAdapter(getActivity(), R.layout.tablet_application_row, applicationList, order));
 		}
 	}
 
@@ -171,6 +177,11 @@ public class AppListFragment extends ListFragment {
 
 		Application application = applicationList.get(position);
 		mCallbacks.onItemSelected(application);
+		TabletApplicationRowAdapter adapter = (TabletApplicationRowAdapter) getListAdapter();
+		if(adapter != null) {
+			adapter.setOrder(position);
+		}
+
 		getActivity().invalidateOptionsMenu();
 	}
 

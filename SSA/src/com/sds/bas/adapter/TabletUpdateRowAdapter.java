@@ -4,12 +4,12 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -18,7 +18,6 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.ImageLoadingListener;
-import com.sds.bas.util.Utils;
 import com.sds.bas.vo.Application;
 import com.sds.ssa.R;
 
@@ -28,14 +27,16 @@ public class TabletUpdateRowAdapter extends ArrayAdapter<Application> {
 	private List<Application> applicationList;
 	private Application application;
 	private int row;
+	private int order;
 	private DisplayImageOptions options;
 	ImageLoader imageLoader;
 
-	public TabletUpdateRowAdapter(Activity act, int resource, List<Application> appList) {
+	public TabletUpdateRowAdapter(Activity act, int resource, List<Application> appList, int order) {
 		super(act, resource, appList);
 		this.activity = act;
 		this.row = resource;
 		this.applicationList = appList;
+		this.order = order;
 	}
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
@@ -48,6 +49,10 @@ public class TabletUpdateRowAdapter extends ArrayAdapter<Application> {
 
 			holder = new ViewHolder();
 			view.setTag(holder);
+			
+			if(position==order){
+				view.setBackgroundColor(Color.parseColor("#ffa500"));
+			}
 		} else {
 			holder = (ViewHolder) view.getTag();
 		}

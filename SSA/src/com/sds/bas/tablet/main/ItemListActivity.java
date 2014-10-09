@@ -2,6 +2,7 @@ package com.sds.bas.tablet.main;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 
 import com.sds.ssa.R;
 
@@ -32,7 +33,8 @@ public class ItemListActivity extends ActionBarActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tablet_activity_item_list);
-
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		if (findViewById(R.id.item_detail_container) != null) {
 			// The detail container view will be present only in the
 			// large-screen layouts (res/values-large and
@@ -72,5 +74,15 @@ public class ItemListActivity extends ActionBarActivity implements
 				getFragmentManager().beginTransaction()
 						.replace(R.id.item_detail_container, fragment).commit();
 		 }
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+        case android.R.id.home:
+        	finish();
+        default:
+            return super.onOptionsItemSelected(item);
+        }
 	}
 }

@@ -6,7 +6,9 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,19 +31,26 @@ public class TabletApplicationRowAdapter extends ArrayAdapter<Application> {
 	private Application application;
 	private int row;
 	private DisplayImageOptions options;
+	private int order;
 	ImageLoader imageLoader;
 
-	public TabletApplicationRowAdapter(Activity act, int resource, List<Application> appList) {
+	public TabletApplicationRowAdapter(Activity act, int resource, List<Application> appList, int order) {
 		super(act, resource, appList);
 		this.activity = act;
 		this.row = resource;
 		this.applicationList = appList;
+		this.order = order;
 	}
 
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		View view = convertView;
 		ViewHolder holder;
+		
+		Log.v("bas", "TabletApplicationRowAdapter.getView");
+		Log.v("bas", "order: " + order + ", position: " + position);
+		//Log.v("bas", Integer.toString(applicationList.size()));
+		
 		if (view == null) {
 			LayoutInflater inflater = (LayoutInflater) activity
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -58,6 +67,15 @@ public class TabletApplicationRowAdapter extends ArrayAdapter<Application> {
 				.showImageForEmptyUrl(R.drawable.noimage).cacheInMemory()
 				.cacheOnDisc().build();
 		imageLoader = ImageLoader.getInstance();
+
+
+		Log.v("bas", "order: " + order + ", position: " + position);
+		if(position==order){
+			Log.v("bas", "*** order: " + order + ", position: " + position);
+			view.setBackgroundColor(Color.parseColor("#ffa500"));
+		} else {
+			view.setBackgroundColor(Color.WHITE);
+		}
 
 		if ((applicationList == null) || ((position + 1) > applicationList.size()))
 			return view;
@@ -143,5 +161,9 @@ public class TabletApplicationRowAdapter extends ArrayAdapter<Application> {
 		public TextView appName, appDesc, appId, categoryName;
 		private ImageView appIcon, isNewIcon;
 		private ProgressBar pbar;
+	}
+	
+	public void setOrder(int order) {
+		this.order = order;
 	}
 }
