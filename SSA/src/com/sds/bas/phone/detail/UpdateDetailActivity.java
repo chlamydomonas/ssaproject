@@ -1,4 +1,4 @@
-package com.sds.bas.phone.home.update;
+package com.sds.bas.phone.detail;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -19,7 +19,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.ImageLoadingListener;
 import com.sds.bas.activity.BasActivity;
 import com.sds.bas.util.Utils;
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 public class UpdateDetailActivity extends Activity {
 	private DisplayImageOptions options;

@@ -1,4 +1,4 @@
-package com.sds.bas.phone.home.app;
+package com.sds.bas.phone.detail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.ImageLoadingListener;
 import com.sds.bas.vo.Screenshot;
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 public class ScreenshotActivity extends Activity {
 	

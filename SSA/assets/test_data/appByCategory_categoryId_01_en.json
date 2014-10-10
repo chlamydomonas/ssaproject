@@ -16,7 +16,9 @@
             "categoryName": "category_01",
             "appDownloadUrl": "appDownloadUrl_01",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-08-07"
+            "appUploadedDate": "2014-10-07",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_02",
@@ -34,7 +36,9 @@
             "categoryName": "category_01",
             "appDownloadUrl": "appDownloadUrl_02",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-08-07"
+            "appUploadedDate": "2014-10-07",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_03",
@@ -52,7 +56,9 @@
             "categoryName": "category_01",
             "appDownloadUrl": "appDownloadUrl_03",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         }
     ]
 }

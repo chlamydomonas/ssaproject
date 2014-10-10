@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 /**
  * An activity representing a list of Items. This activity has different

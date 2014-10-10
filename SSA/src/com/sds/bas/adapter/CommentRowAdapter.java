@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sds.bas.vo.Comment;
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 public class CommentRowAdapter extends ArrayAdapter<Comment> {
 

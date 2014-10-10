@@ -16,7 +16,9 @@
             "categoryName": "카테고리_02",
             "appDownloadUrl": "appDownloadUrl_04",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_05",
@@ -34,7 +36,9 @@
             "categoryName": "카테고리_02",
             "appDownloadUrl": "appDownloadUrl_05",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_06",
@@ -52,7 +56,9 @@
             "categoryName": "카테고리_02",
             "appDownloadUrl": "appDownloadUrl_06",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         }
     ]
 }

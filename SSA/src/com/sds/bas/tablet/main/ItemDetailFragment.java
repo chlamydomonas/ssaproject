@@ -29,7 +29,7 @@ import com.sds.bas.tablet.sub.AppListActivity;
 import com.sds.bas.util.AppParams;
 import com.sds.bas.util.Utils;
 import com.sds.bas.vo.Application;
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 /**
  * A fragment representing a single Item detail screen. This fragment is either
@@ -197,6 +197,8 @@ public class ItemDetailFragment extends Fragment {
 						application.setAppUploadedDate(appJsonObj.getString(AppParams.APP_UPLOAD_DATE));
 						application.setCategoryId(appJsonObj.getString(AppParams.CATEGORY_ID));
 						application.setCategoryName(appJsonObj.getString(AppParams.CATEGORY_NAME));
+						application.setAppDownloaded(appJsonObj.getString(AppParams.APP_DOWNLOADED));
+						application.setFileSize(appJsonObj.getString(AppParams.FILE_SIZE));
 
 						applicationList.add(application);
 					}

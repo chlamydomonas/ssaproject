@@ -20,7 +20,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.ImageLoadingListener;
 import com.sds.bas.util.Utils;
 import com.sds.bas.vo.Application;
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 public class UpdateRowAdapter extends ArrayAdapter<Application> {
 

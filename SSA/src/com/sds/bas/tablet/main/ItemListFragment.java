@@ -30,7 +30,7 @@ import com.sds.bas.adapter.AllTypeRowAdapter;
 import com.sds.bas.util.AppParams;
 import com.sds.bas.util.Utils;
 import com.sds.bas.vo.AllType;
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 /**
  * A list fragment representing a list of Items. This fragment also supports

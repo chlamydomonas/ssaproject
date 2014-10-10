@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sds.bas.phone.PhoneActivity;
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 public class NavigationAdapter extends ArrayAdapter<NavigationItemAdapter> {
 

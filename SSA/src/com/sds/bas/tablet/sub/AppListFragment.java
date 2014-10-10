@@ -18,7 +18,7 @@ import com.sds.bas.adapter.TabletApplicationRowAdapter;
 import com.sds.bas.adapter.TabletUpdateRowAdapter;
 import com.sds.bas.util.Utils;
 import com.sds.bas.vo.Application;
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 /**
  * A list fragment representing a list of Items. This fragment also supports

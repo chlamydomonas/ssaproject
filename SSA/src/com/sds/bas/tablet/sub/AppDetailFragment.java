@@ -34,7 +34,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.ImageLoadingListener;
 import com.sds.bas.adapter.CommentRowAdapter;
-import com.sds.bas.phone.home.app.ScreenshotActivity;
+import com.sds.bas.phone.detail.ScreenshotActivity;
 import com.sds.bas.util.AppParams;
 import com.sds.bas.util.ReviewDialog;
 import com.sds.bas.util.Utils;
@@ -42,7 +42,7 @@ import com.sds.bas.vo.Application;
 import com.sds.bas.vo.Comment;
 import com.sds.bas.vo.Screenshot;
 import com.sds.bas.vo.UserInfo;
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 /**
  * A fragment representing a single Item detail screen. This fragment is either
@@ -68,12 +68,15 @@ public class AppDetailFragment extends Fragment {
 	private String create;
 	private String verName;
 	private String verCode;
+	private String downloaded;
+	private String size;
 
 	private DisplayImageOptions options;
 	private ImageLoader imageLoader;	
 
 	private ProgressBar pbar;
-	private TextView appName, appDesc, appSummary, appManual, categoryName, created, appVerName, reviewerCount;
+	private TextView appName, appDesc, appSummary, appManual, categoryName, created, 
+					appVerName, reviewerCount, appDownloaded, fileSize;;
 	private ImageView imgView, appGrade;
 	private Button downloadBtn, reviewBtn;
 
@@ -104,6 +107,8 @@ public class AppDetailFragment extends Fragment {
 		create = application.getCreated();
 		verName = application.getAppVerName();
 		verCode = application.getAppVerCode();
+		downloaded = application.getAppDownloaded();
+		size = application.getFileSize();
 	}
 
 	@Override
@@ -136,6 +141,8 @@ public class AppDetailFragment extends Fragment {
 		reviewBtn = (Button) rootView.findViewById(R.id.reviewbtn);
 		appGrade = (ImageView) rootView.findViewById(R.id.appgrade);
 		reviewerCount = (TextView) rootView.findViewById(R.id.reviewercount);
+		appDownloaded = (TextView) rootView.findViewById(R.id.appdownloaded);
+		fileSize = (TextView) rootView.findViewById(R.id.filesize);
 		
 		reviewBtn.getLayoutParams().height = 60;
 		//reviewBtn.getLayoutParams().width = 100;
@@ -153,6 +160,8 @@ public class AppDetailFragment extends Fragment {
 		appManual.setText(manual);
 		created.setText(create);
 		appVerName.setText(verName);
+		appDownloaded.setText(downloaded);
+		fileSize.setText(size);
 		
 		UserInfo userInfo = (UserInfo)getActivity().getApplicationContext();
 		String appId = id;

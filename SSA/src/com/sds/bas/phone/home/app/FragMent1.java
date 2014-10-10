@@ -31,11 +31,12 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.sds.bas.adapter.ApplicationRowAdapter;
+import com.sds.bas.phone.detail.DetailActivity;
 import com.sds.bas.phone.search.SearchActivity;
 import com.sds.bas.util.AppParams;
 import com.sds.bas.util.Utils;
 import com.sds.bas.vo.Application;
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 @SuppressLint("ValidFragment")
 public class FragMent1 extends Fragment implements OnItemClickListener {
@@ -92,6 +93,8 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 				intent.putExtra("created", application.getCreated());
 				intent.putExtra("verName", application.getAppVerName());
 				intent.putExtra("verCode", application.getAppVerCode());
+				intent.putExtra("appDownloaded", application.getAppDownloaded());
+				intent.putExtra("fileSize", application.getFileSize());
 				startActivity(intent);
 			}
 		});
@@ -225,6 +228,8 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 						application.setAppUploadedDate(appJsonObj.getString(AppParams.APP_UPLOAD_DATE));
 						application.setCategoryId(appJsonObj.getString(AppParams.CATEGORY_ID));
 						application.setCategoryName(appJsonObj.getString(AppParams.CATEGORY_NAME));
+						application.setAppDownloaded(appJsonObj.getString(AppParams.APP_DOWNLOADED));
+						application.setFileSize(appJsonObj.getString(AppParams.FILE_SIZE));
 
 						applicationList.add(application);
 					}

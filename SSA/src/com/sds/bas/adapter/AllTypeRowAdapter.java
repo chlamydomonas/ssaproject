@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.sds.bas.vo.AllType;
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 public class AllTypeRowAdapter extends ArrayAdapter<AllType> {
 

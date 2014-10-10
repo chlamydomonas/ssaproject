@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.sds.bas.adapter.ViewPagerAdapter;
 import com.sds.bas.phone.sliding.SamplePagerItem;
 import com.sds.bas.phone.sliding.SlidingTabLayout;
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 public class ViewPagerFragment extends Fragment{
 	

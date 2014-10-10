@@ -32,13 +32,13 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.Toast;
 
 import com.sds.bas.adapter.CategoryExpandableListAdapter;
-import com.sds.bas.phone.home.app.DetailActivity;
+import com.sds.bas.phone.detail.DetailActivity;
 import com.sds.bas.phone.search.SearchActivity;
 import com.sds.bas.util.AppParams;
 import com.sds.bas.util.Utils;
 import com.sds.bas.vo.Application;
 import com.sds.bas.vo.Category;
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 @SuppressLint("ValidFragment")
 public class FragMent2 extends Fragment {
@@ -219,6 +219,8 @@ public class FragMent2 extends Fragment {
 							application.setAppUploadedDate(applicationObj.getString(AppParams.APP_UPLOAD_DATE));
 							application.setCategoryId(applicationObj.getString(AppParams.CATEGORY_ID));
 							application.setCategoryName(applicationObj.getString(AppParams.CATEGORY_NAME));
+							application.setAppDownloaded(applicationObj.getString(AppParams.APP_DOWNLOADED));
+							application.setFileSize(applicationObj.getString(AppParams.FILE_SIZE));
 
 							applicationList.add(application);							
 						}
@@ -259,6 +261,8 @@ public class FragMent2 extends Fragment {
 				intent.putExtra("created", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getCreated());
 				intent.putExtra("verName", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getAppVerName());
 				intent.putExtra("verCode", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getAppVerCode());
+				intent.putExtra("appDownloaded", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getAppDownloaded());
+				intent.putExtra("fileSize", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getFileSize());
 				startActivity(intent);
 				
 				return false;

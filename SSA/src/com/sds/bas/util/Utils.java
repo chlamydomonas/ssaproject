@@ -22,7 +22,7 @@ import android.view.View;
 
 import com.sds.bas.vo.InstalledAppInfo;
 import com.sds.bas.vo.UserInfo;
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 public class Utils {
 	

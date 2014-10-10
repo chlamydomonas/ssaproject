@@ -31,11 +31,12 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.sds.bas.adapter.UpdateRowAdapter;
+import com.sds.bas.phone.detail.UpdateDetailActivity;
 import com.sds.bas.phone.search.SearchActivity;
 import com.sds.bas.util.AppParams;
 import com.sds.bas.util.Utils;
 import com.sds.bas.vo.Application;
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 @SuppressLint("ValidFragment")
 public class FragMent3 extends Fragment {

@@ -24,7 +24,7 @@ import com.sds.bas.util.Utils;
 import com.sds.bas.vo.Application;
 import com.sds.bas.vo.Category;
 import com.sds.bas.vo.UserInfo;
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 public class CategoryExpandableListAdapter extends BaseExpandableListAdapter {
  

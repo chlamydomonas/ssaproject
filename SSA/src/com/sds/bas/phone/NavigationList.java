@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.sds.bas.adapter.NavigationAdapter;
 import com.sds.bas.adapter.NavigationItemAdapter;
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 public class NavigationList {
 	

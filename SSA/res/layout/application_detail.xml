@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#f9f9f9"
     android:orientation="vertical"
-	tools:context="com.sds.bas.phone.home.app.DetailActivity" >
+	tools:context="com.sds.bas.phone.detail.DetailActivity" >
 	
 	<RelativeLayout
 	    android:layout_width="fill_parent"
@@ -117,7 +117,25 @@
 					android:layout_toRightOf="@+id/created"
 					android:text="appvername"
 					android:textColor="#504A4B"
-			        android:textSize="12dip" />		    
+			        android:textSize="12dip" />		   
+			        
+				<TextView
+				    android:id="@+id/appdownloaded"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_toRightOf="@+id/appvername"
+					android:text="appdownloaded"
+					android:textColor="#504A4B"
+			        android:textSize="12dip" />		
+			        
+				<TextView
+				    android:id="@+id/filesize"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_toRightOf="@+id/appdownloaded"
+					android:text="filesize"
+					android:textColor="#504A4B"
+			        android:textSize="12dip" />		
 						    
 			</RelativeLayout>
     

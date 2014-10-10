@@ -16,7 +16,9 @@
             "categoryName": "카테고리_01",
             "appDownloadUrl": "appDownloadUrl_01",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-08-07"
+            "appUploadedDate": "2014-10-07",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_02",
@@ -34,7 +36,9 @@
             "categoryName": "카테고리_01",
             "appDownloadUrl": "appDownloadUrl_02",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-08-07"
+            "appUploadedDate": "2014-10-07",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_03",
@@ -52,7 +56,9 @@
             "categoryName": "카테고리_01",
             "appDownloadUrl": "appDownloadUrl_03",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_04",
@@ -70,7 +76,9 @@
             "categoryName": "카테고리_02",
             "appDownloadUrl": "appDownloadUrl_04",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_05",
@@ -88,7 +96,9 @@
             "categoryName": "카테고리_02",
             "appDownloadUrl": "appDownloadUrl_05",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_06",
@@ -106,7 +116,9 @@
             "categoryName": "카테고리_02",
             "appDownloadUrl": "appDownloadUrl_06",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_07",
@@ -124,7 +136,9 @@
             "categoryName": "카테고리_03",
             "appDownloadUrl": "appDownloadUrl_07",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_08",
@@ -142,7 +156,9 @@
             "categoryName": "카테고리_03",
             "appDownloadUrl": "appDownloadUrl_08",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_09",
@@ -160,7 +176,9 @@
             "categoryName": "카테고리_03",
             "appDownloadUrl": "appDownloadUrl_09",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_10",
@@ -178,7 +196,9 @@
             "categoryName": "카테고리_03",
             "appDownloadUrl": "appDownloadUrl_10",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_11",
@@ -196,7 +216,9 @@
             "categoryName": "카테고리_04",
             "appDownloadUrl": "appDownloadUrl_11",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_12",
@@ -214,7 +236,9 @@
             "categoryName": "카테고리_04",
             "appDownloadUrl": "appDownloadUrl_12",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_13",
@@ -232,7 +256,9 @@
             "categoryName": "카테고리_04",
             "appDownloadUrl": "appDownloadUrl_13",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_14",
@@ -250,7 +276,9 @@
             "categoryName": "카테고리_05",
             "appDownloadUrl": "appDownloadUrl_14",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_15",
@@ -268,7 +296,9 @@
             "categoryName": "카테고리_05",
             "appDownloadUrl": "appDownloadUrl_15",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_16",
@@ -286,7 +316,9 @@
             "categoryName": "카테고리_05",
             "appDownloadUrl": "appDownloadUrl_16",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_17",
@@ -304,7 +336,9 @@
             "categoryName": "카테고리_05",
             "appDownloadUrl": "appDownloadUrl_17",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_18",
@@ -322,7 +356,9 @@
             "categoryName": "카테고리_05",
             "appDownloadUrl": "appDownloadUrl_18",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_19",
@@ -340,7 +376,9 @@
             "categoryName": "카테고리_06",
             "appDownloadUrl": "appDownloadUrl_19",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_20",
@@ -358,7 +396,9 @@
             "categoryName": "카테고리_06",
             "appDownloadUrl": "appDownloadUrl_20",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_21",
@@ -376,7 +416,9 @@
             "categoryName": "카테고리_07",
             "appDownloadUrl": "appDownloadUrl_21",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_22",
@@ -394,7 +436,9 @@
             "categoryName": "카테고리_07",
             "appDownloadUrl": "appDownloadUrl_22",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_23",
@@ -412,7 +456,9 @@
             "categoryName": "카테고리_07",
             "appDownloadUrl": "appDownloadUrl_23",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_24",
@@ -430,7 +476,9 @@
             "categoryName": "카테고리_07",
             "appDownloadUrl": "appDownloadUrl_24",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_25",
@@ -448,7 +496,9 @@
             "categoryName": "카테고리_07",
             "appDownloadUrl": "appDownloadUrl_25",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_26",
@@ -466,7 +516,9 @@
             "categoryName": "카테고리_07",
             "appDownloadUrl": "appDownloadUrl_26",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         }
     ]
 }

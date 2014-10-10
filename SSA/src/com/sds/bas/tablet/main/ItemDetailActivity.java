@@ -3,7 +3,7 @@ package com.sds.bas.tablet.main;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 /**
  * An activity representing a single Item detail screen. This activity is only

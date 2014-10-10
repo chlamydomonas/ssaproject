@@ -1,11 +1,9 @@
 package com.sds.bas.tablet.sub;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.app.Activity;
-import android.support.v4.app.NavUtils;
-import android.view.MenuItem;
-import com.sds.ssa.R;
+import android.os.Bundle;
+
+import com.sds.bas.R;
 
 /**
  * An activity representing a single Item detail screen. This activity is only

@@ -1,7 +1,6 @@
-package com.sds.bas.phone.home.app;
+package com.sds.bas.phone.detail;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -37,7 +36,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.ImageLoadingListener;
-import com.sds.bas.activity.BasActivity;
+import com.sds.bas.R;
 import com.sds.bas.adapter.CommentRowAdapter;
 import com.sds.bas.util.AppParams;
 import com.sds.bas.util.ReviewDialog;
@@ -46,7 +45,6 @@ import com.sds.bas.vo.Application;
 import com.sds.bas.vo.Comment;
 import com.sds.bas.vo.Screenshot;
 import com.sds.bas.vo.UserInfo;
-import com.sds.ssa.R;
 
 public class DetailActivity extends Activity {
 
@@ -54,7 +52,8 @@ public class DetailActivity extends Activity {
 	private ImageLoader imageLoader;	
 
 	private ProgressBar pbar;
-	private TextView appName, appDesc, appSummary, appManual, categoryName, created, appVerName, reviewerCount;
+	private TextView appName, appDesc, appSummary, appManual, categoryName, created, 
+						appVerName, reviewerCount, appDownloaded, fileSize;
 	private ImageView imgView, appGrade;
 	private Button downloadBtn, reviewBtn;
 
@@ -92,6 +91,8 @@ public class DetailActivity extends Activity {
 		reviewBtn = (Button) findViewById(R.id.reviewbtn);
 		appGrade = (ImageView) findViewById(R.id.appgrade);
 		reviewerCount = (TextView) findViewById(R.id.reviewercount);
+		appDownloaded = (TextView) findViewById(R.id.appdownloaded);
+		fileSize = (TextView) findViewById(R.id.filesize);
 		
 		reviewBtn.getLayoutParams().height = 60;
 		//reviewBtn.getLayoutParams().width = 100;
@@ -111,8 +112,14 @@ public class DetailActivity extends Activity {
 		String categoryname = b.getString("categoryname");
 		String create = b.getString("created");
 		String verName = b.getString("verName");
+		String downloaded = b.getString("appDownloaded");
+		String size = b.getString("fileSize");
 		final String downloadUrl = b.getString("downloadUrl");
 
+		Log.v("bas", downloaded);
+		Log.v("bas", size);
+		
+		
 		appName.setText(name);
 		categoryName.setText(categoryname);
 		appSummary.setText(summary);
@@ -120,6 +127,8 @@ public class DetailActivity extends Activity {
 		appManual.setText(manual);
 		created.setText(create);
 		appVerName.setText(verName);
+		appDownloaded.setText(downloaded);
+		fileSize.setText(size);
 		
 		UserInfo userInfo = (UserInfo)this.getApplicationContext();
 		String appId = b.getString("id");

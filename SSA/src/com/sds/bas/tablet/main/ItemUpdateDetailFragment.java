@@ -28,7 +28,7 @@ import com.sds.bas.tablet.sub.AppListActivity;
 import com.sds.bas.util.AppParams;
 import com.sds.bas.util.Utils;
 import com.sds.bas.vo.Application;
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 /**
  * A fragment representing a single Item detail screen. This fragment is either

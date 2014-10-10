@@ -16,7 +16,9 @@
             "categoryName": "category_07",
             "appDownloadUrl": "appDownloadUrl_21",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_22",
@@ -34,7 +36,9 @@
             "categoryName": "category_07",
             "appDownloadUrl": "appDownloadUrl_22",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_23",
@@ -52,7 +56,9 @@
             "categoryName": "category_07",
             "appDownloadUrl": "appDownloadUrl_23",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_24",
@@ -70,7 +76,9 @@
             "categoryName": "category_07",
             "appDownloadUrl": "appDownloadUrl_24",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_25",
@@ -88,7 +96,9 @@
             "categoryName": "category_07",
             "appDownloadUrl": "appDownloadUrl_25",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_26",
@@ -106,7 +116,9 @@
             "categoryName": "category_07",
             "appDownloadUrl": "appDownloadUrl_26",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         }
     ]
 }

@@ -16,7 +16,9 @@
             "categoryName": "카테고리_06",
             "appDownloadUrl": "appDownloadUrl_19",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         },
         {
             "appId": "appId_20",
@@ -34,7 +36,9 @@
             "categoryName": "카테고리_06",
             "appDownloadUrl": "appDownloadUrl_20",
             "created": "2014-07-01",
-            "appUploadedDate": "2014-07-23"
+            "appUploadedDate": "2014-07-23",
+            "appDownloaded":"354",
+            "fileSize":"4125"
         }
     ]
 }

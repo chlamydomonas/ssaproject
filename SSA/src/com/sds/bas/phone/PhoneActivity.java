@@ -22,7 +22,7 @@ import com.sds.bas.adapter.NavigationAdapter;
 import com.sds.bas.phone.fragments.ViewPagerFragment;
 import com.sds.bas.phone.myapp.MyAppFragMent;
 import com.sds.bas.vo.UserInfo;
-import com.sds.ssa.R;
+import com.sds.bas.R;
 
 public class PhoneActivity extends ActionBarActivity{
 		
