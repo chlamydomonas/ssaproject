@@ -169,7 +169,7 @@ public class MyAppFragMent extends Fragment implements OnItemClickListener {
 			for(int i=0; i < updateList.size(); i++){
 				updateAppUrls += updateList.get(i).getAppDownloadUrl()+";";
 			}
-			Utils.showDownload(updateAppUrls, this.getView());
+			Utils.showDownloadAll(updateAppUrls, this.getView());
 			break;
 			
 		case R.id.menu_search:

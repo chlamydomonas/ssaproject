@@ -3,7 +3,7 @@
         {
             "appId": "appId_02",
             "appName": "애플리케이션_02",
-            "appVerCode": "1",
+            "appVerCode": "2",
             "appVerName": "1.0",
             "appPackageName": "com.sds.emm.app2",
             "appIcon": "https://ssa-bas-project.googlecode.com/svn/b.png",
@@ -60,7 +60,7 @@
         {
             "appId": "appId_19",
             "appName": "애플리케이션_19",
-            "appVerCode": "1",
+            "appVerCode": "2",
             "appVerName": "1.0",
             "appPackageName": "com.sds.emm.app19",
             "appIcon": "https://ssa-bas-project.googlecode.com/svn/s.png",

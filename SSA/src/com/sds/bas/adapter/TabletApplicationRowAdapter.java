@@ -8,7 +8,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,11 +45,6 @@ public class TabletApplicationRowAdapter extends ArrayAdapter<Application> {
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		View view = convertView;
 		ViewHolder holder;
-		
-		Log.v("bas", "TabletApplicationRowAdapter.getView");
-		Log.v("bas", "order: " + order + ", position: " + position);
-		//Log.v("bas", Integer.toString(applicationList.size()));
-		
 		if (view == null) {
 			LayoutInflater inflater = (LayoutInflater) activity
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -68,10 +62,7 @@ public class TabletApplicationRowAdapter extends ArrayAdapter<Application> {
 				.cacheOnDisc().build();
 		imageLoader = ImageLoader.getInstance();
 
-
-		Log.v("bas", "order: " + order + ", position: " + position);
 		if(position==order){
-			Log.v("bas", "*** order: " + order + ", position: " + position);
 			view.setBackgroundColor(Color.parseColor("#ffa500"));
 		} else {
 			view.setBackgroundColor(Color.WHITE);

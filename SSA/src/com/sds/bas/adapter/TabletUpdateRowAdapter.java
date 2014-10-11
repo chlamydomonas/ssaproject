@@ -38,6 +38,7 @@ public class TabletUpdateRowAdapter extends ArrayAdapter<Application> {
 		this.applicationList = appList;
 		this.order = order;
 	}
+	
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		View view = convertView;
@@ -49,10 +50,6 @@ public class TabletUpdateRowAdapter extends ArrayAdapter<Application> {
 
 			holder = new ViewHolder();
 			view.setTag(holder);
-			
-			if(position==order){
-				view.setBackgroundColor(Color.parseColor("#ffa500"));
-			}
 		} else {
 			holder = (ViewHolder) view.getTag();
 		}
@@ -62,6 +59,12 @@ public class TabletUpdateRowAdapter extends ArrayAdapter<Application> {
 				.showImageForEmptyUrl(R.drawable.noimage).cacheInMemory()
 				.cacheOnDisc().build();
 		imageLoader = ImageLoader.getInstance();
+
+		if(position==order){
+			view.setBackgroundColor(Color.parseColor("#ffa500"));
+		} else {
+			view.setBackgroundColor(Color.WHITE);
+		}
 
 		if ((applicationList == null) || ((position + 1) > applicationList.size()))
 			return view;
@@ -131,5 +134,9 @@ public class TabletUpdateRowAdapter extends ArrayAdapter<Application> {
 		public TextView appName, categoryName, appVerName, created;
 		private ImageView appIcon;
 		private ProgressBar pbar;
+	}
+	
+	public void setOrder(int order) {
+		this.order = order;
 	}
 }

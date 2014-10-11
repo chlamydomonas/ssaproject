@@ -81,6 +81,8 @@ public class FragMent3 extends Fragment {
 				
 				Application application = applicationList.get(position);
 				Intent intent = new Intent(getActivity(), UpdateDetailActivity.class);
+				intent.putExtra("id", application.getAppId());
+				intent.putExtra("verCode", application.getAppVerCode());
 				intent.putExtra("url", application.getAppIcon());
 				intent.putExtra("name", application.getAppName());
 				intent.putExtra("categoryname", application.getCategoryName());
@@ -190,6 +192,7 @@ public class FragMent3 extends Fragment {
 						application.setAppId(appJsonObj.getString(AppParams.APP_ID));
 						application.setAppName(appJsonObj.getString(AppParams.APP_NAME));
 						application.setAppVerName(appJsonObj.getString(AppParams.APP_VER_NAME));
+						application.setAppVerCode(appJsonObj.getString(AppParams.APP_VER_CODE));
 						application.setAppIcon(appJsonObj.getString(AppParams.APP_ICON));
 						application.setAppDownloadUrl(appJsonObj.getString(AppParams.APP_DOWNLOAD_URL));
 						application.setCreated(appJsonObj.getString(AppParams.APP_CREATED));

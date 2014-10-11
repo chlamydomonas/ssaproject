@@ -31,12 +31,14 @@ public class AppUpdateDetailFragment extends Fragment {
 	 * represents.
 	 */
 
+	private String id;
 	private String url;
 	private String name;
 	private String categoryname;
 	private String vername;
 	private String appverdiff;
 	private String downloadUrl;
+	private String verCode;
 	
 	private DisplayImageOptions options;
 	private ImageLoader imageLoader;	
@@ -57,12 +59,14 @@ public class AppUpdateDetailFragment extends Fragment {
 	}
 
 	public AppUpdateDetailFragment(Application application) {
+		id = application.getAppId();
 		url = application.getAppIcon();
 		name = application.getAppName();
 		categoryname = application.getCategoryName();
 		vername = application.getAppVerName();
 		appverdiff = application.getAppVerDiff();
 		downloadUrl = application.getAppDownloadUrl();
+		verCode = application.getAppVerCode();
 	}
 
 	@Override
@@ -93,10 +97,15 @@ public class AppUpdateDetailFragment extends Fragment {
 		downloadBtn.setLayoutParams(downloadBtn.getLayoutParams());
 		downloadBtn.setText(R.string.update);
 		
+		final Application selectedApplication = new Application();
+		selectedApplication.setAppDownloadUrl(downloadUrl);
+		selectedApplication.setAppVerCode(verCode);
+		selectedApplication.setAppId(id);
+		
 		downloadBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Utils.showDownload(downloadUrl, v);  
+				Utils.showDownload(selectedApplication, v);  
 				
           	}
 		});

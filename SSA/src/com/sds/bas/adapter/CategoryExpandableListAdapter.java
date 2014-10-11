@@ -157,10 +157,12 @@ public class CategoryExpandableListAdapter extends BaseExpandableListAdapter {
 			}
 		}
 
+		final Application selectedApplication = (Application) getChild(groupPosition, childPosition);
+		
 		holder.downloadBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Utils.showDownload(application.getAppDownloadUrl(), v);            
+				Utils.showDownload(selectedApplication, v);            
           	}
 		});
 		

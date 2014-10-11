@@ -153,6 +153,7 @@ public class ItemUpdateDetailFragment extends Fragment {
 						application.setAppId(appJsonObj.getString(AppParams.APP_ID));
 						application.setAppName(appJsonObj.getString(AppParams.APP_NAME));
 						application.setAppVerName(appJsonObj.getString(AppParams.APP_VER_NAME));
+						application.setAppVerCode(appJsonObj.getString(AppParams.APP_VER_CODE));
 						application.setAppIcon(appJsonObj.getString(AppParams.APP_ICON));
 						application.setAppDownloadUrl(appJsonObj.getString(AppParams.APP_DOWNLOAD_URL));
 						application.setCreated(appJsonObj.getString(AppParams.APP_CREATED));

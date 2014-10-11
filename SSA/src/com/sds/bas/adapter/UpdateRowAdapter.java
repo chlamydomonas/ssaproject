@@ -92,10 +92,12 @@ public class UpdateRowAdapter extends ArrayAdapter<Application> {
 			holder.created.setText(Html.fromHtml(application.getCreated()));
 		}
 
+		final Application selectedApplication = applicationList.get(position);
+		
 		holder.downloadBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Utils.showDownload(application.getAppDownloadUrl(), v);         
+				Utils.showDownload(selectedApplication, v);         
           	}
 		});
 

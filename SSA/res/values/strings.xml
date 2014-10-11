@@ -27,6 +27,7 @@
     <string name="download">Download</string>
     <string name="downloadMsg">Do you want to download this application?</string>
     <string name="updatedMsg">Do you want to update this application?</string>
+    <string name="updateAllMsg">Do you want to update all these applications?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     

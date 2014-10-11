@@ -2,7 +2,6 @@ package com.sds.bas.phone.detail;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -17,9 +16,9 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.ImageLoadingListener;
-import com.sds.bas.activity.BasActivity;
-import com.sds.bas.util.Utils;
 import com.sds.bas.R;
+import com.sds.bas.util.Utils;
+import com.sds.bas.vo.Application;
 
 public class UpdateDetailActivity extends Activity {
 	private DisplayImageOptions options;
@@ -54,7 +53,6 @@ public class UpdateDetailActivity extends Activity {
 		String categoryname = b.getString("categoryname");
 		String vername = b.getString("vername");
 		String appverdiff = b.getString("appverdiff");
-		final String downloadUrl = b.getString("downloadUrl");
 
 		appName.setText(name);
 		categoryName.setText(categoryname);
@@ -65,16 +63,20 @@ public class UpdateDetailActivity extends Activity {
 		downloadBtn.setLayoutParams(downloadBtn.getLayoutParams());
 		downloadBtn.setText(R.string.update);
 		
+		final Application selectedApplication = new Application();
+		selectedApplication.setAppDownloadUrl(b.getString("downloadUrl"));
+		selectedApplication.setAppVerCode(b.getString("verCode"));
+		selectedApplication.setAppId(b.getString("id"));
+		
 		downloadBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Utils.showDownload(downloadUrl, v);  
+				Utils.showDownload(selectedApplication, v);  
           	}
 		});
 		
 		String url = b.getString("url");
 		loadImageFromURL(url);
-
 	}
 	
 	private void loadImageFromURL(String url) {
@@ -90,12 +92,10 @@ public class UpdateDetailActivity extends Activity {
 					@Override
 					public void onLoadingComplete() {
 						pbar.setVisibility(View.INVISIBLE);
-
 					}
 
 					@Override
 					public void onLoadingFailed() {
-
 						pbar.setVisibility(View.INVISIBLE);
 					}
 
@@ -111,11 +111,6 @@ public class UpdateDetailActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			/*
-        	Intent intent = new Intent(this, BasActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            */
 			onBackPressed();
             return true;
             

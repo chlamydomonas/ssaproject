@@ -7,7 +7,6 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Context;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +20,10 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.ImageLoadingListener;
+import com.sds.bas.R;
 import com.sds.bas.util.Utils;
 import com.sds.bas.vo.Application;
 import com.sds.bas.vo.UserInfo;
-import com.sds.bas.R;
 
 public class ApplicationRowAdapter extends ArrayAdapter<Application> {
 
@@ -99,18 +98,15 @@ public class ApplicationRowAdapter extends ArrayAdapter<Application> {
 	    }
 		
 	    UserInfo userInfo = (UserInfo)this.activity.getApplicationContext();
-	    int downloadType = 0;
 		for(int i=0; i < userInfo.getInstalledAppInfoList().size(); i++){
 			int installedAppCode = Integer.parseInt(userInfo.getInstalledAppInfoList().get(i).getAppVerCode());
 			int serverAppCode = Integer.parseInt(application.getAppVerCode());
 
 			if(application.getAppId().equals(userInfo.getInstalledAppInfoList().get(i).getAppId())){
 				if(installedAppCode == serverAppCode){
-					downloadType = 2;
 					holder.downloadBtn.setBackgroundResource(R.drawable.download_pressed);
 					
 				} else if(installedAppCode < serverAppCode){
-					downloadType = 1;
 					holder.downloadBtn.setBackgroundResource(R.drawable.update_selector);
 				}
 			}
@@ -161,13 +157,12 @@ public class ApplicationRowAdapter extends ArrayAdapter<Application> {
 			}
 		}
 
+		final Application selectedApplication = applicationList.get(position);
+		
 		holder.downloadBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.v("bas", application.getAppDownloadUrl());
-				//Log.v("bas", Integer.toString(downloadType));
-				
-				Utils.showDownload(application.getAppDownloadUrl(), v);
+				Utils.showDownload(selectedApplication, v);
           	}
 		});
 

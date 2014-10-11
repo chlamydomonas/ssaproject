@@ -18,7 +18,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -114,12 +113,15 @@ public class DetailActivity extends Activity {
 		String verName = b.getString("verName");
 		String downloaded = b.getString("appDownloaded");
 		String size = b.getString("fileSize");
-		final String downloadUrl = b.getString("downloadUrl");
+		//final String downloadUrl = b.getString("downloadUrl");
+		//final String verCode = b.getString("verCode");
+		String appId = b.getString("id");
 
-		Log.v("bas", downloaded);
-		Log.v("bas", size);
-		
-		
+		final Application selectedApplication = new Application();
+		selectedApplication.setAppDownloadUrl(b.getString("downloadUrl"));
+		selectedApplication.setAppVerCode(b.getString("verCode"));
+		selectedApplication.setAppId(b.getString("id"));
+
 		appName.setText(name);
 		categoryName.setText(categoryname);
 		appSummary.setText(summary);
@@ -131,21 +133,17 @@ public class DetailActivity extends Activity {
 		fileSize.setText(size);
 		
 		UserInfo userInfo = (UserInfo)this.getApplicationContext();
-		String appId = b.getString("id");
 		String appVerCode = b.getString("verCode");
-		
-		int downloadType = 0;
+
 		for(int i=0; i < userInfo.getInstalledAppInfoList().size(); i++){
 			int installedAppCode = Integer.parseInt(userInfo.getInstalledAppInfoList().get(i).getAppVerCode());
 			int serverAppCode = Integer.parseInt(appVerCode);
 
 			if(appId.equals(userInfo.getInstalledAppInfoList().get(i).getAppId())){
 				if(installedAppCode == serverAppCode){
-					downloadType = 2;
 					downloadBtn.setVisibility(View.GONE);
 					
 				} else if(installedAppCode < serverAppCode){
-					downloadType = 1;
 					downloadBtn.setText(R.string.update);
 				}
 			}
@@ -159,9 +157,7 @@ public class DetailActivity extends Activity {
 		downloadBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				//showInfo();          
-				Utils.showDownload(downloadUrl, v);  
-				
+				Utils.showDownload(selectedApplication, v);
           	}
 		});
 

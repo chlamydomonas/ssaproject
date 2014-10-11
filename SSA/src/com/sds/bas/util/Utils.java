@@ -20,9 +20,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.view.View;
 
+import com.sds.bas.R;
+import com.sds.bas.vo.Application;
 import com.sds.bas.vo.InstalledAppInfo;
 import com.sds.bas.vo.UserInfo;
-import com.sds.bas.R;
 
 public class Utils {
 	
@@ -106,11 +107,11 @@ public class Utils {
 		return userInfo;
 	}
 	
-	public static void showDownload(final String appDownloadUrl, final View v){
+	public static void downloadDialog(final String appDownloadUrl, String downloadMsg, final View v){
 		AlertDialog.Builder alert_confirm = new AlertDialog.Builder(v.getContext());
 		alert_confirm
-		.setTitle(R.string.download)
-		.setMessage(R.string.downloadMsg).setCancelable(false)
+		.setTitle(downloadMsg == v.getContext().getString(R.string.downloadMsg) ? R.string.download : R.string.update)
+		.setMessage(downloadMsg).setCancelable(false)
 		.setPositiveButton(R.string.yes,
 				new DialogInterface.OnClickListener() {
 		    @Override
@@ -128,11 +129,49 @@ public class Utils {
 		new DialogInterface.OnClickListener() {
 		    @Override
 		    public void onClick(DialogInterface dialog, int which) {
-		        // 'No'
 		    return;
 		    }
 		});
 		AlertDialog alert = alert_confirm.create();
 		alert.show();
+	}
+	
+	public static void showDownload(Application application, View v){
+
+		String appDownloadUrl = application.getAppDownloadUrl();
+		String verCode = application.getAppVerCode();
+		String appId = application.getAppId();
+		
+		int downloadType = 0;
+		
+		for(int i=0; i < userInfo.getInstalledAppInfoList().size(); i++){
+			int installedAppCode = Integer.parseInt(userInfo.getInstalledAppInfoList().get(i).getAppVerCode());
+			int serverAppCode = Integer.parseInt(verCode);
+
+			if(appId.equals(userInfo.getInstalledAppInfoList().get(i).getAppId())){
+				if(installedAppCode == serverAppCode){ // already installed
+					downloadType = 2;
+				} else if(installedAppCode < serverAppCode){ // update
+					downloadType = 1;
+				}
+			}
+		}
+		
+		String downloadMsg = v.getContext().getString(R.string.downloadMsg);
+		
+		if(downloadType == 0){
+			downloadMsg = v.getContext().getString(R.string.downloadMsg);
+		}else{
+			downloadMsg = v.getContext().getString(R.string.updateMsg);
+		}
+		
+		if(downloadType != 2){
+			downloadDialog(appDownloadUrl, downloadMsg, v);
+		}
     }
+	
+	public static void showDownloadAll(String appDownloadUrl, View v){
+		String downloadMsg = v.getContext().getString(R.string.updateAllMsg);
+		downloadDialog(appDownloadUrl, downloadMsg, v);
+	}
 }

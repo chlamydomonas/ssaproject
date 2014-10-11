@@ -6,7 +6,6 @@ import java.util.List;
 import android.app.Activity;
 import android.app.ListFragment;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,11 +13,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+import com.sds.bas.R;
 import com.sds.bas.adapter.TabletApplicationRowAdapter;
 import com.sds.bas.adapter.TabletUpdateRowAdapter;
 import com.sds.bas.util.Utils;
 import com.sds.bas.vo.Application;
-import com.sds.bas.R;
 
 /**
  * A list fragment representing a list of Items. This fragment also supports
@@ -177,11 +176,24 @@ public class AppListFragment extends ListFragment {
 
 		Application application = applicationList.get(position);
 		mCallbacks.onItemSelected(application);
-		TabletApplicationRowAdapter adapter = (TabletApplicationRowAdapter) getListAdapter();
-		if(adapter != null) {
-			adapter.setOrder(position);
-		}
+		
+		
+		Intent intent = getActivity().getIntent();
+		selectedType = intent.getExtras().getString("selectedType");
 
+		if(selectedType.equals("UPDATE")){
+			TabletUpdateRowAdapter adapter = (TabletUpdateRowAdapter) getListAdapter();
+			
+			if(adapter != null) {
+				adapter.setOrder(position);
+			}
+		}else{
+			TabletApplicationRowAdapter adapter = (TabletApplicationRowAdapter) getListAdapter();
+			
+			if(adapter != null) {
+				adapter.setOrder(position);
+			}
+		}
 		getActivity().invalidateOptionsMenu();
 	}
 
@@ -225,7 +237,7 @@ public class AppListFragment extends ListFragment {
 			for(int i=0; i < applicationList.size(); i++){
 				updateAppUrls += applicationList.get(i).getAppDownloadUrl()+";";
 			}
-			Utils.showDownload(updateAppUrls, this.getView());
+			Utils.showDownloadAll(updateAppUrls, this.getView());
 			break;
 		}		
 		return true;

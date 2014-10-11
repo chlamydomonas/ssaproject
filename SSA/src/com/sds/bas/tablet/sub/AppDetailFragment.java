@@ -166,19 +166,16 @@ public class AppDetailFragment extends Fragment {
 		UserInfo userInfo = (UserInfo)getActivity().getApplicationContext();
 		String appId = id;
 		String appVerCode = verCode;
-		
-		int downloadType = 0;
+
 		for(int i=0; i < userInfo.getInstalledAppInfoList().size(); i++){
 			int installedAppCode = Integer.parseInt(userInfo.getInstalledAppInfoList().get(i).getAppVerCode());
 			int serverAppCode = Integer.parseInt(appVerCode);
 
 			if(appId.equals(userInfo.getInstalledAppInfoList().get(i).getAppId())){
 				if(installedAppCode == serverAppCode){
-					downloadType = 2;
 					downloadBtn.setVisibility(View.GONE);
 					
 				} else if(installedAppCode < serverAppCode){
-					downloadType = 1;
 					downloadBtn.setText(R.string.update);
 				}
 			}
@@ -188,12 +185,16 @@ public class AppDetailFragment extends Fragment {
 				reviewBtn.setVisibility(View.VISIBLE);
 			}
 		}
-
+		
+		final Application selectedApplication = new Application();
+		selectedApplication.setAppDownloadUrl(downloadUrl);
+		selectedApplication.setAppVerCode(verCode);
+		selectedApplication.setAppId(id);
+		
 		downloadBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				//showInfo();          
-				Utils.showDownload(downloadUrl, v);
+				Utils.showDownload(selectedApplication, v);
           	}
 		});
 
