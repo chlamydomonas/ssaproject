@@ -89,7 +89,7 @@ public class AppUpdateDetailFragment extends Fragment {
 		appVerName.setText(vername);
 		appVerDiff.setText(appverdiff);
 		
-		downloadBtn.getLayoutParams().height = 80;
+		downloadBtn.getLayoutParams().height = 40;
 		downloadBtn.setLayoutParams(downloadBtn.getLayoutParams());
 		downloadBtn.setText(R.string.update);
 		

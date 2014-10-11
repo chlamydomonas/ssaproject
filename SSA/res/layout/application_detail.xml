@@ -98,45 +98,114 @@
 			<RelativeLayout 
 			    android:layout_width="fill_parent"
 			    android:layout_height="fill_parent"
+			    android:layout_marginTop="10dp"
 			    android:paddingLeft="7dp"
-    			android:paddingRight="7dp" >
+    			android:paddingRight="7dp"
+    			android:layout_marginBottom="10dp" >
 			    
 			    <TextView
 				    android:id="@+id/created"
+				    android:layout_marginLeft="7dp"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:layout_marginTop="10dp"
+					android:layout_centerVertical="true"
 					android:text="created"
-					android:textColor="#504A4B"
-			        android:textSize="12dip" />
-						    
+					android:textColor="#656565"
+			        android:textSize="14dip" />
+			    
+			    <ImageView
+			        android:id="@+id/line1"
+			        android:layout_marginLeft="10dp"
+			        android:src="@drawable/vertical_line"
+			        android:layout_width="3dp"
+			        android:layout_height="12dp"
+			        android:layout_centerVertical="true"
+			        android:layout_toRightOf="@+id/created"
+			        android:background="@android:color/transparent" />
+			    
+			    <ImageView
+			        android:id="@+id/appvernameimage"
+			        android:layout_marginLeft="10dp"
+			        android:src="@drawable/app_version"
+			        android:layout_width="20dp"
+			        android:layout_height="12dp"
+			        android:layout_centerVertical="true"
+			        android:layout_toRightOf="@+id/line1"
+			        android:background="@android:color/transparent" />
+			        
 				<TextView
 				    android:id="@+id/appvername"
+				    android:layout_marginLeft="5dp"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:layout_toRightOf="@+id/created"
+					android:layout_centerVertical="true"
+					android:layout_toRightOf="@+id/appvernameimage"
 					android:text="appvername"
-					android:textColor="#504A4B"
-			        android:textSize="12dip" />		   
+					android:textColor="#656565"
+			        android:textSize="14dip" />		   
 			        
+				<ImageView
+			        android:id="@+id/line2"
+			        android:layout_marginLeft="10dp"
+			        android:src="@drawable/vertical_line"
+			        android:layout_width="3dp"
+			        android:layout_height="12dp"
+			        android:layout_centerVertical="true"
+			        android:layout_toRightOf="@+id/appvername"
+			        android:background="@android:color/transparent" />
+				
+				<ImageView
+			        android:id="@+id/downloadsmall"
+			        android:layout_marginLeft="10dp"
+			        android:src="@drawable/download_small"
+			        android:layout_width="12dp"
+			        android:layout_height="12dp"
+			        android:layout_centerVertical="true"
+			        android:layout_toRightOf="@+id/line2"
+			        android:background="@android:color/transparent" />
+							    
 				<TextView
 				    android:id="@+id/appdownloaded"
+				    android:layout_marginLeft="5dp"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:layout_toRightOf="@+id/appvername"
-					android:text="appdownloaded"
-					android:textColor="#504A4B"
-			        android:textSize="12dip" />		
-			        
+					android:layout_centerVertical="true"
+					android:layout_toRightOf="@+id/downloadsmall"
+					android:text="downloadsmall"
+					android:textColor="#656565"
+			        android:textSize="14dip" />	
+			    
+				<ImageView
+			        android:id="@+id/line3"
+			        android:layout_marginLeft="10dp"
+			        android:src="@drawable/vertical_line"
+			        android:layout_width="3dp"
+			        android:layout_height="12dp"
+			        android:layout_centerVertical="true"
+			        android:layout_toRightOf="@+id/appdownloaded"
+			        android:background="@android:color/transparent" />
+				
+				<ImageView
+			        android:id="@+id/appdownloadedimage"
+			        android:layout_marginLeft="10dp"
+			        android:src="@drawable/app_downloaded"
+			        android:layout_width="12dp"
+			        android:layout_height="12dp"
+			        android:layout_centerVertical="true"
+			        android:layout_toRightOf="@+id/line3"
+			        android:background="@android:color/transparent" />
+				
 				<TextView
 				    android:id="@+id/filesize"
+				    android:layout_marginLeft="5dp"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:layout_toRightOf="@+id/appdownloaded"
+					android:layout_centerVertical="true"
+					android:layout_toRightOf="@+id/appdownloadedimage"
 					android:text="filesize"
-					android:textColor="#504A4B"
-			        android:textSize="12dip" />		
-						    
+					android:textColor="#656565"
+			        android:textSize="14dip" />		
+
 			</RelativeLayout>
     
 			<View
@@ -215,66 +284,7 @@
 		        android:layout_below="@+id/appdesc"
 		        android:text="Manual"
 		        android:textColor="#504A4B" />
-		
-		    <!-- 
-		    <View
-			    android:layout_width="fill_parent"
-			    android:layout_height="1dp"
-			    android:background="@android:color/holo_blue_dark"/>
 
-		    <TextView
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center"
-    			android:layout_marginTop="10dp"
-    			android:layout_marginBottom="7dp"
-				android:text="@string/rate_app"
-				android:textColor="#413839"
-		        android:textSize="12dip" />
-
-	    	<LinearLayout 
-	        	android:orientation="horizontal"
-			    android:layout_width="fill_parent"
-			    android:layout_height="fill_parent"
-			    android:layout_marginBottom="15dp">
-
-			    <ImageView
-	    	    	android:id="@+id/ratestar1"
-			        android:src="@drawable/blank_star"
-			        android:layout_width="0dip"
-			        android:layout_height="match_parent"
-			        android:layout_weight="1"/>
-			
-			    <ImageView
-			        android:id="@+id/ratestar2"
-			        android:src="@drawable/blank_star"
-			        android:layout_width="0dip"
-			        android:layout_height="match_parent"
-			        android:layout_weight="1"/>
-			
-			    <ImageView
-			        android:id="@+id/ratestar3"
-			        android:src="@drawable/blank_star"
-			        android:layout_width="0dip"
-			        android:layout_height="match_parent"
-			        android:layout_weight="1"/>
-			
-			    <ImageView
-			        android:id="@+id/ratestar4"
-			        android:src="@drawable/blank_star"
-			        android:layout_width="0dip"
-			        android:layout_height="match_parent"
-			        android:layout_weight="1"/>
-			
-			    <ImageView
-			        android:id="@+id/ratestar5"
-			        android:src="@drawable/blank_star"
-			        android:layout_width="0dip"
-			        android:layout_height="match_parent"
-			        android:layout_weight="1"/>
-			</LinearLayout>
-		    -->
-		    
 	    	<View
 			    android:layout_width="fill_parent"
 			    android:layout_height="1dp"

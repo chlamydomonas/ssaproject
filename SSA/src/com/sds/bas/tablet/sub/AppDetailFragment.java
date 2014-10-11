@@ -144,12 +144,12 @@ public class AppDetailFragment extends Fragment {
 		appDownloaded = (TextView) rootView.findViewById(R.id.appdownloaded);
 		fileSize = (TextView) rootView.findViewById(R.id.filesize);
 		
-		reviewBtn.getLayoutParams().height = 60;
+		reviewBtn.getLayoutParams().height = 30;
 		//reviewBtn.getLayoutParams().width = 100;
 		reviewBtn.setLayoutParams(reviewBtn.getLayoutParams());
 		reviewBtn.setText(R.string.write_review);
 		
-		downloadBtn.getLayoutParams().height = 80;
+		downloadBtn.getLayoutParams().height = 40;
 		downloadBtn.setLayoutParams(downloadBtn.getLayoutParams());
 		downloadBtn.setText(R.string.download);
 		
