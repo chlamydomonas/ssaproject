@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sds.bas.adapter.CategoryExpandableListAdapter;
@@ -48,6 +49,7 @@ public class FragMent2 extends Fragment {
     List<Category> listDataHeader;
     HashMap<Category, List<Application>> listDataChild;
     private boolean searchCheck;
+    TextView textView;
 
 	 public static FragMent2 newInstance() {
 		 FragMent2 fragment = new FragMent2();
@@ -60,6 +62,7 @@ public class FragMent2 extends Fragment {
 		
 		View rootView = inflater.inflate(R.layout.category_expandable, container, false);
 		expListView = (ExpandableListView) rootView.findViewById(R.id.lvExp);
+		textView = (TextView) rootView.findViewById(R.id.nolist);
 
 		DisplayMetrics dm = new DisplayMetrics();
 		getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -231,15 +234,18 @@ public class FragMent2 extends Fragment {
 					e.printStackTrace();
 				}
 
+				if(listDataHeader.size() > 0) {
+					setAdapterToListview();
+				}else{
+					textView.setVisibility(View.VISIBLE);
+				}
+				
 				setAdapterToListview();
 			}
 		}
 	}
 	
     public void setAdapterToListview() {
-		//objAdapter = new AppsRowAdapter(getActivity(), R.layout.fragment1_row2, arrayOfList);
-		//listView.setAdapter(objAdapter);
-    	
     	listAdapter = new CategoryExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
         expListView.setAdapter(listAdapter);
 		expListView.setOnChildClickListener(new OnChildClickListener() {

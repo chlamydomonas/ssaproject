@@ -33,7 +33,7 @@ public class ItemListActivity extends ActionBarActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tablet_activity_item_list);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		//getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		if (findViewById(R.id.item_detail_container) != null) {
 			// The detail container view will be present only in the
@@ -76,6 +76,7 @@ public class ItemListActivity extends ActionBarActivity implements
 		 }
 	}
 	
+	/*
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -85,4 +86,5 @@ public class ItemListActivity extends ActionBarActivity implements
             return super.onOptionsItemSelected(item);
         }
 	}
+	*/
 }

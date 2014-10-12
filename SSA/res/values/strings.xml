@@ -43,4 +43,5 @@
     <string name="myapp">My App</string>
     <string name="latestversion">Latest Version</string>
     <string name="search_result">Search Result</string>
+    <string name="no_list">No List</string>
 </resources>

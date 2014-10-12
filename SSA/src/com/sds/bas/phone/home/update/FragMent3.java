@@ -28,6 +28,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sds.bas.adapter.UpdateRowAdapter;
@@ -48,6 +49,7 @@ public class FragMent3 extends Fragment {
     
 	List<Application> applicationList;
 	ListView listView;
+	TextView textView;
 	UpdateRowAdapter updateRowAdapter;
 	private boolean searchCheck;
 	
@@ -58,6 +60,7 @@ public class FragMent3 extends Fragment {
 		View view = inflater.inflate(R.layout.application_listview, container, false);
 		listView = (ListView) view.findViewById(R.id.listview);
 		listView.setItemsCanFocus(false);
+		textView = (TextView) view.findViewById(R.id.nolist);
 
 		applicationList = new ArrayList<Application>();
 
@@ -113,7 +116,7 @@ public class FragMent3 extends Fragment {
         .setHintTextColor(getResources().getColor(R.color.white));	    
 	    searchView.setOnQueryTextListener(OnQuerySearchView);
 					    	   	    
-	    menu.findItem(R.id.menu_update).setVisible(false);		
+	    menu.findItem(R.id.menu_update).setVisible(true);		
 		menu.findItem(R.id.menu_search).setVisible(true);	
   	    
 		searchCheck = false;	
@@ -123,6 +126,19 @@ public class FragMent3 extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 
+		case R.id.menu_update:
+			
+			if(applicationList.size() > 0){
+				String updateAppUrls = "";
+				for(int i=0; i < applicationList.size(); i++){
+					updateAppUrls += applicationList.get(i).getAppDownloadUrl()+";";
+				}
+				Utils.showDownloadAll(updateAppUrls, this.getView());
+			}else{
+				showToast("no update");
+			}
+			break;
+			
 		case R.id.menu_search:
 			searchCheck = true;
 			break;
@@ -144,7 +160,6 @@ public class FragMent3 extends Fragment {
 		public boolean onQueryTextChange(String query) {
 			if (searchCheck){
 				Log.v("bas", "onQueryTextChange");
-				//자동 완성 같은 건 없음;
 			}
 			return false;
 		}
@@ -204,7 +219,12 @@ public class FragMent3 extends Fragment {
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-				setAdapterToListview();
+
+				if(applicationList.size() > 0) {
+					setAdapterToListview();
+				}else{
+					textView.setVisibility(View.VISIBLE);
+				}
 			}
 		}
 	}

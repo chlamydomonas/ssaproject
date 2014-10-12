@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sds.bas.adapter.ApplicationRowAdapter;
@@ -40,6 +41,7 @@ public class ItemDetailFragment extends Fragment {
 	
 	List<Application> applicationList;
 	ListView listView;
+	TextView textView;
 	ApplicationRowAdapter appsRowAdapter;
 	
 	/**
@@ -76,6 +78,7 @@ public class ItemDetailFragment extends Fragment {
 
 		listView = (ListView) rootView.findViewById(R.id.detaillistview);
 		listView.setItemsCanFocus(false);
+		textView = (TextView) rootView.findViewById(R.id.nolist);
 
 		applicationList = new ArrayList<Application>();
 
@@ -205,7 +208,11 @@ public class ItemDetailFragment extends Fragment {
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-				setAdapterToListview();
+				if(applicationList.size() > 0) {
+					setAdapterToListview();
+				}else{
+					textView.setVisibility(View.VISIBLE);
+				}
 			}
 		}
 	}

@@ -28,6 +28,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sds.bas.R;
@@ -53,6 +54,8 @@ public class MyAppFragMent extends Fragment implements OnItemClickListener {
 	List<Application> updateList;
 	ListView updatelistview;
 	ListView installedlistview;
+	TextView updateTextView;
+	TextView installedTextView;
 	ApplicationRowAdapter installedRowAdapter;
 	UpdateRowAdapter updateRowAdapter;
 	private boolean searchCheck;
@@ -67,6 +70,9 @@ public class MyAppFragMent extends Fragment implements OnItemClickListener {
 		
 		installedlistview = (ListView) view.findViewById(R.id.installedlistview);
 		installedlistview.setItemsCanFocus(false);
+		
+		updateTextView = (TextView) view.findViewById(R.id.noupdatelist);
+		installedTextView = (TextView) view.findViewById(R.id.noinstalledlist);
 		
 		applicationList = new ArrayList<Application>();
 		installedList = new ArrayList<Application>();
@@ -153,7 +159,7 @@ public class MyAppFragMent extends Fragment implements OnItemClickListener {
 	    ((EditText)searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text))
         .setHintTextColor(getResources().getColor(R.color.white));	    
 	    searchView.setOnQueryTextListener(OnQuerySearchView);
-					    	   	    
+
 	    menu.findItem(R.id.menu_update).setVisible(true);		
 		menu.findItem(R.id.menu_search).setVisible(true);	
   	    
@@ -165,11 +171,16 @@ public class MyAppFragMent extends Fragment implements OnItemClickListener {
 		switch (item.getItemId()) {
 
 		case R.id.menu_update:
-			String updateAppUrls = "";
-			for(int i=0; i < updateList.size(); i++){
-				updateAppUrls += updateList.get(i).getAppDownloadUrl()+";";
+			
+			if(updateList.size() > 0){
+				String updateAppUrls = "";
+				for(int i=0; i < updateList.size(); i++){
+					updateAppUrls += updateList.get(i).getAppDownloadUrl()+";";
+				}
+				Utils.showDownloadAll(updateAppUrls, this.getView());
+			}else{
+				showToast("no update");
 			}
-			Utils.showDownloadAll(updateAppUrls, this.getView());
 			break;
 			
 		case R.id.menu_search:
@@ -193,29 +204,11 @@ public class MyAppFragMent extends Fragment implements OnItemClickListener {
 		public boolean onQueryTextChange(String query) {
 			if (searchCheck){
 				Log.v("bas", "onQueryTextChange");
-				//자동 완성 같은 건 없음;
 			}
 			return false;
 		}
 	};
-	
-	/*
-	private OnQueryTextListener queryTextListener = new OnQueryTextListener() {
-		@Override
-		public boolean onQueryTextSubmit(String query) {
-			Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
-			intent.putExtra("searchWord", query);
-			startActivity(intent);
-			return false;
-		}
 
-		@Override
-		public boolean onQueryTextChange(String newText) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-	};
-	*/
 	class MyTask extends AsyncTask<String, Void, String> {
 		ProgressDialog pDialog;
 
@@ -296,17 +289,29 @@ public class MyAppFragMent extends Fragment implements OnItemClickListener {
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-				// check data...
 
-				setAdapterToListview();
+
+				if(updateList.size() > 0) {
+					setUpdateAdapterToListview();
+				}else {
+					updateTextView.setVisibility(View.VISIBLE);
+				}
+				
+				if(installedList.size() > 0) {
+					setInstalledAdapterToListview();
+				}else {
+					installedTextView.setVisibility(View.VISIBLE);
+				}
 			}
 		}
 	}
 	
-	public void setAdapterToListview() {
+	public void setUpdateAdapterToListview() {
 		updateRowAdapter = new UpdateRowAdapter(getActivity(), R.layout.application_row, updateList);
 		updatelistview.setAdapter(updateRowAdapter);
-		
+	}
+	
+	public void setInstalledAdapterToListview() {
 		installedRowAdapter = new ApplicationRowAdapter(getActivity(), R.layout.application_row, installedList);
 		installedlistview.setAdapter(installedRowAdapter);
 	}

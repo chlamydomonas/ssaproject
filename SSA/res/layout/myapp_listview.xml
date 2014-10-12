@@ -21,6 +21,20 @@
         android:layout_height="wrap_content"
         android:layout_weight="1" >
         
+	    <TextView
+	        android:id="@+id/noupdatelist"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="10dip"
+	        android:layout_marginLeft="10dip"
+	        android:ellipsize="end"
+	        android:visibility="gone"
+	        android:maxLines="1"
+	        android:text="@string/no_list"
+	        android:textColor="#413839"
+	        android:textSize="18dip"
+	        android:textStyle="bold" />
+	    
         <ListView
             android:id="@+id/updatelistview"
 	        android:layout_width="fill_parent"
@@ -44,6 +58,20 @@
 	    android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1" >
+        
+	    <TextView
+	        android:id="@+id/noinstalledlist"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="10dip"
+	        android:layout_marginLeft="10dip"
+	        android:ellipsize="end"
+	        android:visibility="gone"
+	        android:maxLines="1"
+	        android:text="@string/no_list"
+	        android:textColor="#413839"
+	        android:textSize="18dip"
+	        android:textStyle="bold" />
         
         <ListView
             android:id="@+id/installedlistview"

@@ -5,6 +5,20 @@
     android:orientation="vertical"
     android:background="#D3D3D3" >
 
+    <TextView
+        android:id="@+id/nolist"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:layout_marginLeft="10dip"
+        android:ellipsize="end"
+        android:visibility="gone"
+        android:maxLines="1"
+        android:text="@string/no_list"
+        android:textColor="#413839"
+        android:textSize="18dip"
+        android:textStyle="bold" />
+    
     <ListView
         android:id="@+id/listview"
         android:layout_width="fill_parent"

@@ -28,6 +28,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sds.bas.adapter.ApplicationRowAdapter;
@@ -48,6 +49,7 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 
 	List<Application> applicationList;
 	ListView listView;
+	TextView textView;
 	ApplicationRowAdapter appsRowAdapter;
 	private boolean searchCheck;
 
@@ -58,7 +60,7 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 		View view = inflater.inflate(R.layout.application_listview, container, false);
 		listView = (ListView) view.findViewById(R.id.listview);
 		listView.setItemsCanFocus(false);
-		//listView.setOnItemClickListener(this);
+		textView = (TextView) view.findViewById(R.id.nolist);
 		
 		applicationList = new ArrayList<Application>();
 
@@ -155,24 +157,7 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 			return false;
 		}
 	};
-	
-	/*
-	private OnQueryTextListener queryTextListener = new OnQueryTextListener() {
-		@Override
-		public boolean onQueryTextSubmit(String query) {
-			Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
-			intent.putExtra("searchWord", query);
-			startActivity(intent);
-			return false;
-		}
 
-		@Override
-		public boolean onQueryTextChange(String newText) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-	};
-	*/
 	class MyTask extends AsyncTask<String, Void, String> {
 		ProgressDialog pDialog;
 
@@ -246,7 +231,12 @@ public class FragMent1 extends Fragment implements OnItemClickListener {
 						return (lhs.getAge() - rhs.getAge());
 					}
 				});*/
-				setAdapterToListview();
+				
+				if(applicationList.size() > 0) {
+					setAdapterToListview();
+				}else{
+					textView.setVisibility(View.VISIBLE);
+				}
 			}
 		}
 	}

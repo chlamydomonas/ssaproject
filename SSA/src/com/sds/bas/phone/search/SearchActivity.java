@@ -8,7 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -17,38 +16,27 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.SearchView.OnQueryTextListener;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sds.bas.activity.BasActivity;
+import com.sds.bas.R;
 import com.sds.bas.adapter.ApplicationRowAdapter;
-import com.sds.bas.phone.PhoneActivity;
 import com.sds.bas.phone.detail.DetailActivity;
-import com.sds.bas.phone.search.SearchActivity;
 import com.sds.bas.util.AppParams;
 import com.sds.bas.util.Utils;
 import com.sds.bas.vo.Application;
-import com.sds.bas.R;
 
 
 public class SearchActivity extends Activity implements OnItemClickListener {
 
 	List<Application> applicationList;
 	ListView listView;
+	TextView textView;
 	ApplicationRowAdapter appsRowAdapter;
 	private boolean searchCheck;
 	
@@ -68,6 +56,7 @@ public class SearchActivity extends Activity implements OnItemClickListener {
 			
 		listView = (ListView) findViewById(R.id.listview);
 		listView.setOnItemClickListener(this);
+		textView = (TextView) findViewById(R.id.nolist);
 
 		applicationList = new ArrayList<Application>();
 		
@@ -174,51 +163,16 @@ public class SearchActivity extends Activity implements OnItemClickListener {
 					e.printStackTrace();
 				}
 
-				setAdapterToListview();
+				if(applicationList.size() > 0) {
+					setAdapterToListview();
+				}else{
+					textView.setVisibility(View.VISIBLE);
+				}
 			}
 
 		}
 	}
 
-	/*
-	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		super.onCreateOptionsMenu(menu, inflater);		
-		inflater.inflate(R.menu.menu, menu);
-		
-		SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.menu_search));
-		searchView.setQueryHint(this.getString(R.string.search));
-		
-		((EditText)searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text))
-		.setHintTextColor(getResources().getColor(R.color.white));	    
-		searchView.setOnQueryTextListener(OnQuerySearchView);
-									
-		menu.findItem(R.id.menu_update).setVisible(false);		
-		menu.findItem(R.id.menu_search).setVisible(true);	
-		
-		searchCheck = false;	
-	}
-	
-	private OnQueryTextListener OnQuerySearchView = new OnQueryTextListener() {
-		
-		@Override
-		public boolean onQueryTextSubmit(String query) {
-			Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
-			intent.putExtra("searchWord", query);
-			startActivity(intent);
-			return false;
-		}
-		
-		@Override
-		public boolean onQueryTextChange(String query) {
-			if (searchCheck){
-				Log.v("bas", "onQueryTextChange");
-				//자동 완성 같은 건 없음;
-			}
-			return false;
-		}
-	};
-	*/
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
@@ -238,11 +192,6 @@ public class SearchActivity extends Activity implements OnItemClickListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
         case android.R.id.home:
-        	/*
-        	Intent intent = new Intent(this, PhoneActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent)
-            ;*/
         	onBackPressed();
             break;
       
