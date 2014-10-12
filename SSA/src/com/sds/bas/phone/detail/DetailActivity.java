@@ -18,11 +18,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -214,7 +216,6 @@ public class DetailActivity extends Activity {
 	private View.OnClickListener cancelClickListener = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			//reset();
 			reviewDialog.dismiss();
 		}
 	};
@@ -222,9 +223,45 @@ public class DetailActivity extends Activity {
 	private View.OnClickListener confirmClickListener = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			//();
-			Toast.makeText(getApplicationContext(), "confirm", 
-					Toast.LENGTH_SHORT).show();
+			EditText review_edit = (EditText) reviewDialog.findViewById(R.id.review_edittext);
+			ImageView rate_star1 = (ImageView) reviewDialog.findViewById(R.id.ratestar1);
+			ImageView rate_star2 = (ImageView) reviewDialog.findViewById(R.id.ratestar2);
+			ImageView rate_star3 = (ImageView) reviewDialog.findViewById(R.id.ratestar3);
+			ImageView rate_star4 = (ImageView) reviewDialog.findViewById(R.id.ratestar4);
+			ImageView rate_star5 = (ImageView) reviewDialog.findViewById(R.id.ratestar5);
+			
+			String reviewValue = review_edit.getEditableText().toString();
+			String rateStar1 = (String) rate_star1.getTag();
+			String rateStar2 = (String) rate_star2.getTag();
+			String rateStar3 = (String) rate_star3.getTag();
+			String rateStar4 = (String) rate_star4.getTag();
+			String rateStar5 = (String) rate_star5.getTag();
+
+			String starValue = "0";
+
+			if(rateStar1.equals("1")){
+				starValue = "1";
+			}else if(rateStar2.equals("1")){
+				starValue = "2";
+			}else if(rateStar3.equals("1")){
+				starValue = "3";
+			}else if(rateStar4.equals("1")){
+				starValue = "4";
+			}else if(rateStar5.equals("1")){
+				starValue = "5";
+			}
+			//send reviewValue, starValue as parameters to BAS Server
+			Log.v("bas", reviewValue);
+			Log.v("bas", starValue);
+			
+			if(starValue.equals("0") || (reviewValue.equals("") || reviewValue.equals(null))){
+				Toast.makeText(getApplicationContext(), getString(R.string.reviewWarnMsg), 
+						Toast.LENGTH_SHORT).show();
+			}else{
+				reviewDialog.dismiss();
+				finish();
+				startActivity(getIntent());
+			}
 		}
 	};
 	

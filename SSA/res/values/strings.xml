@@ -44,4 +44,5 @@
     <string name="latestversion">Latest Version</string>
     <string name="search_result">Search Result</string>
     <string name="no_list">No List</string>
+    <string name="reviewWarnMsg">You should enter review or comment.</string>
 </resources>

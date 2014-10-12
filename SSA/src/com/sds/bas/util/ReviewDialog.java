@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ public class ReviewDialog extends Dialog{
 	private TextView titleView;
 	private ImageView rateStar1, rateStar2, rateStar3, rateStar4, rateStar5;
 	private Button cancelBtn, confirmBtn;
+	private EditText reviewedittext;
 	private int star;
 	private View.OnClickListener cancelClickListener;
 	private View.OnClickListener confirmClickListener;
@@ -61,6 +63,8 @@ public class ReviewDialog extends Dialog{
 		
 		cancelBtn = (Button) findViewById(R.id.cancel_btn);
 		confirmBtn = (Button) findViewById(R.id.confirm_btn);
+
+		reviewedittext = (EditText) findViewById(R.id.review_edittext);
 	}
 	
 	private void setTitle(){
@@ -80,6 +84,7 @@ public class ReviewDialog extends Dialog{
 			public void onClick(View v) {
 				reset();
 				rateStar1.setImageResource(R.drawable.filled_star);
+				rateStar1.setTag("1");
           	}
 		});
 	}
@@ -95,6 +100,7 @@ public class ReviewDialog extends Dialog{
 				reset();
 				rateStar1.setImageResource(R.drawable.filled_star);
 				rateStar2.setImageResource(R.drawable.filled_star);
+				rateStar2.setTag("1");
           	}
 		});
 	}
@@ -112,6 +118,7 @@ public class ReviewDialog extends Dialog{
 				rateStar1.setImageResource(R.drawable.filled_star);
 				rateStar2.setImageResource(R.drawable.filled_star);
 				rateStar3.setImageResource(R.drawable.filled_star);
+				rateStar3.setTag("1");
           	}
 		});
 	}
@@ -131,6 +138,7 @@ public class ReviewDialog extends Dialog{
 				rateStar2.setImageResource(R.drawable.filled_star);
 				rateStar3.setImageResource(R.drawable.filled_star);
 				rateStar4.setImageResource(R.drawable.filled_star);
+				rateStar4.setTag("1");
           	}
 		});
 	}
@@ -152,6 +160,7 @@ public class ReviewDialog extends Dialog{
 				rateStar3.setImageResource(R.drawable.filled_star);
 				rateStar4.setImageResource(R.drawable.filled_star);
 				rateStar5.setImageResource(R.drawable.filled_star);
+				rateStar5.setTag("1");
           	}
 		});
 	}
@@ -166,6 +175,11 @@ public class ReviewDialog extends Dialog{
 	}
 	
 	private void reset() {
+		rateStar1.setTag("0");
+		rateStar2.setTag("0");
+		rateStar3.setTag("0");
+		rateStar4.setTag("0");
+		rateStar5.setTag("0");
 		rateStar1.setImageResource(R.drawable.blank_star);
 		rateStar2.setImageResource(R.drawable.blank_star);
 		rateStar3.setImageResource(R.drawable.blank_star);

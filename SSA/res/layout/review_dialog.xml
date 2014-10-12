@@ -67,11 +67,13 @@
 		</LinearLayout>
 
 		<EditText
+		    android:id="@+id/review_edittext"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
-		    android:gravity="center"
+		    android:gravity="top"
 		    android:singleLine="false"
 		    android:lines="5"
+		    android:maxLength="500"
 		    android:layout_marginLeft="10dip"
 		    android:layout_marginRight="10dip" />
 				
