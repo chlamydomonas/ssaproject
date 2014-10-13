@@ -97,10 +97,10 @@ public class ItemListFragment extends ListFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		 setRetainInstance(true);
+		setRetainInstance(true);
 		
 		allTypeList = new ArrayList<AllType>();
-
+		
 		if (Utils.isNetworkAvailable(getActivity())) {
 			Locale systemLocale = getResources().getConfiguration().locale;
 			String systemLanguage = systemLocale.getLanguage();
@@ -128,16 +128,18 @@ public class ItemListFragment extends ListFragment {
 	}
 	
 	class MyTask extends AsyncTask<String, Void, String> {
-		ProgressDialog pDialog;
+		//ProgressDialog pDialog;
 
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
 
+			/*
 			pDialog = new ProgressDialog(getActivity());
 			pDialog.setMessage("Loading...");
 			pDialog.setCancelable(false);
 			pDialog.show();
+			*/
 		}
 
 		@Override
@@ -149,9 +151,11 @@ public class ItemListFragment extends ListFragment {
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
 
+			/*
 			if (null != pDialog && pDialog.isShowing()) {
 				pDialog.dismiss();
 			}
+			*/
 
 			if (null == result || result.length() == 0) {
 				showToast("No data found from web!!!");
@@ -203,6 +207,7 @@ public class ItemListFragment extends ListFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+		setListShownNoAnimation(true);
 		setHasOptionsMenu(true);
 	}
 
